@@ -1,5 +1,11 @@
+import Header from "./components/common/Header";
+
 function App() {
-  return <div>프트폴리오 프로젝트</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default App;
