@@ -28,6 +28,9 @@ const StyledLogo = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 1.125rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  line-height: 24px;
 `;
 
 function Header() {

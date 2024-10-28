@@ -18,7 +18,6 @@ const NavBtn = styled.button`
   font-size: 1.125rem;
   background-color: transparent;
   cursor: pointer;
-  font-weight: 500;
   padding: 0;
 `;
 
