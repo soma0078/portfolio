@@ -19,6 +19,7 @@ const NavBtn = styled.button`
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  color: ${({ theme }) => theme.textColor};
 `;
 
 function NavBar() {

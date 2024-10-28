@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import NavBar from "./NavBar";
+import { LuSun, LuMoon } from "react-icons/lu";
 
 const HeaderLayout = styled.div`
   width: 100%;
@@ -33,17 +34,41 @@ const StyledLogo = styled.div`
   line-height: 24px;
 `;
 
-function Header() {
+const HeaderRightMenuWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+const DarkModeIcon = styled.button`
+  border: none;
+  font-size: 1.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  background-color: transparent;
+  color: ${(props) => props.theme.textColor};
+
+  &:hover {
+    background-color: #efefef;
+    color: #333;
+  }
+`;
+
+interface HeaderProps {
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+}
+
+function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
   return (
     <HeaderLayout>
       <StyledLogo>
         <span>songa. portfolio</span>
         <span>2024</span>
       </StyledLogo>
-      <div>
+      <HeaderRightMenuWrapper>
         <NavBar />
-        {/* TODO: Darkmode */}
-      </div>
+        <DarkModeIcon onClick={toggleDarkMode}>{isDarkMode ? <LuSun /> : <LuMoon />}</DarkModeIcon>
+      </HeaderRightMenuWrapper>
     </HeaderLayout>
   );
 }

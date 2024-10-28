@@ -8,6 +8,11 @@ const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 	}
 
+	body {
+		background-color: ${({ theme }) => theme.bgColor};
+		color: ${({ theme }) => theme.textColor};
+	}
+
 	body, button {
 		font-family: 'Noto Sans KR', sans-serif;
 	}
