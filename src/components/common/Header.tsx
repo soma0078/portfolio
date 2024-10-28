@@ -1,11 +1,15 @@
 import styled from "styled-components";
+import NavBar from "./NavBar";
 
 const HeaderLayout = styled.div`
   width: 100%;
   padding: 18px 48px;
   display: flex;
   justify-content: space-between;
-  position: fixed;
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  align-items: center;
 
   &::before {
     content: "";
@@ -34,7 +38,7 @@ function Header() {
         <span>2024</span>
       </StyledLogo>
       <div>
-        {/* TODO: Navigation */}
+        <NavBar />
         {/* TODO: Darkmode */}
       </div>
     </HeaderLayout>
