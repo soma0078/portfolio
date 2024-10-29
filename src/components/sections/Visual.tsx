@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Intro from "../Intro";
+import Intro from "./Intro";
 import IntroImg from "../../assets/images/sample.png";
 import { expandWidth } from "../../styles/animations";
-import { CommonSection } from "../../styles/commonStyles";
+import { fullViewportSection } from "../../styles/commonStyles";
 
-const VisualSection = styled(CommonSection)`
+const VisualSection = styled(fullViewportSection)`
   padding: 0 50px 90px;
 `;
 

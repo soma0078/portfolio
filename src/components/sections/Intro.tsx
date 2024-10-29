@@ -1,6 +1,12 @@
 import styled from "styled-components";
-import IntroTextStyle from "../styles/introTextStyle";
-import { fadeInBold, fadeInSoft, fadeOutBold, fadeOutSoft, shrinkToCircle } from "../styles/animations";
+import IntroTextStyle from "../../styles/introTextStyle";
+import {
+  fadeInBold,
+  fadeInSoft,
+  fadeOutBold,
+  fadeOutSoft,
+  shrinkToCircle,
+} from "../../styles/animations";
 
 const IntroWrapper = styled.div`
   width: 100%;
@@ -29,7 +35,8 @@ const IntroTextWrapper = styled.div`
     font-weight: 800;
     letter-spacing: -2px;
     opacity: 0;
-    animation: ${fadeInSoft} 2s ease-in-out forwards, ${fadeOutSoft} 2s 3s linear forwards;
+    animation: ${fadeInSoft} 2s ease-in-out forwards,
+      ${fadeOutSoft} 2s 3s linear forwards;
   }
 `;
 
@@ -43,11 +50,13 @@ const StyledIntroH1 = styled.h1`
 
   > span:nth-child(1) {
     opacity: 0;
-    animation: ${fadeInBold} 1.5s 0.5s ease-in-out forwards, ${fadeOutBold} 1.5s 2.5s ease-in-out forwards;
+    animation: ${fadeInBold} 1.5s 0.5s ease-in-out forwards,
+      ${fadeOutBold} 1.5s 2.5s ease-in-out forwards;
   }
   > span:nth-child(2) {
     opacity: 0;
-    animation: ${fadeInBold} 1.5s 1s ease-in-out forwards, ${fadeOutBold} 1.5s 3s ease-in-out forwards;
+    animation: ${fadeInBold} 1.5s 1s ease-in-out forwards,
+      ${fadeOutBold} 1.5s 3s ease-in-out forwards;
   }
 `;
 

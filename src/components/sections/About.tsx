@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { CommonSection } from "../../styles/commonStyles";
+import { CenteredContentSection } from "../../styles/commonStyles";
 
-const AboutSection = styled(CommonSection)`
+const AboutSection = styled(CenteredContentSection)`
   background-color: #eee;
   padding: 50px;
 `;
