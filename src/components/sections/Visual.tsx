@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Intro from "../Intro";
 
 const VisualSection = styled.section`
   width: 100%;
@@ -39,18 +40,21 @@ const VisualImgBox = styled.div``;
 
 function Visual() {
   return (
-    <VisualSection>
-      <VisualInner>
-        <VisualH2>
-          <span>HELLO, I'M</span>
-          <span>LEE SONGA</span>
-          <span>FRONT-END DEV.</span>
-        </VisualH2>
-        <VisualImgWrapper>
-          <VisualImgBox />
-        </VisualImgWrapper>
-      </VisualInner>
-    </VisualSection>
+    <>
+      <Intro />
+      <VisualSection>
+        <VisualInner>
+          <VisualH2>
+            <span>HELLO, I'M</span>
+            <span>LEE SONGA</span>
+            <span>FRONT-END DEV.</span>
+          </VisualH2>
+          <VisualImgWrapper>
+            <VisualImgBox />
+          </VisualImgWrapper>
+        </VisualInner>
+      </VisualSection>
+    </>
   );
 }
 

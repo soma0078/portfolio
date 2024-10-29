@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import About from "./components/sections/About";
 import Header from "./components/common/Header";
-import GlobalStyle from "./styles/GlobalStyle";
+import GlobalStyle from "./styles/globalStyle";
 
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
