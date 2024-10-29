@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Intro from "../Intro";
+import IntroImg from "../../assets/images/sample.png";
+import { expandWidth } from "../../styles/animations";
 
 const VisualSection = styled.section`
   width: 100%;
@@ -33,10 +35,18 @@ const VisualH2 = styled.h2`
 const VisualImgWrapper = styled.div`
   width: 680px;
   height: 480px;
-  background-color: #ddd;
+  overflow: hidden;
 `;
 
-const VisualImgBox = styled.div``;
+const VisualImgBox = styled.div`
+  width: 0;
+  height: 100%;
+  background-image: url(${IntroImg});
+  background-repeat: no-repeat;
+  background-position: 0;
+
+  animation: ${expandWidth} 1.5s 7s ease-in-out forwards;
+`;
 
 function Visual() {
   return (

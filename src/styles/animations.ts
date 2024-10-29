@@ -68,4 +68,15 @@ const fadeOutBold = keyframes`
 	}
 `;
 
-export { shrinkToCircle, fadeInSoft, fadeInBold, fadeOutSoft, fadeOutBold };
+// 비주얼 애니메이션
+const expandWidth = keyframes`
+	0% {
+		width: 0;
+		background-position: 0 center;
+	}
+	100% {
+		width: 100%;
+	}
+`;
+
+export { shrinkToCircle, fadeInSoft, fadeInBold, fadeOutSoft, fadeOutBold, expandWidth };
