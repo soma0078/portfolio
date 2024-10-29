@@ -1,8 +1,7 @@
 import styled from "styled-components";
+import { CommonSection } from "../../styles/commonStyles";
 
-const AboutSection = styled.section`
-  width: 100%;
-  height: 650px;
+const AboutSection = styled(CommonSection)`
   background-color: #eee;
   padding: 50px;
 `;

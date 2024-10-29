@@ -2,17 +2,17 @@ import styled from "styled-components";
 import Intro from "../Intro";
 import IntroImg from "../../assets/images/sample.png";
 import { expandWidth } from "../../styles/animations";
+import { CommonSection } from "../../styles/commonStyles";
 
-const VisualSection = styled.section`
-  width: 100%;
+const VisualSection = styled(CommonSection)`
   padding: 0 50px 90px;
 `;
 
 const VisualInner = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 300px;
+  align-items: flex-end;
+  min-height: 85vh;
 `;
 
 const VisualH2 = styled.h2`
