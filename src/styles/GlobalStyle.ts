@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
 	
 :root {
 	--primary-color: #985EA4;
+	--primary-color-dark: #824F8D;
 }
 
 	* {

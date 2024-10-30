@@ -11,6 +11,7 @@ const HeaderLayout = styled.div`
   top: 0;
   box-sizing: border-box;
   align-items: center;
+  z-index: 99;
 
   &::before {
     content: "";
@@ -67,7 +68,9 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
       </StyledLogo>
       <HeaderRightMenuWrapper>
         <NavBar />
-        <DarkModeIcon onClick={toggleDarkMode}>{isDarkMode ? <LuSun /> : <LuMoon />}</DarkModeIcon>
+        <DarkModeIcon onClick={toggleDarkMode}>
+          {isDarkMode ? <LuSun /> : <LuMoon />}
+        </DarkModeIcon>
       </HeaderRightMenuWrapper>
     </HeaderLayout>
   );
