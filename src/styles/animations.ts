@@ -79,4 +79,19 @@ const expandWidth = keyframes`
 	}
 `;
 
-export { shrinkToCircle, fadeInSoft, fadeInBold, fadeOutSoft, fadeOutBold, expandWidth };
+// 툴팁 애니메이션
+const tooltip = keyframes`
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 1;}
+`;
+
+export {
+  shrinkToCircle,
+  fadeInSoft,
+  fadeInBold,
+  fadeOutSoft,
+  fadeOutBold,
+  expandWidth,
+  tooltip,
+};

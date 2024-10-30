@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
 	body, button {
 		font-family: 'Noto Sans KR', sans-serif;
 	}
+
+	a {
+		color: inherit;
+	}
 `;
 
 export default GlobalStyle;
