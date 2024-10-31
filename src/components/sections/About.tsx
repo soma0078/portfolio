@@ -16,13 +16,14 @@ import { MY_EMAIL, MY_GITHUB_URL, MY_VELOG_URL } from "../../constants/urls";
 import Tooltip from "../ui/Tooltip";
 import IntroTextStyle from "../../styles/introTextStyle";
 import Button from "../ui/Button";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import {
   skillImageArray,
   toolImageArray,
 } from "../../constants/iconImageArrays";
 import IconImageArray from "../ui/IconImageArray";
+import Accordion, { InfoDataProps } from "../ui/Accordion";
 
 const AboutSection = styled(CenteredContentSection)`
   position: relative;
@@ -105,6 +106,7 @@ const InfoContent = styled.div`
 `;
 
 function About() {
+  const [infoData, setInfoData] = useState<InfoDataProps[]>();
   const [imageSrc, setImageSrc] = useState(MimoticonFront);
 
   const handleMouseEnter = (button: ReactNode) => {
@@ -118,6 +120,22 @@ function About() {
   const handleMouseLeave = () => {
     setImageSrc(MimoticonFront);
   };
+
+  useEffect(() => {
+    const fetchInfoData = async () => {
+      try {
+        const response = await fetch("/data/infoData.json");
+        const data: InfoDataProps[] = await response.json();
+        setInfoData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchInfoData();
+  }, []);
+
+  const workExperience = infoData?.filter((item) => item.type === "work");
+  const education = infoData?.filter((item) => item.type === "education");
 
   return (
     <AboutSection id="about">
@@ -191,10 +209,16 @@ function About() {
 
           <InfoContent>
             <h3>WORK EXPERIENCE</h3>
+            {workExperience?.map((infoData) => (
+              <Accordion key={infoData.title} infoData={infoData} />
+            ))}
           </InfoContent>
 
           <InfoContent>
             <h3>EDUCATION</h3>
+            {education?.map((infoData) => (
+              <Accordion key={infoData.title} infoData={infoData} />
+            ))}
           </InfoContent>
         </div>
       </AboutRightContainer>

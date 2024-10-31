@@ -26,6 +26,13 @@ const GlobalStyle = createGlobalStyle`
 	a {
 		color: inherit;
 	}
+
+	button {
+		border: 0;
+		cursor: pointer;
+		background-color: inherit;
+		transition: 0.3s ease;
+	}
 `;
 
 export default GlobalStyle;

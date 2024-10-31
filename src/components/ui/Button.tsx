@@ -14,11 +14,8 @@ const StyledButton = styled.button<{ primary?: boolean; outline?: boolean }>`
   display: inline-block;
   border-radius: 999px;
   margin-right: 8px;
-  background-color: transparent;
   padding: 12px 24px;
   font-size: 1.125rem;
-  cursor: pointer;
-  border: 0;
   transition: all 0.3s;
 
   ${(props) =>
