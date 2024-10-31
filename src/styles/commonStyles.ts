@@ -51,6 +51,11 @@ const SkillIconContainer = styled.div`
   ${IconContainerStyle}
 `;
 
+const flexStyle = css`
+  display: flex;
+  gap: 8px;
+`;
+
 export {
   hoverPrimaryColor,
   fullViewportSection,
@@ -58,4 +63,5 @@ export {
   IconContainerStyle,
   LinkIconContainer,
   SkillIconContainer,
+  flexStyle,
 };

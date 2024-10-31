@@ -8,8 +8,7 @@ import MimoticonBack from "../../assets/images/mimoticon_back.png";
 import MimoticonWink from "../../assets/images/mimoticon_wink.png";
 
 import { FaGithub } from "react-icons/fa";
-import { SiVelog } from "react-icons/si";
-import { SiGmail } from "react-icons/si";
+import { SiVelog, SiGmail } from "react-icons/si";
 import { IoArrowDownSharp } from "react-icons/io5";
 import { RiShareBoxLine } from "react-icons/ri";
 import LinkIcon from "../ui/LinkIcon";
@@ -19,6 +18,11 @@ import IntroTextStyle from "../../styles/introTextStyle";
 import Button from "../ui/Button";
 import { ReactNode, useState } from "react";
 import { Link } from "react-scroll";
+import {
+  skillImageArray,
+  toolImageArray,
+} from "../../constants/iconImageArrays";
+import IconImageArray from "../ui/IconImageArray";
 
 const AboutSection = styled(CenteredContentSection)`
   position: relative;
@@ -77,6 +81,26 @@ const AboutTextContainer = styled.div`
 
   p {
     margin-bottom: 47px;
+  }
+`;
+
+const InfoContent = styled.div`
+  margin-bottom: 40px;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .stack-wrapper {
+    display: flex;
+    gap: 40px;
+
+    h5 {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
   }
 `;
 
@@ -149,6 +173,30 @@ function About() {
             />
           </Link>
         </AboutTextContainer>
+
+        <div className="info-container">
+          <InfoContent>
+            <h3>TECH STACK</h3>
+            <div className="stack-wrapper">
+              <div>
+                <h5>FRONT-END SKILL</h5>
+                <IconImageArray attrs={skillImageArray} />
+              </div>
+              <div>
+                <h5>USING TOOL</h5>
+                <IconImageArray attrs={toolImageArray} />
+              </div>
+            </div>
+          </InfoContent>
+
+          <InfoContent>
+            <h3>WORK EXPERIENCE</h3>
+          </InfoContent>
+
+          <InfoContent>
+            <h3>EDUCATION</h3>
+          </InfoContent>
+        </div>
       </AboutRightContainer>
     </AboutSection>
   );
