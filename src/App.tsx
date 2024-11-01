@@ -6,6 +6,7 @@ import GlobalStyle from "./styles/globalStyle";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
 import Visual from "./components/sections/Visual";
+import Projects from "./components/sections/Projects";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -18,6 +19,7 @@ function App() {
       <main>
         <Visual />
         <About />
+        <Projects />
       </main>
     </ThemeProvider>
   );

@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { hoverPrimaryColor } from "../../styles/commonStyles";
 
 interface LinkIconProps {
-  href: string;
+  href?: string;
   icon: IconType;
   target?: string;
 }
 
 const StyledIconLink = styled.a`
   ${hoverPrimaryColor}
+  font-size: 1.5rem;
 `;
 
 function LinkIcon({ href, icon: Icon, target }: LinkIconProps) {

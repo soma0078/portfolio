@@ -18,10 +18,7 @@ import IntroTextStyle from "../../styles/introTextStyle";
 import Button from "../ui/Button";
 import { ReactNode, useEffect, useState } from "react";
 import { Link } from "react-scroll";
-import {
-  skillImageArray,
-  toolImageArray,
-} from "../../constants/iconImageArrays";
+import { skillImageArray, toolImageArray } from "../../constants/icons";
 import IconImageArray from "../ui/IconImageArray";
 import Accordion, { InfoDataProps } from "../ui/Accordion";
 
@@ -181,7 +178,7 @@ function About() {
             onMouseEnter={() => handleMouseEnter("first")}
             onMouseLeave={handleMouseLeave}
           />
-          <Link to={"project"}>
+          <Link to={"projects"} spy={true} smooth={true} duration={1000}>
             <Button
               outline
               buttonText="프로젝트 바로가기"
