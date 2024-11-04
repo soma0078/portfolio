@@ -4,8 +4,11 @@ import LinkIcon from "./LinkIcon";
 import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
 import { RiShareBoxLine } from "react-icons/ri";
 import { ProjectDataProps } from "../sections/Projects";
+import { useState } from "react";
+import PopupContent from "../DetailProjectContent";
+import PopupLayout from "../common/PopupLayout";
 
-interface ProjectCardProps {
+export interface ProjectCardProps {
   project: ProjectDataProps;
 }
 
@@ -59,42 +62,54 @@ const SkillIconsArray = styled.div`
 `;
 
 function ProjectCard({ project }: ProjectCardProps) {
-  // TODO: 정보 아이콘 클릭 시 팝업 구현
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => setIsPopupOpen(true);
+
   const linkIcons = [
-    { href: "none", icon: BsInfoCircleFill },
+    { icon: BsInfoCircleFill, onClick: openPopup },
     { href: project.githubUrl, icon: BsGithub },
     { href: project.siteUrl, icon: RiShareBoxLine },
   ];
 
   return (
-    <StyledProjectCard>
-      <ThumbnailImage
-        src={project.src}
-        alt={`${project.title} 썸네일 이미지`}
-      />
-      <ThumbnailInfoContainer>
-        <LinkIconWrapper>
-          {linkIcons.map((linkIcon) => (
-            <LinkIcon
-              icon={linkIcon.icon}
-              href={linkIcon.href}
-              target="_blank"
-            />
-          ))}
-        </LinkIconWrapper>
-        <h5>{project.title}</h5>
-        <span>{project.date}</span>
-        <p>{project.description}</p>
-        <SkillIconsArray>
-          {project.skills.map(
-            (skill) =>
-              iconMap[skill] && (
-                <img src={iconMap[skill]} alt={`Icon ${skill}`} key={skill} />
-              )
-          )}
-        </SkillIconsArray>
-      </ThumbnailInfoContainer>
-    </StyledProjectCard>
+    <>
+      <StyledProjectCard>
+        <ThumbnailImage
+          src={project.src}
+          alt={`${project.title} 썸네일 이미지`}
+        />
+        <ThumbnailInfoContainer>
+          <LinkIconWrapper>
+            {linkIcons.map((linkIcon) => (
+              <LinkIcon
+                icon={linkIcon.icon}
+                href={linkIcon.href}
+                target="_blank"
+                onClick={openPopup}
+              />
+            ))}
+          </LinkIconWrapper>
+          <h5>{project.title}</h5>
+          <span>{project.date}</span>
+          <p>{project.description}</p>
+          <SkillIconsArray>
+            {project.skills.map(
+              (skill) =>
+                iconMap[skill] && (
+                  <img src={iconMap[skill]} alt={`Icon ${skill}`} key={skill} />
+                )
+            )}
+          </SkillIconsArray>
+        </ThumbnailInfoContainer>
+      </StyledProjectCard>
+
+      {isPopupOpen && (
+        <PopupLayout onClose={() => setIsPopupOpen(false)}>
+          <PopupContent project={project} />
+        </PopupLayout>
+      )}
+    </>
   );
 }
 
