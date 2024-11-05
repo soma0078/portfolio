@@ -1,6 +1,6 @@
 [
   {
-    "category": "team",
+    "category": "Team",
     "title": "K-venture",
     "date": "2024-07-26 ~ 2024-08-30",
     "src": "/src/assets/images/thumbnail_kventure.png",
@@ -19,7 +19,7 @@
     "githubUrl": ""
   },
   {
-    "category": "team",
+    "category": "Team",
     "title": "페이플러스",
     "date": "2024-06-21 ~ 2024-07-09",
     "src": "/src/assets/images/thumbnail_payplus.png",
@@ -29,7 +29,7 @@
     "githubUrl": ""
   },
   {
-    "category": "team",
+    "category": "Team",
     "title": "오픈마인드",
     "date": "2024-04-30 ~ 2024-05-17",
     "src": "/src/assets/images/thumbnail_openmind.png",
@@ -39,7 +39,7 @@
     "githubUrl": ""
   },
   {
-    "category": "single",
+    "category": "Single",
     "title": "포트폴리오",
     "date": "2024-10-20 ~ 2024-11-07",
     "src": "/src/assets/images/sample.png",

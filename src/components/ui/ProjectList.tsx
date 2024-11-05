@@ -3,7 +3,8 @@ import ProjectCard from "./ProjectCard";
 import { ProjectDataProps } from "../sections/Projects";
 
 export interface ProjectListProps {
-  project: ProjectDataProps[];
+  projects: ProjectDataProps[];
+  selectedCategory: string;
 }
 
 const StyledProjectList = styled.div`
@@ -17,10 +18,15 @@ const StyledProjectList = styled.div`
   }
 `;
 
-function ProjectList({ project }: ProjectListProps) {
+function ProjectList({ projects, selectedCategory }: ProjectListProps) {
+  const filteredProject =
+    selectedCategory === "All"
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
+
   return (
     <StyledProjectList>
-      {project.map((project) => (
+      {filteredProject.map((project) => (
         <ProjectCard key={project.title} project={project} />
       ))}
     </StyledProjectList>

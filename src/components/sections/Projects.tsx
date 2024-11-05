@@ -7,6 +7,7 @@ import { StyledSubTitle } from "../../styles/commonStyles";
 import { useEffect, useState } from "react";
 import ProjectList from "../ui/ProjectList";
 import { iconMap } from "../../constants/icons";
+import Filter from "../Filter";
 
 type IconMapKeys = keyof typeof iconMap;
 
@@ -26,7 +27,8 @@ const ProjectSection = styled(CenteredContentSection)`
 `;
 
 function Projects() {
-  const [project, setProject] = useState<ProjectDataProps[]>();
+  const [projects, setProjects] = useState<ProjectDataProps[]>();
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -34,7 +36,7 @@ function Projects() {
         const response = await fetch("/data/projectThumbnailData.json");
         const data: ProjectDataProps[] = await response.json();
 
-        setProject(data);
+        setProjects(data);
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +48,13 @@ function Projects() {
     <ProjectSection id="projects">
       <StyledSubTitle>Experiences</StyledSubTitle>
       <StyledSectionTitle>Projects</StyledSectionTitle>
-      {project && <ProjectList project={project} />}
+      <Filter
+        selectedCategory={selectedCategory}
+        setSelectedCatergory={setSelectedCategory}
+      />
+      {projects && (
+        <ProjectList projects={projects} selectedCategory={selectedCategory} />
+      )}
     </ProjectSection>
   );
 }

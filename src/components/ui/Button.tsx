@@ -3,11 +3,12 @@ import styled, { css } from "styled-components";
 
 interface ButtonProps {
   buttonText: string;
-  icon: IconType;
+  icon?: IconType;
   primary?: boolean;
   outline?: boolean;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onClick?: () => void;
 }
 
 const StyledButton = styled.button<{ primary?: boolean; outline?: boolean }>`
@@ -55,7 +56,7 @@ function Button({ buttonText, icon: Icon, ...props }: ButtonProps) {
     <StyledButton {...props}>
       <ButtonInner>
         {buttonText}
-        <Icon />
+        {Icon && <Icon />}
       </ButtonInner>
     </StyledButton>
   );
