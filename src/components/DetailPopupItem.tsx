@@ -50,7 +50,6 @@ function DetailPopupItem({ project }: ProjectCardProps) {
         {/* TODO: 프로젝트 상세 정보 추가 */}
         <ProjectDetailList
           implementation={project.implementation}
-          skills={project.skills}
           contribution={project.contribution}
           troubleshooting={project.troubleshooting}
         />

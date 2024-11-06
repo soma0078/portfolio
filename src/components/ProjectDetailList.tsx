@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import ProjectDetailItem from "./ProjectDetailItem";
 import { ProjectDetailProps } from "./sections/Projects";
 
@@ -7,13 +8,19 @@ export interface ProjectDetailListProps {
   troubleshooting: ProjectDetailProps[];
 }
 
+const StyledProjectDetailList = styled.div`
+  height: auto;
+  overflow-y: auto;
+  max-height: 560px;
+`;
+
 function ProjectDetailList({
   implementation,
   contribution,
   troubleshooting,
 }: ProjectDetailListProps) {
   return (
-    <div>
+    <StyledProjectDetailList>
       {implementation && (
         <ProjectDetailItem title="구현사항" contents={implementation} />
       )}
@@ -31,7 +38,7 @@ function ProjectDetailList({
           isDetailSection
         />
       )}
-    </div>
+    </StyledProjectDetailList>
   );
 }
 
