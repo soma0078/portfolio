@@ -33,6 +33,12 @@ const GlobalStyle = createGlobalStyle`
 		background-color: inherit;
 		transition: 0.3s ease;
 	}
+
+	.popup-project-title {
+		font-size: 2rem;
+		font-weight: 600;
+		margin-bottom: 16px;
+	}
 `;
 
 export default GlobalStyle;
