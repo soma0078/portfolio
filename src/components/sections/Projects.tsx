@@ -20,6 +20,7 @@ export interface ProjectDataProps {
   skills: IconMapKeys[];
   siteUrl: string;
   githubUrl: string;
+  thumbnailImages: string[];
 }
 
 const ProjectSection = styled(CenteredContentSection)`

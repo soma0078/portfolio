@@ -54,6 +54,10 @@ const LinkIconWrapper = styled.div`
   gap: 8px;
   position: absolute;
   right: 24px;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 const SkillIconsArray = styled.div`

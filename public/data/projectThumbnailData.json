@@ -16,7 +16,12 @@
       "tailwindcss"
     ],
     "siteUrl": "",
-    "githubUrl": ""
+    "githubUrl": "",
+    "thumbnailImages": [
+      "/src/assets/images/kventure_desktop.png",
+      "/src/assets/images/payplus_desktop.png",
+      "/src/assets/images/openmind_desktop.png"
+    ]
   },
   {
     "category": "Team",
@@ -26,7 +31,8 @@
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
     "skills": ["next", "typescript", "vercel", "scss"],
     "siteUrl": "",
-    "githubUrl": ""
+    "githubUrl": "",
+    "thumbnailImages": ["/src/assets/images/payplus_desktop.png"]
   },
   {
     "category": "Team",
@@ -36,7 +42,8 @@
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
     "skills": ["react", "javascript", "tailwindcss", "netlify"],
     "siteUrl": "",
-    "githubUrl": ""
+    "githubUrl": "",
+    "thumbnailImages": ["/src/assets/images/openmind_desktop.png"]
   },
   {
     "category": "Single",
@@ -46,6 +53,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
     "skills": ["react", "typescript", "styledcomponents", "vercel"],
     "siteUrl": "",
-    "githubUrl": ""
+    "githubUrl": "",
+    "thumbnailImages": ["", ""]
   }
 ]

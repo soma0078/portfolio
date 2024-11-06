@@ -86,6 +86,12 @@ const StyledSectionTitle = styled.h2`
   margin: 8px 0 48px;
 `;
 
+const imgOutlineStyle = css`
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  overflow: hidden;
+`;
+
 export {
   hoverPrimaryColor,
   fullViewportSection,
@@ -96,4 +102,5 @@ export {
   flexStyle,
   StyledSubTitle,
   StyledSectionTitle,
+  imgOutlineStyle,
 };

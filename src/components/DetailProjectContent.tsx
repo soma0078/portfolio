@@ -4,6 +4,7 @@ import { ProjectCardProps } from "./ui/ProjectCard";
 import { RiShareBoxLine } from "react-icons/ri";
 import styled from "styled-components";
 import { flexStyle } from "../styles/commonStyles";
+import ThumbnailGallery from "./ui/ThumbnailGallery";
 
 const ProjectTopBar = styled.div`
   text-align: center;
@@ -17,8 +18,16 @@ const ProjectTopBar = styled.div`
 
 const ProjectContainer = styled.div`
   ${flexStyle}
-
+  gap: 50px;
   margin-top: 32px;
+
+  > div {
+    width: calc(100% / 2);
+  }
+
+  img {
+    width: 100%;
+  }
 `;
 
 function DetailPopupContent({ project }: ProjectCardProps) {
@@ -32,6 +41,10 @@ function DetailPopupContent({ project }: ProjectCardProps) {
       </ProjectTopBar>
       <ProjectContainer>
         {/* TODO: 썸네일 갤러리 추가 */}
+        <ThumbnailGallery
+          title={project.title}
+          thumbnailImages={project.thumbnailImages}
+        />
 
         {/* TODO: 프로젝트 상세 정보 추가 */}
       </ProjectContainer>
