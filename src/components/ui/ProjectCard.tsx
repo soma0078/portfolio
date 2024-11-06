@@ -5,7 +5,7 @@ import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
 import { RiShareBoxLine } from "react-icons/ri";
 import { ProjectDataProps } from "../sections/Projects";
 import { useState } from "react";
-import PopupContent from "../DetailProjectContent";
+import PopupContent from "../DetailPopupItem";
 import PopupLayout from "../common/PopupLayout";
 
 export interface ProjectCardProps {

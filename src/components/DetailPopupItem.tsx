@@ -5,6 +5,7 @@ import { RiShareBoxLine } from "react-icons/ri";
 import styled from "styled-components";
 import { flexStyle } from "../styles/commonStyles";
 import ThumbnailGallery from "./ui/ThumbnailGallery";
+import ProjectDetailList from "./ProjectDetailList";
 
 const ProjectTopBar = styled.div`
   text-align: center;
@@ -30,7 +31,7 @@ const ProjectContainer = styled.div`
   }
 `;
 
-function DetailPopupContent({ project }: ProjectCardProps) {
+function DetailPopupItem({ project }: ProjectCardProps) {
   return (
     <>
       <ProjectTopBar>
@@ -47,9 +48,15 @@ function DetailPopupContent({ project }: ProjectCardProps) {
         />
 
         {/* TODO: 프로젝트 상세 정보 추가 */}
+        <ProjectDetailList
+          implementation={project.implementation}
+          skills={project.skills}
+          contribution={project.contribution}
+          troubleshooting={project.troubleshooting}
+        />
       </ProjectContainer>
     </>
   );
 }
 
-export default DetailPopupContent;
+export default DetailPopupItem;

@@ -21,6 +21,28 @@
       "/src/assets/images/kventure_desktop.png",
       "/src/assets/images/payplus_desktop.png",
       "/src/assets/images/openmind_desktop.png"
+    ],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
     ]
   },
   {
@@ -32,7 +54,29 @@
     "skills": ["next", "typescript", "vercel", "scss"],
     "siteUrl": "",
     "githubUrl": "",
-    "thumbnailImages": ["/src/assets/images/payplus_desktop.png"]
+    "thumbnailImages": ["/src/assets/images/payplus_desktop.png"],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ]
   },
   {
     "category": "Team",
@@ -43,7 +87,29 @@
     "skills": ["react", "javascript", "tailwindcss", "netlify"],
     "siteUrl": "",
     "githubUrl": "",
-    "thumbnailImages": ["/src/assets/images/openmind_desktop.png"]
+    "thumbnailImages": ["/src/assets/images/openmind_desktop.png"],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ]
   },
   {
     "category": "Single",
@@ -54,6 +120,28 @@
     "skills": ["react", "typescript", "styledcomponents", "vercel"],
     "siteUrl": "",
     "githubUrl": "",
-    "thumbnailImages": ["", ""]
+    "thumbnailImages": ["", ""],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ]
   }
 ]

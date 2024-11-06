@@ -21,6 +21,14 @@ export interface ProjectDataProps {
   siteUrl: string;
   githubUrl: string;
   thumbnailImages: string[];
+  implementation: string[];
+  contribution: ProjectDetailProps[];
+  troubleshooting: ProjectDetailProps[];
+}
+
+export interface ProjectDetailProps {
+  subtitle: string;
+  details: string[];
 }
 
 const ProjectSection = styled(CenteredContentSection)`
