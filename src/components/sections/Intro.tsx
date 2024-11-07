@@ -7,6 +7,7 @@ import {
   fadeOutSoft,
   shrinkToCircle,
 } from "../../styles/animations";
+import { useEffect } from "react";
 
 const IntroWrapper = styled.div`
   width: 100%;
@@ -61,6 +62,26 @@ const StyledIntroH1 = styled.h1`
 `;
 
 function Intro() {
+  useEffect(() => {
+    // 스크롤바 너비 계산
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    // 인트로 시작될 때 스크롤 방지와 레이아웃 조정
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${scrollBarWidth}px`;
+
+    // 인트로 끝난 후 스크롤 복원
+    const timer = setTimeout(() => {
+      document.body.style.overflow = "auto";
+      document.body.style.paddingRight = "0px";
+    }, 7500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <IntroWrapper>
       <IntroTextWrapper>

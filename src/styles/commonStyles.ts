@@ -56,6 +56,42 @@ const flexStyle = css`
   gap: 8px;
 `;
 
+const StyledSubTitle = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 24px;
+  padding: 4px 12px 4px 28px;
+  position: relative;
+  font-size: 0.75rem;
+  margin: 0 auto;
+  left: 51%;
+  transform: translateX(-50%);
+  display: inline-block;
+
+  &:before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 12px;
+    background-color: ${({ theme }) => theme.dotColor};
+    position: absolute;
+    top: 35%;
+    left: 12px;
+  }
+`;
+
+const StyledSectionTitle = styled.h2`
+  font-family: "Caveat", cursive;
+  font-size: 4rem;
+  text-align: center;
+  margin: 8px 0 48px;
+`;
+
+const imgOutlineStyle = css`
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  overflow: hidden;
+`;
+
 export {
   hoverPrimaryColor,
   fullViewportSection,
@@ -64,4 +100,7 @@ export {
   LinkIconContainer,
   SkillIconContainer,
   flexStyle,
+  StyledSubTitle,
+  StyledSectionTitle,
+  imgOutlineStyle,
 };

@@ -1,0 +1,147 @@
+[
+  {
+    "category": "Team",
+    "title": "K-venture",
+    "date": "2024-07-26 ~ 2024-08-30",
+    "src": "/src/assets/images/thumbnail_kventure.png",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "skills": [
+      "next",
+      "typescript",
+      "tanstackquery",
+      "jotai",
+      "kakaoapi",
+      "vercel",
+      "jira",
+      "tailwindcss"
+    ],
+    "siteUrl": "",
+    "githubUrl": "",
+    "thumbnailImages": [
+      "/src/assets/images/kventure_desktop.png",
+      "/src/assets/images/payplus_desktop.png",
+      "/src/assets/images/openmind_desktop.png"
+    ],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Team",
+    "title": "페이플러스",
+    "date": "2024-06-21 ~ 2024-07-09",
+    "src": "/src/assets/images/thumbnail_payplus.png",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "skills": ["next", "typescript", "vercel", "scss"],
+    "siteUrl": "",
+    "githubUrl": "",
+    "thumbnailImages": ["/src/assets/images/payplus_desktop.png"],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Team",
+    "title": "오픈마인드",
+    "date": "2024-04-30 ~ 2024-05-17",
+    "src": "/src/assets/images/thumbnail_openmind.png",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "skills": ["react", "javascript", "tailwindcss", "netlify"],
+    "siteUrl": "",
+    "githubUrl": "",
+    "thumbnailImages": ["/src/assets/images/openmind_desktop.png"],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Single",
+    "title": "포트폴리오",
+    "date": "2024-10-20 ~ 2024-11-07",
+    "src": "/src/assets/images/sample.png",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "skills": ["react", "typescript", "styledcomponents", "vercel"],
+    "siteUrl": "",
+    "githubUrl": "",
+    "thumbnailImages": ["", ""],
+    "implementation": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
+    ],
+    "contribution": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "Lorem ipsum dolor sit amet.",
+        "details": [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        ]
+      }
+    ]
+  }
+]
