@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
 		color: ${({ theme }) => theme.textColor};
 		line-height: 1.2;
 		scrollbar-width: thin;
+		
 	}
 
 	body, button {

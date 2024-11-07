@@ -1,0 +1,52 @@
+[
+  {
+    "title": "ZENITH-TECK 풀페이지 반응형",
+    "siteUrl": "",
+    "description": "",
+    "mainImageSrc": "/src/assets/images/main_works1.jpg",
+    "desktopImageSrc": "",
+    "mobileImageSrc": ["", "", ""],
+    "role": "디자인·퍼블리싱",
+    "rate": 100
+  },
+  {
+    "title": "용인서울병원 풀페이지 반응형",
+    "siteUrl": "",
+    "description": "",
+    "mainImageSrc": "/src/assets/images/main_works2.png",
+    "desktopImageSrc": "",
+    "mobileImageSrc": ["", "", ""],
+    "role": "디자인·퍼블리싱",
+    "rate": 100
+  },
+  {
+    "title": "COREAONE 반응형 홈페이지",
+    "siteUrl": "",
+    "description": "",
+    "mainImageSrc": "/src/assets/images/main_works3.png",
+    "desktopImageSrc": "",
+    "mobileImageSrc": ["", "", ""],
+    "role": "디자인·퍼블리싱",
+    "rate": 100
+  },
+  {
+    "title": "하우드시스템 반응형 홈페이지",
+    "siteUrl": "",
+    "description": "",
+    "mainImageSrc": "/src/assets/images/main_works4.png",
+    "desktopImageSrc": "",
+    "mobileImageSrc": ["", "", ""],
+    "role": "디자인·퍼블리싱",
+    "rate": 100
+  },
+  {
+    "title": "KOCH 풀페이지 반응형",
+    "siteUrl": "",
+    "description": "",
+    "mainImageSrc": "/src/assets/images/main_works5.png",
+    "desktopImageSrc": "",
+    "mobileImageSrc": ["", "", ""],
+    "role": "디자인·퍼블리싱",
+    "rate": 100
+  }
+]
