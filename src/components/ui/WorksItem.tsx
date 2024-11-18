@@ -1,16 +1,26 @@
 import { WorksDataProps } from "../sections/Works";
 import styled from "styled-components";
 import { MdOutlineArrowOutward } from "react-icons/md";
+import { useState } from "react";
+import PopupLayout from "../common/PopupLayout";
+import WorksPopupContent from "../WorksPopupContent";
+
+export interface WorksProps {
+  worksData: WorksDataProps;
+}
 
 const StyledWorksItem = styled.div`
   position: relative;
   overflow: hidden;
   min-width: 500px;
   height: 490px;
-  background-color: pink;
 
   img {
     width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 3s;
   }
 
   &:hover {
@@ -22,6 +32,10 @@ const StyledWorksItem = styled.div`
       width: 90px;
       height: 90px;
       font-size: 2rem;
+    }
+    img {
+      top: 100%;
+      transform: translateY(-100%);
     }
   }
 `;
@@ -54,16 +68,32 @@ const StyledCoveredButton = styled.button`
   }
 `;
 
-function WorksItem({ mainImageSrc }: WorksDataProps) {
+function WorksItem({ worksData }: WorksProps) {
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
+
+  const openPopup = () => setIsOpenPopup(true);
+
+  const handleClose = () => {
+    setIsOpenPopup(false);
+  };
+
   return (
-    <StyledWorksItem>
-      <img src={mainImageSrc} />
-      <StyledCoveredButton>
-        <span className="arrow-icon-wrapper">
-          <MdOutlineArrowOutward />
-        </span>
-      </StyledCoveredButton>
-    </StyledWorksItem>
+    <>
+      <StyledWorksItem onClick={openPopup}>
+        <img src={worksData.mainImageSrc} />
+        <StyledCoveredButton>
+          <span className="arrow-icon-wrapper">
+            <MdOutlineArrowOutward />
+          </span>
+        </StyledCoveredButton>
+      </StyledWorksItem>
+
+      {isOpenPopup && (
+        <PopupLayout onClose={handleClose}>
+          <WorksPopupContent worksData={worksData} />
+        </PopupLayout>
+      )}
+    </>
   );
 }
 

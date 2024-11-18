@@ -10,10 +10,13 @@ import WorksItem from "../ui/WorksItem";
 
 export interface WorksDataProps {
   mainImageSrc: string;
-}
-
-export interface WorksProps {
-  worksData: WorksDataProps[];
+  title: string;
+  siteUrl: string;
+  description: string[];
+  desktopImageSrc: string;
+  mobileImageSrc: string[];
+  role: string;
+  rate: number;
 }
 
 const WorksSectoion = styled(fullViewportSection)`
@@ -61,7 +64,6 @@ function Works() {
       <StyledSubTitle>Works</StyledSubTitle>
       <StyledSectionTitle>Design & Publishing</StyledSectionTitle>
 
-      {/* TODO: 마우스 드래그로 가로 스크롤 구현하기 */}
       {worksData && (
         <StyledWorkList
           className="work-list"
@@ -69,7 +71,7 @@ function Works() {
           onWheel={handleWheel}
         >
           {worksData.map((worksData) => (
-            <WorksItem mainImageSrc={worksData.mainImageSrc} />
+            <WorksItem worksData={worksData} />
           ))}
         </StyledWorkList>
       )}
