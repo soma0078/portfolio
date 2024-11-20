@@ -9,6 +9,7 @@ import Visual from "./components/sections/Visual";
 import Projects from "./components/sections/Projects";
 import Works from "./components/sections/Works";
 import Contact from "./components/sections/Contact";
+import Footer from "./components/common/Footer";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -25,6 +26,7 @@ function App() {
         <Works />
         <Contact />
       </main>
+      <Footer />
     </ThemeProvider>
   );
 }
