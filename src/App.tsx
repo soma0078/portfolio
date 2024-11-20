@@ -10,6 +10,7 @@ import Projects from "./components/sections/Projects";
 import Works from "./components/sections/Works";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/common/Footer";
+import GlobaFonts from "./styles/globalFonts";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <GlobaFonts />
       <GlobalStyle />
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main>
