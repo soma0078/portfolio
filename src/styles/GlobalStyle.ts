@@ -9,8 +9,9 @@ const GlobalStyle = createGlobalStyle`
 		--primary-color-dark: #824F8D;
 	}
 
-	* {
+	*, body {
 		box-sizing: border-box;
+		font-family: 'Noto Sans KR', sans-serif;
 	}
 
 	body {
@@ -19,10 +20,6 @@ const GlobalStyle = createGlobalStyle`
 		line-height: 1.2;
 		scrollbar-width: thin;
 		
-	}
-
-	body, button {
-		font-family: 'Noto Sans KR', sans-serif;
 	}
 
 	a {
