@@ -8,6 +8,7 @@ import { darkTheme, lightTheme } from "./styles/theme";
 import Visual from "./components/sections/Visual";
 import Projects from "./components/sections/Projects";
 import Works from "./components/sections/Works";
+import Contact from "./components/sections/Contact";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         <About />
         <Projects />
         <Works />
+        <Contact />
       </main>
     </ThemeProvider>
   );
