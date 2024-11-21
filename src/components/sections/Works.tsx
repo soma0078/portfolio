@@ -60,7 +60,7 @@ function Works() {
   };
 
   return (
-    <WorksSectoion>
+    <WorksSectoion id="works">
       <StyledSubTitle>Works</StyledSubTitle>
       <StyledSectionTitle>Design & Publishing</StyledSectionTitle>
 

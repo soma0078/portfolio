@@ -71,7 +71,7 @@ const StyledSectionTitle = styled.h2`
 
 function Contact() {
   return (
-    <ContactSection>
+    <ContactSection id="contact">
       <StyledSubTitle>Contact</StyledSubTitle>
       <StyledSectionTitle>방문해 주셔서 감사합니다 :)</StyledSectionTitle>
       <p>
