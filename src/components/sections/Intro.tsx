@@ -9,7 +9,7 @@ import {
   shrinkToCircle_mobile,
   shrinkToCircle_tablet,
 } from "../../styles/animations";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import devices from "../../constants/devices";
 
 const IntroWrapper = styled.div`
@@ -20,12 +20,16 @@ const IntroWrapper = styled.div`
   z-index: 999;
 
   background-color: var(--primary-color);
-  animation: ${shrinkToCircle} 3s 4.5s ease-in-out forwards;
 
-  @media ${devices.lg} {
+  &.animation-desktop {
+    animation: ${shrinkToCircle} 3s 4.5s ease-in-out forwards;
+  }
+
+  &.animation-tablet {
     animation: ${shrinkToCircle_tablet} 3s 4.5s ease-in-out forwards;
   }
-  @media ${devices.sm} {
+
+  &.animation-mobile {
     animation: ${shrinkToCircle_mobile} 3s 4.5s ease-in-out forwards;
   }
 `;
@@ -93,6 +97,8 @@ const StyledIntroH1 = styled.h1`
 `;
 
 function Intro() {
+  const [animationClass, setAnimationClass] = useState("");
+
   useEffect(() => {
     // 스크롤바 너비 계산
     const scrollBarWidth =
@@ -113,8 +119,29 @@ function Intro() {
     };
   }, []);
 
+  useEffect(() => {
+    const width = window.innerWidth;
+
+    const updateAnimationClass = () => {
+      if (width > 1024) {
+        setAnimationClass("animation-desktop");
+      } else if (width > 640) {
+        setAnimationClass("animation-tablet");
+      } else {
+        setAnimationClass("animation-mobile");
+      }
+    };
+    updateAnimationClass();
+
+    window.addEventListener("resize", updateAnimationClass);
+
+    return () => {
+      window.removeEventListener("resize", updateAnimationClass);
+    };
+  }, []);
+
   return (
-    <IntroWrapper>
+    <IntroWrapper className={animationClass}>
       <IntroTextWrapper>
         <span className="background-text">Front-End</span>
         <StyledIntroH1>
