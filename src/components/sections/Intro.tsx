@@ -6,8 +6,11 @@ import {
   fadeOutBold,
   fadeOutSoft,
   shrinkToCircle,
+  shrinkToCircle_mobile,
+  shrinkToCircle_tablet,
 } from "../../styles/animations";
 import { useEffect } from "react";
+import devices from "../../constants/devices";
 
 const IntroWrapper = styled.div`
   width: 100%;
@@ -18,6 +21,13 @@ const IntroWrapper = styled.div`
 
   background-color: var(--primary-color);
   animation: ${shrinkToCircle} 3s 4.5s ease-in-out forwards;
+
+  @media ${devices.lg} {
+    animation: ${shrinkToCircle_tablet} 3s 4.5s ease-in-out forwards;
+  }
+  @media ${devices.sm} {
+    animation: ${shrinkToCircle_mobile} 3s 4.5s ease-in-out forwards;
+  }
 `;
 
 const IntroTextWrapper = styled.div`
@@ -30,7 +40,7 @@ const IntroTextWrapper = styled.div`
   text-align: center;
   color: #fff;
 
-  > span {
+  .background-text {
     font-family: "Montserrat", sans-serif;
     font-size: 9.5rem;
     font-weight: 800;
@@ -38,6 +48,18 @@ const IntroTextWrapper = styled.div`
     opacity: 0;
     animation: ${fadeInSoft} 2s ease-in-out forwards,
       ${fadeOutSoft} 2s 3s linear forwards;
+  }
+
+  @media ${devices.lg} {
+    .background-text {
+      font-size: 7.5rem;
+    }
+  }
+
+  @media ${devices.sm} {
+    .background-text {
+      font-size: 4.5rem;
+    }
   }
 `;
 
@@ -58,6 +80,15 @@ const StyledIntroH1 = styled.h1`
     opacity: 0;
     animation: ${fadeInBold} 1.5s 1s ease-in-out forwards,
       ${fadeOutBold} 1.5s 3s ease-in-out forwards;
+  }
+
+  @media ${devices.lg} {
+    font-size: 2rem;
+  }
+
+  @media ${devices.sm} {
+    margin-top: -35px;
+    font-size: 1.375rem;
   }
 `;
 
@@ -85,7 +116,7 @@ function Intro() {
   return (
     <IntroWrapper>
       <IntroTextWrapper>
-        <span>Front-End</span>
+        <span className="background-text">Front-End</span>
         <StyledIntroH1>
           <span>함께 협력하고 같이 성장하는</span>
           <span>

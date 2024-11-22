@@ -20,6 +20,10 @@ const VisualInner = styled.div`
     align-items: inherit;
     padding-top: 96px;
   }
+
+  @media ${devices.sm} {
+    min-height: 65vh;
+  }
 `;
 
 const VisualH2 = styled.h2`
@@ -85,7 +89,7 @@ const VisualImgBox = styled.div`
   width: 0;
   height: 100%;
   background: url(${IntroImg}) no-repeat 50% 50%;
-  background-size: contain;
+  background-size: cover;
 
   animation: ${expandWidth} 1.5s 7s ease-in-out forwards;
 `;
