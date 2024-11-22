@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import devices from "../constants/devices";
 
 const GlobalStyle = createGlobalStyle`
 	${reset}
@@ -34,6 +35,15 @@ const GlobalStyle = createGlobalStyle`
 		background-color: inherit;
 		transition: 0.3s ease;
 	}
+
+p {
+	font-size:1rem;
+	line-height: 1.4;
+
+	@media ${devices.sm} {
+		font-size:0.875rem;
+	}
+}
 
 	::-webkit-scrollbar {
 		width: 8px;

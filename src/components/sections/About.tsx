@@ -21,14 +21,36 @@ import { Link } from "react-scroll";
 import { skillImageArray, toolImageArray } from "../../constants/icons";
 import IconImageArray from "../ui/IconImageArray";
 import Accordion, { InfoDataProps } from "../ui/Accordion";
+import devices from "../../constants/devices";
 
 const AboutSection = styled(CenteredContentSection)`
   position: relative;
   padding: 50px;
   display: flex;
 
-  > div {
+  .content-section {
     width: 50%;
+  }
+
+  @media ${devices.lg} {
+    padding: 24px;
+    gap: 24px;
+    justify-content: space-between;
+
+    .left-section {
+      width: 25%;
+    }
+    .right-section {
+      width: 65%;
+    }
+  }
+
+  @media ${devices.md} {
+    flex-direction: column;
+
+    .content-section {
+      width: 100%;
+    }
   }
 `;
 
@@ -40,6 +62,10 @@ const CenteredIconContainer = styled(LinkIconContainer)`
 const AboutLeftContainer = styled.div`
   position: relative;
   height: 800px;
+
+  @media ${devices.md} {
+    height: auto;
+  }
 `;
 
 const AboutLeftInner = styled.div`
@@ -48,10 +74,31 @@ const AboutLeftInner = styled.div`
   align-items: center;
   position: sticky;
   top: 80px;
+
+  @media ${devices.lg} {
+    .mimoticon-img {
+      width: 220px;
+    }
+  }
+
+  @media ${devices.md} {
+    position: relative;
+    top: 0;
+
+    .mimoticon-img {
+      width: 180px;
+    }
+  }
 `;
 
 const AboutRightContainer = styled.div`
   height: 1200px;
+  @media ${devices.md} {
+    .buttons {
+      display: flex;
+      justify-content: center;
+    }
+  }
 `;
 
 const AboutTextContainer = styled.div`
@@ -80,6 +127,30 @@ const AboutTextContainer = styled.div`
   p {
     margin-bottom: 47px;
   }
+
+  @media ${devices.lg} {
+    h2 {
+      font-size: 1.25rem;
+    }
+    h3 {
+      font-size: 1.75rem;
+      margin: 24px 0 16px;
+    }
+  }
+  @media ${devices.sm} {
+    padding-bottom: 32px;
+
+    h2 {
+      font-size: 1.125rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin: 16px 0 8px;
+    }
+    p {
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 const InfoContent = styled.div`
@@ -94,10 +165,29 @@ const InfoContent = styled.div`
   .stack-wrapper {
     display: flex;
     gap: 40px;
+    flex-wrap: wrap;
 
     h5 {
-      font-weight: 500;
+      font-weight: "Caveat";
       margin-bottom: 8px;
+    }
+  }
+
+  @media ${devices.lg} {
+    h3 {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media ${devices.md} {
+    h3 {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .stack-wrapper {
+      justify-content: center;
+      text-align: center;
     }
   }
 `;
@@ -136,9 +226,9 @@ function About() {
 
   return (
     <AboutSection id="about">
-      <AboutLeftContainer>
+      <AboutLeftContainer className="content-section left-section">
         <AboutLeftInner>
-          <img src={imageSrc} alt="미모티콘" />
+          <img src={imageSrc} alt="미모티콘" className="mimoticon-img" />
           <CenteredIconContainer>
             <Tooltip message={`${MY_EMAIL}`} direction="bottom-left">
               <LinkIcon href={`mailto:${MY_EMAIL}`} icon={SiGmail} />
@@ -153,7 +243,7 @@ function About() {
         </AboutLeftInner>
       </AboutLeftContainer>
 
-      <AboutRightContainer>
+      <AboutRightContainer className="content-section right-section">
         <AboutTextContainer>
           <h2>
             ABOUT <b>ME</b>
@@ -171,22 +261,24 @@ function About() {
             necessitatibus cumque?
           </p>
           {/* TODO: 이력서 외부 링크 추가 */}
-          <Button
-            primary
-            buttonText="이력서 보러가기"
-            icon={RiShareBoxLine}
-            onMouseEnter={() => handleMouseEnter("first")}
-            onMouseLeave={handleMouseLeave}
-          />
-          <Link to={"projects"} spy={true} smooth={true} duration={1000}>
+          <div className="buttons">
             <Button
-              outline
-              buttonText="프로젝트 바로가기"
-              icon={IoArrowDownSharp}
-              onMouseEnter={() => handleMouseEnter("second")}
+              primary
+              buttonText="이력서 보러가기"
+              icon={RiShareBoxLine}
+              onMouseEnter={() => handleMouseEnter("first")}
               onMouseLeave={handleMouseLeave}
             />
-          </Link>
+            <Link to={"projects"} spy={true} smooth={true} duration={1000}>
+              <Button
+                outline
+                buttonText="프로젝트 바로가기"
+                icon={IoArrowDownSharp}
+                onMouseEnter={() => handleMouseEnter("second")}
+                onMouseLeave={handleMouseLeave}
+              />
+            </Link>
+          </div>
         </AboutTextContainer>
 
         <div className="info-container">
