@@ -21,12 +21,12 @@ const ContactSection = styled(CenteredContentSection)`
 
   .link-icons {
     ${flexStyle}
-    gap: 16px;
+    gap: 56px;
     justify-content: center;
     margin-top: 44px;
 
     svg {
-      font-size: 2rem;
+      font-size: 4rem;
     }
 
     .link-icon {
@@ -52,12 +52,17 @@ const ContactSection = styled(CenteredContentSection)`
     }
   }
 
+  @media ${devices.lg} {
+    min-height: auto;
+    padding-bottom: 120px;
+  }
+
   @media ${devices.sm} {
     .link-icons {
-      gap: 56px;
+      gap: 16px;
 
       svg {
-        font-size: 4rem;
+        font-size: 2rem;
       }
     }
   }
@@ -67,6 +72,14 @@ const StyledSectionTitle = styled.h2`
   font-size: 3.5rem;
   text-align: center;
   padding: 12px 0 32px 0;
+
+  @media ${devices.lg} {
+    font-size: 2.75rem;
+  }
+
+  @media ${devices.sm} {
+    font-size: 1.5rem;
+  }
 `;
 
 function Contact() {
