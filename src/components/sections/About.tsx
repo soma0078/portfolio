@@ -94,6 +94,7 @@ const AboutLeftInner = styled.div`
 const AboutRightContainer = styled.div`
   height: 1200px;
   @media ${devices.md} {
+    height: auto;
     .buttons {
       display: flex;
       justify-content: center;

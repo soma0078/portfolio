@@ -7,6 +7,7 @@ import { ProjectDataProps } from "../sections/Projects";
 import { useState } from "react";
 import PopupContent from "../DetailPopupItem";
 import PopupLayout from "../common/PopupLayout";
+import devices from "../../constants/devices";
 
 export interface ProjectCardProps {
   project: ProjectDataProps;
@@ -23,6 +24,10 @@ const ThumbnailImage = styled.img`
   width: 100%;
   height: 240px;
   object-fit: cover;
+
+  @media ${devices.sm} {
+    height: 220px;
+  }
 `;
 
 const ThumbnailInfoContainer = styled.div`
@@ -33,19 +38,32 @@ const ThumbnailInfoContainer = styled.div`
   z-index: 1;
   position: relative;
 
-  h5 {
+  .title {
     font-weight: 600;
     font-size: 1.25rem;
     margin-bottom: 12px;
   }
 
-  span {
+  .date {
     color: #818181;
     font-size: 0.875rem;
   }
 
-  p {
+  .description {
     margin: 12px 0 16px;
+  }
+
+  @media ${devices.sm} {
+    .title {
+      font-size: 1.125rem;
+      margin-bottom: 8px;
+    }
+    .date {
+      font-size: 0.75rem;
+    }
+    .description {
+      margin: 8px 0 12px;
+    }
   }
 `;
 
@@ -94,9 +112,9 @@ function ProjectCard({ project }: ProjectCardProps) {
               />
             ))}
           </LinkIconWrapper>
-          <h5>{project.title}</h5>
-          <span>{project.date}</span>
-          <p>{project.description}</p>
+          <h5 className="title">{project.title}</h5>
+          <span className="date">{project.date}</span>
+          <p className="description">{project.description}</p>
           <SkillIconsArray>
             {project.skills.map(
               (skill) =>
