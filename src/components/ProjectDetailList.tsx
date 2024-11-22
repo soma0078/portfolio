@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ProjectDetailItem from "./ProjectDetailItem";
 import { ProjectDetailProps } from "./sections/Projects";
+import devices from "../constants/devices";
 
 export interface ProjectDetailListProps {
   implementation: string[];
@@ -12,6 +13,11 @@ const StyledProjectDetailList = styled.div`
   height: auto;
   overflow-y: auto;
   max-height: 560px;
+
+  @media ${devices.lg} {
+    overflow-y: visible;
+    max-height: auto;
+  }
 `;
 
 function ProjectDetailList({

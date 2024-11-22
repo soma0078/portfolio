@@ -36,18 +36,13 @@ const GlobalStyle = createGlobalStyle`
 		transition: 0.3s ease;
 	}
 
-p {
-	font-size:1rem;
-	line-height: 1.4;
-
-	@media ${devices.sm} {
-		font-size:0.875rem;
+	p, li {
+		font-size:1rem;
+		line-height: 1.4;
 	}
-}
 
 	::-webkit-scrollbar {
 		width: 8px;
-		height: 15px;
 	}
 	
 	::-webkit-scrollbar-thumb {
@@ -56,8 +51,8 @@ p {
 	}
 	
 	::-webkit-scrollbar-track {
-		background-color: #a0a0a5;
-		border-radius: 12px;
+		background-color: transparent;
+		
 	}
 
 	.popup-project-title {
@@ -65,6 +60,24 @@ p {
 		font-weight: 600;
 		margin-bottom: 16px;
 	}
+
+	@media ${devices.lg} {
+		.popup-project-title {
+			font-size: 1.7rem;
+		}
+	}
+
+	@media ${devices.sm} {
+		p, li {
+			font-size:0.875rem;
+		}
+		.popup-project-title {
+		font-size: 1.25rem;
+		margin-bottom: 12px;
+		}
+	}
+
+
 `;
 
 export default GlobalStyle;

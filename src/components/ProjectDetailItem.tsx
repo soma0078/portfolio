@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ProjectDetailProps } from "./sections/Projects";
+import devices from "../constants/devices";
 
 interface ProjectDetailItemProps {
   title: string;
@@ -8,8 +9,10 @@ interface ProjectDetailItemProps {
 }
 
 const StyledProjectDetailItem = styled.div`
-  margin-bottom: 24px;
-  padding-bottom: 24px;
+  &:not(:last-child) {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+  }
 
   &:not(:last-child) {
     border-bottom: 1px solid #d9d9d9;
@@ -19,6 +22,18 @@ const StyledProjectDetailItem = styled.div`
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 12px;
+  }
+
+  @media ${devices.lg} {
+    h6 {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media ${devices.sm} {
+    h6 {
+      font-size: 1rem;
+    }
   }
 `;
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { flexStyle, imgOutlineStyle } from "../../styles/commonStyles";
 import { useState } from "react";
+import devices from "../../constants/devices";
 
 interface ThumbnailGalleryProps {
   title: string;
@@ -15,6 +16,14 @@ const MainThumbnailImage = styled.div`
   img {
     width: 100%;
     transition: transform 0.5s ease;
+  }
+
+  @media ${devices.lg} {
+    height: 320px;
+  }
+
+  @media ${devices.sm} {
+    height: 220px;
   }
 `;
 
