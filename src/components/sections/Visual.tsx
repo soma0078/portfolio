@@ -6,7 +6,7 @@ import { fullViewportSection } from "../../styles/commonStyles";
 import devices from "../../constants/devices";
 
 const VisualSection = styled(fullViewportSection)`
-  padding: 0 24px 90px;
+  padding: 0 24px 120px;
 `;
 
 const VisualInner = styled.div`
@@ -22,7 +22,7 @@ const VisualInner = styled.div`
   }
 
   @media ${devices.sm} {
-    min-height: 65vh;
+    min-height: 60vh;
   }
 `;
 
@@ -79,9 +79,14 @@ const VisualImgWrapper = styled.div`
   }
 
   @media ${devices.sm} {
-    margin-left: auto;
     width: 380px;
     height: 280px;
+  }
+
+  @media ${devices.xs} {
+    margin-left: auto;
+    width: 290px;
+    height: 200px;
   }
 `;
 

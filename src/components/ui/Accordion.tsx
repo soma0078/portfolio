@@ -20,7 +20,10 @@ const StyledAccordion = styled.div`
   border-radius: 32px;
   border: 1px solid #d9d9d9;
   padding: 28px 24px;
-  margin-bottom: 16px;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
 
   .toggle-btn {
     grid-area: "button";

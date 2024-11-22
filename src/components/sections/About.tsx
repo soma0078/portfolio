@@ -33,7 +33,7 @@ const AboutSection = styled(CenteredContentSection)`
   }
 
   @media ${devices.lg} {
-    padding: 24px;
+    padding: 0 24px;
     gap: 24px;
     justify-content: space-between;
 
@@ -155,7 +155,9 @@ const AboutTextContainer = styled.div`
 `;
 
 const InfoContent = styled.div`
-  margin-bottom: 40px;
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
 
   h3 {
     font-size: 1.25rem;
@@ -169,7 +171,7 @@ const InfoContent = styled.div`
     flex-wrap: wrap;
 
     h5 {
-      font-weight: "Caveat";
+      font-family: "Caveat";
       margin-bottom: 8px;
     }
   }
@@ -181,6 +183,10 @@ const InfoContent = styled.div`
   }
 
   @media ${devices.md} {
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
+
     h3 {
       text-align: center;
       margin-bottom: 12px;
