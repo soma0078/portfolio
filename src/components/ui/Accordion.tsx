@@ -1,6 +1,7 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import styled from "styled-components";
 import { useState } from "react";
+import devices from "../../constants/devices";
 
 export interface InfoDataProps {
   type: string;
@@ -19,9 +20,13 @@ const StyledAccordion = styled.div`
   border-radius: 32px;
   border: 1px solid #d9d9d9;
   padding: 28px 24px;
-  margin-bottom: 16px;
 
-  button {
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .toggle-btn {
+    grid-area: "button";
     color: #818181;
     font-size: 1.25rem;
     border-radius: 32px;
@@ -32,14 +37,18 @@ const StyledAccordion = styled.div`
   }
 
   .title-content {
+    grid-area: "title";
     min-width: 240px;
+    line-height: 1.4;
   }
 
   .accordion-top {
-    display: flex;
+    display: grid;
+    grid-template-areas: "logo title date button";
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    gap: 4px;
 
     b {
       font-weight: 600;
@@ -47,6 +56,7 @@ const StyledAccordion = styled.div`
   }
 
   .edu-logo {
+    grid-area: "logo";
     border-radius: 99px;
     border: 1px solid #d9d9d9;
     padding: 2px 4px;
@@ -55,13 +65,70 @@ const StyledAccordion = styled.div`
   }
 
   .date {
+    grid-area: "date";
     color: #818181;
+    font-size: 0.875rem;
   }
 
   .accordion-bottom {
+    height: 0;
+    opacity: 0;
+    transition: all 0.3s;
+
+    p {
+      display: none;
+    }
+  }
+
+  .accordion-bottom.open {
+    border-top: 1px solid #d9d9d9;
     padding: 16px 8px 0;
     margin-top: 16px;
-    border-top: 1px solid #d9d9d9;
+    height: 100%;
+    opacity: 1;
+
+    p {
+      display: block;
+    }
+  }
+
+  @media ${devices.lg} {
+    .edu-logo {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  @media ${devices.md} {
+    .title-content {
+      min-width: auto;
+    }
+
+    .date {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media ${devices.sm} {
+    padding: 24px;
+
+    .accordion-top {
+      grid-template-columns: 2fr 32px;
+      gap: 8px 0;
+    }
+    .title-content {
+      grid-row: 2;
+    }
+    .date {
+      grid-row: 3;
+    }
+    .toggle-btn {
+      grid-row: 2;
+    }
   }
 `;
 
@@ -84,15 +151,14 @@ function Accordion({ infoData }: AccordionProps) {
         </div>
         <span className="date">{infoData.date}</span>
 
-        <button onClick={toggleAccordion}>
+        <button onClick={toggleAccordion} className="toggle-btn">
           {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
         </button>
       </div>
-      {isOpen && (
-        <div className="accordion-bottom">
-          <p>{infoData.detailContent}</p>
-        </div>
-      )}
+
+      <div className={`accordion-bottom ${isOpen ? "open" : ""}`}>
+        <p>{infoData.detailContent}</p>
+      </div>
     </StyledAccordion>
   );
 }

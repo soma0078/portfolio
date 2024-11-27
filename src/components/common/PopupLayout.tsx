@@ -1,6 +1,7 @@
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 import { ReactNode, useEffect } from "react";
+import devices from "../../constants/devices";
 
 interface PopupProps {
   onClose: () => void;
@@ -38,14 +39,23 @@ const PopupContentainer = styled.div`
   border-radius: 24px;
   box-shadow: #666 0 0 15px;
   z-index: 1000;
+
+  @media ${devices.lg} {
+    padding: 24px 38px 0 44px;
+  }
+
+  @media ${devices.sm} {
+    padding: 16px 22px 0 28px;
+  }
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
+  position: fixed;
   top: 24px;
   right: 24px;
   font-size: 1.75rem;
   border-radius: 32px;
+  z-index: 99;
 
   color: ${({ theme }) => theme.textColor};
 
@@ -73,10 +83,10 @@ function PopupLayout({ onClose, children }: PopupProps) {
     <StyledPopupLayout>
       <PopupBackgound onClick={onClose} />
       <PopupContentainer>
-        {children}
         <CloseButton onClick={onClose}>
           <MdClose />
         </CloseButton>
+        {children}
       </PopupContentainer>
     </StyledPopupLayout>
   );

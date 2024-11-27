@@ -4,6 +4,7 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 import { useState } from "react";
 import PopupLayout from "../common/PopupLayout";
 import WorksPopupContent from "../WorksPopupContent";
+import devices from "../../constants/devices";
 
 export interface WorksProps {
   worksData: WorksDataProps;
@@ -33,9 +34,23 @@ const StyledWorksItem = styled.div`
       height: 90px;
       font-size: 2rem;
     }
+
     img {
       top: 100%;
       transform: translateY(-100%);
+    }
+  }
+
+  @media ${devices.sm} {
+    min-width: 380px;
+    height: 370px;
+
+    &:hover {
+      .arrow-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
     }
   }
 `;
@@ -65,6 +80,12 @@ const StyledCoveredButton = styled.button`
     width: 60px;
     height: 60px;
     font-size: 1.5rem;
+
+    @media ${devices.sm} {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
   }
 `;
 

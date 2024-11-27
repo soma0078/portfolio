@@ -7,6 +7,7 @@ import {
 
 import { useEffect, useRef, useState, WheelEvent } from "react";
 import WorksItem from "../ui/WorksItem";
+import devices from "../../constants/devices";
 
 export interface WorksDataProps {
   mainImageSrc: string;
@@ -23,6 +24,10 @@ const WorksSectoion = styled(fullViewportSection)`
   padding: 0 50px 90px;
   max-width: 100vw;
   overflow: hidden;
+
+  @media ${devices.lg} {
+    padding: 0 24px 120px;
+  }
 `;
 
 const StyledWorkList = styled.div`
@@ -32,6 +37,7 @@ const StyledWorkList = styled.div`
     overflow-y: hidden;
     gap: 16px;
     scroll-behavior: smooth;
+    touch-action: pan-x;
 
     &::-webkit-scrollbar {
       height: 0;
@@ -60,7 +66,7 @@ function Works() {
   };
 
   return (
-    <WorksSectoion>
+    <WorksSectoion id="works">
       <StyledSubTitle>Works</StyledSubTitle>
       <StyledSectionTitle>Design & Publishing</StyledSectionTitle>
 

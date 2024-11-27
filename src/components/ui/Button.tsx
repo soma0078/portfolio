@@ -1,5 +1,6 @@
 import { IconType } from "react-icons";
 import styled, { css } from "styled-components";
+import devices from "../../constants/devices";
 
 interface ButtonProps {
   buttonText: string;
@@ -43,6 +44,14 @@ const StyledButton = styled.button<{ primary?: boolean; outline?: boolean }>`
         background-color: rgba(238, 238, 238, 0.5);
       }
     `}
+
+  @media ${devices.lg} {
+    font-size: 1rem;
+  }
+
+  @media ${devices.sm} {
+    font-size: 0.85rem;
+  }
 `;
 
 const ButtonInner = styled.div`

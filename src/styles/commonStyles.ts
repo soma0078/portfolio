@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import devices from "../constants/devices";
 
 // 공통 컬러 스타일
 const hoverPrimaryColor = css`
@@ -12,6 +13,10 @@ const fullViewportSectionStyle = css`
   width: 100%;
   height: 100%;
   min-height: 100vh;
+
+  @media ${devices.lg} {
+    min-height: auto;
+  }
 `;
 
 const fullViewportSection = styled.section`
@@ -80,10 +85,15 @@ const StyledSubTitle = styled.div`
 `;
 
 const StyledSectionTitle = styled.h2`
-  font-family: "Caveat", cursive;
+  font-family: "Caveat";
   font-size: 4rem;
   text-align: center;
   margin: 8px 0 48px;
+
+  @media ${devices.sm} {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
 `;
 
 const imgOutlineStyle = css`

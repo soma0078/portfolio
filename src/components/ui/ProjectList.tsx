@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ProjectCard from "./ProjectCard";
 import { ProjectDataProps } from "../sections/Projects";
+import devices from "../../constants/devices";
 
 export interface ProjectListProps {
   projects: ProjectDataProps[];
@@ -15,6 +16,18 @@ const StyledProjectList = styled.div`
 
   > div {
     width: calc(100% / 3 - 24px);
+  }
+
+  @media ${devices.lg} {
+    > div {
+      width: calc(100% / 2 - 8px);
+    }
+  }
+
+  @media ${devices.sm} {
+    > div {
+      width: 100%;
+    }
   }
 `;
 

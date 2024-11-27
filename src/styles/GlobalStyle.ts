@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import devices from "../constants/devices";
 
 const GlobalStyle = createGlobalStyle`
 	${reset}
@@ -7,11 +8,13 @@ const GlobalStyle = createGlobalStyle`
 	:root {
 		--primary-color: #985EA4;
 		--primary-color-dark: #824F8D;
+		
 	}
 
 	*, body {
 		box-sizing: border-box;
 		font-family: 'Noto Sans KR', sans-serif;
+		transition: all 0.3s;
 	}
 
 	body {
@@ -33,9 +36,13 @@ const GlobalStyle = createGlobalStyle`
 		transition: 0.3s ease;
 	}
 
+	p, li {
+		font-size:1rem;
+		line-height: 1.4;
+	}
+
 	::-webkit-scrollbar {
 		width: 8px;
-		height: 15px;
 	}
 	
 	::-webkit-scrollbar-thumb {
@@ -44,8 +51,8 @@ const GlobalStyle = createGlobalStyle`
 	}
 	
 	::-webkit-scrollbar-track {
-		background-color: #a0a0a5;
-		border-radius: 12px;
+		background-color: transparent;
+		
 	}
 
 	.popup-project-title {
@@ -53,6 +60,24 @@ const GlobalStyle = createGlobalStyle`
 		font-weight: 600;
 		margin-bottom: 16px;
 	}
+
+	@media ${devices.lg} {
+		.popup-project-title {
+			font-size: 1.7rem;
+		}
+	}
+
+	@media ${devices.sm} {
+		p, li {
+			font-size:0.875rem;
+		}
+		.popup-project-title {
+		font-size: 1.25rem;
+		margin-bottom: 12px;
+		}
+	}
+
+
 `;
 
 export default GlobalStyle;

@@ -32,7 +32,7 @@ export interface ProjectDetailProps {
 }
 
 const ProjectSection = styled(CenteredContentSection)`
-  padding: 120px 0;
+  padding: 120px 24px;
 `;
 
 function Projects() {
