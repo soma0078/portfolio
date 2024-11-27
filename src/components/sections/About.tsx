@@ -22,6 +22,7 @@ import { skillImageArray, toolImageArray } from "../../constants/icons";
 import IconImageArray from "../ui/IconImageArray";
 import Accordion, { InfoDataProps } from "../ui/Accordion";
 import devices from "../../constants/devices";
+import Resume from "../../assets/fe_resume.pdf";
 
 const AboutSection = styled(CenteredContentSection)`
   position: relative;
@@ -267,15 +268,16 @@ function About() {
             nihil doloremque unde suscipit nesciunt at repudiandae dolores,
             necessitatibus cumque?
           </p>
-          {/* TODO: 이력서 외부 링크 추가 */}
           <div className="buttons">
-            <Button
-              primary
-              buttonText="이력서 보러가기"
-              icon={RiShareBoxLine}
-              onMouseEnter={() => handleMouseEnter("first")}
-              onMouseLeave={handleMouseLeave}
-            />
+            <LinkIcon href={`${Resume}`} target="_blank">
+              <Button
+                primary
+                buttonText="이력서 보러가기"
+                icon={RiShareBoxLine}
+                onMouseEnter={() => handleMouseEnter("first")}
+                onMouseLeave={handleMouseLeave}
+              />
+            </LinkIcon>
             <Link to={"projects"} spy={true} smooth={true} duration={1000}>
               <Button
                 outline
