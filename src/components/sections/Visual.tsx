@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Intro from "./Intro";
-import IntroImg from "../../assets/images/sample.png";
+import ProfileImg from "../../assets/images/profile-img.png";
 import { expandWidth } from "../../styles/animations";
 import { fullViewportSection } from "../../styles/commonStyles";
 import devices from "../../constants/devices";
@@ -93,7 +93,7 @@ const VisualImgWrapper = styled.div`
 const VisualImgBox = styled.div`
   width: 0;
   height: 100%;
-  background: url(${IntroImg}) no-repeat 50% 50%;
+  background: url(${ProfileImg}) no-repeat 50% 50%;
   background-size: cover;
 
   animation: ${expandWidth} 1.5s 7s ease-in-out forwards;

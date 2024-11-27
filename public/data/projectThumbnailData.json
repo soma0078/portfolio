@@ -115,7 +115,7 @@
     "category": "Single",
     "title": "포트폴리오",
     "date": "2024-10-20 ~ 2024-11-07",
-    "src": "/src/assets/images/sample.png",
+    "src": "/src/assets/images/thumbnail_portfolio.png",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
     "skills": ["react", "typescript", "styledcomponents", "vercel"],
     "siteUrl": "",
