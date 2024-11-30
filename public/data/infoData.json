@@ -5,7 +5,7 @@
     "title": "Web Design & Web Publisher",
     "companyName": "솔라디자인",
     "date": "Sep 2022 - Feb 2024",
-    "detailContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sequi temporibus cupiditate eveniet! Quam repudiandae quae adipisci nesciunt qui aspernatur?"
+    "detailContent": "웹 표준과 접근성을 준수하며, HTML5와 CSS3로 반응형 웹 및 크로스 브라우징 최적화 사이트를 구현했습니다. JavaScript와 jQuery를 활용해 다양한 디바이스와 브라우저에서 사용자 인터랙션을 강화하는 동적 기능을 구현한 경험이 있습니다."
   },
   {
     "type": "education",
@@ -13,7 +13,7 @@
     "title": "스프린트 프론트엔드 부트캠프 6기",
     "companyName": "코드잇",
     "date": "Mar 2024 - Sep 2024",
-    "detailContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sequi temporibus cupiditate eveniet! Quam repudiandae quae adipisci nesciunt qui aspernatur?"
+    "detailContent": "JavaScript와 React를 사용해 사용자 중심의 동적 웹 애플리케이션을 개발했으며, Next.js와 TypeScript를 활용하여 프로젝트의 코드 품질과 유지보수성을 개선했습니다. Git을 이용한 버전 관리와 코드 리뷰를 통해 협업 능력을 향상시키고, 문제 해결 과정에서 기술적인 성장을 이루었습니다."
   },
   {
     "type": "education",
@@ -21,7 +21,7 @@
     "title": "UI/UX 웹&앱 디자인 & 프론트엔드",
     "companyName": "강남 이젠 컴퓨터 학원",
     "date": "Jan 2022 - Jul 2022",
-    "detailContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sequi temporibus cupiditate eveniet! Quam repudiandae quae adipisci nesciunt qui aspernatur?"
+    "detailContent": "웹 사이트 리뉴얼 프로젝트 6건을 진행하며 HTML, CSS, JavaScript, jQuery를 활용해 반응형 웹을 구현했습니다. 기획부터 디자인, 개발까지 전 과정에 참여하며 웹 표준과 접근성 기준을 준수한 웹 사이트를 구현했습니다."
   },
   {
     "type": "education",
@@ -29,6 +29,6 @@
     "title": "컴퓨터공학 학사학위",
     "companyName": "학점은행제",
     "date": "Jun 2023 - Feb 2025",
-    "detailContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sequi temporibus cupiditate eveniet! Quam repudiandae quae adipisci nesciunt qui aspernatur?"
+    "detailContent": "학점은행제로 컴퓨터공학 학사 학위를 취득하며, 기본적인 프로그래밍 및 알고리즘 이론을 습득하고 실습을 통해 기술을 적용하는 경험을 쌓았습니다."
   }
 ]

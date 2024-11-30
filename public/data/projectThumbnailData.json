@@ -4,7 +4,7 @@
     "title": "K-venture",
     "date": "2024-07-26 ~ 2024-08-30",
     "src": "/src/assets/images/thumbnail_kventure.png",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "description": "지역 주민들이 제공하는 다채로운 한국 체험을 여행자와 연결하는 온라인 플랫폼",
     "skills": [
       "next",
       "typescript",
@@ -15,12 +15,19 @@
       "jira",
       "tailwindcss"
     ],
-    "siteUrl": "",
-    "githubUrl": "",
+    "siteUrl": "https://k-venture-main.vercel.app",
+    "githubUrl": "https://github.com/soma0078/K-venture",
     "thumbnailImages": [
       "/src/assets/images/kventure_desktop.png",
-      "/src/assets/images/payplus_desktop.png",
-      "/src/assets/images/openmind_desktop.png"
+      "/src/assets/images/kventure_activity_page.png",
+      "/src/assets/images/kventure_my_activity_page.png",
+      "/src/assets/images/kventure_activity_register_page.png",
+      "/src/assets/images/kventure_reservation_list.png",
+      "/src/assets/images/kventure_mypage.png",
+      "/src/assets/images/kventure_search_page.png",
+      "/src/assets/images/kventure_mobile.png",
+      "/src/assets/images/kventure_activity_mobile.png",
+      "/src/assets/images/kventure_reservation_mobile.png"
     ],
     "implementation": [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
@@ -50,11 +57,18 @@
     "title": "페이플러스",
     "date": "2024-06-21 ~ 2024-07-09",
     "src": "/src/assets/images/thumbnail_payplus.png",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "description": "급한 일손을 빠르게 찾고, 높은 시급으로 일자리를 매칭하는 서비스",
     "skills": ["next", "typescript", "vercel", "scss"],
-    "siteUrl": "",
-    "githubUrl": "",
-    "thumbnailImages": ["/src/assets/images/payplus_desktop.png"],
+    "siteUrl": "https://payplus-x.vercel.app",
+    "githubUrl": "https://github.com/soma0078/PayPlus",
+    "thumbnailImages": [
+      "/src/assets/images/payplus_desktop.png",
+      "/src/assets/images/payplus_store_page_staff.png",
+      "/src/assets/images/payplus_store_page_owner.png",
+      "/src/assets/images/payplus_staff_page.png",
+      "/src/assets/images/payplus_store_page_mobile.png",
+      "/src/assets/images/payplus_store_register_mobile.png"
+    ],
     "implementation": [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
@@ -83,11 +97,17 @@
     "title": "오픈마인드",
     "date": "2024-04-30 ~ 2024-05-17",
     "src": "/src/assets/images/thumbnail_openmind.png",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "description": "익명으로 자유롭게 질문하고, 다양한 답변을 통해 궁금증을 해결할 수 있는 플랫폼",
     "skills": ["react", "javascript", "tailwindcss", "netlify"],
-    "siteUrl": "",
-    "githubUrl": "",
-    "thumbnailImages": ["/src/assets/images/openmind_desktop.png"],
+    "siteUrl": "https://openyourmind.netlify.app",
+    "githubUrl": "https://github.com/soma0078/Openmind",
+    "thumbnailImages": [
+      "/src/assets/images/openmind_main_page.png",
+      "/src/assets/images/openmind_list_page.png",
+      "/src/assets/images/openmind_question_page.png",
+      "/src/assets/images/openmind_desktop.png",
+      "/src/assets/images/openmind_modal.png"
+    ],
     "implementation": [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"
@@ -116,11 +136,15 @@
     "title": "포트폴리오",
     "date": "2024-10-20 ~ 2024-11-07",
     "src": "/src/assets/images/thumbnail_portfolio.png",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
+    "description": "React와 JavaScript로 제작한 나만의 프로젝트를 소개하는 반응형 웹 포트폴리오",
     "skills": ["react", "typescript", "styledcomponents", "vercel"],
-    "siteUrl": "",
-    "githubUrl": "",
-    "thumbnailImages": ["", ""],
+    "siteUrl": "https://portfolio-leesonga.netlify.app",
+    "githubUrl": "https://github.com/soma0078/portfolio",
+    "thumbnailImages": [
+      "/src/assets/images/portfolio_desktop.png",
+      "/src/assets/images/portfolio_tablet.png",
+      "/src/assets/images/portfolio_mobile.png"
+    ],
     "implementation": [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit!"

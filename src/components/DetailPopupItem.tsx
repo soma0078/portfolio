@@ -80,8 +80,18 @@ function DetailPopupItem({ project }: ProjectCardProps) {
         <h5 className="popup-project-title">{project.title}</h5>
         <span className="date">{project.date}</span>
         <div className="buttons">
-          <Button primary buttonText="Github 바로가기" icon={BsGithub} />
-          <Button outline buttonText="사이트 바로가기" icon={RiShareBoxLine} />
+          <Button
+            primary
+            buttonText="Github 바로가기"
+            icon={BsGithub}
+            onClick={() => window.open(project.githubUrl)}
+          />
+          <Button
+            outline
+            buttonText="사이트 바로가기"
+            icon={RiShareBoxLine}
+            onClick={() => window.open(project.siteUrl)}
+          />
         </div>
       </ProjectTopBar>
       <ProjectContainer>

@@ -1,13 +1,13 @@
 [
   {
     "title": "ZENITH-TECK 풀페이지 반응형",
-    "siteUrl": "https://zenith-tech.kr/",
+    "siteUrl": "https://zenith-tech.kr",
     "description": [
       "기업 소개 페이지, 상세 페이지에 대한 디자인 및 퍼블리싱 작업을 진행했습니다.",
       "대부분 풀 반응형으로 어떤 디바이스에서 접속하더라도 사용자가 정보를 얻는 데 어려움이 없도록 했습니다."
     ],
     "mainImageSrc": "/src/assets/images/main_works1.jpg",
-    "desktopImageSrc": "/src/assets/images/desktop_works1.png",
+    "desktopImageSrc": "/src/assets/images/desktop_works1.webp",
     "mobileImageSrc": [
       "/src/assets/images/mobile_works1_01.png",
       "/src/assets/images/mobile_works1_02.png",
@@ -18,41 +18,69 @@
   },
   {
     "title": "용인서울병원 풀페이지 반응형",
-    "siteUrl": "",
-    "description": "",
+    "siteUrl": "https://yishospital.com",
+    "description": [
+      "풀페이지 형태로 제작했으며, 메인 비주얼 배너와 의료진 소개 섹션에 Swiper 라이브러리를 활용한 슬라이드 기능을 구현했습니다.",
+      "모든 디바이스에서 최적화된 사용자 경험을 제공하기 위해 반응형 웹으로 설계했습니다."
+    ],
     "mainImageSrc": "/src/assets/images/main_works2.png",
-    "desktopImageSrc": "",
-    "mobileImageSrc": ["", "", ""],
+    "desktopImageSrc": "/src/assets/images/desktop_works2.webp",
+    "mobileImageSrc": [
+      "/src/assets/images/mobile_works2_01.png",
+      "/src/assets/images/mobile_works2_02.png",
+      "/src/assets/images/mobile_works2_03.png"
+    ],
     "role": "디자인·퍼블리싱",
     "rate": 100
   },
   {
     "title": "COREAONE 반응형 홈페이지",
-    "siteUrl": "",
-    "description": "",
+    "siteUrl": "https://mbcorespecialists.com",
+    "description": [
+      "슬라이드와 팝업 기능을 포함했으며, 네비게이션 메뉴 클릭 시 특정 섹션으로 스크롤 이동하는 인터랙션을 적용했습니다.",
+      "반응형 웹으로 제작하여 디바이스별로 유연한 UI 레이아웃을 구현했습니다."
+    ],
     "mainImageSrc": "/src/assets/images/main_works3.png",
-    "desktopImageSrc": "",
-    "mobileImageSrc": ["", "", ""],
+    "desktopImageSrc": "/src/assets/images/desktop_works3.webp",
+    "mobileImageSrc": [
+      "/src/assets/images/mobile_works3_01.png",
+      "/src/assets/images/mobile_works3_02.png",
+      "/src/assets/images/mobile_works3_03.png"
+    ],
     "role": "디자인·퍼블리싱",
     "rate": 100
   },
   {
     "title": "하우드시스템 반응형 홈페이지",
-    "siteUrl": "",
-    "description": "",
+    "siteUrl": "https://haudsystem.com/?page_id=69",
+    "description": [
+      "기업 소개와 가구 정보를 전달하는 메인 페이지와 실제 결제가 가능한 Cafe24 기반의 쇼핑몰 페이지를 제작했습니다.",
+      "AOS 라이브러리를 활용해 스크롤 시 부드럽게 나타나는 애니메이션 효과를 구현해 시각적 완성도를 높였습니다."
+    ],
     "mainImageSrc": "/src/assets/images/main_works4.png",
-    "desktopImageSrc": "",
-    "mobileImageSrc": ["", "", ""],
+    "desktopImageSrc": "/src/assets/images/desktop_works4.webp",
+    "mobileImageSrc": [
+      "/src/assets/images/mobile_works4_01.png",
+      "/src/assets/images/mobile_works4_02.png",
+      "/src/assets/images/mobile_works4_03.png"
+    ],
     "role": "디자인·퍼블리싱",
     "rate": 100
   },
   {
-    "title": "KOCH 풀페이지 반응형",
-    "siteUrl": "",
-    "description": "",
+    "title": "KOCH 반응형 풀페이지",
+    "siteUrl": "https://koch14477.mycafe24.com",
+    "description": [
+      "풀페이지 형태로 제작된 홈페이지로, 비주얼 배너와 제품 소개 섹션에서 슬라이드와 무한 루프 애니메이션 UI를 구현했습니다.",
+      "제품 상세 페이지는 게시판 형태로 구성하여 정보를 체계적으로 전달했습니다."
+    ],
     "mainImageSrc": "/src/assets/images/main_works5.png",
-    "desktopImageSrc": "",
-    "mobileImageSrc": ["", "", ""],
+    "desktopImageSrc": "/src/assets/images/desktop_works5.webp",
+    "mobileImageSrc": [
+      "/src/assets/images/mobile_works5_01.png",
+      "/src/assets/images/mobile_works5_02.png",
+      "/src/assets/images/mobile_works5_03.png"
+    ],
     "role": "디자인·퍼블리싱",
     "rate": 100
   }
