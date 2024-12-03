@@ -46,8 +46,11 @@ const StyledUl = styled.ul`
 
 const StyledDepthUl = styled.ul`
   padding-left: 15px;
+  margin-bottom: 8px;
+
   li {
     list-style: circle;
+    margin-bottom: 4px;
   }
 `;
 
