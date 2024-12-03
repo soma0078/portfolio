@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
 	*, body {
 		box-sizing: border-box;
 		font-family: 'Noto Sans KR', sans-serif;
-		transition: all 0.3s;
 	}
 
 	body {

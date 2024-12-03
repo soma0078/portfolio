@@ -11,7 +11,7 @@ interface ThumbnailGalleryProps {
 const MainThumbnailImage = styled.div`
   ${imgOutlineStyle}
   border-radius: 24px;
-  height: 460px;
+  height: 440px;
 
   img {
     width: 100%;
@@ -31,12 +31,13 @@ const ThumbnailImageList = styled.div`
   ${flexStyle}
   margin-top: 16px;
   gap: 12px;
+  flex-wrap: wrap;
 `;
 
 const ThumbnailImage = styled.div`
   ${imgOutlineStyle}
-  width: 142px;
-  height: 86px;
+  width: 96px;
+  height: 56px;
 `;
 
 function ThumbnailGallery({ title, thumbnailImages }: ThumbnailGalleryProps) {

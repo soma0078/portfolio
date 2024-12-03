@@ -50,6 +50,7 @@ const ProjectContainer = styled.div`
 
   > div {
     width: calc(100% / 2);
+    padding-right: 12px;
   }
 
   img {

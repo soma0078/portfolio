@@ -31,6 +31,8 @@ const WorksSectoion = styled(fullViewportSection)`
 `;
 
 const StyledWorkList = styled.div`
+  overscroll-behavior: contain;
+
   &.work-list {
     display: flex;
     overflow-x: auto;

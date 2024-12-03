@@ -93,7 +93,6 @@ const AboutLeftInner = styled.div`
 `;
 
 const AboutRightContainer = styled.div`
-  height: 1200px;
   @media ${devices.md} {
     height: auto;
     .buttons {
@@ -126,7 +125,11 @@ const AboutTextContainer = styled.div`
     font-weight: 400;
   }
 
-  p {
+  .paragraph {
+    margin-bottom: 16px;
+  }
+
+  .bottom-paragraph {
     margin-bottom: 47px;
   }
 
@@ -149,7 +152,10 @@ const AboutTextContainer = styled.div`
       font-size: 1.25rem;
       margin: 16px 0 8px;
     }
-    p {
+    .paragraph {
+      margin-bottom: 8px;
+    }
+    .bottom-paragraph {
       margin-bottom: 24px;
     }
   }
@@ -262,14 +268,14 @@ function About() {
               프론트엔드 개발자 <b>이송아</b>입니다.
             </span>
           </h3>
-          <p>
+          <p className="paragraph">
             웹 퍼블리셔에서 프론트엔드 개발자로 전향하며, 사용자 경험을
             최우선으로 고려한 직관적이고 기능적인 인터페이스를 만드는 데
             집중하고 있습니다. React와 JavaScript를 활용하여 동적인 웹
             애플리케이션을 개발하며, 항상 실용적이고 효과적인 해결책을 찾아가고
             있습니다.
           </p>
-          <p>
+          <p className="paragraph bottom-paragraph">
             협업 프로젝트를 경험하면서 팀원들과의 소통을 통해 더 나은 결과물을
             만들어가는 것에 큰 보람을 느꼈습니다. 다양한 의견을 반영해 개선점을
             찾고, 함께 성장하는 과정에서 더 나은 개발자로 발전하고 있습니다.
