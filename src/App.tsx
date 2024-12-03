@@ -8,8 +8,8 @@ import Projects from "./components/sections/Projects";
 import Works from "./components/sections/Works";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/common/Footer";
-import GlobalStyle from "./styles/globalStyleTemp";
-import { darkTheme, lightTheme } from "./styles/themeTemp";
+import GlobalStyle from "./styles/globalStyle";
+import { darkTheme, lightTheme } from "./styles/theme";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
