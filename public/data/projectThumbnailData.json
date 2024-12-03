@@ -3,7 +3,7 @@
     "category": "Team",
     "title": "K-venture",
     "date": "2024-07-26 ~ 2024-08-30",
-    "src": "/src/assets/images/thumbnail_kventure.png",
+    "src": "/assets/images/thumbnail_kventure.png",
     "description": "지역 주민들이 제공하는 다채로운 한국 체험을 여행자와 연결하는 온라인 플랫폼",
     "skills": [
       "next",
@@ -18,16 +18,16 @@
     "siteUrl": "https://k-venture-main.vercel.app",
     "githubUrl": "https://github.com/soma0078/K-venture",
     "thumbnailImages": [
-      "/src/assets/images/kventure_desktop.png",
-      "/src/assets/images/kventure_activity_page.png",
-      "/src/assets/images/kventure_my_activity_page.png",
-      "/src/assets/images/kventure_activity_register_page.png",
-      "/src/assets/images/kventure_reservation_list.png",
-      "/src/assets/images/kventure_mypage.png",
-      "/src/assets/images/kventure_search_page.png",
-      "/src/assets/images/kventure_mobile.png",
-      "/src/assets/images/kventure_activity_mobile.png",
-      "/src/assets/images/kventure_reservation_mobile.png"
+      "/assets/images/kventure_desktop.png",
+      "/assets/images/kventure_activity_page.png",
+      "/assets/images/kventure_my_activity_page.png",
+      "/assets/images/kventure_activity_register_page.png",
+      "/assets/images/kventure_reservation_list.png",
+      "/assets/images/kventure_mypage.png",
+      "/assets/images/kventure_search_page.png",
+      "/assets/images/kventure_mobile.png",
+      "/assets/images/kventure_activity_mobile.png",
+      "/assets/images/kventure_reservation_mobile.png"
     ],
     "implementation": [
       "회원가입 및 로그인 시 이메일, 비밀번호 유효성 검사",
@@ -87,18 +87,18 @@
     "category": "Team",
     "title": "페이플러스",
     "date": "2024-06-21 ~ 2024-07-09",
-    "src": "/src/assets/images/thumbnail_payplus.png",
+    "src": "/assets/images/thumbnail_payplus.png",
     "description": "급한 일손을 빠르게 찾고, 높은 시급으로 일자리를 매칭하는 서비스",
     "skills": ["next", "typescript", "vercel", "scss"],
     "siteUrl": "https://payplus-x.vercel.app/listPage",
     "githubUrl": "https://github.com/soma0078/PayPlus",
     "thumbnailImages": [
-      "/src/assets/images/payplus_desktop.png",
-      "/src/assets/images/payplus_store_page_staff.png",
-      "/src/assets/images/payplus_store_page_owner.png",
-      "/src/assets/images/payplus_staff_page.png",
-      "/src/assets/images/payplus_store_page_mobile.png",
-      "/src/assets/images/payplus_store_register_mobile.png"
+      "/assets/images/payplus_desktop.png",
+      "/assets/images/payplus_store_page_staff.png",
+      "/assets/images/payplus_store_page_owner.png",
+      "/assets/images/payplus_staff_page.png",
+      "/assets/images/payplus_store_page_mobile.png",
+      "/assets/images/payplus_store_register_mobile.png"
     ],
     "implementation": [
       "사용자 로그인에 따라 상단 네비게이션 바의 버튼 변경 (사장님: '내 가게', 알바님: '내 프로필')",
@@ -143,17 +143,17 @@
     "category": "Team",
     "title": "오픈마인드",
     "date": "2024-04-30 ~ 2024-05-17",
-    "src": "/src/assets/images/thumbnail_openmind.png",
+    "src": "/assets/images/thumbnail_openmind.png",
     "description": "익명으로 자유롭게 질문하고, 다양한 답변을 통해 궁금증을 해결할 수 있는 플랫폼",
     "skills": ["react", "javascript", "tailwindcss", "netlify"],
     "siteUrl": "https://openyourmind.netlify.app",
     "githubUrl": "https://github.com/soma0078/Openmind",
     "thumbnailImages": [
-      "/src/assets/images/openmind_main_page.png",
-      "/src/assets/images/openmind_list_page.png",
-      "/src/assets/images/openmind_question_page.png",
-      "/src/assets/images/openmind_desktop.png",
-      "/src/assets/images/openmind_modal.png"
+      "/assets/images/openmind_main_page.png",
+      "/assets/images/openmind_list_page.png",
+      "/assets/images/openmind_question_page.png",
+      "/assets/images/openmind_desktop.png",
+      "/assets/images/openmind_modal.png"
     ],
     "implementation": [
       "사용자 이름을 입력한 후 '질문 받기' 버튼을 클릭하여 피드를 생성하고 페이지 이동 기능",
@@ -197,15 +197,15 @@
     "category": "Single",
     "title": "포트폴리오",
     "date": "2024-10-20 ~ 2024-11-07",
-    "src": "/src/assets/images/thumbnail_portfolio.png",
+    "src": "/assets/images/thumbnail_portfolio.png",
     "description": "React와 JavaScript로 제작한 나만의 프로젝트를 소개하는 반응형 웹 포트폴리오",
     "skills": ["react", "typescript", "styledcomponents", "vercel"],
     "siteUrl": "https://portfolio-leesonga.netlify.app",
     "githubUrl": "https://github.com/soma0078/portfolio",
     "thumbnailImages": [
-      "/src/assets/images/portfolio_desktop.png",
-      "/src/assets/images/portfolio_tablet.png",
-      "/src/assets/images/portfolio_mobile.png"
+      "/assets/images/portfolio_desktop.png",
+      "/assets/images/portfolio_tablet.png",
+      "/assets/images/portfolio_mobile.png"
     ],
     "implementation": [
       "메인 비주얼 화면 및 인트로 애니메이션 구현",

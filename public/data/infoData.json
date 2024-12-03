@@ -1,7 +1,7 @@
 [
   {
     "type": "work",
-    "img": "/src/assets/images/logo_solar.png",
+    "img": "/assets/images/logo_solar.png",
     "title": "Web Design & Web Publisher",
     "companyName": "솔라디자인",
     "date": "Sep 2022 - Feb 2024",
@@ -9,7 +9,7 @@
   },
   {
     "type": "education",
-    "img": "/src/assets/images/logo_codeit.png",
+    "img": "/assets/images/logo_codeit.png",
     "title": "스프린트 프론트엔드 부트캠프 6기",
     "companyName": "코드잇",
     "date": "Mar 2024 - Sep 2024",
@@ -17,7 +17,7 @@
   },
   {
     "type": "education",
-    "img": "/src/assets/images/logo_ezen.png",
+    "img": "/assets/images/logo_ezen.png",
     "title": "UI/UX 웹&앱 디자인 & 프론트엔드",
     "companyName": "강남 이젠 컴퓨터 학원",
     "date": "Jan 2022 - Jul 2022",
@@ -25,7 +25,7 @@
   },
   {
     "type": "education",
-    "img": "/src/assets/images/logo_edu.png",
+    "img": "/assets/images/logo_edu.png",
     "title": "컴퓨터공학 학사학위",
     "companyName": "학점은행제",
     "date": "Jun 2023 - Feb 2025",

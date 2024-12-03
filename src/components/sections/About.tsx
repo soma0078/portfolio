@@ -3,9 +3,9 @@ import {
   CenteredContentSection,
   LinkIconContainer,
 } from "../../styles/commonStyles";
-import MimoticonFront from "../../assets/images/mimoticon_front.png";
-import MimoticonBack from "../../assets/images/mimoticon_back.png";
-import MimoticonWink from "../../assets/images/mimoticon_wink.png";
+import MimoticonFront from "../../../public/assets/images/mimoticon_front.png";
+import MimoticonBack from "../../../public/assets/images/mimoticon_back.png";
+import MimoticonWink from "../../../public/assets/images/mimoticon_wink.png";
 
 import { FaGithub } from "react-icons/fa";
 import { SiVelog, SiGmail } from "react-icons/si";
@@ -22,7 +22,7 @@ import { skillImageArray, toolImageArray } from "../../constants/icons";
 import IconImageArray from "../ui/IconImageArray";
 import Accordion, { InfoDataProps } from "../ui/Accordion";
 import devices from "../../constants/devices";
-import Resume from "../../assets/fe_resume.pdf";
+import Resume from "../../../public/assets/fe_resume.pdf";
 
 const AboutSection = styled(CenteredContentSection)`
   position: relative;
