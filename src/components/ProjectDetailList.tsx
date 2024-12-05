@@ -16,7 +16,8 @@ const StyledProjectDetailList = styled.div`
 
   @media ${devices.lg} {
     overflow-y: visible;
-    max-height: auto;
+    max-height: fit-content;
+    order: -1;
   }
 `;
 

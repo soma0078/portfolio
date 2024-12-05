@@ -58,7 +58,7 @@ const ProjectContainer = styled.div`
   }
 
   @media ${devices.lg} {
-    flex-direction: column-reverse;
+    flex-direction: column;
     max-height: 560px;
     padding-right: 8px;
     margin-bottom: 44px;

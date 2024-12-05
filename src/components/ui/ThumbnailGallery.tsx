@@ -8,6 +8,12 @@ interface ThumbnailGalleryProps {
   thumbnailImages: string[];
 }
 
+const StyledThumbnailGallery = styled.div`
+  @media ${devices.lg} {
+    order: 2;
+  }
+`;
+
 const MainThumbnailImage = styled.div`
   ${imgOutlineStyle}
   border-radius: 24px;
@@ -48,7 +54,7 @@ function ThumbnailGallery({ title, thumbnailImages }: ThumbnailGalleryProps) {
   };
 
   return (
-    <div>
+    <StyledThumbnailGallery>
       <MainThumbnailImage>
         <img src={thumbnail} alt={`${title} 썸네일 이미지`} />
       </MainThumbnailImage>
@@ -60,7 +66,7 @@ function ThumbnailGallery({ title, thumbnailImages }: ThumbnailGalleryProps) {
           </ThumbnailImage>
         ))}
       </ThumbnailImageList>
-    </div>
+    </StyledThumbnailGallery>
   );
 }
 
