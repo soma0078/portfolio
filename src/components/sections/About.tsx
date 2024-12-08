@@ -22,7 +22,7 @@ import { skillImageArray, toolImageArray } from "../../constants/icons";
 import IconImageArray from "../ui/IconImageArray";
 import Accordion, { InfoDataProps } from "../ui/Accordion";
 import devices from "../../constants/devices";
-import Resume from "../../../public/assets/fe_resume.pdf";
+import Resume from "../../../public/assets/이송아_이력서.pdf";
 
 const AboutSection = styled(CenteredContentSection)`
   position: relative;
