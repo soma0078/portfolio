@@ -5,6 +5,36 @@ import devices from "../../constants/devices";
 import MobileMenu from "./MobileMenu";
 import { useState } from "react";
 
+interface HeaderProps {
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+}
+
+function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  return (
+    <HeaderLayout>
+      <StyledLogo>
+        <span>songa. portfolio</span>
+      </StyledLogo>
+      <HeaderRightMenuWrapper>
+        <NavBar isOpen={isNavOpen} />
+        <DarkModeIcon onClick={toggleDarkMode}>
+          {isDarkMode ? <LuSun /> : <LuMoon />}
+        </DarkModeIcon>
+        <MobileMenu onClick={toggleNav} isOpen={isNavOpen} />
+      </HeaderRightMenuWrapper>
+    </HeaderLayout>
+  );
+}
+
+export default Header;
+
 const HeaderLayout = styled.div`
   width: 100%;
   padding: 18px 48px;
@@ -58,34 +88,3 @@ const DarkModeIcon = styled.button`
     line-height: 21px;
   }
 `;
-
-interface HeaderProps {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-}
-
-function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
-  };
-
-  return (
-    <HeaderLayout>
-      <StyledLogo>
-        <span>songa. portfolio</span>
-        <span>2024</span>
-      </StyledLogo>
-      <HeaderRightMenuWrapper>
-        <NavBar isOpen={isNavOpen} />
-        <DarkModeIcon onClick={toggleDarkMode}>
-          {isDarkMode ? <LuSun /> : <LuMoon />}
-        </DarkModeIcon>
-        <MobileMenu onClick={toggleNav} isOpen={isNavOpen} />
-      </HeaderRightMenuWrapper>
-    </HeaderLayout>
-  );
-}
-
-export default Header;

@@ -8,6 +8,43 @@ interface ProjectDetailItemProps {
   isDetailSection?: boolean;
 }
 
+function ProjectDetailItem({
+  title,
+  contents,
+  isDetailSection = false,
+}: ProjectDetailItemProps) {
+  return (
+    <StyledProjectDetailItem>
+      <h6>{title}</h6>
+
+      {isDetailSection ? (
+        <div>
+          {(contents as ProjectDetailProps[]).map((content) => (
+            <>
+              <StyledUl>
+                <Subtitle>[{content.subtitle}]</Subtitle>
+                <StyledDepthUl>
+                  {content.details.map((detail) => (
+                    <li>{detail}</li>
+                  ))}
+                </StyledDepthUl>
+              </StyledUl>
+            </>
+          ))}
+        </div>
+      ) : (
+        <StyledUl>
+          {(contents as string[])?.map((content) => (
+            <li>{content}</li>
+          ))}
+        </StyledUl>
+      )}
+    </StyledProjectDetailItem>
+  );
+}
+
+export default ProjectDetailItem;
+
 const StyledProjectDetailItem = styled.div`
   &:not(:last-child) {
     margin-bottom: 24px;
@@ -59,40 +96,3 @@ const Subtitle = styled.li`
   list-style: disc;
   margin-bottom: 4px;
 `;
-
-function ProjectDetailItem({
-  title,
-  contents,
-  isDetailSection = false,
-}: ProjectDetailItemProps) {
-  return (
-    <StyledProjectDetailItem>
-      <h6>{title}</h6>
-
-      {isDetailSection ? (
-        <div>
-          {(contents as ProjectDetailProps[]).map((content) => (
-            <>
-              <StyledUl>
-                <Subtitle>[{content.subtitle}]</Subtitle>
-                <StyledDepthUl>
-                  {content.details.map((detail) => (
-                    <li>{detail}</li>
-                  ))}
-                </StyledDepthUl>
-              </StyledUl>
-            </>
-          ))}
-        </div>
-      ) : (
-        <StyledUl>
-          {(contents as string[])?.map((content) => (
-            <li>{content}</li>
-          ))}
-        </StyledUl>
-      )}
-    </StyledProjectDetailItem>
-  );
-}
-
-export default ProjectDetailItem;

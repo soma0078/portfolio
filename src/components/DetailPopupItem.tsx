@@ -8,6 +8,45 @@ import ThumbnailGallery from "./ui/ThumbnailGallery";
 import ProjectDetailList from "./ProjectDetailList";
 import devices from "../constants/devices";
 
+function DetailPopupItem({ project }: ProjectCardProps) {
+  return (
+    <StyledPopupContainer>
+      <ProjectTopBar>
+        <h5 className="popup-project-title">{project.title}</h5>
+        <span className="date">{project.date}</span>
+        <div className="buttons">
+          <Button
+            primary
+            buttonText="Github 바로가기"
+            icon={BsGithub}
+            onClick={() => window.open(project.githubUrl)}
+          />
+          <Button
+            outline
+            buttonText="사이트 바로가기"
+            icon={RiShareBoxLine}
+            onClick={() => window.open(project.siteUrl)}
+          />
+        </div>
+      </ProjectTopBar>
+      <ProjectContainer>
+        <ThumbnailGallery
+          title={project.title}
+          thumbnailImages={project.thumbnailImages}
+        />
+
+        <ProjectDetailList
+          implementation={project.implementation}
+          contribution={project.contribution}
+          troubleshooting={project.troubleshooting}
+        />
+      </ProjectContainer>
+    </StyledPopupContainer>
+  );
+}
+
+export default DetailPopupItem;
+
 const StyledPopupContainer = styled.div`
   position: relative;
 `;
@@ -73,42 +112,3 @@ const ProjectContainer = styled.div`
     gap: 32px;
   }
 `;
-
-function DetailPopupItem({ project }: ProjectCardProps) {
-  return (
-    <StyledPopupContainer>
-      <ProjectTopBar>
-        <h5 className="popup-project-title">{project.title}</h5>
-        <span className="date">{project.date}</span>
-        <div className="buttons">
-          <Button
-            primary
-            buttonText="Github 바로가기"
-            icon={BsGithub}
-            onClick={() => window.open(project.githubUrl)}
-          />
-          <Button
-            outline
-            buttonText="사이트 바로가기"
-            icon={RiShareBoxLine}
-            onClick={() => window.open(project.siteUrl)}
-          />
-        </div>
-      </ProjectTopBar>
-      <ProjectContainer>
-        <ThumbnailGallery
-          title={project.title}
-          thumbnailImages={project.thumbnailImages}
-        />
-
-        <ProjectDetailList
-          implementation={project.implementation}
-          contribution={project.contribution}
-          troubleshooting={project.troubleshooting}
-        />
-      </ProjectContainer>
-    </StyledPopupContainer>
-  );
-}
-
-export default DetailPopupItem;

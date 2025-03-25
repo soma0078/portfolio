@@ -20,33 +20,6 @@ export interface WorksDataProps {
   rate: number;
 }
 
-const WorksSectoion = styled(fullViewportSection)`
-  padding: 0 50px 90px;
-  max-width: 100vw;
-  overflow: hidden;
-
-  @media ${devices.lg} {
-    padding: 0 24px 120px;
-  }
-`;
-
-const StyledWorkList = styled.div`
-  overscroll-behavior: contain;
-
-  &.work-list {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 16px;
-    scroll-behavior: smooth;
-    touch-action: pan-x;
-
-    &::-webkit-scrollbar {
-      height: 0;
-    }
-  }
-`;
-
 function Works() {
   const [worksData, setWorksData] = useState<WorksDataProps[]>();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -88,3 +61,30 @@ function Works() {
 }
 
 export default Works;
+
+const WorksSectoion = styled(fullViewportSection)`
+  padding: 0 50px 90px;
+  max-width: 100vw;
+  overflow: hidden;
+
+  @media ${devices.lg} {
+    padding: 0 24px 120px;
+  }
+`;
+
+const StyledWorkList = styled.div`
+  overscroll-behavior: contain;
+
+  &.work-list {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 16px;
+    scroll-behavior: smooth;
+    touch-action: pan-x;
+
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+  }
+`;

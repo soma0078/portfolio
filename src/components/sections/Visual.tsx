@@ -5,6 +5,28 @@ import { expandWidth } from "../../styles/animations";
 import { fullViewportSection } from "../../styles/commonStyles";
 import devices from "../../constants/devices";
 
+function Visual() {
+  return (
+    <>
+      <Intro />
+      <VisualSection>
+        <VisualInner>
+          <VisualH2>
+            <span>HELLO, I'M</span>
+            <span>LEE SONGA</span>
+            <span>FRONT-END DEV.</span>
+          </VisualH2>
+          <VisualImgWrapper>
+            <VisualImgBox />
+          </VisualImgWrapper>
+        </VisualInner>
+      </VisualSection>
+    </>
+  );
+}
+
+export default Visual;
+
 const VisualSection = styled(fullViewportSection)`
   padding: 0 24px 120px;
 `;
@@ -98,25 +120,3 @@ const VisualImgBox = styled.div`
 
   animation: ${expandWidth} 1.5s 7s ease-in-out forwards;
 `;
-
-function Visual() {
-  return (
-    <>
-      <Intro />
-      <VisualSection>
-        <VisualInner>
-          <VisualH2>
-            <span>HELLO, I'M</span>
-            <span>LEE SONGA</span>
-            <span>FRONT-END DEV.</span>
-          </VisualH2>
-          <VisualImgWrapper>
-            <VisualImgBox />
-          </VisualImgWrapper>
-        </VisualInner>
-      </VisualSection>
-    </>
-  );
-}
-
-export default Visual;

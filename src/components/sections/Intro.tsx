@@ -12,6 +12,67 @@ import {
 import { useEffect, useState } from "react";
 import devices from "../../constants/devices";
 
+function Intro() {
+  const [animationClass, setAnimationClass] = useState("");
+
+  useEffect(() => {
+    // 스크롤바 너비 계산
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    // 인트로 시작될 때 스크롤 방지와 레이아웃 조정
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${scrollBarWidth}px`;
+
+    // 인트로 끝난 후 스크롤 복원
+    const timer = setTimeout(() => {
+      document.body.style.overflow = "auto";
+      document.body.style.paddingRight = "0px";
+    }, 7500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    const width = window.innerWidth;
+
+    const updateAnimationClass = () => {
+      if (width > 1024) {
+        setAnimationClass("animation-desktop");
+      } else if (width > 640) {
+        setAnimationClass("animation-tablet");
+      } else {
+        setAnimationClass("animation-mobile");
+      }
+    };
+    updateAnimationClass();
+
+    window.addEventListener("resize", updateAnimationClass);
+
+    return () => {
+      window.removeEventListener("resize", updateAnimationClass);
+    };
+  }, []);
+
+  return (
+    <IntroWrapper className={animationClass}>
+      <IntroTextWrapper>
+        <span className="background-text">Front-End</span>
+        <StyledIntroH1>
+          <span>함께 협력하고 같이 성장하는</span>
+          <span>
+            프론트엔드 개발자 <b>이송아</b>입니다.
+          </span>
+        </StyledIntroH1>
+      </IntroTextWrapper>
+    </IntroWrapper>
+  );
+}
+
+export default Intro;
+
 const IntroWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -95,64 +156,3 @@ const StyledIntroH1 = styled.h1`
     font-size: 1.375rem;
   }
 `;
-
-function Intro() {
-  const [animationClass, setAnimationClass] = useState("");
-
-  useEffect(() => {
-    // 스크롤바 너비 계산
-    const scrollBarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
-
-    // 인트로 시작될 때 스크롤 방지와 레이아웃 조정
-    document.body.style.overflow = "hidden";
-    document.body.style.paddingRight = `${scrollBarWidth}px`;
-
-    // 인트로 끝난 후 스크롤 복원
-    const timer = setTimeout(() => {
-      document.body.style.overflow = "auto";
-      document.body.style.paddingRight = "0px";
-    }, 7500);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-  useEffect(() => {
-    const width = window.innerWidth;
-
-    const updateAnimationClass = () => {
-      if (width > 1024) {
-        setAnimationClass("animation-desktop");
-      } else if (width > 640) {
-        setAnimationClass("animation-tablet");
-      } else {
-        setAnimationClass("animation-mobile");
-      }
-    };
-    updateAnimationClass();
-
-    window.addEventListener("resize", updateAnimationClass);
-
-    return () => {
-      window.removeEventListener("resize", updateAnimationClass);
-    };
-  }, []);
-
-  return (
-    <IntroWrapper className={animationClass}>
-      <IntroTextWrapper>
-        <span className="background-text">Front-End</span>
-        <StyledIntroH1>
-          <span>함께 협력하고 같이 성장하는</span>
-          <span>
-            프론트엔드 개발자 <b>이송아</b>입니다.
-          </span>
-        </StyledIntroH1>
-      </IntroTextWrapper>
-    </IntroWrapper>
-  );
-}
-
-export default Intro;

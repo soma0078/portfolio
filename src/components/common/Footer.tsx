@@ -2,6 +2,47 @@ import { useEffect, useState } from "react";
 import { IoMdArrowUp } from "react-icons/io";
 import styled from "styled-components";
 
+function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 500) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <FooterLayout>
+      <span className="copyright">ⓒ 2025 LeeSonga. All Rights Reserved.</span>
+
+      {isVisible && (
+        <ScrollToTopButton onClick={scrollToTop}>
+          <IoMdArrowUp />
+        </ScrollToTopButton>
+      )}
+    </FooterLayout>
+  );
+}
+
+export default Footer;
+
 const FooterLayout = styled.footer`
   width: 100%;
   padding: 24px;
@@ -37,44 +78,3 @@ const ScrollToTopButton = styled.button`
     background-color: #efefef;
   }
 `;
-
-function Footer() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  return (
-    <FooterLayout>
-      <span className="copyright">ⓒ 2024 LeeSonga. All Rights Reserved.</span>
-
-      {isVisible && (
-        <ScrollToTopButton onClick={scrollToTop}>
-          <IoMdArrowUp />
-        </ScrollToTopButton>
-      )}
-    </FooterLayout>
-  );
-}
-
-export default Footer;

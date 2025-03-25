@@ -5,6 +5,47 @@ import styled from "styled-components";
 import { flexStyle } from "../styles/commonStyles";
 import devices from "../constants/devices";
 
+function WorksPopup({ worksData }: WorksProps) {
+  return (
+    <StyledPopupContent>
+      <div className="title-wrapper">
+        <h3 className="popup-project-title">{worksData.title}</h3>
+        <LinkIcon
+          href={worksData.siteUrl}
+          icon={RiShareBoxLine}
+          target="_blank"
+        />
+      </div>
+      <div className="works-detail">
+        <p>
+          <span className="primary-color-text">담당역할 </span>
+          {worksData.role}
+        </p>
+        |
+        <p>
+          <span className="primary-color-text">기여도 </span>
+          {worksData.rate}%
+        </p>
+      </div>
+      {worksData.description.map((des) => (
+        <p>{des}</p>
+      ))}
+      <ImagesWrapper>
+        <DesktopImage className="image-box">
+          <img src={worksData.desktopImageSrc} />
+        </DesktopImage>
+        <MobileImages className="image-box">
+          {worksData.mobileImageSrc.map((imageUrl) => (
+            <img src={imageUrl} />
+          ))}
+        </MobileImages>
+      </ImagesWrapper>
+    </StyledPopupContent>
+  );
+}
+
+export default WorksPopup;
+
 const StyledPopupContent = styled.div`
   p {
     line-height: 1.4;
@@ -81,44 +122,3 @@ const MobileImages = styled.div`
     width: 100%;
   }
 `;
-
-function WorksPopup({ worksData }: WorksProps) {
-  return (
-    <StyledPopupContent>
-      <div className="title-wrapper">
-        <h3 className="popup-project-title">{worksData.title}</h3>
-        <LinkIcon
-          href={worksData.siteUrl}
-          icon={RiShareBoxLine}
-          target="_blank"
-        />
-      </div>
-      <div className="works-detail">
-        <p>
-          <span className="primary-color-text">담당역할 </span>
-          {worksData.role}
-        </p>
-        |
-        <p>
-          <span className="primary-color-text">기여도 </span>
-          {worksData.rate}%
-        </p>
-      </div>
-      {worksData.description.map((des) => (
-        <p>{des}</p>
-      ))}
-      <ImagesWrapper>
-        <DesktopImage className="image-box">
-          <img src={worksData.desktopImageSrc} />
-        </DesktopImage>
-        <MobileImages className="image-box">
-          {worksData.mobileImageSrc.map((imageUrl) => (
-            <img src={imageUrl} />
-          ))}
-        </MobileImages>
-      </ImagesWrapper>
-    </StyledPopupContent>
-  );
-}
-
-export default WorksPopup;

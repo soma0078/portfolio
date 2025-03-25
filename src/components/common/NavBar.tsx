@@ -13,6 +13,20 @@ const NAV_MENU = [
   { menu: "Contact", id: "contact" },
 ];
 
+function NavBar({ isOpen }: NavBarProps) {
+  return (
+    <NavWrapper className={isOpen ? "open" : ""}>
+      {NAV_MENU.map(({ menu, id }, index) => (
+        <Link key={id} to={id} spy={true} smooth={true} duration={1000}>
+          <NavBtn delay={index * 0.1}>{menu}</NavBtn>
+        </Link>
+      ))}
+    </NavWrapper>
+  );
+}
+
+export default NavBar;
+
 const slideIn = keyframes`
   0% {
     opacity: 0;
@@ -58,17 +72,3 @@ const NavBtn = styled.button<{ delay: number }>`
     animation-delay: ${({ delay }) => delay}s;
   }
 `;
-
-function NavBar({ isOpen }: NavBarProps) {
-  return (
-    <NavWrapper className={isOpen ? "open" : ""}>
-      {NAV_MENU.map(({ menu, id }, index) => (
-        <Link key={id} to={id} spy={true} smooth={true} duration={1000}>
-          <NavBtn delay={index * 0.1}>{menu}</NavBtn>
-        </Link>
-      ))}
-    </NavWrapper>
-  );
-}
-
-export default NavBar;

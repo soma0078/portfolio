@@ -7,18 +7,6 @@ interface FilterProps {
   setSelectedCatergory: (category: string) => void;
 }
 
-const StyledButton = styled(Button)`
-  font-size: 0.75rem;
-  padding: 8px 16px;
-`;
-
-const StyledFilter = styled.div`
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 24px;
-`;
-
 function Filter({ selectedCategory, setSelectedCatergory }: FilterProps) {
   const category = ["All", "Team", "Single"];
 
@@ -45,3 +33,15 @@ function Filter({ selectedCategory, setSelectedCatergory }: FilterProps) {
 }
 
 export default Filter;
+
+const StyledButton = styled(Button)`
+  font-size: 0.75rem;
+  padding: 8px 16px;
+`;
+
+const StyledFilter = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+`;

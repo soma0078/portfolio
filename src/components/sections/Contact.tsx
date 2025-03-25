@@ -10,6 +10,36 @@ import { MY_EMAIL, MY_GITHUB_URL } from "../../constants/urls";
 import { FaGithub } from "react-icons/fa";
 import devices from "../../constants/devices";
 
+function Contact() {
+  return (
+    <ContactSection id="contact">
+      <StyledSubTitle>Contact</StyledSubTitle>
+      <StyledSectionTitle>방문해 주셔서 감사합니다 :)</StyledSectionTitle>
+      <p>
+        프론트엔드 개발자로서 끊임없이 성장하고 싶습니다. 낯선 기술에도 주저
+        없이 도전하고, 항상 사용자의 관점에서 생각하며 더 나은 서비스를 만들어
+        나가겠습니다.
+      </p>
+      <p>
+        함께 일하는 동료들과 협력하며, 서로 배우고 발전하는 과정을 통해 신뢰받는
+        개발자가 되겠습니다.
+      </p>
+      <div className="link-icons">
+        <div className="link-icon">
+          <LinkIcon href={MY_GITHUB_URL} icon={FaGithub} target="_blank" />
+          <span>Github</span>
+        </div>
+        <div className="link-icon">
+          <LinkIcon href={`mailto:${MY_EMAIL}`} icon={SiGmail} />
+          <span>Email</span>
+        </div>
+      </div>
+    </ContactSection>
+  );
+}
+
+export default Contact;
+
 const ContactSection = styled(CenteredContentSection)`
   padding: 0 24px;
   min-height: 60vh;
@@ -81,33 +111,3 @@ const StyledSectionTitle = styled.h2`
     font-size: 1.5rem;
   }
 `;
-
-function Contact() {
-  return (
-    <ContactSection id="contact">
-      <StyledSubTitle>Contact</StyledSubTitle>
-      <StyledSectionTitle>방문해 주셔서 감사합니다 :)</StyledSectionTitle>
-      <p>
-        프론트엔드 개발자로서 끊임없이 성장하고 싶습니다. 낯선 기술에도 주저
-        없이 도전하고, 항상 사용자의 관점에서 생각하며 더 나은 서비스를 만들어
-        나가겠습니다.
-      </p>
-      <p>
-        함께 일하는 동료들과 협력하며, 서로 배우고 발전하는 과정을 통해 신뢰받는
-        개발자가 되겠습니다.
-      </p>
-      <div className="link-icons">
-        <div className="link-icon">
-          <LinkIcon href={MY_GITHUB_URL} icon={FaGithub} target="_blank" />
-          <span>Github</span>
-        </div>
-        <div className="link-icon">
-          <LinkIcon href={`mailto:${MY_EMAIL}`} icon={SiGmail} />
-          <span>Email</span>
-        </div>
-      </div>
-    </ContactSection>
-  );
-}
-
-export default Contact;

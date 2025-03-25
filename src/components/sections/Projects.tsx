@@ -31,10 +31,6 @@ export interface ProjectDetailProps {
   details: string[];
 }
 
-const ProjectSection = styled(CenteredContentSection)`
-  padding: 120px 24px;
-`;
-
 function Projects() {
   const [projects, setProjects] = useState<ProjectDataProps[]>();
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -69,3 +65,7 @@ function Projects() {
 }
 
 export default Projects;
+
+const ProjectSection = styled(CenteredContentSection)`
+  padding: 120px 24px;
+`;

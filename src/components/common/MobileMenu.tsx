@@ -6,6 +6,18 @@ interface HamburgerProps {
   isOpen: boolean;
 }
 
+function MobileMenu({ onClick, isOpen }: HamburgerProps) {
+  return (
+    <HamburgerMenu onClick={onClick} className={isOpen ? "open" : ""}>
+      <span className="bar bar1"></span>
+      <span className="bar bar2"></span>
+      <span className="bar bar3"></span>
+    </HamburgerMenu>
+  );
+}
+
+export default MobileMenu;
+
 const HamburgerMenu = styled.div`
   display: none;
   width: 24px;
@@ -65,15 +77,3 @@ const HamburgerMenu = styled.div`
     display: inline-block;
   }
 `;
-
-function MobileMenu({ onClick, isOpen }: HamburgerProps) {
-  return (
-    <HamburgerMenu onClick={onClick} className={isOpen ? "open" : ""}>
-      <span className="bar bar1"></span>
-      <span className="bar bar2"></span>
-      <span className="bar bar3"></span>
-    </HamburgerMenu>
-  );
-}
-
-export default MobileMenu;

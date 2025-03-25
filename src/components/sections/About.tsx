@@ -24,6 +24,138 @@ import Accordion, { InfoDataProps } from "../ui/Accordion";
 import devices from "../../constants/devices";
 import Resume from "../../../public/assets/이송아_이력서.pdf";
 
+function About() {
+  const [infoData, setInfoData] = useState<InfoDataProps[]>();
+  const [imageSrc, setImageSrc] = useState(MimoticonFront);
+
+  const handleMouseEnter = (button: ReactNode) => {
+    if (button === "first") {
+      setImageSrc(MimoticonBack);
+    } else if (button === "second") {
+      setImageSrc(MimoticonWink);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setImageSrc(MimoticonFront);
+  };
+
+  useEffect(() => {
+    const fetchInfoData = async () => {
+      try {
+        const response = await fetch("/data/infoData.json");
+        const data: InfoDataProps[] = await response.json();
+        setInfoData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchInfoData();
+  }, []);
+
+  const workExperience = infoData?.filter((item) => item.type === "work");
+  const education = infoData?.filter((item) => item.type === "education");
+
+  return (
+    <AboutSection id="about">
+      <AboutLeftContainer className="content-section left-section">
+        <AboutLeftInner>
+          <img src={imageSrc} alt="미모티콘" className="mimoticon-img" />
+          <CenteredIconContainer>
+            <Tooltip message={`${MY_EMAIL}`} direction="bottom-left">
+              <LinkIcon href={`mailto:${MY_EMAIL}`} icon={SiGmail} />
+            </Tooltip>
+            <Tooltip message={`${MY_GITHUB_URL}`} direction="bottom">
+              <LinkIcon href={MY_GITHUB_URL} icon={FaGithub} target="_blank" />
+            </Tooltip>
+            <Tooltip message={`${MY_VELOG_URL}`} direction="bottom-right">
+              <LinkIcon href={MY_VELOG_URL} icon={SiVelog} target="_blank" />
+            </Tooltip>
+          </CenteredIconContainer>
+        </AboutLeftInner>
+      </AboutLeftContainer>
+
+      <AboutRightContainer className="content-section right-section">
+        <AboutTextContainer>
+          <h2>
+            ABOUT <b>ME</b>
+          </h2>
+          <h3>
+            <span>함께 협력하고 같이 성장하는</span>
+            <span>
+              프론트엔드 개발자 <b>이송아</b>입니다.
+            </span>
+          </h3>
+          <p className="paragraph">
+            웹 퍼블리셔에서 프론트엔드 개발자로 전향하며, 사용자 경험을
+            최우선으로 고려한 직관적이고 기능적인 인터페이스를 만드는 데
+            집중하고 있습니다. React와 JavaScript를 활용하여 동적인 웹
+            애플리케이션을 개발하며, 항상 실용적이고 효과적인 해결책을 찾아가고
+            있습니다.
+          </p>
+          <p className="paragraph bottom-paragraph">
+            협업 프로젝트를 경험하면서 팀원들과의 소통을 통해 더 나은 결과물을
+            만들어가는 것에 큰 보람을 느꼈습니다. 다양한 의견을 반영해 개선점을
+            찾고, 함께 성장하는 과정에서 더 나은 개발자로 발전하고 있습니다.
+          </p>
+          <div className="buttons">
+            <LinkIcon href={`${Resume}`} target="_blank">
+              <Button
+                primary
+                buttonText="이력서 보러가기"
+                icon={RiShareBoxLine}
+                onMouseEnter={() => handleMouseEnter("first")}
+                onMouseLeave={handleMouseLeave}
+              />
+            </LinkIcon>
+            <Link to={"projects"} spy={true} smooth={true} duration={1000}>
+              <Button
+                outline
+                buttonText="프로젝트 바로가기"
+                icon={IoArrowDownSharp}
+                onMouseEnter={() => handleMouseEnter("second")}
+                onMouseLeave={handleMouseLeave}
+              />
+            </Link>
+          </div>
+        </AboutTextContainer>
+
+        <div className="info-container">
+          <InfoContent>
+            <h3>TECH STACK</h3>
+            <div className="stack-wrapper">
+              <div>
+                <h5>FRONT-END SKILL</h5>
+                <IconImageArray attrs={skillImageArray} />
+              </div>
+              <div>
+                <h5>USING TOOL</h5>
+                <IconImageArray attrs={toolImageArray} />
+              </div>
+            </div>
+          </InfoContent>
+
+          <InfoContent>
+            <h3>WORK EXPERIENCE</h3>
+            {workExperience?.map((infoData) => (
+              <Accordion key={infoData.title} infoData={infoData} />
+            ))}
+          </InfoContent>
+
+          <InfoContent>
+            <h3>EDUCATION</h3>
+            {education?.map((infoData) => (
+              <Accordion key={infoData.title} infoData={infoData} />
+            ))}
+          </InfoContent>
+        </div>
+      </AboutRightContainer>
+    </AboutSection>
+  );
+}
+
+export default About;
+
 const AboutSection = styled(CenteredContentSection)`
   position: relative;
   padding: 50px;
@@ -205,135 +337,3 @@ const InfoContent = styled.div`
     }
   }
 `;
-
-function About() {
-  const [infoData, setInfoData] = useState<InfoDataProps[]>();
-  const [imageSrc, setImageSrc] = useState(MimoticonFront);
-
-  const handleMouseEnter = (button: ReactNode) => {
-    if (button === "first") {
-      setImageSrc(MimoticonBack);
-    } else if (button === "second") {
-      setImageSrc(MimoticonWink);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setImageSrc(MimoticonFront);
-  };
-
-  useEffect(() => {
-    const fetchInfoData = async () => {
-      try {
-        const response = await fetch("/data/infoData.json");
-        const data: InfoDataProps[] = await response.json();
-        setInfoData(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchInfoData();
-  }, []);
-
-  const workExperience = infoData?.filter((item) => item.type === "work");
-  const education = infoData?.filter((item) => item.type === "education");
-
-  return (
-    <AboutSection id="about">
-      <AboutLeftContainer className="content-section left-section">
-        <AboutLeftInner>
-          <img src={imageSrc} alt="미모티콘" className="mimoticon-img" />
-          <CenteredIconContainer>
-            <Tooltip message={`${MY_EMAIL}`} direction="bottom-left">
-              <LinkIcon href={`mailto:${MY_EMAIL}`} icon={SiGmail} />
-            </Tooltip>
-            <Tooltip message={`${MY_GITHUB_URL}`} direction="bottom">
-              <LinkIcon href={MY_GITHUB_URL} icon={FaGithub} target="_blank" />
-            </Tooltip>
-            <Tooltip message={`${MY_VELOG_URL}`} direction="bottom-right">
-              <LinkIcon href={MY_VELOG_URL} icon={SiVelog} target="_blank" />
-            </Tooltip>
-          </CenteredIconContainer>
-        </AboutLeftInner>
-      </AboutLeftContainer>
-
-      <AboutRightContainer className="content-section right-section">
-        <AboutTextContainer>
-          <h2>
-            ABOUT <b>ME</b>
-          </h2>
-          <h3>
-            <span>함께 협력하고 같이 성장하는</span>
-            <span>
-              프론트엔드 개발자 <b>이송아</b>입니다.
-            </span>
-          </h3>
-          <p className="paragraph">
-            웹 퍼블리셔에서 프론트엔드 개발자로 전향하며, 사용자 경험을
-            최우선으로 고려한 직관적이고 기능적인 인터페이스를 만드는 데
-            집중하고 있습니다. React와 JavaScript를 활용하여 동적인 웹
-            애플리케이션을 개발하며, 항상 실용적이고 효과적인 해결책을 찾아가고
-            있습니다.
-          </p>
-          <p className="paragraph bottom-paragraph">
-            협업 프로젝트를 경험하면서 팀원들과의 소통을 통해 더 나은 결과물을
-            만들어가는 것에 큰 보람을 느꼈습니다. 다양한 의견을 반영해 개선점을
-            찾고, 함께 성장하는 과정에서 더 나은 개발자로 발전하고 있습니다.
-          </p>
-          <div className="buttons">
-            <LinkIcon href={`${Resume}`} target="_blank">
-              <Button
-                primary
-                buttonText="이력서 보러가기"
-                icon={RiShareBoxLine}
-                onMouseEnter={() => handleMouseEnter("first")}
-                onMouseLeave={handleMouseLeave}
-              />
-            </LinkIcon>
-            <Link to={"projects"} spy={true} smooth={true} duration={1000}>
-              <Button
-                outline
-                buttonText="프로젝트 바로가기"
-                icon={IoArrowDownSharp}
-                onMouseEnter={() => handleMouseEnter("second")}
-                onMouseLeave={handleMouseLeave}
-              />
-            </Link>
-          </div>
-        </AboutTextContainer>
-
-        <div className="info-container">
-          <InfoContent>
-            <h3>TECH STACK</h3>
-            <div className="stack-wrapper">
-              <div>
-                <h5>FRONT-END SKILL</h5>
-                <IconImageArray attrs={skillImageArray} />
-              </div>
-              <div>
-                <h5>USING TOOL</h5>
-                <IconImageArray attrs={toolImageArray} />
-              </div>
-            </div>
-          </InfoContent>
-
-          <InfoContent>
-            <h3>WORK EXPERIENCE</h3>
-            {workExperience?.map((infoData) => (
-              <Accordion key={infoData.title} infoData={infoData} />
-            ))}
-          </InfoContent>
-
-          <InfoContent>
-            <h3>EDUCATION</h3>
-            {education?.map((infoData) => (
-              <Accordion key={infoData.title} infoData={infoData} />
-            ))}
-          </InfoContent>
-        </div>
-      </AboutRightContainer>
-    </AboutSection>
-  );
-}
-
-export default About;

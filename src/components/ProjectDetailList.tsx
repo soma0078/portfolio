@@ -9,18 +9,6 @@ export interface ProjectDetailListProps {
   troubleshooting: ProjectDetailProps[];
 }
 
-const StyledProjectDetailList = styled.div`
-  height: auto;
-  overflow-y: auto;
-  max-height: 560px;
-
-  @media ${devices.lg} {
-    overflow-y: visible;
-    max-height: fit-content;
-    order: -1;
-  }
-`;
-
 function ProjectDetailList({
   implementation,
   contribution,
@@ -50,3 +38,15 @@ function ProjectDetailList({
 }
 
 export default ProjectDetailList;
+
+const StyledProjectDetailList = styled.div`
+  height: auto;
+  overflow-y: auto;
+  max-height: 560px;
+
+  @media ${devices.lg} {
+    overflow-y: visible;
+    max-height: fit-content;
+    order: -1;
+  }
+`;
