@@ -1,72 +1,12 @@
 import { keyframes } from "styled-components";
 
 // 인트로 애니메이션
-const shrinkToCircle = keyframes`
+const introVisible = keyframes`
 	0% {
-		width: 100vw;
-		height: 100vw;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	50% {
-		border-radius: 500px;
-		top: 20%;
-		left: 60%;
+		opacity: 1;
 	}
 	100% {
-		width: 95px;
-		height: 95px;
-		position: absolute;
-		top: 37%;
-		left: 65%;
-		border-radius: 999px;
-	}
-`;
-
-const shrinkToCircle_tablet = keyframes`
-	0% {
-		width: 100vw;
-		height: 100vw;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	50% {
-		border-radius: 500px;
-		top: 20%;
-		left: 40%;
-	}
-	100% {
-		width: 75px;
-		height: 75px;
-		position: absolute;
-		top: 15%;
-		left: 50%;
-		border-radius: 999px;
-	}
-`;
-
-const shrinkToCircle_mobile = keyframes`
-	0% {
-		width: 100vw;
-		height: 100vw;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	50% {
-		border-radius: 500px;
-		top: 10%;
-		left: 30%;
-	}
-	100% {
-		width: 55px;
-		height: 55px;
-		position: absolute;
-		top: 16%;
-		left: 25%;
-		border-radius: 999px;
+		opacity: 0;
 	}
 `;
 
@@ -137,9 +77,7 @@ const tooltip = keyframes`
 `;
 
 export {
-  shrinkToCircle,
-  shrinkToCircle_tablet,
-  shrinkToCircle_mobile,
+  introVisible,
   fadeInSoft,
   fadeInBold,
   fadeOutSoft,

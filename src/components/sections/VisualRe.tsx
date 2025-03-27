@@ -1,8 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Intro from "./Intro";
 import ProfileImageSrc from "../../assets/images/profile-img.png";
 import { spin } from "../../styles/animations";
 import { fullViewportSection } from "../../styles/commonStyles";
+import { FaGithub } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
+import { MY_EMAIL, MY_GITHUB_URL } from "../../constants/urls";
 
 function VisualRe() {
   return (
@@ -31,10 +34,28 @@ function VisualRe() {
                 서비스 개선을 추구합니다.
               </p>
             </VisualTextList>
-            <ul>
-              <li>e-mail</li>
-              <li>github</li>
-            </ul>
+            <SnsLinkList>
+              <li>
+                <a href={`mailto:${MY_EMAIL}`}>
+                  <span>
+                    <SiGmail />
+                  </span>
+                  e-mail
+                  <br />
+                  thddk0121@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href={MY_GITHUB_URL} target="_blank">
+                  <span>
+                    <FaGithub />
+                  </span>
+                  github
+                  <br />
+                  https://github.com/soma0078
+                </a>
+              </li>
+            </SnsLinkList>
           </VisualTextBox>
           <ProfileImageBox>
             <SvgWrapper>
@@ -101,6 +122,12 @@ function VisualRe() {
                   </linearGradient>
                 </defs>
               </InsideSvg>
+              <JobTag1>
+                <span>Web plublisher</span>
+              </JobTag1>
+              <JobTag2>
+                <span>Front-end developer</span>
+              </JobTag2>
             </SvgWrapper>
             <ProfileImage />
           </ProfileImageBox>
@@ -154,6 +181,29 @@ const VisualTextList = styled.div`
   margin-bottom: 6rem;
 `;
 
+const SnsLinkList = styled.ul`
+  display: flex;
+  gap: 3rem;
+
+  span {
+    background-color: #ececec;
+    padding: 6px 10px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+  }
+  a {
+    display: block;
+    text-decoration: none;
+  }
+  li a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.75rem;
+    margin-top: 8px;
+  }
+`;
+
 const ProfileImageBox = styled.div`
   justify-items: end;
 `;
@@ -188,6 +238,44 @@ const ProfileImage = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const TagStyle = css`
+  font-family: "Caveat", cursive;
+  position: absolute;
+  border-radius: 60px;
+  padding: 24px 16px;
+  color: white;
+  font-size: 1.8rem;
+  z-index: 10;
+
+  span {
+    border-radius: 30px;
+    padding: 8px 16px;
+    background-color: pink;
+  }
+`;
+
+const JobTag1 = styled.div`
+  ${TagStyle}
+  background-color: rgba(72, 67, 75, 0.1);
+  left: 18%;
+  top: 20%;
+
+  span {
+    background-color: #483e4b;
+  }
+`;
+
+const JobTag2 = styled.div`
+  ${TagStyle}
+  background-color: rgba(152, 94, 164, 0.1);
+  right: 16%;
+  bottom: 15%;
+
+  span {
+    background-color: #985ea4;
+  }
 `;
 
 export default VisualRe;
