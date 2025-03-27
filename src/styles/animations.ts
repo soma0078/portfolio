@@ -125,6 +125,10 @@ const expandWidth = keyframes`
 	}
 `;
 
+const spin = keyframes`
+	to { transform: rotate(360deg); }
+`;
+
 // 툴팁 애니메이션
 const tooltip = keyframes`
   0% { opacity: 0; }
@@ -142,4 +146,5 @@ export {
   fadeOutBold,
   expandWidth,
   tooltip,
+  spin,
 };

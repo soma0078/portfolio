@@ -13,15 +13,13 @@ const GlobalStyle = createGlobalStyle`
 
 	*, body {
 		box-sizing: border-box;
-		font-family: 'Noto Sans KR', sans-serif;
-	}
+		font-family: 'Noto Sans KR', sans-serif;	}
 
 	body {
 		background-color: ${({ theme }) => theme.bgColor};
 		color: ${({ theme }) => theme.textColor};
 		line-height: 1.2;
 		scrollbar-width: thin;
-		
 	}
 
 	a {

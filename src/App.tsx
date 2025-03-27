@@ -3,13 +3,13 @@ import About from "./components/sections/About";
 import Header from "./components/common/Header";
 
 import { useState } from "react";
-import Visual from "./components/sections/Visual";
 import Projects from "./components/sections/Projects";
 import Works from "./components/sections/Works";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/common/Footer";
 import GlobalStyle from "./styles/globalStyle";
 import { darkTheme, lightTheme } from "./styles/theme";
+import VisualRe from "./components/sections/VisualRe";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -20,7 +20,8 @@ function App() {
       <GlobalStyle />
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main>
-        <Visual />
+        <VisualRe />
+        {/* <Visual /> */}
         <About />
         <Projects />
         <Works />
