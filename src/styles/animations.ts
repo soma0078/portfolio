@@ -69,6 +69,23 @@ const spin = keyframes`
 	to { transform: rotate(360deg); }
 `;
 
+const ping = keyframes`
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+`;
+const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+	50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+`;
+
 // 툴팁 애니메이션
 const tooltip = keyframes`
   0% { opacity: 0; }
@@ -85,4 +102,6 @@ export {
   expandWidth,
   tooltip,
   spin,
+  ping,
+  bounce,
 };

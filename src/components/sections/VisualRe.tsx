@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components";
 import Intro from "./Intro";
 import ProfileImageSrc from "../../assets/images/profile-img.png";
-import { spin } from "../../styles/animations";
+import { bounce, ping, spin } from "../../styles/animations";
 import { fullViewportSection } from "../../styles/commonStyles";
-import { FaGithub } from "react-icons/fa";
+import { FaArrowDown, FaGithub } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { MY_EMAIL, MY_GITHUB_URL } from "../../constants/urls";
+import devices from "../../constants/devices";
 
 function VisualRe() {
   return (
@@ -124,14 +125,19 @@ function VisualRe() {
               </InsideSvg>
               <JobTag1>
                 <span>Web plublisher</span>
+                <span></span>
               </JobTag1>
               <JobTag2>
                 <span>Front-end developer</span>
+                <span></span>
               </JobTag2>
             </SvgWrapper>
             <ProfileImage />
           </ProfileImageBox>
         </VisualInner>
+        <ScrollDown>
+          Scroll down <FaArrowDown />
+        </ScrollDown>
       </VisualSection>
     </>
   );
@@ -139,12 +145,21 @@ function VisualRe() {
 
 const VisualSection = styled(fullViewportSection)`
   padding: 0 180px;
+  position: relative;
+
+  @media (max-width: 1400px) {
+    padding: 0 24px;
+  }
+  @media ${devices.lg} {
+    padding-bottom: 160px;
+  }
 `;
 
 const VisualInner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   height: 100vh;
 
   & > div {
@@ -161,6 +176,34 @@ const VisualInner = styled.div`
     word-break: keep-all;
     line-height: 1.6;
   }
+
+  @media ${devices.lg} {
+    height: 100%;
+
+    & > div {
+      width: 100%;
+      height: 100%;
+    }
+
+    & > div:last-child {
+      height: 24vh;
+      margin: 64px 0 32px;
+    }
+  }
+
+  @media ${devices.md} {
+    p {
+      font-size: 1rem;
+    }
+  }
+  @media ${devices.sm} {
+    & > div:last-child {
+      height: 240px;
+    }
+    p {
+      font-size: 0.875rem;
+    }
+  }
 `;
 
 const VisualTextBox = styled.div`
@@ -174,26 +217,62 @@ const VisualTextBox = styled.div`
     font-weight: 600;
     display: block;
   }
+
+  @media ${devices.lg} {
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+  }
+  @media ${devices.md} {
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
+  @media ${devices.sm} {
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+  }
 `;
 
 const VisualTextList = styled.div`
   max-width: 760px;
   margin-bottom: 6rem;
+
+  @media ${devices.lg} {
+    margin-bottom: 4rem;
+  }
+  @media ${devices.sm} {
+    margin-bottom: 2rem;
+  }
 `;
 
 const SnsLinkList = styled.ul`
   display: flex;
-  gap: 3rem;
+  flex-wrap: wrap;
 
-  span {
-    background-color: #ececec;
-    padding: 6px 10px;
-    border-radius: 25px;
-    font-size: 1.2rem;
-  }
   a {
     display: block;
     text-decoration: none;
+    svg {
+      color: black;
+    }
+    &:hover {
+      span {
+        background-color: var(--primary-color);
+      }
+      svg {
+        color: white;
+      }
+    }
+    span {
+      background-color: #ececec;
+      padding: 6px 10px 4px;
+      border-radius: 25px;
+      font-size: 1.2rem;
+    }
   }
   li a {
     display: flex;
@@ -202,10 +281,45 @@ const SnsLinkList = styled.ul`
     font-size: 0.75rem;
     margin-top: 8px;
   }
+  li:first-child {
+    padding-right: 36px;
+    margin-right: 36px;
+    position: relative;
+
+    ::after {
+      content: "";
+      width: 2px;
+      height: 24px;
+      background-color: #ececec;
+      position: absolute;
+      right: 0;
+      top: 35%;
+      pointer-events: none;
+    }
+  }
+
+  @media ${devices.lg} {
+    li:first-child {
+      padding-right: 24px;
+      margin-right: 24px;
+    }
+  }
+  @media ${devices.sm} {
+    li:first-child {
+      ::after {
+        width: 0;
+      }
+    }
+  }
 `;
 
 const ProfileImageBox = styled.div`
   justify-items: end;
+  overflow: hidden;
+
+  @media ${devices.lg} {
+    order: -1;
+  }
 `;
 
 const SvgWrapper = styled.div`
@@ -238,21 +352,49 @@ const ProfileImage = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  @media ${devices.lg} {
+    width: 200px;
+    height: 200px;
+  }
+  @media ${devices.sm} {
+    width: 140px;
+    height: 140px;
+  }
 `;
 
 const TagStyle = css`
   font-family: "Caveat", cursive;
   position: absolute;
   border-radius: 60px;
-  padding: 24px 16px;
   color: white;
   font-size: 1.8rem;
   z-index: 10;
 
   span {
-    border-radius: 30px;
+    border-radius: 60px;
+  }
+
+  span:first-child {
     padding: 8px 16px;
-    background-color: pink;
+    position: relaitve;
+  }
+
+  span:last-child {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 24px 0;
+    left: 0;
+    top: -20%;
+    z-index: -1;
+    opacity: 0.1;
+    animation: ${ping} 2s infinite;
+  }
+
+  @media ${devices.md} {
+    font-size: 1rem;
+    padding: 8px 0;
   }
 `;
 
@@ -266,7 +408,6 @@ const JobTag1 = styled.div`
     background-color: #483e4b;
   }
 `;
-
 const JobTag2 = styled.div`
   ${TagStyle}
   background-color: rgba(152, 94, 164, 0.1);
@@ -275,6 +416,27 @@ const JobTag2 = styled.div`
 
   span {
     background-color: #985ea4;
+  }
+`;
+
+const ScrollDown = styled.div`
+  position: absolute;
+  left: 180px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  bottom: 120px;
+
+  svg {
+    display: block;
+    margin-top: 4px;
+    animation: ${bounce} 1s infinite;
+  }
+
+  @media ${devices.lg} {
+    left: 24px;
+    bottom: 60px;
+    font-size: 0.875rem;
   }
 `;
 

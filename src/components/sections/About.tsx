@@ -222,6 +222,11 @@ const AboutLeftInner = styled.div`
       width: 180px;
     }
   }
+  @media ${devices.sm} {
+    .mimoticon-img {
+      width: 140px;
+    }
+  }
 `;
 
 const AboutRightContainer = styled.div`

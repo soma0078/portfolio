@@ -45,6 +45,9 @@ const GlobalStyle = createGlobalStyle`
 	::-webkit-scrollbar-thumb {
 		background: var(--primary-color);
 		border-radius: 4px;
+		&:hover {
+			background: var(--primary-color-dark);
+		}
 	}
 	
 	::-webkit-scrollbar-track {
