@@ -5,16 +5,12 @@ import {
   fadeInSoft,
   fadeOutBold,
   fadeOutSoft,
-  shrinkToCircle,
-  shrinkToCircle_mobile,
-  shrinkToCircle_tablet,
+  introVisible,
 } from "../../styles/animations";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import devices from "../../constants/devices";
 
 function Intro() {
-  const [animationClass, setAnimationClass] = useState("");
-
   useEffect(() => {
     // 스크롤바 너비 계산
     const scrollBarWidth =
@@ -35,29 +31,8 @@ function Intro() {
     };
   }, []);
 
-  useEffect(() => {
-    const width = window.innerWidth;
-
-    const updateAnimationClass = () => {
-      if (width > 1024) {
-        setAnimationClass("animation-desktop");
-      } else if (width > 640) {
-        setAnimationClass("animation-tablet");
-      } else {
-        setAnimationClass("animation-mobile");
-      }
-    };
-    updateAnimationClass();
-
-    window.addEventListener("resize", updateAnimationClass);
-
-    return () => {
-      window.removeEventListener("resize", updateAnimationClass);
-    };
-  }, []);
-
   return (
-    <IntroWrapper className={animationClass}>
+    <IntroWrapper>
       <IntroTextWrapper>
         <span className="background-text">Front-End</span>
         <StyledIntroH1>
@@ -79,20 +54,9 @@ const IntroWrapper = styled.div`
   inset: 0;
   position: fixed;
   z-index: 999;
-
   background-color: var(--primary-color);
-
-  &.animation-desktop {
-    animation: ${shrinkToCircle} 3s 4.5s ease-in-out forwards;
-  }
-
-  &.animation-tablet {
-    animation: ${shrinkToCircle_tablet} 3s 4.5s ease-in-out forwards;
-  }
-
-  &.animation-mobile {
-    animation: ${shrinkToCircle_mobile} 3s 4.5s ease-in-out forwards;
-  }
+  animation: ${introVisible} 3s 4.5s ease-in-out forwards;
+  pointer-events: none;
 `;
 
 const IntroTextWrapper = styled.div`

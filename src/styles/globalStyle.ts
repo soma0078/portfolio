@@ -13,15 +13,13 @@ const GlobalStyle = createGlobalStyle`
 
 	*, body {
 		box-sizing: border-box;
-		font-family: 'Noto Sans KR', sans-serif;
-	}
+		font-family: 'Noto Sans KR', sans-serif;	}
 
 	body {
 		background-color: ${({ theme }) => theme.bgColor};
 		color: ${({ theme }) => theme.textColor};
 		line-height: 1.2;
 		scrollbar-width: thin;
-		
 	}
 
 	a {
@@ -47,6 +45,9 @@ const GlobalStyle = createGlobalStyle`
 	::-webkit-scrollbar-thumb {
 		background: var(--primary-color);
 		border-radius: 4px;
+		&:hover {
+			background: var(--primary-color-dark);
+		}
 	}
 	
 	::-webkit-scrollbar-track {
