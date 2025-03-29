@@ -160,11 +160,11 @@ const VisualInner = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  height: 100vh;
+  height: 80vh;
 
   & > div {
     width: 50%;
-    height: 44vh;
+    height: 48vh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -175,6 +175,9 @@ const VisualInner = styled.div`
     font-size: 1.125rem;
     word-break: keep-all;
     line-height: 1.6;
+  }
+
+  @media (amx-width: 1400px) {
   }
 
   @media ${devices.lg} {
@@ -208,7 +211,7 @@ const VisualInner = styled.div`
 
 const VisualTextBox = styled.div`
   h2 {
-    font-size: 3rem;
+    font-size: 2.4rem;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 2rem;
     line-height: 1.2;
@@ -343,8 +346,8 @@ const InsideSvg = styled.svg`
 `;
 
 const ProfileImage = styled.div`
-  width: 325px;
-  height: 325px;
+  width: 300px;
+  height: 300px;
   border-radius: 100%;
   background: url(${ProfileImageSrc}) no-repeat 50% 50%;
   background-size: cover;
@@ -433,8 +436,10 @@ const ScrollDown = styled.div`
     animation: ${bounce} 1s infinite;
   }
 
-  @media ${devices.lg} {
+  @media (max-width: 1400px) {
     left: 24px;
+  }
+  @media ${devices.lg} {
     bottom: 60px;
     font-size: 0.875rem;
   }
