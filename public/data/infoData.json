@@ -9,6 +9,14 @@
   },
   {
     "type": "education",
+    "img": "src/assets/images/logo_codeit_sprint.png",
+    "title": "프론트엔드 단기심화 부트캠프 7기",
+    "companyName": "코드잇",
+    "date": "Jan 2025 - Mar 2025",
+    "detailContent": "백엔드 개발자·디자이너와 협업하며 실무 중심의 프로젝트를 진행하였습니다. 개발부터 런칭까지 전 과정을 경험하고, 유저 피드백을 반영한 기능 개선과 고도화 작업을 통해 프로젝트의 완성도를 높였습니다. 또한, 애니메이션을 활용한 인터랙션과 UX 개선에 집중하여 사용자 경험을 향상시켰습니다."
+  },
+  {
+    "type": "education",
     "img": "src/assets/images/logo_codeit.png",
     "title": "스프린트 프론트엔드 부트캠프 6기",
     "companyName": "코드잇",
