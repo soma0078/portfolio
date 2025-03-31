@@ -19,6 +19,7 @@ import ScssIcon from "../assets/icons/icon_scss.png";
 import JotaiIcon from "../assets/icons/icon_jotai.png";
 import KakaoApiIcon from "../assets/icons/icon_kakao.png";
 import StyledcomponentsIcon from "../assets/icons/icon_styledcomponents.png";
+import ZustandIcon from "../assets/icons/icon_zustand.png";
 
 const skillImageArray = [
   { src: HTMLIcon, alt: "HTML5" },
@@ -53,6 +54,7 @@ const iconMap = {
   jotai: JotaiIcon,
   kakaoapi: KakaoApiIcon,
   jira: JiraIcon,
+  zustand: ZustandIcon,
 };
 
 export { skillImageArray, toolImageArray, iconMap };

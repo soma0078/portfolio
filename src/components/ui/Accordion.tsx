@@ -137,10 +137,6 @@ const StyledAccordion = styled.div`
   }
 
   @media ${devices.md} {
-    .title-content {
-      min-width: auto;
-    }
-
     .date {
       font-size: 0.75rem;
     }

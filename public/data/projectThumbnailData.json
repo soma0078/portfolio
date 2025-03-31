@@ -1,6 +1,82 @@
 [
   {
     "category": "Team",
+    "title": "미루지마",
+    "date": "2025-01-24 ~ 2025-03-18",
+    "src": "src/assets/images/thumbnail_mirujima.png",
+    "description": "뽀모도로 타이머, 목표 설정, 할 일 목록, 노트 작성 기능을 제공하는 업무 및 학습 관리 서비스",
+    "skills": [
+      "next",
+      "typescript",
+      "tanstackquery",
+      "zustand",
+      "tailwindcss",
+      "vercel"
+    ],
+    "siteUrl": "https://mirujima-fe-deploy.vercel.app",
+    "githubUrl": "https://github.com/FESI-7-4/mirujima_FE",
+    "thumbnailImages": [
+      "src/assets/images/mirujima_dashboard_desktop.png",
+      "src/assets/images/mirujima_goalCreate_desktop.png",
+      "src/assets/images/mirujima_todo_desktop.png",
+      "src/assets/images/mirujima_todoCreate_desktop.png",
+      "src/assets/images/mirujima_note_desktop.png",
+      "src/assets/images/mirujima_content_desktop.png"
+    ],
+    "implementation": [
+      "할 일 관리: 다양한 파일, 링크 등의 콘텐츠를 할 일로 등록하고 관리",
+      "대시보드: 최신 등록한 할 일 확인, 할 일 완료율 및 목표 달성률 시각화",
+      "목표 설정 및 관리: 목표별 할 일과 진행 상황 한눈에 확인",
+      "노트 기능: 각 할 일에 대한 상세 노트 작성 및 저장",
+      "뽀모도로 타이머: 25분 집중 + 휴식 사이클로 작업 몰입 지원",
+      "보안 강화: 비밀번호 암호화 및 안전한 사용자 정보 보호",
+      "SNS 로그인: 간편한 로그인 및 계정 연동 기능 제공",
+      "PWA 적용: 앱처럼 사용할 수 있도록 웹 환경 최적화"
+    ],
+    "contribution": [
+      {
+        "subtitle": "프로젝트 초기 세팅 및 문서화",
+        "details": [
+          "기존 프로젝트 세팅 경험을 바탕으로, 이번 프로젝트에서는 Next.js 15 App Router를 활용해 디렉토리 구조를 설정하고, ESLint, Prettier, Husky, Commitlint를 적용하여 코드 품질과 일관성을 유지했습니다.",
+          "Notion을 통해 프로젝트 일정과 초기 문서를 정리하고 팀과 공유하여 협업 효율성을 높였으며, 프로젝트 초기 세팅부터 팀원 간의 원활한 소통과 빠른 진행에 기여했습니다."
+        ]
+      },
+      {
+        "subtitle": "대시보드 페이지 시각화",
+        "details": [
+          "완료율 계산 로직을 재사용 가능한 형태로 설계하여 월별, 일별, 목표별 차트에 일관되게 적용하고, 이를 통해 사용자에게 시각적으로 명확한 진행 상황을 제공합니다.",
+          "동일한 Query Key를 사용하여 할 일 완료 및 삭제 시 실시간으로 데이터가 즉시 반영되어 동기화가 원활하게 이루어지도록 구현하여, 실시간 반영 및 일관성을 유지했습니다.",
+          "반응형 UI를 적용해 다양한 화면 크기에서 최적화된 레이아웃을 제공했습니다."
+        ]
+      },
+      {
+        "subtitle": "할 일 목록 페이지",
+        "details": [
+          "All, To-Do, Done 탭을 구성하고, 사용자가 우선순위에 맞게 할 일을 정렬할 수 있는 기능을 제안하고 구현하여, 사용자 맞춤형 할 일 목록 관리를 가능하게 했습니다.",
+          "Intersection Observer와 TanStack Query를 사용해 무한 스크롤을 구현하여, 필요한 데이터를 즉시 로딩하고 빠르게 조회할 수 있도록 했습니다.",
+          "Motion 애니메이션을 적용하여 인터페이스의 반응성을 향상시키고, 사용자의 상호작용을 더욱 자연스럽게 만들었습니다."
+        ]
+      },
+      {
+        "subtitle": "비밀번호 암호화",
+        "details": [
+          "사용자의 개인정보 보호를 위해 AES-CBC 암호화 방식을 적용하여 평문 전송을 방지하고, 대칭 키 방식으로 강력한 보안을 제공하며 백엔드와 협업하여 안전한 데이터 처리를 구현했습니다."
+        ]
+      }
+    ],
+    "troubleshooting": [
+      {
+        "subtitle": "서버와 클라이언트의 상태 불일치로 인한 하이드레이션 오류 해결",
+        "details": [
+          "문제 상황 : useState<number>(new Date().getDate())로 상태를 초기화했으나, 서버에서 렌더링된 HTML과 클라이언트에서의 HTML이 일치하지 않아 하이드레이션 오류가 발생했습니다.",
+          "원인 : new Date().getDate()는 클라이언트에서만 계산되는 값으로, 서버에서 렌더링할 때 todayDate가 null로 설정되었고, 클라이언트에서만 getDate()를 통해 날짜가 설정되었기 때문에, 하이드레이션 시 불일치가 발생했습니다.",
+          "해결 : 초기 상태를 useState<Date | null>(null)로 설정하여 서버와 클라이언트 렌더링 간 불일치를 방지하고, 날짜 계산 로직을 클라이언트 측에서만 실행되도록 수정하여 하이드레이션 오류를 방지했습니다."
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Team",
     "title": "K-venture",
     "date": "2024-07-26 ~ 2024-08-30",
     "src": "src/assets/images/thumbnail_kventure.png",
@@ -196,7 +272,7 @@
   {
     "category": "Single",
     "title": "포트폴리오",
-    "date": "2024-10-20 ~ 2024-11-07",
+    "date": "2024-10-20 ~ 2025~",
     "src": "src/assets/images/thumbnail_portfolio.png",
     "description": "React와 JavaScript로 제작한 나만의 프로젝트를 소개하는 반응형 웹 포트폴리오",
     "skills": ["react", "typescript", "styledcomponents", "vercel"],
