@@ -26,8 +26,8 @@ function VisualRe() {
               </p>
               <p>
                 React와 TypeScript 기반의 웹 애플리케이션 개발 경험을 바탕으로,
-                웹 표준과 접근성을 깊이 이해하고 성능 최적화와 반응형 디자인에
-                열정을 가지고 있습니다.
+                웹 표준과 접근성을 고려한 인터페이스를 만들고 성능 최적화와
+                반응형 디자인에 열정을 가지고 있습니다.
               </p>
               <p>
                 Git 워크플로우와 애자일 방법론을 활용한 체계적인 개발 프로세스와
@@ -160,11 +160,11 @@ const VisualInner = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  height: 100vh;
+  height: 80vh;
 
   & > div {
     width: 50%;
-    height: 44vh;
+    height: 48vh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -175,6 +175,9 @@ const VisualInner = styled.div`
     font-size: 1.125rem;
     word-break: keep-all;
     line-height: 1.6;
+  }
+
+  @media (amx-width: 1400px) {
   }
 
   @media ${devices.lg} {
@@ -208,7 +211,7 @@ const VisualInner = styled.div`
 
 const VisualTextBox = styled.div`
   h2 {
-    font-size: 3rem;
+    font-size: 2.4rem;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 2rem;
     line-height: 1.2;
@@ -343,8 +346,8 @@ const InsideSvg = styled.svg`
 `;
 
 const ProfileImage = styled.div`
-  width: 325px;
-  height: 325px;
+  width: 300px;
+  height: 300px;
   border-radius: 100%;
   background: url(${ProfileImageSrc}) no-repeat 50% 50%;
   background-size: cover;
@@ -433,8 +436,10 @@ const ScrollDown = styled.div`
     animation: ${bounce} 1s infinite;
   }
 
-  @media ${devices.lg} {
+  @media (max-width: 1400px) {
     left: 24px;
+  }
+  @media ${devices.lg} {
     bottom: 60px;
     font-size: 0.875rem;
   }

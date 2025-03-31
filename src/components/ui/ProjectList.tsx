@@ -12,7 +12,6 @@ const StyledProjectList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: space-between;
 
   > div {
     width: calc(100% / 3 - 24px);

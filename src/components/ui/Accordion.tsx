@@ -16,6 +16,39 @@ interface AccordionProps {
   infoData: InfoDataProps;
 }
 
+function Accordion({ infoData }: AccordionProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  return (
+    <StyledAccordion>
+      <div className="accordion-top">
+        <span className="edu-logo">
+          <img src={infoData.img} alt={`${infoData.companyName} 로고`} />
+        </span>
+        <div className="title-content">
+          <p>{infoData.title}</p>
+          <b>{infoData.companyName}</b>
+        </div>
+        <span className="date">{infoData.date}</span>
+
+        <button onClick={toggleAccordion} className="toggle-btn">
+          {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
+        </button>
+      </div>
+
+      <div className={`accordion-bottom ${isOpen ? "open" : ""}`}>
+        <p>{infoData.detailContent}</p>
+      </div>
+    </StyledAccordion>
+  );
+}
+
+export default Accordion;
+
 const StyledAccordion = styled.div`
   border-radius: 32px;
   border: 1px solid #d9d9d9;
@@ -59,9 +92,9 @@ const StyledAccordion = styled.div`
     grid-area: "logo";
     border-radius: 99px;
     border: 1px solid #d9d9d9;
-    padding: 2px 4px;
     overflow: hidden;
     background-color: #fff;
+    aspect-ratio: 1/1;
   }
 
   .date {
@@ -104,10 +137,6 @@ const StyledAccordion = styled.div`
   }
 
   @media ${devices.md} {
-    .title-content {
-      min-width: auto;
-    }
-
     .date {
       font-size: 0.75rem;
     }
@@ -131,36 +160,3 @@ const StyledAccordion = styled.div`
     }
   }
 `;
-
-function Accordion({ infoData }: AccordionProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAccordion = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  return (
-    <StyledAccordion>
-      <div className="accordion-top">
-        <span className="edu-logo">
-          <img src={infoData.img} alt={`${infoData.companyName} 로고`} />
-        </span>
-        <div className="title-content">
-          <p>{infoData.title}</p>
-          <b>{infoData.companyName}</b>
-        </div>
-        <span className="date">{infoData.date}</span>
-
-        <button onClick={toggleAccordion} className="toggle-btn">
-          {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
-        </button>
-      </div>
-
-      <div className={`accordion-bottom ${isOpen ? "open" : ""}`}>
-        <p>{infoData.detailContent}</p>
-      </div>
-    </StyledAccordion>
-  );
-}
-
-export default Accordion;
