@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import Intro from "./Intro";
-import ProfileImageSrc from "../../assets/images/profile-img.png";
+import ProfileImageSrc from "../../../public/assets/images/profile-img.png";
 import { bounce, ping, spin } from "../../styles/animations";
 import { fullViewportSection } from "../../styles/commonStyles";
 import { FaArrowDown, FaGithub } from "react-icons/fa";
