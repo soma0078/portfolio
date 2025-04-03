@@ -90,6 +90,9 @@ const CloseButton = styled.button`
   z-index: 999;
   width: 45px;
   height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: centers;
 
   color: ${({ theme }) => theme.textColor};
 

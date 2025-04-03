@@ -67,7 +67,7 @@ const ScrollToTopButton = styled.button`
   width: 45px;
   height: 45px;
   line-height: 45px;
-  font-size: 1.25rem;
+  font-size: 20px;
   border: 1px solid #d2d2d2;
   color: #b4b4b4;
   backdrop-filter: blur(3px);
