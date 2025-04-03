@@ -44,7 +44,6 @@ function Works() {
     <WorksSectoion id="works">
       <StyledSubTitle>Works</StyledSubTitle>
       <StyledSectionTitle>Design & Publishing</StyledSectionTitle>
-
       {worksData && (
         <StyledWorkList
           className="work-list"
@@ -55,7 +54,17 @@ function Works() {
             <WorksItem worksData={worksData} />
           ))}
         </StyledWorkList>
-      )}
+      )}{" "}
+      <LinkToNotion>
+        더 많은 프로젝트는{" "}
+        <a
+          href="https://necessary-cost-1ab.notion.site/1cff1872069946b2a586b40f1af7670f"
+          target="_blank"
+        >
+          여기로
+        </a>{" "}
+        방문하시면 확인 가능합니다!
+      </LinkToNotion>
     </WorksSectoion>
   );
 }
@@ -87,4 +96,9 @@ const StyledWorkList = styled.div`
       height: 0;
     }
   }
+`;
+
+const LinkToNotion = styled.p`
+  margin-top: 24px;
+  text-align: right;
 `;
