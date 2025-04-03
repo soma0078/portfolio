@@ -65,14 +65,16 @@ const ScrollToTopButton = styled.button`
   border-radius: 99px;
   width: 45px;
   height: 45px;
-  text-align: center;
-  line-height: 45px;
   font-size: 1.25rem;
   border: 1px solid #d2d2d2;
   color: #b4b4b4;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   transition: all 0.3s;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: #efefef;
