@@ -62,29 +62,32 @@ const PopupContentainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
+  height: 90%;
   max-width: 1400px;
   padding: 64px;
+  padding-top: 0;
   background-color: ${({ theme }) => theme.bgColor};
   border-radius: 24px;
   box-shadow: #666 0 0 15px;
   z-index: 1000;
+  overflow: auto;
 
   @media ${devices.lg} {
-    padding: 24px 38px 0 44px;
+    padding: 0 38px 0 44px;
   }
 
   @media ${devices.sm} {
-    padding: 16px 22px 0 28px;
+    padding: 0 22px 0 28px;
   }
 `;
 
 const CloseButton = styled.button`
-  position: fixed;
+  position: sticky;
   top: 24px;
-  right: 24px;
+  left: 100%;
   font-size: 1.75rem;
   border-radius: 32px;
-  z-index: 99;
+  z-index: 999;
 
   color: ${({ theme }) => theme.textColor};
 

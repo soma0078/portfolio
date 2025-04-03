@@ -65,13 +65,10 @@ const ProjectTopBar = styled.div`
     justify-content: center;
     flex-wrap: wrap;
   }
-
-  @media ${devices.lg} {
-    position: sticky;
-    top: 0;
-    background-color: ${({ theme }) => theme.bgColor};
-    padding: 24px 0;
-  }
+  position: sticky;
+  top: 0;
+  background-color: ${({ theme }) => theme.bgColor};
+  padding: 24px 0;
 
   @media ${devices.sm} {
     .date {
@@ -85,7 +82,6 @@ const ProjectContainer = styled.div`
   ${flexStyle}
   gap: 50px;
   margin-top: 32px;
-  overflow-y: scroll;
 
   > div {
     width: calc(100% / 2);
@@ -98,7 +94,6 @@ const ProjectContainer = styled.div`
 
   @media ${devices.lg} {
     flex-direction: column;
-    max-height: 560px;
     padding-right: 8px;
     margin-bottom: 44px;
     margin-top: 8px;
