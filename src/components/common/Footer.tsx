@@ -55,6 +55,7 @@ const FooterLayout = styled.footer`
     transform: translateX(-50%);
     font-size: 0.75rem;
     color: #cacaca;
+    text-align: center;
   }
 `;
 
@@ -65,6 +66,7 @@ const ScrollToTopButton = styled.button`
   border-radius: 99px;
   width: 45px;
   height: 45px;
+  line-height: 45px;
   font-size: 1.25rem;
   border: 1px solid #d2d2d2;
   color: #b4b4b4;

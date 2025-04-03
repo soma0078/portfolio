@@ -10,6 +10,37 @@ export interface WorksProps {
   worksData: WorksDataProps;
 }
 
+function WorksItem({ worksData }: WorksProps) {
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
+
+  const openPopup = () => setIsOpenPopup(true);
+
+  const handleClose = () => {
+    setIsOpenPopup(false);
+  };
+
+  return (
+    <>
+      <StyledWorksItem onClick={openPopup}>
+        <img src={worksData.mainImageSrc} />
+        <StyledCoveredButton>
+          <span className="arrow-icon-wrapper">
+            <MdOutlineArrowOutward />
+          </span>
+        </StyledCoveredButton>
+      </StyledWorksItem>
+
+      {isOpenPopup && (
+        <PopupLayout onClose={handleClose}>
+          <WorksPopupContent worksData={worksData} />
+        </PopupLayout>
+      )}
+    </>
+  );
+}
+
+export default WorksItem;
+
 const StyledWorksItem = styled.div`
   position: relative;
   overflow: hidden;
@@ -88,34 +119,3 @@ const StyledCoveredButton = styled.button`
     }
   }
 `;
-
-function WorksItem({ worksData }: WorksProps) {
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
-
-  const openPopup = () => setIsOpenPopup(true);
-
-  const handleClose = () => {
-    setIsOpenPopup(false);
-  };
-
-  return (
-    <>
-      <StyledWorksItem onClick={openPopup}>
-        <img src={worksData.mainImageSrc} />
-        <StyledCoveredButton>
-          <span className="arrow-icon-wrapper">
-            <MdOutlineArrowOutward />
-          </span>
-        </StyledCoveredButton>
-      </StyledWorksItem>
-
-      {isOpenPopup && (
-        <PopupLayout onClose={handleClose}>
-          <WorksPopupContent worksData={worksData} />
-        </PopupLayout>
-      )}
-    </>
-  );
-}
-
-export default WorksItem;

@@ -88,6 +88,8 @@ const CloseButton = styled.button`
   font-size: 1.75rem;
   border-radius: 32px;
   z-index: 999;
+  width: 45px;
+  height: 45px;
 
   color: ${({ theme }) => theme.textColor};
 

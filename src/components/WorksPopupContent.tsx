@@ -93,11 +93,13 @@ const ImagesWrapper = styled.div`
 
   @media ${devices.lg} {
     flex-direction: column;
-    max-height: 520px;
-    overflow-y: scroll;
     padding-right: 10px;
     margin-bottom: 44px;
     gap: 16px;
+
+    .image-box {
+      justify-content: start;
+    }
   }
 `;
 
@@ -118,7 +120,12 @@ const MobileImages = styled.div`
     width: 100%;
   }
 
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+
   @media ${devices.lg} {
     width: 100%;
+    overflow-x: scroll;
   }
 `;
