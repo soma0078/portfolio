@@ -1,12 +1,12 @@
-import { BsGithub } from "react-icons/bs";
-import Button from "./ui/Button";
-import { ProjectCardProps } from "./ui/ProjectCard";
-import { RiShareBoxLine } from "react-icons/ri";
 import styled from "styled-components";
-import { flexStyle } from "../styles/commonStyles";
-import ThumbnailGallery from "./ui/ThumbnailGallery";
+import { BsGithub } from "react-icons/bs";
+import { RiShareBoxLine } from "react-icons/ri";
+import Button from "@ui/Button";
+import { ProjectCardProps } from "@ui/ProjectCard";
+import ThumbnailGallery from "@ui/ThumbnailGallery";
+import { flexStyle } from "@styles/commonStyles";
+import devices from "@constants/devices";
 import ProjectDetailList from "./ProjectDetailList";
-import devices from "../constants/devices";
 
 function DetailPopupItem({ project }: ProjectCardProps) {
   return (

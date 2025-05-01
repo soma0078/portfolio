@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import IntroTextStyle from "../../styles/introTextStyle";
+import { useEffect } from "react";
+import IntroTextStyle from "@styles/introTextStyle";
 import {
   fadeInBold,
   fadeInSoft,
   fadeOutBold,
   fadeOutSoft,
   introVisible,
-} from "../../styles/animations";
-import { useEffect } from "react";
-import devices from "../../constants/devices";
+} from "@styles/animations";
+import devices from "@constants/devices";
 
 function Intro() {
   useEffect(() => {

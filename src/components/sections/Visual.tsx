@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Intro from "./Intro";
 import ProfileImg from "../../assets/images/profile-img.png";
-import { expandWidth } from "../../styles/animations";
-import { fullViewportSection } from "../../styles/commonStyles";
-import devices from "../../constants/devices";
+import { expandWidth } from "@styles/animations";
+import { fullViewportSection } from "@styles/commonStyles";
+import devices from "@constants/devices";
 
 function Visual() {
   return (

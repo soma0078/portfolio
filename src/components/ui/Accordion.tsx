@@ -1,7 +1,7 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import styled from "styled-components";
 import { useState } from "react";
-import devices from "../../constants/devices";
+import devices from "@constants/devices";
 
 export interface InfoDataProps {
   type: string;

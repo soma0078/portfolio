@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
 import styled, { css } from "styled-components";
-import devices from "../../constants/devices";
+import devices from "@constants/devices";
 
 interface ButtonProps {
   buttonText: string;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { flexStyle, imgOutlineStyle } from "../../styles/commonStyles";
 import { useState } from "react";
-import devices from "../../constants/devices";
+import { flexStyle, imgOutlineStyle } from "@styles/commonStyles";
+import devices from "@constants/devices";
 
 interface ThumbnailGalleryProps {
   title: string;

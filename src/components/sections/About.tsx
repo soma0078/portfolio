@@ -2,27 +2,28 @@ import styled from "styled-components";
 import {
   CenteredContentSection,
   LinkIconContainer,
-} from "../../styles/commonStyles";
-import MimoticonFront from "../../../public/assets/images/mimoticon_front.png";
-import MimoticonBack from "../../../public/assets/images/mimoticon_back.png";
-import MimoticonWink from "../../../public/assets/images/mimoticon_wink.png";
+} from "@styles/commonStyles";
 
+import MimoticonFront from "@images/mimoticon_front.png";
+import MimoticonBack from "@images/mimoticon_back.png";
+import MimoticonWink from "@images/mimoticon_wink.png";
+
+import { Link } from "react-scroll";
+import { ReactNode, useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { SiVelog, SiGmail } from "react-icons/si";
 import { IoArrowDownSharp } from "react-icons/io5";
 import { RiShareBoxLine } from "react-icons/ri";
-import LinkIcon from "../ui/LinkIcon";
-import { MY_EMAIL, MY_GITHUB_URL, MY_VELOG_URL } from "../../constants/urls";
-import Tooltip from "../ui/Tooltip";
-import IntroTextStyle from "../../styles/introTextStyle";
-import Button from "../ui/Button";
-import { ReactNode, useEffect, useState } from "react";
-import { Link } from "react-scroll";
-import { skillImageArray, toolImageArray } from "../../constants/icons";
-import IconImageArray from "../ui/IconImageArray";
-import Accordion, { InfoDataProps } from "../ui/Accordion";
-import devices from "../../constants/devices";
-import Resume from "../../../public/assets/이송아_이력서.pdf";
+import { MY_EMAIL, MY_GITHUB_URL, MY_VELOG_URL } from "@constants/urls";
+import { skillImageArray, toolImageArray } from "@constants/icons";
+import devices from "@constants/devices";
+import Button from "@ui/Button";
+import Tooltip from "@ui/Tooltip";
+import LinkIcon from "@ui/LinkIcon";
+import IconImageArray from "@ui/IconImageArray";
+import Accordion, { InfoDataProps } from "@ui/Accordion";
+import IntroTextStyle from "@styles/introTextStyle";
+import Resume from "@public/assets/이송아_이력서.pdf";
 
 function About() {
   const [infoData, setInfoData] = useState<InfoDataProps[]>();

@@ -1,10 +1,10 @@
-import { WorksDataProps } from "../sections/Works";
 import styled from "styled-components";
-import { MdOutlineArrowOutward } from "react-icons/md";
 import { useState } from "react";
-import PopupLayout from "../common/PopupLayout";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { WorksDataProps } from "@sections/Works";
+import PopupLayout from "@common/PopupLayout";
+import devices from "@constants/devices";
 import WorksPopupContent from "../WorksPopupContent";
-import devices from "../../constants/devices";
 
 export interface WorksProps {
   worksData: WorksDataProps;

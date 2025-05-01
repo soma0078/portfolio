@@ -1,15 +1,15 @@
 import { ThemeProvider } from "styled-components";
-import About from "./components/sections/About";
-import Header from "./components/common/Header";
-
 import { useState } from "react";
-import Projects from "./components/sections/Projects";
-import Works from "./components/sections/Works";
-import Contact from "./components/sections/Contact";
-import Footer from "./components/common/Footer";
-import GlobalStyle from "./styles/globalStyle";
-import { darkTheme, lightTheme } from "./styles/theme";
-import VisualRe from "./components/sections/VisualRe";
+import GlobalStyle from "@styles/globalStyle";
+import { darkTheme, lightTheme } from "@styles/theme";
+import Header from "@common/Header";
+import Footer from "@common/Footer";
+
+import VisualRe from "@sections/VisualRe";
+import About from "@sections/About";
+import Projects from "@sections/Projects";
+import Works from "@sections/Works";
+import Contact from "@sections/Contact";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);

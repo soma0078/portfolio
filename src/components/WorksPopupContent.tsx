@@ -1,9 +1,9 @@
-import { RiShareBoxLine } from "react-icons/ri";
-import LinkIcon from "./ui/LinkIcon";
-import { WorksProps } from "./ui/WorksItem";
 import styled from "styled-components";
-import { flexStyle } from "../styles/commonStyles";
-import devices from "../constants/devices";
+import { RiShareBoxLine } from "react-icons/ri";
+import LinkIcon from "@ui/LinkIcon";
+import { WorksProps } from "@ui/WorksItem";
+import { flexStyle } from "@styles/commonStyles";
+import devices from "@constants/devices";
 
 function WorksPopup({ worksData }: WorksProps) {
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ProjectDetailItem from "./ProjectDetailItem";
-import { ProjectDetailProps } from "./sections/Projects";
-import devices from "../constants/devices";
+import { ProjectDetailProps } from "@sections/Projects";
+import devices from "@constants/devices";
 
 export interface ProjectDetailListProps {
   implementation: string[];

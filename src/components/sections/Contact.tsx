@@ -3,12 +3,12 @@ import {
   CenteredContentSection,
   flexStyle,
   StyledSubTitle,
-} from "../../styles/commonStyles";
-import LinkIcon from "../ui/LinkIcon";
+} from "@styles/commonStyles";
 import { SiGmail } from "react-icons/si";
-import { MY_EMAIL, MY_GITHUB_URL } from "../../constants/urls";
 import { FaGithub } from "react-icons/fa";
-import devices from "../../constants/devices";
+import LinkIcon from "@ui/LinkIcon";
+import { MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
+import devices from "@constants/devices";
 
 function Contact() {
   return (

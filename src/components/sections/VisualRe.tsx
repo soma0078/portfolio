@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 import Intro from "./Intro";
-import ProfileImageSrc from "../../../public/assets/images/profile-img.png";
-import { bounce, ping, spin } from "../../styles/animations";
-import { fullViewportSection } from "../../styles/commonStyles";
-import { FaArrowDown, FaGithub } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
-import { MY_EMAIL, MY_GITHUB_URL } from "../../constants/urls";
-import devices from "../../constants/devices";
+import { FaArrowDown, FaGithub } from "react-icons/fa";
+import ProfileImageSrc from "@images/profile-img.png";
+import { bounce, ping, spin } from "@styles/animations";
+import { fullViewportSection } from "@styles/commonStyles";
+import { MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
+import devices from "@constants/devices";
 
 function VisualRe() {
   return (

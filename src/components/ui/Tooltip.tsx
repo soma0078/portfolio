@@ -1,8 +1,8 @@
-import { ReactNode, useState } from "react";
 import styled, { css } from "styled-components";
-import { tooltip } from "../../styles/animations";
+import { ReactNode, useState } from "react";
 import Toast from "./Toast";
-import { hoverPrimaryColor } from "../../styles/commonStyles";
+import { tooltip } from "@styles/animations";
+import { hoverPrimaryColor } from "@styles/commonStyles";
 
 interface TooltipProps {
   children: ReactNode;

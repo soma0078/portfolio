@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-scroll";
-import devices from "../../constants/devices";
+import devices from "@constants/devices";
 
 interface NavBarProps {
   isOpen: boolean;

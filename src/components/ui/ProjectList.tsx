@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ProjectCard from "./ProjectCard";
-import { ProjectDataProps } from "../sections/Projects";
-import devices from "../../constants/devices";
+import { ProjectDataProps } from "@sections/Projects";
+import devices from "@constants/devices";
 
 export interface ProjectListProps {
   projects: ProjectDataProps[];

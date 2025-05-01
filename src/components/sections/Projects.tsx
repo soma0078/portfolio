@@ -1,12 +1,12 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 import {
   CenteredContentSection,
   StyledSectionTitle,
-} from "../../styles/commonStyles";
-import { StyledSubTitle } from "../../styles/commonStyles";
-import { useEffect, useState } from "react";
-import ProjectList from "../ui/ProjectList";
-import { iconMap } from "../../constants/icons";
+} from "@styles/commonStyles";
+import { StyledSubTitle } from "@styles/commonStyles";
+import ProjectList from "@ui/ProjectList";
+import { iconMap } from "@constants/icons";
 import Filter from "../Filter";
 
 type IconMapKeys = keyof typeof iconMap;

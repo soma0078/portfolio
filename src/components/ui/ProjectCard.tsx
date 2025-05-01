@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { iconMap } from "../../constants/icons";
-import LinkIcon from "./LinkIcon";
-import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
-import { RiShareBoxLine } from "react-icons/ri";
-import { ProjectDataProps } from "../sections/Projects";
 import { useState } from "react";
+import { iconMap } from "@constants/icons";
+import { RiShareBoxLine } from "react-icons/ri";
+import { BsGithub, BsInfoCircleFill } from "react-icons/bs";
+import LinkIcon from "./LinkIcon";
+import { ProjectDataProps } from "@sections/Projects";
 import PopupContent from "../DetailPopupItem";
-import PopupLayout from "../common/PopupLayout";
-import devices from "../../constants/devices";
+import PopupLayout from "@common/PopupLayout";
+import devices from "@constants/devices";
 
 export interface ProjectCardProps {
   project: ProjectDataProps;

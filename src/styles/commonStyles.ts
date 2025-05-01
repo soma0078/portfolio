@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import devices from "../constants/devices";
+import devices from "@constants/devices";
 
 // 공통 컬러 스타일
 const hoverPrimaryColor = css`
