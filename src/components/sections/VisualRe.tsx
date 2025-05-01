@@ -124,7 +124,7 @@ function VisualRe() {
                 </defs>
               </InsideSvg>
               <JobTag1>
-                <span>Web plublisher</span>
+                <span>Web publisher</span>
                 <span></span>
               </JobTag1>
               <JobTag2>
