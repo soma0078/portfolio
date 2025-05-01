@@ -134,9 +134,11 @@ function VisualRe() {
             <ProfileImage />
           </ProfileImageBox>
         </VisualInner>
+
         <ScrollDown>
           Scroll down <FaArrowDown />
         </ScrollDown>
+        <UpdatedText>updated 2025.05</UpdatedText>
       </VisualSection>
     </>
   );
@@ -422,12 +424,14 @@ const JobTag2 = styled.div`
 `;
 
 const ScrollDown = styled.div`
+  font-family: "Caveat", cursive;
   position: absolute;
   left: 180px;
   display: flex;
   gap: 0.5rem;
   align-items: center;
   bottom: 120px;
+  font-size: 1.5rem;
 
   svg {
     display: block;
@@ -440,7 +444,23 @@ const ScrollDown = styled.div`
   }
   @media ${devices.lg} {
     bottom: 60px;
-    font-size: 0.875rem;
+    font-size: 1rem;
+  }
+`;
+
+const UpdatedText = styled.span`
+  font-family: "Caveat", cursive;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 180px;
+  bottom: 120px;
+
+  @media (max-width: 1400px) {
+    right: 24px;
+  }
+  @media ${devices.lg} {
+    bottom: 60px;
+    font-size: 1rem;
   }
 `;
 
