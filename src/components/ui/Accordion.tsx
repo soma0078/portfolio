@@ -17,7 +17,7 @@ interface AccordionProps {
 }
 
 function Accordion({ infoData }: AccordionProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleAccordion = () => {
     setIsOpen((prev) => !prev);
