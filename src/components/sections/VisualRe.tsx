@@ -15,10 +15,7 @@ function VisualRe() {
       <VisualSection>
         <VisualInner>
           <VisualTextBox>
-            <h2>
-              사용자 중심의 웹을 구축하며, <b>UI와 UX 모두 고려한</b> 완성도
-              높은 서비스를 제공합니다.
-            </h2>
+            <h2>시맨틱한 마크업부터 인터랙션까지, 세심하게 완성합니다.</h2>
             <VisualTextList>
               <p>
                 마크업 전문성과 프론트엔드 개발 역량을 바탕으로 디자인의 의도를
