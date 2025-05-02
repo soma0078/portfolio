@@ -1,7 +1,7 @@
-import { IconType } from "react-icons";
 import styled from "styled-components";
-import { hoverPrimaryColor } from "../../styles/commonStyles";
 import { ReactElement } from "react";
+import { IconType } from "react-icons";
+import { hoverPrimaryColor } from "@styles/commonStyles";
 
 export interface LinkIconProps {
   href?: string;

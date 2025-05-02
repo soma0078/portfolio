@@ -1,7 +1,7 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import styled from "styled-components";
 import { useState } from "react";
-import devices from "../../constants/devices";
+import devices from "@constants/devices";
 
 export interface InfoDataProps {
   type: string;
@@ -17,7 +17,7 @@ interface AccordionProps {
 }
 
 function Accordion({ infoData }: AccordionProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleAccordion = () => {
     setIsOpen((prev) => !prev);

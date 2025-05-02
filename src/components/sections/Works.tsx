@@ -1,13 +1,13 @@
 import styled from "styled-components";
+import { useEffect, useRef, useState, WheelEvent } from "react";
 import {
   fullViewportSection,
   StyledSectionTitle,
   StyledSubTitle,
-} from "../../styles/commonStyles";
+} from "@styles/commonStyles";
 
-import { useEffect, useRef, useState, WheelEvent } from "react";
-import WorksItem from "../ui/WorksItem";
-import devices from "../../constants/devices";
+import WorksItem from "@ui/WorksItem";
+import devices from "@constants/devices";
 
 export interface WorksDataProps {
   mainImageSrc: string;

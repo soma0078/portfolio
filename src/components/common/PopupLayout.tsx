@@ -1,7 +1,7 @@
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 import { ReactNode, useEffect } from "react";
-import devices from "../../constants/devices";
+import devices from "@constants/devices";
 
 interface PopupProps {
   onClose: () => void;

@@ -19,7 +19,24 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Path alias */
+    "baseUrl": ".",
+    "paths": {
+      "@public/*": ["public/*"],
+      "@fonts/*": ["public/assets/fonts/*"],
+      "@images/*": ["public/assets/images/*"],
+      "@data/*": ["public/data/*"],
+      "@icons/*": ["src/assets/icons/*"],
+      "@components/*": ["src/components/*"],
+      "@sections/*": ["src/components/sections/*"],
+      "@common/*": ["src/components/common/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@constants/*": ["src/constants/*"],
+      "@styles/*": ["src/styles/*"],
+      "@types/*": ["src/types/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "**/*.ts", "**/*.tsx"]
 }

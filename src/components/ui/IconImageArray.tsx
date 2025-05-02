@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexStyle } from "../../styles/commonStyles";
+import { flexStyle } from "@styles/commonStyles";
 
 interface ImageAttrProps {
   src: string;

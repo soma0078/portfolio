@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import ProjectCard from "./ProjectCard";
-import { ProjectDataProps } from "../sections/Projects";
-import devices from "../../constants/devices";
+import { ProjectDataProps } from "@sections/Projects";
+import devices from "@constants/devices";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import { useRef } from "react";
 
 export interface ProjectListProps {
   projects: ProjectDataProps[];
@@ -31,16 +33,34 @@ const StyledProjectList = styled.div`
 `;
 
 function ProjectList({ projects, selectedCategory }: ProjectListProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   const filteredProject =
     selectedCategory === "All"
       ? projects
       : projects.filter((project) => project.category === selectedCategory);
 
   return (
-    <StyledProjectList>
-      {filteredProject.map((project) => (
-        <ProjectCard key={project.title} project={project} />
-      ))}
+    <StyledProjectList ref={ref}>
+      <AnimatePresence mode="wait">
+        {filteredProject.map((project) => (
+          <motion.div
+            key={project.title}
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              type: "spring",
+              damping: 20,
+              stiffness: 100,
+              duration: 0.5,
+            }}
+          >
+            <ProjectCard project={project} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </StyledProjectList>
   );
 }

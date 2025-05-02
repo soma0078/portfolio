@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import IntroTextStyle from "../../styles/introTextStyle";
+import { useEffect } from "react";
+import IntroTextStyle from "@styles/introTextStyle";
 import {
   fadeInBold,
   fadeInSoft,
   fadeOutBold,
   fadeOutSoft,
   introVisible,
-} from "../../styles/animations";
-import { useEffect } from "react";
-import devices from "../../constants/devices";
+} from "@styles/animations";
+import devices from "@constants/devices";
 
 function Intro() {
   useEffect(() => {
@@ -24,7 +24,7 @@ function Intro() {
     const timer = setTimeout(() => {
       document.body.style.overflow = "auto";
       document.body.style.paddingRight = "0px";
-    }, 7500);
+    }, 7000);
 
     return () => {
       clearTimeout(timer);
@@ -38,7 +38,7 @@ function Intro() {
         <StyledIntroH1>
           <span>함께 협력하고 같이 성장하는</span>
           <span>
-            프론트엔드 개발자 <b>이송아</b>입니다.
+            가치를 추구하는 <b>이송아</b>입니다.
           </span>
         </StyledIntroH1>
       </IntroTextWrapper>

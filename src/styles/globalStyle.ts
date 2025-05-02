@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import devices from "../constants/devices";
+import devices from "@constants/devices";
 
 const GlobalStyle = createGlobalStyle`
 	${reset}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import NavBar from "./NavBar";
 import { LuSun, LuMoon } from "react-icons/lu";
-import devices from "../../constants/devices";
+import devices from "@constants/devices";
 import MobileMenu from "./MobileMenu";
 import { useState } from "react";
 

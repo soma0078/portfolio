@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import Intro from "./Intro";
-import ProfileImageSrc from "../../../public/assets/images/profile-img.png";
-import { bounce, ping, spin } from "../../styles/animations";
-import { fullViewportSection } from "../../styles/commonStyles";
-import { FaArrowDown, FaGithub } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
-import { MY_EMAIL, MY_GITHUB_URL } from "../../constants/urls";
-import devices from "../../constants/devices";
+import { FaArrowDown, FaGithub } from "react-icons/fa";
+import ProfileImageSrc from "@images/profile-img.png";
+import { bounce, ping, spin } from "@styles/animations";
+import { fullViewportSection } from "@styles/commonStyles";
+import { MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
+import devices from "@constants/devices";
+import { BlurIn } from "@components/BlurIn";
 
 function VisualRe() {
   return (
@@ -15,48 +16,50 @@ function VisualRe() {
       <VisualSection>
         <VisualInner>
           <VisualTextBox>
-            <h2>
-              <b>I Create Intuitive Web Experiences</b>
-              Through Collaborative Development
-            </h2>
-            <VisualTextList>
-              <p>
-                사용자 중심의 기능 구현과 협업을 통해 프로젝트의 성장을 이끄는
-                프론트엔드 개발자 이송아입니다.
-              </p>
-              <p>
-                React와 TypeScript 기반의 웹 애플리케이션 개발 경험을 바탕으로,
-                웹 표준과 접근성을 고려한 인터페이스를 만들고 성능 최적화와
-                반응형 디자인에 열정을 가지고 있습니다.
-              </p>
-              <p>
-                Git 워크플로우와 애자일 방법론을 활용한 체계적인 개발 프로세스와
-                원활한 팀 커뮤니케이션을 통해 사용자 피드백 기반의 지속적인
-                서비스 개선을 추구합니다.
-              </p>
-            </VisualTextList>
-            <SnsLinkList>
-              <li>
-                <a href={`mailto:${MY_EMAIL}`}>
-                  <span>
-                    <SiGmail />
-                  </span>
-                  e-mail
-                  <br />
-                  thddk0121@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href={MY_GITHUB_URL} target="_blank">
-                  <span>
-                    <FaGithub />
-                  </span>
-                  github
-                  <br />
-                  https://github.com/soma0078
-                </a>
-              </li>
-            </SnsLinkList>
+            <BlurIn delayCount={6}>
+              시맨틱한 마크업부터 인터랙션까지, 세심하게 완성합니다.
+            </BlurIn>
+            <BlurIn delayCount={6}>
+              <VisualTextList>
+                <p>
+                  마크업 전문성과 프론트엔드 개발 역량을 바탕으로 디자인의
+                  의도를 이해하고 구현하는 일에 보람을 느낍니다. 웹 표준을
+                  준수한 시맨틱 코드 작성과 크로스 브라우징 대응에 강점을 가지고
+                  있으며, 세밀한 애니메이션과 인터랙션 효과를 통해 사용자의
+                  시각적 경험을 향상시키는 데 주력합니다.
+                </p>
+                <br />
+                <p>
+                  웹 접근성 원칙을 바탕으로 누구나 접근 가능한 인터페이스를
+                  설계하고, 반응형 웹 구현을 통해 최적화된 사용성을 제공합니다.
+                  또한, 사용자가 자연스럽게 흐름을 따라갈 수 있도록 디자인
+                  시안에 맞는 흐름과 인터랙션을 코드로 구현하는 데 주력하고
+                  있습니다.
+                </p>
+              </VisualTextList>
+              <SnsLinkList>
+                <li>
+                  <a href={`mailto:${MY_EMAIL}`}>
+                    <span>
+                      <SiGmail />
+                    </span>
+                    e-mail
+                    <br />
+                    {MY_EMAIL}
+                  </a>
+                </li>
+                <li>
+                  <a href={MY_GITHUB_URL} target="_blank">
+                    <span>
+                      <FaGithub />
+                    </span>
+                    github
+                    <br />
+                    {MY_GITHUB_URL}
+                  </a>
+                </li>
+              </SnsLinkList>
+            </BlurIn>
           </VisualTextBox>
           <ProfileImageBox>
             <SvgWrapper>
@@ -124,7 +127,7 @@ function VisualRe() {
                 </defs>
               </InsideSvg>
               <JobTag1>
-                <span>Web plublisher</span>
+                <span>Web publisher</span>
                 <span></span>
               </JobTag1>
               <JobTag2>
@@ -135,9 +138,11 @@ function VisualRe() {
             <ProfileImage />
           </ProfileImageBox>
         </VisualInner>
+
         <ScrollDown>
           Scroll down <FaArrowDown />
         </ScrollDown>
+        <UpdatedText>updated 2025.05</UpdatedText>
       </VisualSection>
     </>
   );
@@ -212,13 +217,11 @@ const VisualInner = styled.div`
 const VisualTextBox = styled.div`
   h2 {
     font-size: 2.4rem;
-    font-family: "Montserrat", sans-serif;
     margin-bottom: 2rem;
     line-height: 1.2;
   }
   h2 b {
     font-weight: 600;
-    display: block;
   }
 
   @media ${devices.lg} {
@@ -423,12 +426,14 @@ const JobTag2 = styled.div`
 `;
 
 const ScrollDown = styled.div`
+  font-family: "Caveat", cursive;
   position: absolute;
   left: 180px;
   display: flex;
   gap: 0.5rem;
   align-items: center;
   bottom: 120px;
+  font-size: 1.5rem;
 
   svg {
     display: block;
@@ -441,7 +446,23 @@ const ScrollDown = styled.div`
   }
   @media ${devices.lg} {
     bottom: 60px;
-    font-size: 0.875rem;
+    font-size: 1rem;
+  }
+`;
+
+const UpdatedText = styled.span`
+  font-family: "Caveat", cursive;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 180px;
+  bottom: 120px;
+
+  @media (max-width: 1400px) {
+    right: 24px;
+  }
+  @media ${devices.lg} {
+    bottom: 60px;
+    font-size: 1rem;
   }
 `;
 
