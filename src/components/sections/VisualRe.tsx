@@ -24,6 +24,7 @@ function VisualRe() {
                 애니메이션과 인터랙션 효과를 통해 사용자의 시각적 경험을
                 향상시키는 데 주력합니다.
               </p>
+              <br />
               <p>
                 웹 접근성 원칙을 바탕으로 누구나 접근 가능한 인터페이스를
                 설계하고, 반응형 웹 구현을 통해 최적화된 사용성을 제공합니다.
@@ -210,7 +211,6 @@ const VisualInner = styled.div`
 const VisualTextBox = styled.div`
   h2 {
     font-size: 2.4rem;
-    font-family: "Montserrat", sans-serif;
     margin-bottom: 2rem;
     line-height: 1.2;
   }
