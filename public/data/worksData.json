@@ -43,9 +43,9 @@
     "mainImageSrc": "assets/images/main_works3.png",
     "desktopImageSrc": "assets/images/desktop_works3.webp",
     "mobileImageSrc": [
-      "assets/images/mobile_works3_01.png",
-      "assets/images/mobile_works3_02.png",
-      "assets/images/mobile_works3_03.png"
+      "assets/images/mobile_works3_01.PNG",
+      "assets/images/mobile_works3_02.PNG",
+      "assets/images/mobile_works3_03.PNG"
     ],
     "role": "디자인·퍼블리싱",
     "rate": 100
@@ -60,9 +60,9 @@
     "mainImageSrc": "assets/images/main_works4.png",
     "desktopImageSrc": "assets/images/desktop_works4.webp",
     "mobileImageSrc": [
-      "assets/images/mobile_works4_01.png",
-      "assets/images/mobile_works4_02.png",
-      "assets/images/mobile_works4_03.png"
+      "assets/images/mobile_works4_01.PNG",
+      "assets/images/mobile_works4_02.PNG",
+      "assets/images/mobile_works4_03.PNG"
     ],
     "role": "디자인·퍼블리싱",
     "rate": 100
@@ -77,9 +77,9 @@
     "mainImageSrc": "assets/images/main_works5.png",
     "desktopImageSrc": "assets/images/desktop_works5.webp",
     "mobileImageSrc": [
-      "assets/images/mobile_works5_01.png",
-      "assets/images/mobile_works5_02.png",
-      "assets/images/mobile_works5_03.png"
+      "assets/images/mobile_works5_01.PNG",
+      "assets/images/mobile_works5_02.PNG",
+      "assets/images/mobile_works5_03.PNG"
     ],
     "role": "디자인·퍼블리싱",
     "rate": 100
