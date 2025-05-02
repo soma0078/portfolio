@@ -7,6 +7,7 @@ import { bounce, ping, spin } from "@styles/animations";
 import { fullViewportSection } from "@styles/commonStyles";
 import { MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
 import devices from "@constants/devices";
+import { BlurIn } from "@components/BlurIn";
 
 function VisualRe() {
   return (
@@ -15,45 +16,50 @@ function VisualRe() {
       <VisualSection>
         <VisualInner>
           <VisualTextBox>
-            <h2>시맨틱한 마크업부터 인터랙션까지, 세심하게 완성합니다.</h2>
-            <VisualTextList>
-              <p>
-                마크업 전문성과 프론트엔드 개발 역량을 바탕으로 디자인의 의도를
-                이해하고 구현하는 일에 보람을 느낍니다. 웹 표준을 준수한 시맨틱
-                코드 작성과 크로스 브라우징 대응에 강점을 가지고 있으며, 세밀한
-                애니메이션과 인터랙션 효과를 통해 사용자의 시각적 경험을
-                향상시키는 데 주력합니다.
-              </p>
-              <br />
-              <p>
-                웹 접근성 원칙을 바탕으로 누구나 접근 가능한 인터페이스를
-                설계하고, 반응형 웹 구현을 통해 최적화된 사용성을 제공합니다.
-                또한, 사용자가 자연스럽게 흐름을 따라갈 수 있도록 디자인 시안에
-                맞는 흐름과 인터랙션을 코드로 구현하는 데 주력하고 있습니다.
-              </p>
-            </VisualTextList>
-            <SnsLinkList>
-              <li>
-                <a href={`mailto:${MY_EMAIL}`}>
-                  <span>
-                    <SiGmail />
-                  </span>
-                  e-mail
-                  <br />
-                  {MY_EMAIL}
-                </a>
-              </li>
-              <li>
-                <a href={MY_GITHUB_URL} target="_blank">
-                  <span>
-                    <FaGithub />
-                  </span>
-                  github
-                  <br />
-                  {MY_GITHUB_URL}
-                </a>
-              </li>
-            </SnsLinkList>
+            <BlurIn>
+              시맨틱한 마크업부터 인터랙션까지, 세심하게 완성합니다.
+            </BlurIn>
+            <BlurIn>
+              <VisualTextList>
+                <p>
+                  마크업 전문성과 프론트엔드 개발 역량을 바탕으로 디자인의
+                  의도를 이해하고 구현하는 일에 보람을 느낍니다. 웹 표준을
+                  준수한 시맨틱 코드 작성과 크로스 브라우징 대응에 강점을 가지고
+                  있으며, 세밀한 애니메이션과 인터랙션 효과를 통해 사용자의
+                  시각적 경험을 향상시키는 데 주력합니다.
+                </p>
+                <br />
+                <p>
+                  웹 접근성 원칙을 바탕으로 누구나 접근 가능한 인터페이스를
+                  설계하고, 반응형 웹 구현을 통해 최적화된 사용성을 제공합니다.
+                  또한, 사용자가 자연스럽게 흐름을 따라갈 수 있도록 디자인
+                  시안에 맞는 흐름과 인터랙션을 코드로 구현하는 데 주력하고
+                  있습니다.
+                </p>
+              </VisualTextList>
+              <SnsLinkList>
+                <li>
+                  <a href={`mailto:${MY_EMAIL}`}>
+                    <span>
+                      <SiGmail />
+                    </span>
+                    e-mail
+                    <br />
+                    {MY_EMAIL}
+                  </a>
+                </li>
+                <li>
+                  <a href={MY_GITHUB_URL} target="_blank">
+                    <span>
+                      <FaGithub />
+                    </span>
+                    github
+                    <br />
+                    {MY_GITHUB_URL}
+                  </a>
+                </li>
+              </SnsLinkList>
+            </BlurIn>
           </VisualTextBox>
           <ProfileImageBox>
             <SvgWrapper>
@@ -216,7 +222,6 @@ const VisualTextBox = styled.div`
   }
   h2 b {
     font-weight: 600;
-    display: block;
   }
 
   @media ${devices.lg} {
