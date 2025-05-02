@@ -16,10 +16,10 @@ function VisualRe() {
       <VisualSection>
         <VisualInner>
           <VisualTextBox>
-            <BlurIn>
+            <BlurIn delayCount={6}>
               시맨틱한 마크업부터 인터랙션까지, 세심하게 완성합니다.
             </BlurIn>
-            <BlurIn>
+            <BlurIn delayCount={6}>
               <VisualTextList>
                 <p>
                   마크업 전문성과 프론트엔드 개발 역량을 바탕으로 디자인의
