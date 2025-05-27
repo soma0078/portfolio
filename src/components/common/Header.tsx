@@ -4,6 +4,8 @@ import { LuSun, LuMoon } from "react-icons/lu";
 import devices from "@constants/devices";
 import MobileMenu from "./MobileMenu";
 import { useState } from "react";
+import Lottie from "lottie-react";
+import gradientBlobAnimation from "@lottie/gradientBlob.json";
 
 interface HeaderProps {
   isDarkMode: boolean;
@@ -20,7 +22,16 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
   return (
     <HeaderLayout>
       <StyledLogo>
-        <span>songa. portfolio</span>
+        <Lottie
+          animationData={gradientBlobAnimation}
+          loop
+          style={{ width: 124, opacity: 0.7 }}
+        />
+        <span>
+          LEE SONGA
+          <br />
+          PORTFOLIO
+        </span>
       </StyledLogo>
       <HeaderRightMenuWrapper>
         <NavBar isOpen={isNavOpen} />
@@ -47,18 +58,24 @@ const HeaderLayout = styled.div`
   z-index: 999;
 
   @media ${devices.lg} {
-    padding: 16px 24px;
-    align-items: flex-start;
+    padding: 12px 16px;
   }
 `;
 
 const StyledLogo = styled.div`
   display: flex;
-  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
   font-size: 1.125rem;
+  line-height: 1.125rem;
   font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  line-height: 24px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.textColor};
+
+  & span {
+    position: absolute;
+  }
 
   @media ${devices.sm} {
     font-size: 1rem;
@@ -77,7 +94,7 @@ const DarkModeIcon = styled.button`
   border-radius: 999px;
   cursor: pointer;
   background-color: transparent;
-  color: ${(props) => props.theme.textColor};
+  color: ${({ theme }) => theme.textColor};
 
   &:hover {
     background-color: #efefef;

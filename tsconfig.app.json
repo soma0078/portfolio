@@ -35,7 +35,8 @@
       "@ui/*": ["src/components/ui/*"],
       "@constants/*": ["src/constants/*"],
       "@styles/*": ["src/styles/*"],
-      "@types/*": ["src/types/*"]
+      "@types/*": ["src/types/*"],
+      "@lottie/*": ["src/assets/lottie/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"]
