@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-scroll";
-import devices from "@constants/devices";
 
 interface NavBarProps {
   isOpen: boolean;
@@ -39,21 +38,18 @@ const slideIn = keyframes`
 `;
 
 const NavWrapper = styled.nav`
-  display: flex;
   gap: 24px;
 
-  @media ${devices.lg} {
-    display: none;
+  display: none;
 
-    &.open {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      right: 24px;
-      text-align: right;
-      top: 64px;
-      gap: 8px;
-    }
+  &.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 24px;
+    text-align: right;
+    top: 64px;
+    gap: 8px;
   }
 `;
 
@@ -64,11 +60,8 @@ const NavBtn = styled.button<{ delay: number }>`
   cursor: pointer;
   padding: 0;
   color: ${({ theme }) => theme.textColor};
-
-  @media ${devices.lg} {
-    opacity: 0;
-    transform: translateX(20px);
-    animation: ${slideIn} 0.5s ease-out forwards;
-    animation-delay: ${({ delay }) => delay}s;
-  }
+  opacity: 0;
+  transform: translateX(20px);
+  animation: ${slideIn} 0.5s ease-out forwards;
+  animation-delay: ${({ delay }) => delay}s;
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import NavBar from "./NavBar";
 import { LuSun, LuMoon } from "react-icons/lu";
 import devices from "@constants/devices";
-import MobileMenu from "./MobileMenu";
+import MobileMenu from "./Menu";
 import { useState } from "react";
 import Lottie from "lottie-react";
 import gradientBlobAnimation from "@lottie/gradientBlob.json";
@@ -58,7 +58,7 @@ const HeaderLayout = styled.div`
   z-index: 999;
 
   @media ${devices.lg} {
-    padding: 12px 16px;
+    padding: 12px;
   }
 `;
 
