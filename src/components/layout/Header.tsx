@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import NavBar from "./NavBar";
+import NavBar from "@components/common/MenuOverlay";
 import { LuSun, LuMoon } from "react-icons/lu";
 import devices from "@constants/devices";
-import MobileMenu from "./Menu";
+import MobileMenu from "../common/Menu";
 import { useState } from "react";
 import Lottie from "lottie-react";
 import gradientBlobAnimation from "@lottie/gradientBlob.json";
