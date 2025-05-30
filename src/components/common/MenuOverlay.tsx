@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-scroll";
 
 const MENU_ITEM = [
@@ -7,29 +7,6 @@ const MENU_ITEM = [
   { menu: "PROJECTS", id: "projects" },
   { menu: "CONTACT", id: "contact" },
 ];
-
-const slideIn = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-	
-`;
-
-const slideOut = keyframes`
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-`;
 
 const Overlay = styled.nav<{ isOpen: boolean }>`
   position: fixed;
@@ -45,6 +22,7 @@ const Overlay = styled.nav<{ isOpen: boolean }>`
   align-items: center;
   justify-content: center;
   gap: 12px;
+  pointer-events: ${({ isOpen }) => (isOpen ? "auto" : "none")};
 
   &:before,
   &:after {
@@ -77,7 +55,7 @@ const Overlay = styled.nav<{ isOpen: boolean }>`
     transition: all 300ms;
     transform: skewX(-15deg);
 
-    span {
+    div {
       background: var(--primary-gradient);
       background-clip: text;
       -webkit-background-clip: text;
@@ -86,15 +64,15 @@ const Overlay = styled.nav<{ isOpen: boolean }>`
   }
 `;
 
-const Menu = styled.span<{ delay: number; isOpen: boolean }>`
+const Menu = styled.div<{ delay: number; isOpen: boolean }>`
   font-family: "Montserrat";
   font-size: 2rem;
   font-weight: 700;
   color: ${({ theme }) => theme.textColor};
-  animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 500ms ease-out
-    forwards;
-  animation-delay: ${({ isOpen, delay }) => (isOpen ? delay + 0.5 : 0)}s;
-  opacity: ${({ isOpen }) => (isOpen ? 0 : 1)};
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(20px)")};
+  transition: all 500ms ease-out;
+  transition-delay: ${({ delay, isOpen }) => (isOpen ? delay + 0.5 : 0)}s;
 `;
 
 function MenuOverlay({ isOpen }: { isOpen: boolean }) {
