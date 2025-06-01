@@ -12,46 +12,12 @@ interface HeaderProps {
   toggleDarkMode: () => void;
 }
 
-function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
-  };
-
-  return (
-    <HeaderLayout>
-      <StyledLogo>
-        <Lottie
-          animationData={gradientBlobAnimation}
-          loop
-          style={{ width: 124, opacity: 0.7 }}
-        />
-        <span>
-          LEE SONGA
-          <br />
-          PORTFOLIO
-        </span>
-      </StyledLogo>
-      <HeaderRightMenuWrapper>
-        <NavBar isOpen={isNavOpen} />
-        <DarkModeIcon onClick={toggleDarkMode}>
-          {isDarkMode ? <LuSun /> : <LuMoon />}
-        </DarkModeIcon>
-        <MobileMenu onClick={toggleNav} isOpen={isNavOpen} />
-      </HeaderRightMenuWrapper>
-    </HeaderLayout>
-  );
-}
-
-export default Header;
-
 const HeaderLayout = styled.div`
   width: 100%;
   padding: 18px 48px;
   display: flex;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
   top: 0;
   box-sizing: border-box;
   align-items: center;
@@ -105,3 +71,37 @@ const DarkModeIcon = styled.button`
     line-height: 21px;
   }
 `;
+
+function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  return (
+    <HeaderLayout>
+      <StyledLogo>
+        <Lottie
+          animationData={gradientBlobAnimation}
+          loop
+          style={{ width: 124, opacity: 0.7 }}
+        />
+        <span>
+          LEE SONGA
+          <br />
+          PORTFOLIO
+        </span>
+      </StyledLogo>
+      <HeaderRightMenuWrapper>
+        <NavBar isOpen={isNavOpen} />
+        <DarkModeIcon onClick={toggleDarkMode}>
+          {isDarkMode ? <LuSun /> : <LuMoon />}
+        </DarkModeIcon>
+        <MobileMenu onClick={toggleNav} isOpen={isNavOpen} />
+      </HeaderRightMenuWrapper>
+    </HeaderLayout>
+  );
+}
+
+export default Header;
