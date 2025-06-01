@@ -1,58 +1,53 @@
+/* Pretendard */
 @font-face {
-  font-family: "Noto Sans KR";
-  src: local("Noto Sans KR")
-    url("../assets/fonts/NotoSansKr/NotoSansKR-ExtraBold.woff2") format("woff2");
+  font-family: "Pretendard";
+  src: local("Pretendard")
+    url("../assets/fonts/Pretendard/Pretendard-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Noto Sans KR";
-  src: local("Noto Sans KR")
-    url("../assets/fonts/NotoSansKr/NotoSansKR-Bold.woff2") format("woff2");
+  font-family: "Pretendard";
+  src: local("Pretendard")
+    url("../assets/fonts/Pretendard/Pretendard-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Noto Sans KR";
-  src: local("Noto Sans KR")
-    url("../assets/fonts/NotoSansKr/NotoSansKR-SemiBold.woff2") format("woff2");
+  font-family: "Pretendard";
+  src: local("Pretendard")
+    url("../assets/fonts/Pretendard/Pretendard-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Noto Sans KR";
-  src: local("Noto Sans KR")
-    url("../assets/fonts/NotoSansKr/NotoSansKR-Medium.woff2") format("woff2");
+  font-family: "Pretendard";
+  src: local("Pretendard")
+    url("../assets/fonts/Pretendard/Pretendard-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Noto Sans KR";
-  src: local("Noto Sans KR")
-    url("../assets/fonts/NotoSansKr/NotoSansKR-Regular.woff2") format("woff2");
+  font-family: "Pretendard";
+  src: local("Pretendard")
+    url("../assets/fonts/Pretendard/Pretendard-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Noto Sans KR";
-  src: local("Noto Sans KR")
-    url("../assets/fonts/NotoSansKr/NotoSansKR-Light.woff2") format("woff2");
+  font-family: "Pretendard";
+  src: local("Pretendard")
+    url("../assets/fonts/Pretendard/Pretendard-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
 }
 
-@font-face {
-  font-family: "Caveat";
-  src: url("../assets/fonts/Caveat/Caveat-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
+/* Montserrat */
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat")
@@ -66,5 +61,28 @@
   src: local(Montserrat)
     url("../assets/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2");
   font-weight: 400;
+  font-style: normal;
+}
+
+/* GmarketSans */
+@font-face {
+  font-family: "Gmarket Sans";
+  src: url("../assets/fonts/GmarketSans/GmarketSansBold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gmarket Sans";
+  src: url("../assets/fonts/GmarketSans/GmarketSansMedium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gmarket Sans";
+  src: url("../assets/fonts/GmarketSans/GmarketSansLight.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
 }
