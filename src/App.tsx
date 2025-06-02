@@ -5,11 +5,11 @@ import { darkTheme, lightTheme } from "@styles/theme";
 import Header from "@components/layout/Header";
 import Footer from "@components/layout/Footer";
 import BluredCirclesBackground from "@components/common/BluredCirclesBackground";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap, { ScrollTrigger, TextPlugin } from "gsap/all";
 import Section1 from "@components/Section1";
+import Section2 from "@components/Section2";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -22,6 +22,7 @@ function App() {
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <Section1 />
+        <Section2 />
       </main>
       <Footer />
     </ThemeProvider>
