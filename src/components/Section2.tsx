@@ -2,13 +2,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useState } from "react";
 import { ReactTyped } from "react-typed";
+import { ExperienceItem } from "src/type/types";
 import styled from "styled-components";
-
-const mockData = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  frontContent: "front",
-  backContent: "back",
-}));
 
 const StyledSection = styled.section`
   position: relative;
@@ -35,6 +30,7 @@ const CardList = styled.ul`
 `;
 
 const CardItem = styled.li`
+  width: 100%;
   min-width: 294px;
   height: 346px;
   perspective: 1000px;
@@ -73,7 +69,11 @@ const CardInner = styled.div`
   }
 `;
 
-function Section2() {
+type Props = {
+  data: ExperienceItem[];
+};
+
+function Section2({ data }: Props) {
   const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
 
   const handleFlip = (id: number) => {
@@ -124,9 +124,8 @@ function Section2() {
     };
 
   useGSAP(() => {
-    const cardCount = document.querySelectorAll(".card-item").length;
     gsap.to(".card-item", {
-      xPercent: -100 * (cardCount - 1),
+      xPercent: -100,
       ease: "none",
       scrollTrigger: {
         trigger: ".horizontal",
@@ -149,19 +148,20 @@ function Section2() {
         />
       </StyledHeader>
       <CardList>
-        {mockData.map((item) => (
+        {data.map((el) => (
           <CardItem
-            key={item.id}
-            onClick={() => handleFlip(item.id)}
-            onMouseMove={handleMouseMove(item.id)}
-            onMouseLeave={handleMouseLeave(item.id)}
+            key={el.id}
+            onClick={() => handleFlip(el.id)}
+            onMouseMove={handleMouseMove(el.id)}
+            onMouseLeave={handleMouseLeave(el.id)}
             className="card-item"
+            data-flipped={flippedCards[el.id] ? "true" : "false"}
           >
             <CardInner
-              className={`card-inner ${flippedCards[item.id] ? "flipped" : ""}`}
+              className={`card-inner ${flippedCards[el.id] ? "flipped" : ""}`}
             >
-              <div className="card-content front">{item.frontContent}</div>
-              <div className="card-content back">{item.backContent}</div>
+              <div className="card-content front">{el.title}</div>
+              <div className="card-content back">{el.desc}</div>
             </CardInner>
           </CardItem>
         ))}

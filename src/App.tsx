@@ -8,6 +8,7 @@ import BluredCirclesBackground from "@components/common/BluredCirclesBackground"
 import gsap, { ScrollTrigger, TextPlugin } from "gsap/all";
 import Section1 from "@components/Section1";
 import Section2 from "@components/Section2";
+import { data } from "./assets/data";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -22,7 +23,7 @@ function App() {
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <Section1 />
-        <Section2 />
+        <Section2 data={data.experience} />
       </main>
       <Footer />
     </ThemeProvider>
