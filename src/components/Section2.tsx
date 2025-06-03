@@ -15,37 +15,34 @@ const StyledHeader = styled.div`
 `;
 
 const TypingText = styled(ReactTyped)`
-  font-family: "Montserrat";
   font-size: 3.5rem;
   font-weight: 500;
 `;
 
 const CardList = styled.ul`
   display: flex;
-  gap: 30px;
+  gap: 1.875rem;
   padding-left: 164px;
-  overflow: hidden;
   width: 100%;
-  margin-top: 44px;
+  height: 100%;
+  margin-top: 2.75rem;
 `;
 
 const CardItem = styled.li`
   width: 100%;
+  height: 100%;
   min-width: 294px;
-  height: 346px;
   perspective: 1000px;
-  margin: 20px 0;
-  border-radius: 8px;
+  margin: 1.25rem 0;
+  border-radius: 0.5rem;
   cursor: pointer;
 `;
 
 const CardInner = styled.div`
-  width: 100%;
-  height: 100%;
   position: relative;
   transition: all 400ms;
   transform-style: preserve-3d;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   will-change: transform;
   transform: rotateX(0deg) rotateY(0deg);
 
@@ -56,16 +53,56 @@ const CardInner = styled.div`
 
   .card-content {
     position: absolute;
-    width: 100%;
-    height: 100%;
+
     backface-visibility: hidden;
-    padding: 24px 20px;
-    border-radius: 8px;
+    padding: 1.5rem 1.25rem;
+    border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.flipCardBgOpacity};
+
+    img {
+      transition: all 300ms;
+      filter: grayscale(1);
+    }
+
+    &:hover {
+      img {
+        filter: grayscale(0);
+      }
+    }
   }
 
   .back {
     transform: rotateY(180deg);
+    height: 100%;
+    min-height: 346px;
+  }
+
+  .title {
+    font-family: "Gmarket Sans";
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 0.5rem 0;
+  }
+
+  .thumbnail-img {
+    display: block;
+    margin: 0.75rem 0;
+    border-radius: 1rem;
+  }
+
+  .name-wrapper {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    font-family: "Gmarket Sans";
+    font-size: 0.75rem;
+
+    .logo-img {
+      width: 24px;
+      background-color: white;
+      border-radius: 100%;
+      border: 1px solid #d9d9d9;
+    }
   }
 `;
 
@@ -141,27 +178,62 @@ function Section2({ data }: Props) {
     <StyledSection className="horizontal">
       <StyledHeader>
         <TypingText
-          strings={["Career", "Education"]}
+          strings={["Work Experience", "Education"]}
           typeSpeed={120}
           backSpeed={50}
           loop
         />
       </StyledHeader>
       <CardList>
-        {data.map((el) => (
+        {data.map((item) => (
           <CardItem
-            key={el.id}
-            onClick={() => handleFlip(el.id)}
-            onMouseMove={handleMouseMove(el.id)}
-            onMouseLeave={handleMouseLeave(el.id)}
+            key={item.id}
+            onClick={() => handleFlip(item.id)}
+            onMouseMove={handleMouseMove(item.id)}
+            onMouseLeave={handleMouseLeave(item.id)}
             className="card-item"
-            data-flipped={flippedCards[el.id] ? "true" : "false"}
+            data-flipped={flippedCards[item.id] ? "true" : "false"}
           >
             <CardInner
-              className={`card-inner ${flippedCards[el.id] ? "flipped" : ""}`}
+              className={`card-inner ${flippedCards[item.id] ? "flipped" : ""}`}
             >
-              <div className="card-content front">{el.title}</div>
-              <div className="card-content back">{el.desc}</div>
+              {/* ---------- Front Content ---------- */}
+              <div className="card-content front">
+                <span>{item.category.toUpperCase()}</span>
+                <img
+                  src={`/images/sections/02/${item.thumbnailImgSrc}.jpg`}
+                  alt={`${item.title} 이미지`}
+                  style={{ width: "100%" }}
+                  className="thumbnail-img"
+                />
+                <div className="name-wrapper">
+                  <img
+                    src={`/images/sections/02/${item.logoImgSrc}.png`}
+                    alt={`${item.title} 로고 이미지`}
+                    className="logo-img"
+                  />
+
+                  <span>{item.name}</span>
+                </div>
+                <h5 className="title">{item.title}</h5>
+                <h5 className="data">{item.date}</h5>
+              </div>
+
+              {/* ---------- Back Content ----------- */}
+              <div className="card-content back">
+                <p>{item.desc}</p>
+                <ul
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    columnGap: "6px",
+                  }}
+                >
+                  {item.tag.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              </div>
             </CardInner>
           </CardItem>
         ))}

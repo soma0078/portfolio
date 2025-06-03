@@ -4,6 +4,7 @@ import devices from "@constants/devices";
 
 const GlobalStyle = createGlobalStyle`
 	${reset}
+
 	
 	:root {
 		--primary-color: #985EA4;
@@ -13,7 +14,8 @@ const GlobalStyle = createGlobalStyle`
 
 	*, body {
 		box-sizing: border-box;
-		font-family: 'Pretendard', sans-serif;	}
+		font-family: 'Montserrat','Pretendard', sans-serif;
+	}
 
 	body {
 		background-color: ${({ theme }) => theme.bgColor};

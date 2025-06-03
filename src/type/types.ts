@@ -4,6 +4,8 @@ export interface ExperienceItem {
   name: string;
   desc: string;
   date: string;
+  thumbnailImgSrc: string;
+  logoImgSrc: string;
   category: "work experience" | "education";
   tag: string[];
 }
