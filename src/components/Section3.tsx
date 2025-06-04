@@ -1,6 +1,8 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styled, { useTheme } from "styled-components";
+import { SkillItem } from "src/type/types";
+import InfiniteChips from "./common/InfiniteChips";
 
 const StyledSection = styled.section`
   position: relative;
@@ -20,7 +22,15 @@ const ScrollTextWrapper = styled.div`
   }
 `;
 
-function Section3() {
+const SkillsContainer = styled.div`
+  margin-top: 240px;
+`;
+
+type Props = {
+  data: SkillItem[];
+};
+
+function Section3({ data }: Props) {
   const theme = useTheme();
 
   useGSAP(() => {
@@ -69,6 +79,11 @@ function Section3() {
           )}
         </p>
       </ScrollTextWrapper>
+
+      <SkillsContainer>
+        <InfiniteChips skills={data} />
+        <InfiniteChips skills={data} reversed />
+      </SkillsContainer>
     </StyledSection>
   );
 }

@@ -25,7 +25,7 @@ function App() {
       <main>
         <Section1 />
         <Section2 data={data.experience} />
-        <Section3 />
+        <Section3 data={data.skills} />
       </main>
       <Footer />
     </ThemeProvider>
