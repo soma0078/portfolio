@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styled, { useTheme } from "styled-components";
 import { SkillItem } from "src/type/types";
-import InfiniteChips from "./common/InfiniteChips";
+import InfiniteChips from "../common/InfiniteChips";
 
 const StyledSection = styled.section`
   position: relative;

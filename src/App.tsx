@@ -6,10 +6,10 @@ import Header from "@components/layout/Header";
 import Footer from "@components/layout/Footer";
 import BluredCirclesBackground from "@components/common/BluredCirclesBackground";
 import gsap, { ScrollTrigger, TextPlugin } from "gsap/all";
-import Section1 from "@components/Section1";
-import Section2 from "@components/Section2";
+import Section1 from "@components/sections/Section1";
+import Section2 from "@components/sections/Section2";
 import { data } from "./assets/data";
-import Section3 from "@components/Section3";
+import Section3 from "@components/sections/Section3";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
