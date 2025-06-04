@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const StyledSection = styled.section`
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
 `;
 
 const StyledHeader = styled.div`
@@ -23,14 +23,12 @@ const CardList = styled.ul`
   display: flex;
   gap: 1.875rem;
   padding-left: 164px;
-  width: 100%;
-  height: 100%;
+
   margin-top: 2.75rem;
 `;
 
 const CardItem = styled.li`
   width: 100%;
-  height: 100%;
   min-width: 360px;
   min-height: 400px;
   perspective: 1000px;
@@ -113,7 +111,7 @@ const CardInner = styled.div`
     font-size: 0.875rem;
 
     .logo-img {
-      width: 24px;
+      width: 2.5rem;
       background-color: white;
       border-radius: 100%;
       border: 1px solid #d9d9d9;
@@ -176,6 +174,7 @@ function Section2({ data }: Props) {
     };
 
   useGSAP(() => {
+    // 가로 카드 스크롤
     gsap.to(".card-item", {
       xPercent: -200,
       ease: "none",
@@ -183,70 +182,74 @@ function Section2({ data }: Props) {
         trigger: ".horizontal",
         pin: true,
         scrub: 0.1,
-        start: "center 75%",
+        start: "center center",
         end: "+=3000",
       },
     });
   });
 
   return (
-    <StyledSection className="horizontal">
-      <StyledHeader>
-        <TypingText
-          strings={["Work Experience", "Education"]}
-          typeSpeed={120}
-          backSpeed={50}
-          loop
-        />
-      </StyledHeader>
-      <CardList>
-        {data.map((item) => (
-          <CardItem
-            key={item.id}
-            onClick={() => handleFlip(item.id)}
-            onMouseMove={handleMouseMove(item.id)}
-            onMouseLeave={handleMouseLeave(item.id)}
-            className="card-item"
-            data-flipped={flippedCards[item.id] ? "true" : "false"}
-          >
-            <CardInner
-              className={`card-inner ${flippedCards[item.id] ? "flipped" : ""}`}
+    <StyledSection>
+      <div className="horizontal">
+        <StyledHeader>
+          <TypingText
+            strings={["Work Experience", "Education"]}
+            typeSpeed={120}
+            backSpeed={50}
+            loop
+          />
+        </StyledHeader>
+        <CardList>
+          {data.map((item) => (
+            <CardItem
+              key={item.id}
+              onClick={() => handleFlip(item.id)}
+              onMouseMove={handleMouseMove(item.id)}
+              onMouseLeave={handleMouseLeave(item.id)}
+              className="card-item"
+              data-flipped={flippedCards[item.id] ? "true" : "false"}
             >
-              {/* ---------- Front Content ---------- */}
-              <div className="card-content front">
-                <span>{item.category.toUpperCase()}</span>
-                <img
-                  src={`/images/sections/02/${item.thumbnailImgSrc}.jpg`}
-                  alt={`${item.title} 이미지`}
-                  style={{ width: "100%" }}
-                  className="thumbnail-img"
-                />
-                <div className="name-wrapper">
+              <CardInner
+                className={`card-inner ${
+                  flippedCards[item.id] ? "flipped" : ""
+                }`}
+              >
+                {/* ---------- Front Content ---------- */}
+                <div className="card-content front">
+                  <span>{item.category.toUpperCase()}</span>
                   <img
-                    src={`/images/sections/02/${item.logoImgSrc}.png`}
-                    alt={`${item.title} 로고 이미지`}
-                    className="logo-img"
+                    src={`/images/sections/02/${item.thumbnailImgSrc}.jpg`}
+                    alt={`${item.title} 이미지`}
+                    style={{ width: "100%" }}
+                    className="thumbnail-img"
                   />
+                  <div className="name-wrapper">
+                    <img
+                      src={`/images/sections/02/${item.logoImgSrc}.png`}
+                      alt={`${item.title} 로고 이미지`}
+                      className="logo-img"
+                    />
 
-                  <span>{item.name}</span>
+                    <span>{item.name}</span>
+                  </div>
+                  <h5 className="title">{item.title}</h5>
+                  <h5 className="data">{item.date}</h5>
                 </div>
-                <h5 className="title">{item.title}</h5>
-                <h5 className="data">{item.date}</h5>
-              </div>
 
-              {/* ---------- Back Content ----------- */}
-              <div className="card-content back">
-                <p>{item.desc}</p>
-                <ul>
-                  {item.tag.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-              </div>
-            </CardInner>
-          </CardItem>
-        ))}
-      </CardList>
+                {/* ---------- Back Content ----------- */}
+                <div className="card-content back">
+                  <p>{item.desc}</p>
+                  <ul>
+                    {item.tag.map((tag) => (
+                      <li key={tag}>{tag}</li>
+                    ))}
+                  </ul>
+                </div>
+              </CardInner>
+            </CardItem>
+          ))}
+        </CardList>
+      </div>
     </StyledSection>
   );
 }

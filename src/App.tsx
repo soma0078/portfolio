@@ -9,6 +9,7 @@ import gsap, { ScrollTrigger, TextPlugin } from "gsap/all";
 import Section1 from "@components/Section1";
 import Section2 from "@components/Section2";
 import { data } from "./assets/data";
+import Section3 from "@components/Section3";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -24,6 +25,7 @@ function App() {
       <main>
         <Section1 />
         <Section2 data={data.experience} />
+        <Section3 />
       </main>
       <Footer />
     </ThemeProvider>

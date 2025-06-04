@@ -5,6 +5,7 @@ export const lightTheme = {
   dotColor: "#333333",
   textColorOpacity: "rgba(0, 0, 0, 0.04)",
   flipCardBgOpacity: "rgba(0, 0, 0, 0.07)",
+  wordActiveColor: "#000000",
 };
 
 export const darkTheme = {
@@ -14,6 +15,8 @@ export const darkTheme = {
   dotColor: "#985ea4",
   textColorOpacity: "rgba(255, 255, 255, 0.04)",
   flipCardBgOpacity: "rgba(255, 255, 255, 0.07)",
+
+  wordActiveColor: "#ffffff",
 };
 
 export const theme = {
