@@ -31,7 +31,8 @@ const CardList = styled.ul`
 const CardItem = styled.li`
   width: 100%;
   height: 100%;
-  min-width: 294px;
+  min-width: 360px;
+  min-height: 400px;
   perspective: 1000px;
   margin: 1.25rem 0;
   border-radius: 0.5rem;
@@ -45,6 +46,7 @@ const CardInner = styled.div`
   border-radius: 0.5rem;
   will-change: transform;
   transform: rotateX(0deg) rotateY(0deg);
+  min-height: 400px;
 
   &.flipped {
     transform: rotateY(180deg);
@@ -74,12 +76,25 @@ const CardInner = styled.div`
   .back {
     transform: rotateY(180deg);
     height: 100%;
-    min-height: 346px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p {
+      font-size: 1.125rem;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 0.5rem;
+    }
   }
 
   .title {
     font-family: "Gmarket Sans";
     font-weight: 700;
+    font-size: 1.25rem;
     letter-spacing: -1px;
     margin: 0.5rem 0;
   }
@@ -95,7 +110,7 @@ const CardInner = styled.div`
     gap: 0.25rem;
     align-items: center;
     font-family: "Gmarket Sans";
-    font-size: 0.75rem;
+    font-size: 0.875rem;
 
     .logo-img {
       width: 24px;
@@ -162,7 +177,7 @@ function Section2({ data }: Props) {
 
   useGSAP(() => {
     gsap.to(".card-item", {
-      xPercent: -100,
+      xPercent: -200,
       ease: "none",
       scrollTrigger: {
         trigger: ".horizontal",
@@ -222,13 +237,7 @@ function Section2({ data }: Props) {
               {/* ---------- Back Content ----------- */}
               <div className="card-content back">
                 <p>{item.desc}</p>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    columnGap: "6px",
-                  }}
-                >
+                <ul>
                   {item.tag.map((tag) => (
                     <li key={tag}>{tag}</li>
                   ))}
