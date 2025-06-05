@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 		cursor: pointer;
 		background-color: inherit;
 		transition: 0.3s ease;
+		color:${({ theme }) => theme.textColor}
 	}
 
 	p, li {

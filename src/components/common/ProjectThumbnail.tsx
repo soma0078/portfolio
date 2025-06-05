@@ -9,6 +9,7 @@ const Thumbnail = styled.div`
     font-weight: 600;
     margin-top: 1rem;
     margin-bottom: 0.375rem;
+    letter-spacing: -1px;
   }
   span {
     font-size: 0.875rem;
