@@ -1,4 +1,5 @@
 import ProjectThumbnail from "@components/common/ProjectThumbnail";
+import { useState } from "react";
 import { Project } from "src/type/types";
 import styled from "styled-components";
 
@@ -21,20 +22,39 @@ const ProjectList = styled.div`
   row-gap: 2.75rem;
 `;
 
+const MoreButton = styled.button`
+  padding: 0.75rem 1.25rem;
+  border-radius: 40px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.textColor};
+  border: 1px solid ${({ theme }) => theme.textColor};
+`;
+
 type Props = {
   data: Project[];
 };
 
+const VISIBLE_PROJECT_COUNT = 6;
+
 function Section4({ data }: Props) {
-  console.log(data);
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_PROJECT_COUNT);
+
+  const handleClick = () => {
+    setVisibleCount((prev) => prev + VISIBLE_PROJECT_COUNT);
+  };
+
   return (
     <StyledSection>
       <h3>My Project</h3>
       <ProjectList>
-        {data.map((item) => (
+        {data.slice(0, visibleCount).map((item) => (
           <ProjectThumbnail key={item.id} data={item} />
         ))}
       </ProjectList>
+
+      {visibleCount < data.length && (
+        <MoreButton onClick={handleClick}>LOAD MORE +</MoreButton>
+      )}
     </StyledSection>
   );
 }
