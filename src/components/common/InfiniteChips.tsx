@@ -12,12 +12,14 @@ const ChipsWrapper = styled.div`
 
   .reversed-chip {
     flex-direction: row-reverse;
+    margin-left: 0px;
   }
 `;
 
 const Row = styled.div`
   display: flex;
   flex-wrap: nowrap;
+  margin-left: -100px;
 `;
 
 const Chips = styled.div`
@@ -53,7 +55,7 @@ function InfiniteChips({ skills, reversed = false }: Props) {
       const direction = reversed ? 1 : -1;
 
       gsap.to(chips, {
-        x: () => `${direction * 150}px`,
+        x: () => `${direction * -150}px`,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,

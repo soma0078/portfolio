@@ -176,7 +176,7 @@ function Section2({ data }: Props) {
   useGSAP(() => {
     // 가로 카드 스크롤
     gsap.to(".card-item", {
-      xPercent: -200,
+      xPercent: -100 * data.length - 1,
       ease: "none",
       scrollTrigger: {
         trigger: ".horizontal",
@@ -233,7 +233,7 @@ function Section2({ data }: Props) {
                     <span>{item.name}</span>
                   </div>
                   <h5 className="title">{item.title}</h5>
-                  <h5 className="data">{item.date}</h5>
+                  <span>{item.date}</span>
                 </div>
 
                 {/* ---------- Back Content ----------- */}

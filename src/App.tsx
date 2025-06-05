@@ -10,6 +10,7 @@ import Section1 from "@components/sections/Section1";
 import Section2 from "@components/sections/Section2";
 import { data } from "./assets/data";
 import Section3 from "@components/sections/Section3";
+import Section4 from "@components/sections/Section4";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -26,6 +27,7 @@ function App() {
         <Section1 />
         <Section2 data={data.experience} />
         <Section3 data={data.skills} />
+        <Section4 data={data.projects} />
       </main>
       <Footer />
     </ThemeProvider>

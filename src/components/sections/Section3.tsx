@@ -41,7 +41,7 @@ function Section3({ data }: Props) {
       ease: "power1.out",
       scrollTrigger: {
         trigger: ".scroll-text-wrapper",
-        start: "top center+=500",
+        start: "top center",
         end: "top 20%",
         scrub: true,
       },

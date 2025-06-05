@@ -98,6 +98,8 @@ export const data: Data = {
       tag: ["네트워크관리사 2급", "정보처리산업기사"],
     },
   ],
+
+  // Section3
   skills: [
     { id: 1, imgSrc: "icon-html", name: "HTML5" },
     { id: 2, imgSrc: "icon-css", name: "CSS3" },
@@ -117,9 +119,284 @@ export const data: Data = {
     { id: 16, imgSrc: "icon-motion", name: "Motion" },
     { id: 17, imgSrc: "icon-styledcomponents", name: "Styled Components" },
     { id: 18, imgSrc: "icon-tailwindcss", name: "Tailwind CSS" },
-    { id: 19, imgSrc: "icon-tanstackquery", name: "Tanstack Qeury" },
+    { id: 19, imgSrc: "icon-tanstackquery", name: "Tanstack Query" },
     { id: 20, imgSrc: "icon-chartjs", name: "Chart.js" },
     { id: 21, imgSrc: "icon-vercel", name: "Vercel" },
     { id: 22, imgSrc: "icon-netlify", name: "Netlify" },
+  ],
+
+  // Section4
+  projects: [
+    {
+      id: 1,
+      category: "team",
+      title: "미루지마",
+      projectTitle: "Pomodoro TodoList Web App Project",
+      imgSrc: "thumbnail-mirujima",
+      gifSrc: "",
+      details: [
+        { title: "TASKS", desc: "FRONT-END" },
+        { title: "CONTRIBUTION", desc: "25%" },
+        { title: "DATE", desc: "2025-01-24 ~ 2025-03-18" },
+        {
+          title: "SKILLS",
+          desc: [
+            "icon-nextjs",
+            "icon-ts",
+            "icon-tailwindcss",
+            "icon-tanstackquery",
+            "icon-jotai",
+            "icon-vercel",
+            "icon-jira",
+          ],
+        },
+      ],
+      feature: {
+        title:
+          "뽀모도로 타이머, 목표 설정, 할 일 목록, 노트 작성 기능을 제공하는 업무 및 학습 관리 서비스",
+        description: [
+          "회원가입 및 로그인 시 이메일, 비밀번호 유효성 검사",
+          "체험 목록 카테고리, 가격순 필터 및 검색 기능",
+          "체험 상세 정보 제공 및 예약 가능 날짜 표시 기능",
+          "예약 가능한 인원, 시간 선택 후 체험 예약 신청 기능",
+          "체험 예약 신청 확인 및 승인/거절 기능",
+          "체험 등록, 수정, 삭제 및 관리",
+          "예약 신청 내역 관리 및 후기 작성 기능",
+          "내 정보(닉네임, 프로필 이미지, 비밀번호) 수정 기능",
+          "예약 승인 및 거절 알림 기능",
+        ],
+      },
+      task: [
+        {
+          title: "프로젝트 초기 세팅 및 문서화",
+          description: [
+            "기존 프로젝트 세팅 경험을 바탕으로, 이번 프로젝트에서는 Next.js 15 App Router를 활용해 디렉토리 구조를 설정하고, ESLint, Prettier, Husky, Commitlint를 적용하",
+            "Notion을 통해 프로젝트 일정과 초기 문서를 정리하고 팀과 공유하여 협업 효율성을 높였으며, 프로젝트 초기 세팅부터 팀원 간의 원활한 소통과 빠른 진행에 기여했습니다. ",
+          ],
+        },
+        {
+          title: "대시보드 페이지 시각화",
+          description: ["내용1", "내용2"],
+        },
+        {
+          title: "할 일 목록 페이지지",
+          description: ["내용1", "내용2"],
+        },
+        {
+          title: "비밀번호 암호화화",
+          description: ["내용1", "내용2"],
+        },
+      ],
+      troubleShooting: {
+        title: "서버와 클라이언트의 상태 불일치로 인한 하이드레이션 오류 해결",
+        description: [
+          "useState<number>(new Date().getDate())로 상태를 초기화했으나, 서버에서 렌더링된 HTML과 클라이언트에서의 HTML이 일치하지 않아 하이드레이션 오류가 발생했습니다.",
+          "new Date().getDate()는 클라이언트에서만 계산되는 값으로, 서버에서 렌더링할 때 todayDate가 null로 설정되었고, 클라이언트에서만 getDate()를 통해 날짜가 설정되었기 때문에, 하이드레이션 시 불 일치가 발생했습니다.",
+          "초기 상태를 useState<Date | null>(null)로 설정하여 서버와 클라이언트 렌더링 간 불일치를 방지하고, 날짜 계산 로직을 클라이언트 측에서만 실행되도록 수정하여 하이드레이션 오류를 방지했습니다.",
+        ],
+      },
+      screenShots: ["", ""],
+      url: {
+        view: "website url",
+        github: "github url",
+      },
+    },
+    {
+      id: 2,
+      category: "team",
+      title: "Kventure",
+      projectTitle: "Activity Booking Web App Project",
+      imgSrc: "thumbnail-kventure",
+      gifSrc: "",
+      details: [
+        { title: "TASKS", desc: "FRONT-END" },
+        { title: "CONTRIBUTION", desc: "25%" },
+        { title: "DATE", desc: "2025-01-24 ~ 2025-03-18" },
+        {
+          title: "SKILLS",
+          desc: [
+            "icon-nextjs",
+            "icon-ts",
+            "icon-tailwindcss",
+            "icon-tanstackquery",
+            "icon-jotai",
+            "icon-vercel",
+            "icon-jira",
+          ],
+        },
+      ],
+      feature: {
+        title: "주요 구현 사항",
+        description: ["내용1", "내용2"],
+      },
+      task: [
+        {
+          title: "작업 기여도",
+          description: ["내용1", "내용2"],
+        },
+      ],
+      troubleShooting: {
+        title: "트러블슈팅 제목",
+        description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
+      },
+
+      screenShots: ["", ""],
+      url: {
+        view: "website url",
+        github: "github url",
+      },
+    },
+    {
+      id: 3,
+      category: "team",
+      title: "PayPlus",
+      projectTitle: "Job Matching Web App Project",
+      imgSrc: "thumbnail-payplus",
+      gifSrc: "",
+      details: [
+        { title: "TASKS", desc: "FRONT-END" },
+        { title: "CONTRIBUTION", desc: "25%" },
+        { title: "DATE", desc: "2025-01-24 ~ 2025-03-18" },
+        {
+          title: "SKILLS",
+          desc: [
+            "icon-nextjs",
+            "icon-ts",
+            "icon-tailwindcss",
+            "icon-tanstackquery",
+            "icon-jotai",
+            "icon-vercel",
+            "icon-jira",
+          ],
+        },
+      ],
+      feature: {
+        title: "주요 구현 사항",
+        description: ["내용1", "내용2"],
+      },
+      task: [
+        {
+          title: "작업 기여도",
+          description: ["내용1", "내용2"],
+        },
+      ],
+      troubleShooting: {
+        title: "트러블슈팅 제목",
+        description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
+      },
+      screenShots: ["", ""],
+      url: {
+        view: "website url",
+        github: "github url",
+      },
+    },
+    {
+      id: 4,
+      category: "team",
+      title: "Openmind",
+      projectTitle: "Q&A Web App Project",
+      imgSrc: "thumbnail-openmind",
+      gifSrc: "",
+      details: [
+        { title: "TASKS", desc: "FRONT-END" },
+        { title: "CONTRIBUTION", desc: "25%" },
+        { title: "DATE", desc: "2025-01-24 ~ 2025-03-18" },
+        {
+          title: "SKILLS",
+          desc: [
+            "icon-nextjs",
+            "icon-ts",
+            "icon-tailwindcss",
+            "icon-tanstackquery",
+            "icon-jotai",
+            "icon-vercel",
+            "icon-jira",
+          ],
+        },
+      ],
+      feature: {
+        title: "주요 구현 사항",
+        description: ["내용1", "내용2"],
+      },
+      task: [
+        {
+          title: "작업 기여도",
+          description: ["내용1", "내용2"],
+        },
+      ],
+      troubleShooting: {
+        title: "트러블슈팅 제목",
+        description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
+      },
+      screenShots: ["", ""],
+      url: {
+        view: "website url",
+        github: "github url",
+      },
+    },
+    {
+      id: 5,
+      category: "personal",
+      title: "이송아 포트폴리오",
+      projectTitle: "Portfolio",
+      imgSrc: "thumbnail-portfolio",
+      gifSrc: "",
+      details: [
+        { title: "TASKS", desc: "UX/UI DESIGN · PUBLISHING" },
+        { title: "CONTRIBUTION", desc: "100%" },
+        { title: "DATE", desc: "2025" },
+        {
+          title: "SKILLS",
+          desc: ["icon-html", "icon-css", "icon-js", "icon-jquery"],
+        },
+      ],
+      feature: {
+        title: "주요 구현 사항",
+        description: ["내용1", "내용2"],
+      },
+      task: [
+        {
+          title: "작업 기여도",
+          description: ["내용1", "내용2"],
+        },
+      ],
+      troubleShooting: {
+        title: "트러블슈팅 제목",
+        description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
+      },
+      screenShots: ["", ""],
+      url: {
+        view: "website url",
+        github: "github url",
+      },
+    },
+    {
+      id: 6,
+      category: "work",
+      title: "용인서울병원",
+      projectTitle: "병원 웹사이트 제작",
+      imgSrc: "thumbnail-work-01",
+      gifSrc: "",
+      details: [
+        { title: "TASKS", desc: "UX/UI DESIGN · PUBLISHING" },
+        { title: "CONTRIBUTION", desc: "100%" },
+        { title: "DATE", desc: "2022" },
+        {
+          title: "SKILLS",
+          desc: ["icon-html", "icon-css", "icon-js", "icon-jquery"],
+        },
+      ],
+      feature: {
+        title: "용인서울병원 웹사이트 리뉴얼",
+        description: [
+          "풀페이지 형태로 제작했으며, 메인 비주얼 배너와 의료진 소개 섹션에 Swiper 라이브러리를 활용한 슬라이드 기능을 구현했습니다.",
+          "모든 디바이스에서 최적화된 사용자 경험을 제공하기 위해 반응형 웹으로 설계했습니다.",
+        ],
+      },
+      screenShots: ["", ""],
+      url: {
+        view: "website url",
+      },
+    },
   ],
 };
