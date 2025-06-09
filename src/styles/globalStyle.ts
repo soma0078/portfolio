@@ -10,6 +10,8 @@ const GlobalStyle = createGlobalStyle`
 		--primary-color: #985EA4;
 		--primary-color-dark: #824F8D;
 		--primary-gradient: linear-gradient(135deg, #BD4BE5, #5856DE);
+		--filterBar-gradient-light: linear-gradient(0deg, #fff, #ffffff81, #ffffff11);
+		--filterBar-gradient-dark: linear-gradient(0deg, #0c092a,rgba(12, 9, 42, 0.71), #0c092a11);
 	}
 
 	*, body {

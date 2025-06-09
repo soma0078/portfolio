@@ -1,26 +1,49 @@
 import ProjectThumbnail from "@components/common/ProjectThumbnail";
-import { useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef, useState } from "react";
 import { Project } from "src/type/types";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
   position: relative;
-  padding: 0 164px;
-  margin-top: 240px;
 
-  h3 {
-    font-size: 3.5rem;
-    font-weight: 500;
+  .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+  }
+`;
+
+const StyledTitle = styled.h3`
+  position: relative;
+  display: inline-block;
+
+  overflow: hidden;
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin-bottom: 4rem;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    background: var(--primary-gradient);
+    z-index: 1;
+  }
+
+  span {
+    position: relative;
+    opacity: 1;
   }
 `;
 
 const ProjectList = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 1.875rem;
-  row-gap: 2.75rem;
+  gap: 1.25rem;
+  padding: 0 164px;
+  padding-bottom: 15vh;
 `;
 
 const MoreButton = styled.button`
@@ -32,28 +55,37 @@ const MoreButton = styled.button`
 `;
 
 const CategoryFilter = styled.div`
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  background: ${({ theme }) => theme.filterBar};
   display: flex;
   justify-content: center;
-  margin-bottom: 2.25rem;
-  gap: 1.5rem;
+  gap: 0.5rem;
 
   button {
-    font-size: 1.125rem;
-    font-family: "Gmarket Sans";
+    font-weight: 500;
     position: relative;
+    border: 1px solid #c7c7c7;
+    border-radius: 4px;
+    padding: 6px 12px 6px 24px;
+    overflow: hidden;
 
     &:before,
     &:after {
       content: "";
       position: absolute;
+      transition: all 0.3s;
     }
 
-    &:not(:last-child):after {
-      width: 4px;
-      height: 4px;
+    &:after {
+      width: 6px;
+      height: 6px;
       border-radius: 30px;
-      background-color: ${({ theme }) => theme.textColor};
-      right: -15px;
+      border: 1px solid;
+      border-color: #c7c7c7;
+      left: 8px;
       top: 50%;
       transform: translateY(-50%);
     }
@@ -64,13 +96,30 @@ const CategoryFilter = styled.div`
       left: 0;
       bottom: 0;
       z-index: -1;
-      transition: all 0.3s;
     }
 
     &.active:before,
     &:hover:before {
-      height: 55%;
+      height: 100%;
       background: var(--primary-gradient);
+    }
+    &.active,
+    &:hover {
+      color: white;
+    }
+    &:hover:after {
+      border-color: white;
+    }
+    &.active:after {
+      background-color: white;
+      border-color: white;
+    }
+    &.active:hover:after {
+      background-color: black;
+      border-color: black;
+    }
+    &.active:hover {
+      color: black;
     }
   }
 `;
@@ -84,6 +133,7 @@ const categories = ["all", "team", "personal", "work"] as const;
 type Category = (typeof categories)[number];
 
 function Section4({ data }: Props) {
+  const titleRef = useRef(null);
   const [visibleCount, setVisibleCount] = useState(VISIBLE_PROJECT_COUNT);
 
   const [category, setCategory] = useState<Category>("all");
@@ -100,9 +150,93 @@ function Section4({ data }: Props) {
     setVisibleCount((prev) => prev + VISIBLE_PROJECT_COUNT);
   };
 
+  useGSAP(() => {
+    if (!titleRef.current) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: titleRef.current,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: false,
+      },
+    });
+
+    // 1) 오른쪽에서 왼쪽으로 overlay 너비 차오름
+    tl.to(".overlay", {
+      width: "100%",
+      duration: 0.8,
+      ease: "power1.out",
+      transformOrigin: "right center",
+    })
+      // 2) overlay 오른쪽으로 슬라이드하며 사라짐
+      .to(".overlay", {
+        x: "100%",
+        duration: 0.6,
+        delay: 0.3,
+        ease: "power1.in",
+      })
+      // 3) 텍스트 opacity 0 -> 1 (덮였다가 보임)
+      .fromTo(
+        ".section-title span",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5 },
+        "-=0.6"
+      );
+
+    // 스크롤시 위로 이동하며 축소, 투명도 효과
+    gsap.to(".section-header", {
+      y: "-40%",
+      scrollTrigger: {
+        trigger: ".section",
+        start: "top 20%",
+        toggleActions: "play none none reverse",
+      },
+      scale: 0.95,
+      opacity: 0.1,
+    });
+
+    // 프로젝트 패럴랙스 효과
+    const elements = gsap.utils.toArray(".project-thumbnail") as HTMLElement[];
+    elements.forEach((el) => {
+      const speed = parseFloat(el.getAttribute("data-speed") || "1");
+
+      gsap.to(el, {
+        y: () => -window.innerHeight * speed * 0.3,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".project-list",
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+  });
+
   return (
-    <StyledSection>
-      <h3>My Project</h3>
+    <StyledSection className="section">
+      <div className="section-header">
+        <StyledTitle ref={titleRef} className="section-title">
+          <div className="overlay" />
+          <span>Project</span>
+        </StyledTitle>
+      </div>
+
+      <ProjectList className="project-list">
+        {filterdData.slice(0, visibleCount).map((item, index) => (
+          <ProjectThumbnail
+            key={item.id}
+            data={item}
+            className="project-thumbnail"
+            dataSpeed={1 + (index % 3) * 0.5}
+          />
+        ))}
+      </ProjectList>
+
+      {visibleCount < data.length && (
+        <MoreButton onClick={handleClick}>LOAD MORE +</MoreButton>
+      )}
 
       <CategoryFilter>
         {categories.map((c) => (
@@ -115,16 +249,6 @@ function Section4({ data }: Props) {
           </button>
         ))}
       </CategoryFilter>
-
-      <ProjectList>
-        {filterdData.slice(0, visibleCount).map((item) => (
-          <ProjectThumbnail key={item.id} data={item} />
-        ))}
-      </ProjectList>
-
-      {visibleCount < data.length && (
-        <MoreButton onClick={handleClick}>LOAD MORE +</MoreButton>
-      )}
     </StyledSection>
   );
 }

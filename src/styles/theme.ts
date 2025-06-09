@@ -6,6 +6,7 @@ export const lightTheme = {
   textColorOpacity: "rgba(0, 0, 0, 0.04)",
   flipCardBgOpacity: "rgba(0, 0, 0, 0.07)",
   wordActiveColor: "#000000",
+  filterBar: `var(--filterBar-gradient-light)`,
 };
 
 export const darkTheme = {
@@ -15,8 +16,8 @@ export const darkTheme = {
   dotColor: "#985ea4",
   textColorOpacity: "rgba(255, 255, 255, 0.04)",
   flipCardBgOpacity: "rgba(255, 255, 255, 0.07)",
-
   wordActiveColor: "#ffffff",
+  filterBar: `var(--filterBar-gradient-dark)`,
 };
 
 export const theme = {
