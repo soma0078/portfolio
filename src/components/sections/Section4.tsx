@@ -1,7 +1,9 @@
 import ProjectThumbnail from "@components/common/ProjectThumbnail";
+import devices from "@constants/devices";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Project } from "src/type/types";
 import styled from "styled-components";
 
@@ -20,7 +22,7 @@ const StyledTitle = styled.h3`
   overflow: hidden;
   font-size: 3.5rem;
   font-weight: 500;
-  margin-bottom: 4rem;
+  margin-bottom: 2.75rem;
 
   .overlay {
     position: absolute;
@@ -44,6 +46,13 @@ const ProjectList = styled.div`
   gap: 1.25rem;
   padding: 0 164px;
   padding-bottom: 15vh;
+
+  @media ${devices.lg} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media ${devices.md} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const MoreButton = styled.button`
@@ -133,6 +142,7 @@ const categories = ["all", "team", "personal", "work"] as const;
 type Category = (typeof categories)[number];
 
 function Section4({ data }: Props) {
+  const navigate = useNavigate();
   const titleRef = useRef(null);
   const [visibleCount, setVisibleCount] = useState(VISIBLE_PROJECT_COUNT);
 
@@ -214,6 +224,11 @@ function Section4({ data }: Props) {
     });
   });
 
+  // 프로젝트 상세 페이지 이동
+  const handleProjectClick = (projectId: number) => {
+    navigate(`/projects/${projectId}`);
+  };
+
   return (
     <StyledSection className="section">
       <div className="section-header">
@@ -230,6 +245,7 @@ function Section4({ data }: Props) {
             data={item}
             className="project-thumbnail"
             dataSpeed={1 + (index % 3) * 0.5}
+            onClick={() => handleProjectClick(item.id)}
           />
         ))}
       </ProjectList>

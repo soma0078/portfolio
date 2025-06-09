@@ -11,6 +11,8 @@ import Section2 from "@components/sections/Section2";
 import { data } from "./assets/data";
 import Section3 from "@components/sections/Section3";
 import Section4 from "@components/sections/Section4";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProjectDetailPage from "@components/pages/[projectId]";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -19,18 +21,33 @@ function App() {
   const toggleDarkMode = () => setIsDarkMode((prevMode) => !prevMode);
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <GlobalStyle />
-      <BluredCirclesBackground />
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <main>
-        <Section1 />
-        <Section2 data={data.experience} />
-        <Section3 data={data.skills} />
-        <Section4 data={data.projects} />
-      </main>
-      <Footer />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <BluredCirclesBackground />
+        <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Section1 />
+                  <Section2 data={data.experience} />
+                  <Section3 data={data.skills} />
+                  <Section4 data={data.projects} />
+                </>
+              }
+            />
+            <Route
+              path="/projects/:projectId"
+              element={<ProjectDetailPage />}
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
