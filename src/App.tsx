@@ -13,6 +13,7 @@ import Section3 from "@components/sections/Section3";
 import Section4 from "@components/sections/Section4";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProjectDetailPage from "@components/pages/[projectId]";
+import Section5 from "@components/sections/Section5";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -36,6 +37,7 @@ function App() {
                   <Section2 data={data.experience} />
                   <Section3 data={data.skills} />
                   <Section4 data={data.projects} />
+                  <Section5 />
                 </>
               }
             />
