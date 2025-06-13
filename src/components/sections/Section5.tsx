@@ -1,8 +1,8 @@
+import Button from "@components/common/Button";
 import { MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
@@ -32,6 +32,11 @@ const TextBox = styled.div`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
 const CopyRight = styled.div`
   font-family: "Pretendard";
   font-weight: 200;
@@ -39,7 +44,7 @@ const CopyRight = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   opacity: 0.5;
   line-height: 1.4;
 `;
@@ -104,10 +109,14 @@ function Section5() {
           </p>
         ))}
       </TextBox>
-      <div>
-        <Link to={`mailto:${MY_EMAIL}`}>Contact me</Link>
-        <Link to={MY_GITHUB_URL}>Github</Link>
-      </div>
+      <ButtonWrapper>
+        <Button type="link" to={`mailto:${MY_EMAIL}`}>
+          Contact me
+        </Button>
+        <Button type="link" to={MY_GITHUB_URL}>
+          Github
+        </Button>
+      </ButtonWrapper>
       <CopyRight>
         <span>© 2025 Createad by Songa. All Rights Reserved.</span>
         <span>React, GSAP, Tailwind CSS 기반으로 제작된 사이트입니다.</span>
