@@ -47,7 +47,7 @@ const StyledSection = styled.section`
     position: absolute;
     z-index: -1;
     left: 10%;
-    font-size: 16.25rem;
+    font-size: 17.5vw;
     font-weight: 800;
     font-family: "Montserrat", sans-serif;
     white-space: nowrap;

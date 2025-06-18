@@ -1,10 +1,57 @@
-import { useEffect, useState } from "react";
-import { IoMdArrowUp } from "react-icons/io";
 import styled from "styled-components";
+import { IoMdArrowUp } from "react-icons/io";
+
+const FooterLayout = styled.footer`
+  width: 100%;
+  position: relative;
+
+  &:before {
+    content: "LEESONGA";
+    font-size: 17.5vw;
+    font-weight: 800;
+    letter-spacing: -5px;
+    color: ${({ theme }) => theme.textColorOpacity};
+  }
+`;
+
+const ScrollToTopButton = styled.button`
+  position: absolute;
+  left: 24px;
+  bottom: 85%;
+  font-size: 1rem;
+  transition: all 0.3s;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+
+  .scroll-text {
+    position: absolute;
+    left: 24px;
+    height: 20px;
+    transition: all 300ms;
+    width: 100px;
+    overflow: hidden;
+    font-weight: 500;
+
+    span {
+      position: absolute;
+      left: 0;
+      transition: all 300ms;
+    }
+    .top-text-hover {
+      transform: translateY(100%);
+    }
+  }
+
+  &:hover .top-text {
+    transform: translateY(-100%);
+  }
+  &:hover .top-text-hover {
+    transform: translateY(0);
+  }
+`;
 
 function Footer() {
-  const [isVisible, setIsVisible] = useState(false);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,73 +59,17 @@ function Footer() {
     });
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <FooterLayout>
-      <span className="copyright">ⓒ 2025 LeeSonga. All Rights Reserved.</span>
-
-      {isVisible && (
-        <ScrollToTopButton onClick={scrollToTop}>
-          <IoMdArrowUp />
-        </ScrollToTopButton>
-      )}
+      <ScrollToTopButton onClick={scrollToTop}>
+        <IoMdArrowUp />
+        <div className="scroll-text">
+          <span className="top-text">Back To Top</span>
+          <span className="top-text-hover">맨 위로</span>
+        </div>
+      </ScrollToTopButton>
     </FooterLayout>
   );
 }
 
 export default Footer;
-
-const FooterLayout = styled.footer`
-  width: 100%;
-  padding: 24px;
-  position: relative;
-
-  .copyright {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    color: #cacaca;
-    text-align: center;
-  }
-`;
-
-const ScrollToTopButton = styled.button`
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  border-radius: 99px;
-  width: 45px;
-  height: 45px;
-  line-height: 45px;
-  font-size: 20px;
-  border: 1px solid #d2d2d2;
-  color: #b4b4b4;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  transition: all 0.3s;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background-color: #efefef;
-  }
-`;
