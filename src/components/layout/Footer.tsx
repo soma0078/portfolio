@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { IoMdArrowUp } from "react-icons/io";
+import devices from "@constants/devices";
+import Badge from "@components/common/Badge";
+import { MY_EMAIL, MY_GITHUB_URL, MY_VELOG_URL } from "@constants/urls";
 
 const FooterLayout = styled.footer`
   width: 100%;
@@ -8,9 +11,15 @@ const FooterLayout = styled.footer`
   &:before {
     content: "LEESONGA";
     font-size: 17.5vw;
+    line-height: normal;
     font-weight: 800;
-    letter-spacing: -5px;
+    letter-spacing: -2px;
     color: ${({ theme }) => theme.textColorOpacity};
+    margin-left: -1.25rem;
+
+    @media ${devices.sm} {
+      margin-left: 0;
+    }
   }
 `;
 
@@ -51,6 +60,10 @@ const ScrollToTopButton = styled.button`
   }
 `;
 
+const BadgeWrapper = styled.div`
+  display: flex;
+`;
+
 function Footer() {
   const scrollToTop = () => {
     window.scrollTo({
@@ -68,6 +81,12 @@ function Footer() {
           <span className="top-text-hover">맨 위로</span>
         </div>
       </ScrollToTopButton>
+
+      <BadgeWrapper>
+        <Badge text={MY_EMAIL} />
+        <Badge text={MY_GITHUB_URL} />
+        <Badge text={MY_VELOG_URL} />
+      </BadgeWrapper>
     </FooterLayout>
   );
 }
