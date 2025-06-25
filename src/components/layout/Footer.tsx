@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { IoMdArrowUp } from "react-icons/io";
 import devices from "@constants/devices";
 import Badge from "@components/common/Badge";
@@ -60,8 +60,43 @@ const ScrollToTopButton = styled.button`
   }
 `;
 
+const floatAndRotate = keyframes`
+  0% {
+    transform: rotate(0deg) translateX(5px) rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg) translateX(5px) rotate(-180deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(5px) rotate(-360deg);
+  }
+`;
+
 const BadgeWrapper = styled.div`
-  display: flex;
+  & > span {
+    position: absolute;
+    transform: translateY(-50%);
+  }
+
+  & > span:nth-child(1) {
+    left: 5%;
+    bottom: 40%;
+    animation: ${floatAndRotate} 6s linear 2s infinite;
+  }
+  & > span:nth-child(2) {
+    left: 40%;
+    bottom: 20%;
+    animation: ${floatAndRotate} 5s linear infinite reverse;
+  }
+  & > span:nth-child(3) {
+    right: 7%;
+    bottom: 55%;
+    animation: ${floatAndRotate} 4s linear infinite;
+  }
+
+  @media ${devices.md} {
+    display: none;
+  }
 `;
 
 function Footer() {
@@ -84,8 +119,8 @@ function Footer() {
 
       <BadgeWrapper>
         <Badge text={MY_EMAIL} />
-        <Badge text={MY_GITHUB_URL} />
-        <Badge text={MY_VELOG_URL} />
+        <Badge text={MY_GITHUB_URL.slice(8)} />
+        <Badge text={MY_VELOG_URL.slice(8)} />
       </BadgeWrapper>
     </FooterLayout>
   );
