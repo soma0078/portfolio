@@ -45,10 +45,10 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	::-webkit-scrollbar {
-		width: 8px;
+		width: 0;
 	}
 	
-	::-webkit-scrollbar-thumb {
+	/* ::-webkit-scrollbar-thumb {
 		background: var(--primary-color);
 		border-radius: 4px;
 		&:hover {
@@ -59,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
 	::-webkit-scrollbar-track {
 		background-color: transparent;
 		
-	}
+	} */
 
 	.popup-project-title {
 		font-size: 2rem;
