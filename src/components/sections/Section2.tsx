@@ -30,7 +30,6 @@ const CardList = styled.ul`
 const CardItem = styled.li`
   width: 100%;
   min-width: 360px;
-  min-height: 400px;
   perspective: 1000px;
   margin: 1.25rem 0;
   border-radius: 0.5rem;
@@ -44,7 +43,7 @@ const CardInner = styled.div`
   border-radius: 0.5rem;
   will-change: transform;
   transform: rotateX(0deg) rotateY(0deg);
-  min-height: 400px;
+  min-height: 420px;
 
   &.flipped {
     transform: rotateY(180deg);
@@ -174,9 +173,16 @@ function Section2({ data }: Props) {
     };
 
   useGSAP(() => {
-    // 가로 카드 스크롤
-    gsap.to(".card-item", {
-      xPercent: -100 * data.length - 1,
+    const items = gsap.utils.toArray(".card-item");
+    const clamp = gsap.utils.clamp(-5, 5);
+    const skewSetter = gsap.quickTo(items, "skewX", {
+      duration: 0.3,
+      ease: "power3.out",
+    });
+
+    // 가로 스크롤
+    gsap.to(items, {
+      xPercent: -80 * (items.length - 1),
       ease: "none",
       scrollTrigger: {
         trigger: ".horizontal",
@@ -184,7 +190,11 @@ function Section2({ data }: Props) {
         scrub: 0.1,
         start: "center center",
         end: "+=3000",
+        onUpdate: (self) => {
+          skewSetter(clamp(self.getVelocity() / -80));
+        },
       },
+      onStop: () => skewSetter(0),
     });
   });
 

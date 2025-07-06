@@ -86,17 +86,17 @@ export const data: Data = {
         "Adobe Xd",
       ],
     },
-    {
-      id: 6,
-      title: "컴퓨터공학 학사학위",
-      name: "학점은행제",
-      desc: "학점은행제를 통해 컴퓨터공학 학사 학위를 취득하며 프로그래밍, 알고리즘, 자료구조 등 컴퓨터 과학의 핵심 이론을 습득했습니다. 실습 프로젝트를 통해 이론 지식을 실제 문제 해결에 적용하는 능력을 배양했으며, 소프트웨어 개발의 체계적인 접근 방법을 익혔습니다",
-      date: "2023.07 - 2025.02",
-      thumbnailImgSrc: "img-experience-06",
-      logoImgSrc: "img-experience-logo-06",
-      category: "education",
-      tag: ["네트워크관리사 2급", "정보처리산업기사"],
-    },
+    // {
+    //   id: 6,
+    //   title: "컴퓨터공학 학사학위",
+    //   name: "학점은행제",
+    //   desc: "학점은행제를 통해 컴퓨터공학 학사 학위를 취득하며 프로그래밍, 알고리즘, 자료구조 등 컴퓨터 과학의 핵심 이론을 습득했습니다. 실습 프로젝트를 통해 이론 지식을 실제 문제 해결에 적용하는 능력을 배양했으며, 소프트웨어 개발의 체계적인 접근 방법을 익혔습니다",
+    //   date: "2023.07 - 2025.02",
+    //   thumbnailImgSrc: "img-experience-06",
+    //   logoImgSrc: "img-experience-logo-06",
+    //   category: "education",
+    //   tag: ["네트워크관리사 2급", "정보처리산업기사"],
+    // },
   ],
 
   // Section3
