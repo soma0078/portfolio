@@ -16,6 +16,7 @@ import ProjectDetailPage from "@components/pages/[projectId]";
 import Section5 from "@components/sections/Section5";
 import { useGSAP } from "@gsap/react";
 import ProjectPage from "@components/pages/projects";
+import NotFoundPage from "@components/pages/NotFound";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollSmoother);
 
@@ -67,6 +68,7 @@ function App() {
                   path="/projects/:projectId"
                   element={<ProjectDetailPage />}
                 />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </main>
             <Footer />

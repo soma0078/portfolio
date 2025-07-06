@@ -97,6 +97,7 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
           PORTFOLIO
         </span>
       </StyledLogo>
+
       <HeaderRightMenuWrapper>
         <MenuOverlay isOpen={isNavOpen} onClose={handleClose} />
         <DarkModeIcon onClick={toggleDarkMode}>
