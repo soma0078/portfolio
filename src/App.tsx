@@ -15,6 +15,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProjectDetailPage from "@components/pages/[projectId]";
 import Section5 from "@components/sections/Section5";
 import { useGSAP } from "@gsap/react";
+import ProjectPage from "@components/pages/projects";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollSmoother);
 
@@ -28,6 +29,7 @@ function App() {
       content: "#smooth-content",
       smooth: 2,
       smoothTouch: 0.1,
+      effects: false,
     });
 
     // 컴포넌트 언마운트 시 정리
@@ -56,6 +58,10 @@ function App() {
                       <Section5 />
                     </>
                   }
+                />
+                <Route
+                  path="/projects"
+                  element={<ProjectPage data={data.projects} />}
                 />
                 <Route
                   path="/projects/:projectId"

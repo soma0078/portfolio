@@ -1,11 +1,10 @@
-import ProjectThumbnail from "@components/common/ProjectThumbnail";
-import devices from "@constants/devices";
-import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 import gsap from "gsap";
-import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Project } from "src/type/types";
+import { useGSAP } from "@gsap/react";
 import styled from "styled-components";
+import { Project } from "src/type/types";
+import ProjectList from "@components/ProjectList";
+import Button from "@components/common/Button";
 
 const StyledSection = styled.section`
   position: relative;
@@ -40,125 +39,12 @@ const StyledTitle = styled.h3`
   }
 `;
 
-const ProjectList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  padding: 0 164px;
-  padding-bottom: 15vh;
-
-  @media ${devices.lg} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media ${devices.md} {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;
-
-const MoreButton = styled.button`
-  padding: 0.75rem 1.25rem;
-  border-radius: 40px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.textColor};
-  border: 1px solid ${({ theme }) => theme.textColor};
-`;
-
-const CategoryFilter = styled.div`
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  padding: 20px 0;
-  background: ${({ theme }) => theme.filterBar};
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-
-  button {
-    font-weight: 500;
-    position: relative;
-    border: 1px solid #c7c7c7;
-    border-radius: 4px;
-    padding: 6px 12px 6px 24px;
-    overflow: hidden;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      transition: all 0.3s;
-    }
-
-    &:after {
-      width: 6px;
-      height: 6px;
-      border-radius: 30px;
-      border: 1px solid;
-      border-color: #c7c7c7;
-      left: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    &:before {
-      width: 100%;
-      height: 0;
-      left: 0;
-      bottom: 0;
-      z-index: -1;
-    }
-
-    &.active:before,
-    &:hover:before {
-      height: 100%;
-      background: var(--primary-gradient);
-    }
-    &.active,
-    &:hover {
-      color: white;
-    }
-    &:hover:after {
-      border-color: white;
-    }
-    &.active:after {
-      background-color: white;
-      border-color: white;
-    }
-    &.active:hover:after {
-      background-color: black;
-      border-color: black;
-    }
-    &.active:hover {
-      color: black;
-    }
-  }
-`;
-
 type Props = {
   data: Project[];
 };
 
-const VISIBLE_PROJECT_COUNT = 6;
-const categories = ["all", "team", "personal", "work"] as const;
-type Category = (typeof categories)[number];
-
 function Section4({ data }: Props) {
-  const navigate = useNavigate();
   const titleRef = useRef(null);
-  const [visibleCount, setVisibleCount] = useState(VISIBLE_PROJECT_COUNT);
-
-  const [category, setCategory] = useState<Category>("all");
-
-  // 카테고리 첫 글자 대문자
-  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-
-  const filterdData =
-    category === "all"
-      ? data
-      : data.filter((item) => item.category === category);
-
-  const handleClick = () => {
-    setVisibleCount((prev) => prev + VISIBLE_PROJECT_COUNT);
-  };
 
   useGSAP(() => {
     if (!titleRef.current) return;
@@ -205,29 +91,7 @@ function Section4({ data }: Props) {
       scale: 0.95,
       opacity: 0.1,
     });
-
-    // 프로젝트 패럴랙스 효과
-    const elements = gsap.utils.toArray(".project-thumbnail") as HTMLElement[];
-    elements.forEach((el) => {
-      const speed = parseFloat(el.getAttribute("data-speed") || "1");
-
-      gsap.to(el, {
-        y: () => -window.innerHeight * speed * 0.3,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".project-list",
-          start: "bottom bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    });
-  });
-
-  // 프로젝트 상세 페이지 이동
-  const handleProjectClick = (projectId: number) => {
-    navigate(`/projects/${projectId}`);
-  };
+  }, []);
 
   return (
     <StyledSection className="section">
@@ -237,34 +101,12 @@ function Section4({ data }: Props) {
           <span>Project</span>
         </StyledTitle>
       </div>
-
-      <ProjectList className="project-list">
-        {filterdData.slice(0, visibleCount).map((item, index) => (
-          <ProjectThumbnail
-            key={item.id}
-            data={item}
-            className="project-thumbnail"
-            dataSpeed={1 + (index % 3) * 0.5}
-            onClick={() => handleProjectClick(item.id)}
-          />
-        ))}
-      </ProjectList>
-
-      {visibleCount < data.length && (
-        <MoreButton onClick={handleClick}>LOAD MORE +</MoreButton>
-      )}
-
-      <CategoryFilter>
-        {categories.map((c) => (
-          <button
-            key={c}
-            onClick={() => setCategory(c)}
-            className={category === c ? "active" : ""}
-          >
-            {capitalize(c)}
-          </button>
-        ))}
-      </CategoryFilter>
+      <ProjectList data={data} visibleCount={6} />
+      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+        <Button type="link" to="/projects">
+          View All Projects
+        </Button>
+      </div>
     </StyledSection>
   );
 }

@@ -6,6 +6,7 @@ interface ButtonProps {
   to?: string;
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
 const commonStyle = css`
@@ -62,6 +63,7 @@ function Button({
   to = "",
   children,
   className,
+  onClick,
   ...rest
 }: ButtonProps) {
   if (type === "link") {
@@ -72,7 +74,7 @@ function Button({
     );
   }
   return (
-    <StyledButton className={className} {...rest}>
+    <StyledButton className={className} onClick={onClick} {...rest}>
       {children}
     </StyledButton>
   );
