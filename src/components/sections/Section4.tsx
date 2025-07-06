@@ -94,7 +94,7 @@ function Section4({ data }: Props) {
   }, []);
 
   return (
-    <StyledSection className="section">
+    <StyledSection className="section" id="projects">
       <div className="section-header">
         <StyledTitle ref={titleRef} className="section-title">
           <div className="overlay" />

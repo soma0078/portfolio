@@ -96,7 +96,7 @@ function Section1() {
   );
 
   return (
-    <StyledSection ref={containerRef}>
+    <StyledSection ref={containerRef} id="home">
       <div className="inner">
         <div className="name-text">
           <p className="name-line">Hello, I'm</p>

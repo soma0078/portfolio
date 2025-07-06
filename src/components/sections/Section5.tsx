@@ -101,7 +101,7 @@ function Section5() {
   }, []);
 
   return (
-    <StyledSection>
+    <StyledSection id="contact">
       <TextBox ref={textBoxRef}>
         {wrappedTexts.map((spans, i) => (
           <p className="paragraph" key={i}>

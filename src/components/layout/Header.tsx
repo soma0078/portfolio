@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import NavBar from "@components/common/MenuOverlay";
+import MenuOverlay from "@components/common/MenuOverlay";
 import { LuSun, LuMoon } from "react-icons/lu";
 import devices from "@constants/devices";
 import MobileMenu from "../common/Menu";
@@ -79,6 +79,10 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
     setIsNavOpen(!isNavOpen);
   };
 
+  const handleClose = () => {
+    setTimeout(() => setIsNavOpen(false), 600);
+  };
+
   return (
     <HeaderLayout>
       <StyledLogo>
@@ -94,7 +98,7 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
         </span>
       </StyledLogo>
       <HeaderRightMenuWrapper>
-        <NavBar isOpen={isNavOpen} />
+        <MenuOverlay isOpen={isNavOpen} onClose={handleClose} />
         <DarkModeIcon onClick={toggleDarkMode}>
           {isDarkMode ? <LuSun /> : <LuMoon />}
         </DarkModeIcon>

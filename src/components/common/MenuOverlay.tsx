@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 
 const MENU_ITEM = [
   { menu: "HOME", id: "home" },
-  { menu: "EXPERIENCE", id: "Experience" },
+  { menu: "EXPERIENCE", id: "experience" },
   { menu: "PROJECTS", id: "projects" },
   { menu: "CONTACT", id: "contact" },
 ];
@@ -75,11 +75,24 @@ const Menu = styled.div<{ delay: number; isOpen: boolean }>`
   transition-delay: ${({ delay, isOpen }) => (isOpen ? delay + 0.5 : 0)}s;
 `;
 
-function MenuOverlay({ isOpen }: { isOpen: boolean }) {
+function MenuOverlay({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
   return (
     <Overlay isOpen={isOpen}>
       {MENU_ITEM.map(({ menu, id }, index) => (
-        <Link key={id} to={id} spy={true} smooth={true} duration={600}>
+        <Link
+          key={id}
+          to={id}
+          spy={true}
+          smooth={true}
+          duration={600}
+          onClick={onClose}
+        >
           <Menu delay={index * 0.1} isOpen={isOpen}>
             {menu}
           </Menu>

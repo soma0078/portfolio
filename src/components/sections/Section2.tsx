@@ -199,7 +199,7 @@ function Section2({ data }: Props) {
   });
 
   return (
-    <StyledSection>
+    <StyledSection id="experience">
       <div className="horizontal">
         <StyledHeader>
           <TypingText
