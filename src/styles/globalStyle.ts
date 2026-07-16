@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
 
 	
 	:root {
+		--sidebar-width: 200px;
 		--primary-color: #985EA4;
 		--primary-color-dark: #824F8D;
 		--primary-gradient: linear-gradient(135deg, #BD4BE5, #5856DE);
@@ -25,6 +26,14 @@ const GlobalStyle = createGlobalStyle`
 		line-height: 1.2;
 		scrollbar-width: thin;
 		overflow-x: hidden;
+	}
+
+	#smooth-content {
+		padding-left: var(--sidebar-width);
+
+		@media ${devices.md} {
+			padding-left: 0;
+		}
 	}
 
 	a {

@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-scroll";
-
-const MENU_ITEM = [
-  { menu: "HOME", id: "home" },
-  { menu: "EXPERIENCE", id: "experience" },
-  { menu: "PROJECTS", id: "projects" },
-  { menu: "CONTACT", id: "contact" },
-];
+import MENU_ITEMS from "@constants/menuItems";
 
 const Overlay = styled.nav<{ isOpen: boolean }>`
   position: fixed;
@@ -84,7 +78,7 @@ function MenuOverlay({
 }) {
   return (
     <Overlay isOpen={isOpen}>
-      {MENU_ITEM.map(({ menu, id }, index) => (
+      {MENU_ITEMS.map(({ menu, id }, index) => (
         <Link
           key={id}
           to={id}

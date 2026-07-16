@@ -4,8 +4,7 @@ import { LuSun, LuMoon } from "react-icons/lu";
 import devices from "@constants/devices";
 import MobileMenu from "../common/Menu";
 import { useState } from "react";
-import Lottie from "lottie-react";
-import gradientBlobAnimation from "@lottie/gradientBlob.json";
+import Logo from "@components/common/Logo";
 
 interface HeaderProps {
   isDarkMode: boolean;
@@ -13,38 +12,18 @@ interface HeaderProps {
 }
 
 const HeaderLayout = styled.div`
-  width: 100%;
-  padding: 18px 48px;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  box-sizing: border-box;
-  align-items: center;
-  z-index: 999;
+  display: none;
 
-  @media ${devices.lg} {
+  @media ${devices.md} {
+    width: 100%;
     padding: 12px;
-  }
-`;
-
-const StyledLogo = styled.div`
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-  font-size: 1.125rem;
-  line-height: 1.125rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  color: ${({ theme }) => theme.textColor};
-
-  & span {
-    position: absolute;
-  }
-
-  @media ${devices.sm} {
-    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    box-sizing: border-box;
+    align-items: center;
+    z-index: 999;
   }
 `;
 
@@ -85,18 +64,7 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
 
   return (
     <HeaderLayout>
-      <StyledLogo>
-        <Lottie
-          animationData={gradientBlobAnimation}
-          loop
-          style={{ width: 124, opacity: 0.7 }}
-        />
-        <span>
-          LEE SONGA
-          <br />
-          PORTFOLIO
-        </span>
-      </StyledLogo>
+      <Logo />
 
       <HeaderRightMenuWrapper>
         <MenuOverlay isOpen={isNavOpen} onClose={handleClose} />

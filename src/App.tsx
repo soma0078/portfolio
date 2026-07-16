@@ -3,6 +3,7 @@ import React from "react";
 import GlobalStyle from "@styles/globalStyle";
 import { darkTheme, lightTheme } from "@styles/theme";
 import Header from "@components/layout/Header";
+import Sidebar from "@components/layout/Sidebar";
 import Footer from "@components/layout/Footer";
 import BluredCirclesBackground from "@components/common/BluredCirclesBackground";
 import gsap, { ScrollTrigger, TextPlugin, ScrollSmoother } from "gsap/all";
@@ -44,6 +45,7 @@ function App() {
         <GlobalStyle />
         <BluredCirclesBackground />
         <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+        <Sidebar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         <div id="smooth-wrapper">
           <div id="smooth-content">
             <main>
