@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import styled, { useTheme } from "styled-components";
 import { SkillItem } from "src/type/types";
 import InfiniteChips from "../common/InfiniteChips";
+import devices from "@constants/devices";
 
 const StyledSection = styled.section`
   position: relative;
@@ -14,11 +15,34 @@ const ScrollTextWrapper = styled.div`
   padding: 0 164px;
 
   .word {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: 500;
     color: #80808060;
     margin-right: 0.5rem;
     display: inline-block;
+  }
+
+  @media ${devices.xl} {
+    padding: 0 64px;
+
+    .word {
+      font-size: 2rem;
+    }
+  }
+
+  @media ${devices.md} {
+    padding: 0 24px;
+
+    .word {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media ${devices.xs} {
+    .word {
+      font-size: 1.25rem;
+      margin-right: 0.375rem;
+    }
   }
 `;
 
@@ -75,7 +99,7 @@ function Section3({ data }: Props) {
               <span key={i} className="word">
                 {word}
               </span>
-            )
+            ),
           )}
         </p>
       </ScrollTextWrapper>

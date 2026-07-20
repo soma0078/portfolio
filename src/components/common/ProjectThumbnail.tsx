@@ -1,17 +1,27 @@
 import { Project } from "src/type/types";
 import styled from "styled-components";
+import devices from "@constants/devices";
 
 const Thumbnail = styled.div`
   width: 100%;
   position: relative;
   cursor: pointer;
 
+  /* 3열 레이아웃용 스태거 오프셋 */
   &:nth-child(3n + 1) {
     transform: translateY(30px);
   }
 
   &:nth-child(3n + 3) {
     transform: translateY(50px);
+  }
+
+  /* 3열이 아닌 뷰포트(2열·1열)에선 오프셋 해제 (겹침 방지) */
+  @media ${devices.lg} {
+    &:nth-child(3n + 1),
+    &:nth-child(3n + 3) {
+      transform: none;
+    }
   }
 
   h5 {

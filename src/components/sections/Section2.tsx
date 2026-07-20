@@ -1,3 +1,4 @@
+import devices from "@constants/devices";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useState } from "react";
@@ -13,19 +14,36 @@ const StyledSection = styled.section`
 
 const StyledHeader = styled.div`
   padding: 0 164px;
+
+  @media ${devices.xl} {
+    padding: 0 64px;
+  }
+  @media ${devices.md} {
+    padding: 0 24px;
+  }
 `;
 
 const TypingText = styled(ReactTyped)`
   font-size: 3.5rem;
   font-weight: 500;
+
+  @media ${devices.md} {
+    font-size: 2.125rem;
+  }
 `;
 
 const CardList = styled.ul`
   display: flex;
   gap: 1.875rem;
   padding-left: 164px;
-
   margin-top: 2.75rem;
+
+  @media ${devices.xl} {
+    padding-left: 64px;
+  }
+  @media ${devices.md} {
+    padding-left: 24px;
+  }
 `;
 
 const CardItem = styled.li`
@@ -77,6 +95,10 @@ const CardImage = styled.div`
     letter-spacing: 0.06em;
     backdrop-filter: blur(4px);
     z-index: 1;
+  }
+
+  @media ${devices.md} {
+    height: 180px;
   }
 `;
 
@@ -149,6 +171,10 @@ const InfoFlip = styled.div`
     font-size: 1.25rem;
     letter-spacing: -1px;
     margin: 0.5rem 0;
+
+    @media ${devices.md} {
+      font-size: 1rem;
+    }
   }
 
   .name-wrapper {

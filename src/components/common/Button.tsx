@@ -14,7 +14,8 @@ const commonStyle = css`
   overflow: hidden;
   display: inline-block;
 
-  padding: 0.75rem 1.25rem;
+  padding: 10px 20px;
+  font-size: 0.875rem;
   border-radius: 40px;
   font-weight: 500;
   color: ${({ theme }) => theme.textColor};

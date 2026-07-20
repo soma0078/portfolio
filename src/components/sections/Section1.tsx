@@ -104,7 +104,7 @@ const StyledSection = styled.section`
     }
 
     .intro-text {
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
     }
   }
 `;
