@@ -9,7 +9,7 @@ interface HamburgerProps {
 const MenuContainer = styled.div`
   cursor: pointer;
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 
   &:hover {
     .menu-text {
@@ -27,16 +27,17 @@ const MenuContainer = styled.div`
 const MenuText = styled.div`
   overflow: hidden;
   position: relative;
-  width: 60px;
-  height: 25px;
+  width: 45px;
+  height: 20px;
 
   span {
     font-family: "Montserrat";
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1rem;
     transition: all 300ms;
     position: absolute;
     left: 0;
+    padding-top: 3px;
   }
 
   .menu-text-hover {

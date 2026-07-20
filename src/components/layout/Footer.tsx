@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { IoMdArrowUp } from "react-icons/io";
 import devices from "@constants/devices";
 import Badge from "@components/common/Badge";
-import { MY_EMAIL, MY_GITHUB_URL, MY_VELOG_URL } from "@constants/urls";
+import { MY_BLOG_URL, MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
 
 const FooterLayout = styled.footer`
   width: 100%;
@@ -76,6 +76,7 @@ const BadgeWrapper = styled.div`
   & > span {
     position: absolute;
     transform: translateY(-50%);
+    color: white;
   }
 
   & > span:nth-child(1) {
@@ -120,7 +121,7 @@ function Footer() {
       <BadgeWrapper>
         <Badge text={MY_EMAIL} />
         <Badge text={MY_GITHUB_URL.slice(8)} />
-        <Badge text={MY_VELOG_URL.slice(8)} />
+        <Badge text={MY_BLOG_URL.slice(8)} />
       </BadgeWrapper>
     </FooterLayout>
   );
