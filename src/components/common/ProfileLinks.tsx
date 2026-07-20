@@ -16,10 +16,10 @@ const ResumeAnchor = styled.a`
   align-items: center;
   padding: 10px 14px;
   border-radius: 9999px;
-  background-color: #17171c;
+  background-color: ${({ theme }) => theme.solidBg};
   font-size: 11px;
   font-weight: 700;
-  color: #ffffff;
+  color: ${({ theme }) => theme.solidText};
   text-decoration: none;
 
   @media ${devices.md} {
@@ -34,7 +34,7 @@ const LangBtn = styled.button`
   text-align: left;
   font-family: inherit;
   font-size: 10px;
-  color: #75758a;
+  color: ${({ theme }) => theme.mutedText};
   cursor: pointer;
 
   @media ${devices.md} {
@@ -59,9 +59,9 @@ const SocialAnchor = styled.a`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #17171c;
+  background-color: ${({ theme }) => theme.solidBg};
   font-size: 12px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.solidText};
 
   @media ${devices.md} {
     width: 36px;

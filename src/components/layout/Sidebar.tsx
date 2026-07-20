@@ -27,8 +27,8 @@ const SidebarLayout = styled.aside`
   height: 100dvh;
   padding: 32px 18px;
   box-sizing: border-box;
-  background-color: #ffffff;
-  border-right: 1px solid #e5e7eb;
+  background-color: ${({ theme }) => theme.bgColor};
+  border-right: 1px solid ${({ theme }) => theme.sidebarBorder};
   font-family: "Inter", "Pretendard", sans-serif;
 
   @media ${devices.md} {
@@ -48,15 +48,15 @@ const NavItem = styled(Link)`
   gap: 14px;
   padding: 10px;
   border-radius: 4px;
-  background-color: #fafafa;
+  background-color: ${({ theme }) => theme.surfaceBg};
   font-size: 11px;
   font-weight: 700;
-  color: #17171c;
+  color: ${({ theme }) => theme.textColor};
   cursor: pointer;
   transition: background-color 300ms;
 
   &:hover {
-    background-color: #f0f0f2;
+    background-color: ${({ theme }) => theme.surfaceHoverBg};
   }
 `;
 
@@ -66,7 +66,7 @@ const NavItemRow = styled.div`
 
   span:last-child {
     font-weight: 400;
-    color: #525260;
+    color: ${({ theme }) => theme.mutedText};
   }
 `;
 
@@ -82,11 +82,11 @@ const DarkModeButton = styled.button`
   border: none;
   background: none;
   font-size: 14px;
-  color: #75758a;
+  color: ${({ theme }) => theme.mutedText};
   cursor: pointer;
 
   &:hover {
-    color: #17171c;
+    color: ${({ theme }) => theme.textColor};
   }
 `;
 
