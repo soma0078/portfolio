@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import styled from "styled-components";
+import devices from "@constants/devices";
 
 const StyledSection = styled.section`
   position: relative;
@@ -13,6 +14,7 @@ const StyledSection = styled.section`
     align-items: center;
     justify-content: space-between;
     height: 100vh;
+    gap: 40px;
   }
 
   .name-text {
@@ -22,14 +24,15 @@ const StyledSection = styled.section`
       font-family: "Montserrat", sans-serif;
     }
     p:last-child {
-      font-size: 7rem;
+      font-size: 6.25rem;
       font-weight: 700;
       font-family: "Gmarket Sans";
+      white-space: nowrap;
     }
   }
 
   .intro-text {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
     line-height: 1.4;
 
@@ -52,6 +55,57 @@ const StyledSection = styled.section`
     font-family: "Montserrat", sans-serif;
     white-space: nowrap;
     color: ${({ theme }) => theme.textColorOpacity};
+  }
+
+  @media ${devices.xl} {
+    padding: 0 64px;
+
+    .inner {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .name-text p:last-child {
+      font-size: 5rem;
+    }
+
+    .intro-text {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media ${devices.md} {
+    padding: 0 24px;
+
+    .name-text {
+      p:first-child {
+        font-size: 1.125rem;
+      }
+      p:last-child {
+        font-size: 3.5rem;
+      }
+    }
+
+    .intro-text {
+      font-size: 1.25rem;
+    }
+
+    .background-text {
+      left: 5%;
+      font-size: 24vw;
+    }
+  }
+
+  @media ${devices.xs} {
+    .name-text p:last-child {
+      font-size: 2.75rem;
+    }
+
+    .intro-text {
+      font-size: 1.0625rem;
+    }
   }
 `;
 
@@ -92,7 +146,7 @@ function Section1() {
         },
       });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
