@@ -15,9 +15,13 @@ const ProjectItem = styled.div`
 
   @media ${devices.lg} {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 64px;
+    padding-bottom: 15vh;
   }
   @media ${devices.md} {
     grid-template-columns: repeat(1, 1fr);
+    padding: 0 24px;
+    padding-bottom: 12vh;
   }
 `;
 
@@ -50,20 +54,24 @@ export default function ProjectList({
   };
 
   useGSAP(() => {
-    // 프로젝트 패럴랙스 효과
-    const elements = gsap.utils.toArray(".project-thumbnail") as HTMLElement[];
-    elements.forEach((el) => {
-      const speed = parseFloat(el.getAttribute("data-speed") || "1");
+    // 패럴랙스는 다열 레이아웃(태블릿·데스크톱)에서만 적용
+    // 1열이 되는 모바일에선 카드가 서로 다른 속도로 겹치므로 제외
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 769px)", () => {
+      const elements = gsap.utils.toArray(".project-thumbnail") as HTMLElement[];
+      elements.forEach((el) => {
+        const speed = parseFloat(el.getAttribute("data-speed") || "1");
 
-      gsap.to(el, {
-        y: () => -window.innerHeight * speed * 0.3,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".project-list",
-          start: "bottom bottom",
-          end: "bottom top",
-          scrub: true,
-        },
+        gsap.to(el, {
+          y: () => -window.innerHeight * speed * 0.3,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".project-list",
+            start: "bottom bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
       });
     });
   });

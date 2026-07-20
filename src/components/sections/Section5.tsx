@@ -1,4 +1,5 @@
 import Button from "@components/common/Button";
+import devices from "@constants/devices";
 import { MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -23,12 +24,20 @@ const TextBox = styled.div`
     opacity: 0;
     font-size: 1.125rem;
     font-weight: 300;
+
+    @media ${devices.md} {
+      font-size: 1rem;
+    }
   }
 
   p:first-child {
     font-size: 2.5rem;
     margin-bottom: 1.125rem;
     font-weight: 500;
+
+    @media ${devices.md} {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -74,7 +83,7 @@ function Section5() {
       >
         {char}
       </span>
-    ))
+    )),
   );
 
   useGSAP(() => {
@@ -118,7 +127,7 @@ function Section5() {
         </Button>
       </ButtonWrapper>
       <CopyRight>
-        <span>© 2025 Createad by Songa. All Rights Reserved.</span>
+        <span>© 2026 Createad by Songa. All Rights Reserved.</span>
         <span>React, GSAP, Tailwind CSS 기반으로 제작된 사이트입니다.</span>
       </CopyRight>
     </StyledSection>

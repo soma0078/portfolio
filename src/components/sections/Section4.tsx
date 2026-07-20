@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Project } from "src/type/types";
 import ProjectList from "@components/ProjectList";
 import Button from "@components/common/Button";
+import devices from "@constants/devices";
 
 const StyledSection = styled.section`
   position: relative;
@@ -22,6 +23,10 @@ const StyledTitle = styled.h3`
   font-size: 3.5rem;
   font-weight: 500;
   margin-bottom: 2.75rem;
+
+  @media ${devices.md} {
+    font-size: 2.125rem;
+  }
 
   .overlay {
     position: absolute;
@@ -77,7 +82,7 @@ function Section4({ data }: Props) {
         ".section-title span",
         { opacity: 0 },
         { opacity: 1, duration: 0.5 },
-        "-=0.6"
+        "-=0.6",
       );
 
     // 스크롤시 위로 이동하며 축소, 투명도 효과

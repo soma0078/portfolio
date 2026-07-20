@@ -35,12 +35,13 @@ const ScrollToTopButton = styled.button`
 
   .scroll-text {
     position: absolute;
-    left: 24px;
-    height: 20px;
+    left: 30px;
+    height: 19px;
     transition: all 300ms;
     width: 100px;
     overflow: hidden;
     font-weight: 500;
+    bottom: 0;
 
     span {
       position: absolute;
@@ -111,7 +112,7 @@ function Footer() {
   return (
     <FooterLayout>
       <ScrollToTopButton onClick={scrollToTop}>
-        <IoMdArrowUp />
+        <IoMdArrowUp size={20} />
         <div className="scroll-text">
           <span className="top-text">Back To Top</span>
           <span className="top-text-hover">맨 위로</span>
