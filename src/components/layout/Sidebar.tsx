@@ -1,24 +1,19 @@
 import styled from "styled-components";
 import { Link } from "react-scroll";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import { SiTistory } from "react-icons/si";
 import { LuSun, LuMoon } from "react-icons/lu";
 import devices from "@constants/devices";
 import Logo from "@components/common/Logo";
 import MENU_ITEMS from "@constants/menuItems";
+import {
+  ResumeButton,
+  LangButton,
+  SocialLinks,
+} from "@components/common/ProfileLinks";
 
 interface SidebarProps {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
 }
-
-const SOCIAL_LINKS = [
-  { icon: <FaGithub />, href: "https://github.com/soma0078", label: "GitHub" },
-  { icon: <FaLinkedinIn />, href: "#", label: "LinkedIn" },
-  { icon: <SiTistory />, href: "#", label: "Tistory" },
-];
-
-const RESUME_URL = "#";
 
 const SidebarLayout = styled.aside`
   position: fixed;
@@ -75,34 +70,11 @@ const NavItemRow = styled.div`
   }
 `;
 
-const ResumeButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 14px;
-  border-radius: 9999px;
-  background-color: #17171c;
-  font-size: 11px;
-  font-weight: 700;
-  color: #ffffff;
-  text-decoration: none;
-`;
-
 const UtilityRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4px 0;
-`;
-
-const LangButton = styled.button`
-  border: none;
-  background: none;
-  text-align: left;
-  font-family: inherit;
-  font-size: 10px;
-  color: #75758a;
-  cursor: pointer;
 `;
 
 const DarkModeButton = styled.button`
@@ -116,23 +88,6 @@ const DarkModeButton = styled.button`
   &:hover {
     color: #17171c;
   }
-`;
-
-const SocialRow = styled.div`
-  display: flex;
-  gap: 6px;
-`;
-
-const SocialLink = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #17171c;
-  font-size: 12px;
-  color: #ffffff;
 `;
 
 function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
@@ -152,12 +107,10 @@ function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
         </NavItem>
       ))}
 
-      <ResumeButton href={RESUME_URL} target="_blank" rel="noreferrer">
-        이력서 다운로드&nbsp;&nbsp;↗
-      </ResumeButton>
+      <ResumeButton />
 
       <UtilityRow>
-        <LangButton type="button">한국어 / EN</LangButton>
+        <LangButton />
         <DarkModeButton
           type="button"
           onClick={toggleDarkMode}
@@ -167,19 +120,7 @@ function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
         </DarkModeButton>
       </UtilityRow>
 
-      <SocialRow>
-        {SOCIAL_LINKS.map(({ icon, href, label }) => (
-          <SocialLink
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={label}
-          >
-            {icon}
-          </SocialLink>
-        ))}
-      </SocialRow>
+      <SocialLinks />
     </SidebarLayout>
   );
 }

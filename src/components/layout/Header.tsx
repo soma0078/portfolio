@@ -29,17 +29,18 @@ const HeaderLayout = styled.div`
 
 const HeaderRightMenuWrapper = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
 `;
 
 const DarkModeIcon = styled.button`
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   border-radius: 999px;
   cursor: pointer;
   background-color: transparent;
   color: ${({ theme }) => theme.textColor};
+  padding-top: 4px;
 
   &:hover {
     background-color: #efefef;
