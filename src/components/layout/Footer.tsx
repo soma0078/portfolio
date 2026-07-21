@@ -7,10 +7,13 @@ import { MY_BLOG_URL, MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
 const FooterLayout = styled.footer`
   width: 100%;
   position: relative;
+  container-type: inline-size; /* 아래 cqi 단위 기준 */
 
   &:before {
     content: "LEESONGA";
-    font-size: 17.5vw;
+    /* 푸터 폭 기준으로 꽉 차게 (사이드바 오프셋과 무관) */
+    font-size: 21cqi;
+    white-space: nowrap;
     line-height: normal;
     font-weight: 800;
     letter-spacing: -2px;
@@ -78,6 +81,10 @@ const BadgeWrapper = styled.div`
     position: absolute;
     transform: translateY(-50%);
     color: white;
+
+    @media ${devices.lg} {
+      font-size: 0.75rem;
+    }
   }
 
   & > span:nth-child(1) {

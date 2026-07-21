@@ -4,6 +4,8 @@ import styled, { css } from "styled-components";
 interface ButtonProps {
   type?: "button" | "link";
   to?: string;
+  target?: string;
+  rel?: string;
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
@@ -69,7 +71,7 @@ function Button({
 }: ButtonProps) {
   if (type === "link") {
     return (
-      <StyledLink to={to} className={className}>
+      <StyledLink to={to} className={className} {...rest}>
         {children}
       </StyledLink>
     );

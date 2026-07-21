@@ -122,7 +122,12 @@ function Section5() {
         <Button type="link" to={`mailto:${MY_EMAIL}`}>
           Contact me
         </Button>
-        <Button type="link" to={MY_GITHUB_URL}>
+        <Button
+          type="link"
+          to={MY_GITHUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Github
         </Button>
       </ButtonWrapper>
