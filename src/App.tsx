@@ -16,7 +16,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProjectDetailPage from "@components/pages/[projectId]";
 import Section5 from "@components/sections/Section5";
 import { useGSAP } from "@gsap/react";
-import ProjectPage from "@components/pages/projects";
 import NotFoundPage from "@components/pages/NotFound";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollSmoother);
@@ -61,10 +60,6 @@ function App() {
                       <Section5 />
                     </>
                   }
-                />
-                <Route
-                  path="/projects"
-                  element={<ProjectPage data={data.projects} />}
                 />
                 <Route
                   path="/projects/:projectId"

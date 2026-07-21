@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styled from "styled-components";
@@ -48,8 +48,11 @@ type Props = {
   data: Project[];
 };
 
+const VISIBLE_COUNT = 6;
+
 function Section4({ data }: Props) {
   const titleRef = useRef(null);
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_COUNT);
 
   useGSAP(() => {
     if (!titleRef.current) return;
@@ -106,12 +109,16 @@ function Section4({ data }: Props) {
           <span>Project</span>
         </StyledTitle>
       </div>
-      <ProjectList data={data} visibleCount={6} />
-      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-        <Button type="link" to="/projects">
-          View All Projects
-        </Button>
-      </div>
+      <ProjectList data={data} visibleCount={visibleCount} />
+      {visibleCount < data.length && (
+        <div
+          style={{ display: "flex", justifyContent: "center", width: "100%" }}
+        >
+          <Button onClick={() => setVisibleCount((v) => v + VISIBLE_COUNT)}>
+            More ({visibleCount}/{data.length})
+          </Button>
+        </div>
+      )}
     </StyledSection>
   );
 }

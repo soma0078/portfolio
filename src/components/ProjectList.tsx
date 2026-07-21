@@ -74,7 +74,7 @@ export default function ProjectList({
         });
       });
     });
-  });
+  }, [displayData.length]);
 
   return (
     <ProjectItem className="project-list">
