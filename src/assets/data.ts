@@ -217,7 +217,15 @@ export const data: Data = {
           "초기 상태를 useState<Date | null>(null)로 설정하여 서버와 클라이언트 렌더링 간 불일치를 방지하고, 날짜 계산 로직을 클라이언트 측에서만 실행되도록 수정하여 하이드레이션 오류를 방지했습니다.",
         ],
       },
-      screenShots: ["", ""],
+      screenShots: [
+        "/assets/images/mirujima_dashboard_desktop.png",
+        "/assets/images/mirujima_goal_desktop.png",
+        "/assets/images/mirujima_goalCreate_desktop.PNG",
+        "/assets/images/mirujima_todo_desktop.png",
+        "/assets/images/mirujima_todoCreate_desktop.PNG",
+        "/assets/images/mirujima_note_desktop.png",
+        "/assets/images/mirujima_content_desktop.png",
+      ],
       url: {
         view: "website url",
         github: "github url",
@@ -262,7 +270,16 @@ export const data: Data = {
         description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
       },
 
-      screenShots: ["", ""],
+      screenShots: [
+        "/assets/images/kventure_desktop.png",
+        "/assets/images/kventure_activity_page.png",
+        "/assets/images/kventure_activity_register_page.png",
+        "/assets/images/kventure_calendar_page.png",
+        "/assets/images/kventure_my_activity_page.png",
+        "/assets/images/kventure_mypage.png",
+        "/assets/images/kventure_reservation_list.png",
+        "/assets/images/kventure_search_page.png",
+      ],
       url: {
         view: "website url",
         github: "github url",
@@ -306,7 +323,12 @@ export const data: Data = {
         title: "트러블슈팅 제목",
         description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
       },
-      screenShots: ["", ""],
+      screenShots: [
+        "/assets/images/payplus_desktop.png",
+        "/assets/images/payplus_store_page_owner.png",
+        "/assets/images/payplus_store_page_staff.png",
+        "/assets/images/payplus_staff_page.png",
+      ],
       url: {
         view: "website url",
         github: "github url",
@@ -350,7 +372,13 @@ export const data: Data = {
         title: "트러블슈팅 제목",
         description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
       },
-      screenShots: ["", ""],
+      screenShots: [
+        "/assets/images/openmind_desktop.png",
+        "/assets/images/openmind_main_page.png",
+        "/assets/images/openmind_list_page.png",
+        "/assets/images/openmind_question_page.png",
+        "/assets/images/openmind_modal.png",
+      ],
       url: {
         view: "website url",
         github: "github url",
@@ -386,7 +414,11 @@ export const data: Data = {
         title: "트러블슈팅 제목",
         description: ["트러블슈팅 내용1", "트러블슈팅 내용2"],
       },
-      screenShots: ["", ""],
+      screenShots: [
+        "/assets/images/portfolio_desktop.png",
+        "/assets/images/portfolio_tablet.png",
+        "/assets/images/portfolio_mobile.png",
+      ],
       url: {
         view: "website url",
         github: "github url",

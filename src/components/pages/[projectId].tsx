@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { data } from "src/assets/data";
+import ProjectDetailHero from "@components/ProjectDetailHero";
 
 function ProjectDetailPage() {
   const { projectId } = useParams();
@@ -10,8 +11,7 @@ function ProjectDetailPage() {
 
   return (
     <>
-      <h2>{project.title}</h2>
-      <div>프로젝트 디테일 페이지</div>
+      <ProjectDetailHero project={project} />
     </>
   );
 }
