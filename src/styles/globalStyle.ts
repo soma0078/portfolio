@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
 
 	
 	:root {
-		--sidebar-width: 200px;
+		--sidebar-width: 240px;
 		--primary-color: #985EA4;
 		--primary-color-dark: #824F8D;
 		--primary-gradient: linear-gradient(135deg, #BD4BE5, #5856DE);

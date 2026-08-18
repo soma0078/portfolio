@@ -22,7 +22,7 @@ const SidebarLayout = styled.aside`
   z-index: 998;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 18px;
   width: var(--sidebar-width);
   height: 100dvh;
   padding: 32px 18px;
@@ -39,17 +39,17 @@ const SidebarLayout = styled.aside`
 const LogoArea = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 20px;
+  padding-bottom: 24px;
 `;
 
 const NavItem = styled(Link)`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   padding: 10px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.surfaceBg};
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 700;
   color: ${({ theme }) => theme.textColor};
   cursor: pointer;
@@ -63,6 +63,7 @@ const NavItem = styled(Link)`
 const NavItemRow = styled.div`
   display: flex;
   justify-content: space-between;
+  font-size: 13px;
 
   span:last-child {
     font-weight: 400;
@@ -81,7 +82,7 @@ const DarkModeButton = styled.button`
   display: flex;
   border: none;
   background: none;
-  font-size: 14px;
+  font-size: 18px;
   color: ${({ theme }) => theme.mutedText};
   cursor: pointer;
 
