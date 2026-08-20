@@ -1,8 +1,8 @@
 const MENU_ITEMS = [
-  { menu: "HOME", id: "home" },
-  { menu: "EXPERIENCE", id: "experience" },
-  { menu: "PROJECTS", id: "projects" },
-  { menu: "CONTACT", id: "contact" },
+  { menu: "Home", id: "home" },
+  { menu: "About", id: "experience" },
+  { menu: "Projects", id: "projects" },
+  { menu: "Contact", id: "contact" },
 ];
 
 export default MENU_ITEMS;

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { data } from "src/assets/data";
 import Layout from "@components/layout/Layout";
+import HomePage from "@components/pages/home";
 import ProjectPage from "@components/pages/projects";
 import ProjectDetailPage from "@components/pages/[projectId]";
 import NotFoundPage from "@components/pages/NotFound";
@@ -8,6 +9,8 @@ import NotFoundPage from "@components/pages/NotFound";
 export default function AppRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<HomePage />} />
+
       <Route element={<Layout />}>
         <Route
           path="/projects"
