@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
 
 interface ButtonProps {
   type?: "button" | "link";
@@ -9,55 +8,19 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-const commonStyle = css`
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-
-  padding: 10px 20px;
-  font-size: 0.875rem;
-  border-radius: 40px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.textColor};
-  border: 1px solid ${({ theme }) => theme.textColor};
-  text-decoration: none;
-  transition: all 0.6s;
-
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: all 0.6s;
-    bottom: -50%;
-    width: 0;
-    height: 0;
-    z-index: -1;
-    border-radius: 999px;
-    background: var(--primary-gradient);
-  }
-  &:hover {
-    color: white;
-  }
-  &:hover:after {
-    width: 140%;
-    height: 240%;
-    opacity: 0.5;
-  }
-  &:hover:before {
-    width: 110%;
-    height: 200%;
-  }
-`;
-
-const StyledLink = styled(Link)`
-  ${commonStyle}
-`;
-
-const StyledButton = styled.button`
-  ${commonStyle}
-`;
+const BUTTON_STYLE = [
+  "relative z-0 inline-block overflow-hidden rounded-[40px] border border-(--legacy-text)",
+  "px-5 py-2.5 text-sm font-medium text-(--legacy-text) no-underline transition-all duration-600",
+  "hover:text-white",
+  "before:absolute before:bottom-[-50%] before:left-1/2 before:-z-10 before:h-0 before:w-0",
+  "before:-translate-x-1/2 before:rounded-full before:bg-[image:var(--primary-gradient)]",
+  "before:transition-all before:duration-600 before:content-['']",
+  "after:absolute after:bottom-[-50%] after:left-1/2 after:-z-10 after:h-0 after:w-0",
+  "after:-translate-x-1/2 after:rounded-full after:bg-[image:var(--primary-gradient)]",
+  "after:transition-all after:duration-600 after:content-['']",
+  "hover:before:h-[200%] hover:before:w-[110%]",
+  "hover:after:h-[240%] hover:after:w-[140%] hover:after:opacity-50",
+].join(" ");
 
 function Button({
   type = "button",
@@ -67,17 +30,20 @@ function Button({
   onClick,
   ...rest
 }: ButtonProps) {
+  const merged = `${BUTTON_STYLE} ${className ?? ""}`;
+
   if (type === "link") {
     return (
-      <StyledLink to={to} className={className}>
+      <Link to={to} className={merged}>
         {children}
-      </StyledLink>
+      </Link>
     );
   }
+
   return (
-    <StyledButton className={className} onClick={onClick} {...rest}>
+    <button className={merged} onClick={onClick} {...rest}>
       {children}
-    </StyledButton>
+    </button>
   );
 }
 

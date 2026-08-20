@@ -1,133 +1,58 @@
-import styled from "styled-components";
-import devices from "@constants/devices";
-
 interface HamburgerProps {
   onClick: () => void;
   isOpen: boolean;
 }
 
-const MenuContainer = styled.div`
-  cursor: pointer;
-  display: flex;
-  gap: 0.5rem;
+const BAR = "absolute left-0 h-[3px] w-full rounded-sm bg-(--legacy-text)";
+const BAR_MOTION =
+  "transition-transform duration-500 ease-[cubic-bezier(0.8,0.5,0.2,1.4)]";
 
-  &:hover {
-    .menu-text {
-      transform: translateY(-100%);
-    }
-    .menu-text-hover {
-      transform: translateY(0);
-    }
-    .menu-text-close {
-      opacity: 0;
-    }
-  }
-`;
-
-const MenuText = styled.div`
-  overflow: hidden;
-  position: relative;
-  width: 45px;
-  height: 20px;
-
-  span {
-    font-family: "Montserrat";
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 300ms;
-    position: absolute;
-    left: 0;
-    padding-top: 3px;
-  }
-
-  .menu-text-hover {
-    transform: translateY(100%);
-  }
-
-  .menu-text-close,
-  .menu-text.open,
-  .menu-text-hover.open {
-    opacity: 0;
-  }
-
-  .menu-text-close.open {
-    opacity: 1;
-  }
-`;
-const HamburgerMenu = styled.div`
-  width: 24px;
-  height: 21px;
-  position: relative;
-  cursor: pointer;
-
-  .bar {
-    background-color: ${(props) => props.theme.textColor};
-    position: absolute;
-    border-radius: 2px;
-    transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
-    width: 100%;
-    height: 3px;
-    transition-duration: 500ms;
-  }
-
-  .bar1 {
-    top: 0px;
-    left: 0px;
-  }
-
-  .bar2 {
-    top: 9px;
-    left: 0px;
-    opacity: 1;
-  }
-
-  .bar3 {
-    bottom: 0px;
-    left: 0px;
-  }
-
-  &:not(.open):hover .bar1 {
-    transform: rotate(-3deg) scaleY(1.1);
-  }
-  &:not(.open):hover .bar2 {
-    transform: rotate(3deg) scaleY(1.1);
-  }
-  &:not(.open):hover .bar3 {
-    transform: rotate(-4deg) scaleY(1.1);
-  }
-
-  &.open .bar1 {
-    transform: rotate(45deg);
-    top: 11px;
-  }
-  &.open .bar2 {
-    opacity: 0;
-  }
-  &.open .bar3 {
-    transform: rotate(-45deg);
-    top: 11px;
-  }
-
-  @media ${devices.lg} {
-    display: inline-block;
-  }
-`;
+const TEXT =
+  "absolute left-0 pt-[3px] font-['Montserrat'] text-base font-semibold transition-all duration-300";
 
 function Menu({ onClick, isOpen }: HamburgerProps) {
   return (
-    <MenuContainer onClick={onClick}>
-      <MenuText>
-        <span className={`menu-text ${isOpen ? "open" : ""}`}>Menu</span>
-        <span className={`menu-text-hover ${isOpen ? "open" : ""}`}>Open</span>
-        <span className={`menu-text-close ${isOpen ? "open" : ""}`}>Close</span>
-      </MenuText>
+    <div className="group flex cursor-pointer gap-2" onClick={onClick}>
+      <div className="relative h-5 w-[45px] overflow-hidden">
+        <span
+          className={`${TEXT} ${isOpen ? "opacity-0" : "group-hover:-translate-y-full"}`}
+        >
+          Menu
+        </span>
+        <span
+          className={`${TEXT} translate-y-full ${isOpen ? "opacity-0" : "group-hover:translate-y-0"}`}
+        >
+          Open
+        </span>
+        <span className={`${TEXT} ${isOpen ? "opacity-100" : "opacity-0"}`}>
+          Close
+        </span>
+      </div>
 
-      <HamburgerMenu className={isOpen ? "open" : ""}>
-        <span className="bar bar1"></span>
-        <span className="bar bar2"></span>
-        <span className="bar bar3"></span>
-      </HamburgerMenu>
-    </MenuContainer>
+      <div className="relative h-[21px] w-6 cursor-pointer">
+        <span
+          className={`${BAR} ${BAR_MOTION} ${
+            isOpen
+              ? "top-[11px] rotate-45"
+              : "top-0 group-hover:-rotate-3 group-hover:scale-y-110"
+          }`}
+        />
+        <span
+          className={`${BAR} top-[9px] transition-opacity duration-500 ${
+            isOpen
+              ? "opacity-0"
+              : "opacity-100 group-hover:rotate-3 group-hover:scale-y-110"
+          }`}
+        />
+        <span
+          className={`${BAR} ${BAR_MOTION} ${
+            isOpen
+              ? "top-[11px] -rotate-45"
+              : "bottom-0 group-hover:-rotate-4 group-hover:scale-y-110"
+          }`}
+        />
+      </div>
+    </div>
   );
 }
 

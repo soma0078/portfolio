@@ -1,9 +1,12 @@
-import styled from "styled-components";
+import { useRef } from "react";
 import { Link } from "react-scroll";
+import { useLocation } from "react-router-dom";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { LuSun, LuMoon } from "react-icons/lu";
-import devices from "@constants/devices";
 import Logo from "@components/common/Logo";
 import MENU_ITEMS from "@constants/menuItems";
+import HOME_INTRO from "@constants/homeIntro";
 import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
 
 interface SidebarProps {
@@ -11,111 +14,72 @@ interface SidebarProps {
   toggleDarkMode: () => void;
 }
 
-const SidebarLayout = styled.aside`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 998;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: var(--sidebar-width);
-  height: 100dvh;
-  padding: 32px 18px;
-  box-sizing: border-box;
-  background-color: ${({ theme }) => theme.bgColor};
-  border-right: 1px solid ${({ theme }) => theme.sidebarBorder};
-  font-family: "Inter", "Pretendard", sans-serif;
-
-  @media ${devices.md} {
-    display: none;
-  }
-`;
-
-const LogoArea = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 20px;
-`;
-
-const NavItem = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 10px;
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.surfaceBg};
-  font-size: 11px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.textColor};
-  cursor: pointer;
-  transition: background-color 300ms;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.surfaceHoverBg};
-  }
-`;
-
-const NavItemRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  span:last-child {
-    font-weight: 400;
-    color: ${({ theme }) => theme.mutedText};
-  }
-`;
-
-const UtilityRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 0;
-`;
-
-const DarkModeButton = styled.button`
-  display: flex;
-  border: none;
-  background: none;
-  font-size: 14px;
-  color: ${({ theme }) => theme.mutedText};
-  cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.textColor};
-  }
-`;
-
 function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
+  const rootRef = useRef<HTMLElement>(null);
+  const { pathname } = useLocation();
+
+  const introDelay = pathname === "/" ? HOME_INTRO.left : 0;
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      gsap.from(".js-side", {
+        opacity: 0,
+        y: 14,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.07,
+        delay: introDelay,
+      });
+    },
+    { scope: rootRef },
+  );
+
   return (
-    <SidebarLayout>
-      <LogoArea>
+    <aside
+      ref={rootRef}
+      className="fixed left-0 top-0 z-998 hidden h-dvh w-(--sidebar-width) flex-col gap-4.5 border-r border-line bg-white px-4.5 py-8 dark:border-white/10 dark:bg-night lg:flex"
+    >
+      <div className="js-side flex justify-center pb-6">
         <Logo />
-      </LogoArea>
+      </div>
 
       {MENU_ITEMS.map(({ menu, id }, index) => (
-        <NavItem key={id} to={id} spy={true} smooth={true} duration={600}>
-          <NavItemRow>
+        <Link
+          key={id}
+          to={id}
+          spy={true}
+          smooth={true}
+          duration={600}
+          className="js-side group flex cursor-pointer flex-col gap-4 rounded bg-surface p-2.5 text-base font-bold text-ink transition-colors duration-300 hover:bg-surface-hover dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+        >
+          <span className="flex justify-between text-[13px]">
             <span>{String(index + 1).padStart(2, "0")}</span>
-            <span>↗</span>
-          </NavItemRow>
+            <span className="font-normal text-muted transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 dark:text-[#9a9ab0]">
+              ↗
+            </span>
+          </span>
           {menu}
-        </NavItem>
+        </Link>
       ))}
 
-      <ResumeButton />
+      <div className="js-side">
+        <ResumeButton />
+      </div>
 
-      <UtilityRow>
+      <div className="js-side flex items-center justify-between py-1">
         <SocialLinks />
-        <DarkModeButton
+        <button
           type="button"
           onClick={toggleDarkMode}
           aria-label="다크모드 전환"
+          className="flex cursor-pointer border-none bg-transparent text-lg text-muted hover:text-ink dark:text-[#9a9ab0] dark:hover:text-white"
         >
           {isDarkMode ? <LuSun /> : <LuMoon />}
-        </DarkModeButton>
-      </UtilityRow>
-    </SidebarLayout>
+        </button>
+      </div>
+    </aside>
   );
 }
 

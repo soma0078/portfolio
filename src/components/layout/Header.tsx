@@ -1,56 +1,13 @@
-import styled from "styled-components";
-import MenuOverlay from "@components/common/MenuOverlay";
-import { LuSun, LuMoon } from "react-icons/lu";
-import devices from "@constants/devices";
-import MobileMenu from "../common/Menu";
 import { useState } from "react";
+import { LuSun, LuMoon } from "react-icons/lu";
+import MenuOverlay from "@components/common/MenuOverlay";
+import MobileMenu from "../common/Menu";
 import Logo from "@components/common/Logo";
 
 interface HeaderProps {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
 }
-
-const HeaderLayout = styled.div`
-  display: none;
-
-  @media ${devices.md} {
-    width: 100%;
-    padding: 12px;
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    box-sizing: border-box;
-    align-items: center;
-    z-index: 999;
-  }
-`;
-
-const HeaderRightMenuWrapper = styled.div`
-  display: flex;
-  gap: 8px;
-  align-items: center;
-`;
-
-const DarkModeIcon = styled.button`
-  border: none;
-  font-size: 1.25rem;
-  border-radius: 999px;
-  cursor: pointer;
-  background-color: transparent;
-  color: ${({ theme }) => theme.textColor};
-  padding-top: 4px;
-
-  &:hover {
-    background-color: #efefef;
-    color: #333;
-  }
-
-  @media ${devices.lg} {
-    line-height: 21px;
-  }
-`;
 
 function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -64,17 +21,22 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
   };
 
   return (
-    <HeaderLayout>
+    <header className="fixed top-0 z-999 flex w-full items-center justify-between p-3 lg:hidden">
       <Logo />
 
-      <HeaderRightMenuWrapper>
+      <div className="flex items-center gap-2">
         <MenuOverlay isOpen={isNavOpen} onClose={handleClose} />
-        <DarkModeIcon onClick={toggleDarkMode}>
+        <button
+          type="button"
+          onClick={toggleDarkMode}
+          aria-label="다크모드 전환"
+          className="cursor-pointer rounded-full border-none bg-transparent pt-1 text-xl text-ink hover:bg-[#efefef] hover:text-[#333] dark:text-white dark:hover:bg-white/10 dark:hover:text-white"
+        >
           {isDarkMode ? <LuSun /> : <LuMoon />}
-        </DarkModeIcon>
+        </button>
         <MobileMenu onClick={toggleNav} isOpen={isNavOpen} />
-      </HeaderRightMenuWrapper>
-    </HeaderLayout>
+      </div>
+    </header>
   );
 }
 

@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@import "./base.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ink: #17171c;
+  --color-ink-soft: #4a4a55;
+  --color-muted: #75758a;
+  --color-quiet: #a3a39a;
+  --color-line: #e5e7eb;
+  --color-surface: #fafafa;
+  --color-surface-hover: #f0f0f2;
+
+  --color-night: #0c092a;
+
+  --color-folder-about: #1f271b;
+  --color-folder-experience: #e07a5f;
+  --color-folder-projects: #f2efdc;
+  --color-folder-personal: #3e92cc;
+
+  --font-sans: "Pretendard", "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@theme static {
+  --sidebar-width: 220px;
+  --primary-color: #985ea4;
+  --primary-color-dark: #824f8d;
+  --primary-gradient: linear-gradient(135deg, #bd4be5, #5856de);
+  --filterBar-gradient-light: linear-gradient(0deg, #fff, #ffffff81, #ffffff11);
+  --filterBar-gradient-dark: linear-gradient(
+    0deg,
+    #0c092a,
+    rgba(12, 9, 42, 0.71),
+    #0c092a11
+  );
+}

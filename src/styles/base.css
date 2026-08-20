@@ -1,0 +1,61 @@
+@layer base {
+  :root {
+    --legacy-bg: #ffffff;
+    --legacy-bg-soft: #c5c5c575;
+    --legacy-text: #333333;
+    --legacy-text-faint: rgba(0, 0, 0, 0.07);
+    --legacy-card: rgba(0, 0, 0, 0.07);
+    --legacy-word-active: #000000;
+    --legacy-solid: #17171c;
+    --legacy-filter-bar: var(--filterBar-gradient-light);
+  }
+
+  :root.dark {
+    --legacy-bg: #0c092a;
+    --legacy-bg-soft: #0907249b;
+    --legacy-text: #ffffff;
+    --legacy-text-faint: rgba(255, 255, 255, 0.05);
+    --legacy-card: rgba(255, 255, 255, 0.07);
+    --legacy-word-active: #ffffff;
+    --legacy-solid: #ffffff;
+    --legacy-filter-bar: var(--filterBar-gradient-dark);
+  }
+
+  html {
+    font-family: "Montserrat", "Pretendard", sans-serif;
+  }
+
+  body {
+    background-color: var(--legacy-bg);
+    color: var(--legacy-text);
+    line-height: 1.2;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 640px) {
+    p,
+    li {
+      font-size: 0.875rem;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+}

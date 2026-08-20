@@ -1,130 +1,60 @@
-import styled, { keyframes } from "styled-components";
 import { IoMdArrowUp } from "react-icons/io";
-import devices from "@constants/devices";
 import Badge from "@components/common/Badge";
 import { MY_BLOG_URL, MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
 
-const FooterLayout = styled.footer`
-  width: 100%;
-  position: relative;
+const ORBIT = `@keyframes footer-orbit {
+  0%   { transform: rotate(0deg) translateX(5px) rotate(0deg); }
+  50%  { transform: rotate(180deg) translateX(5px) rotate(-180deg); }
+  100% { transform: rotate(360deg) translateX(5px) rotate(-360deg); }
+}`;
 
-  &:before {
-    content: "LEESONGA";
-    font-size: 17.5vw;
-    line-height: normal;
-    font-weight: 800;
-    letter-spacing: -2px;
-    color: ${({ theme }) => theme.textColorOpacity};
-    margin-left: -1.25rem;
-
-    @media ${devices.sm} {
-      margin-left: 0;
-    }
-  }
-`;
-
-const ScrollToTopButton = styled.button`
-  position: absolute;
-  left: 24px;
-  bottom: 85%;
-  font-size: 1rem;
-  transition: all 0.3s;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-
-  .scroll-text {
-    position: absolute;
-    left: 30px;
-    height: 19px;
-    transition: all 300ms;
-    width: 100px;
-    overflow: hidden;
-    font-weight: 500;
-    bottom: 0;
-
-    span {
-      position: absolute;
-      left: 0;
-      transition: all 300ms;
-    }
-    .top-text-hover {
-      transform: translateY(100%);
-    }
-  }
-
-  &:hover .top-text {
-    transform: translateY(-100%);
-  }
-  &:hover .top-text-hover {
-    transform: translateY(0);
-  }
-`;
-
-const floatAndRotate = keyframes`
-  0% {
-    transform: rotate(0deg) translateX(5px) rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg) translateX(5px) rotate(-180deg);
-  }
-  100% {
-    transform: rotate(360deg) translateX(5px) rotate(-360deg);
-  }
-`;
-
-const BadgeWrapper = styled.div`
-  & > span {
-    position: absolute;
-    transform: translateY(-50%);
-    color: white;
-  }
-
-  & > span:nth-child(1) {
-    left: 5%;
-    bottom: 40%;
-    animation: ${floatAndRotate} 6s linear 2s infinite;
-  }
-  & > span:nth-child(2) {
-    left: 40%;
-    bottom: 20%;
-    animation: ${floatAndRotate} 5s linear infinite reverse;
-  }
-  & > span:nth-child(3) {
-    right: 7%;
-    bottom: 55%;
-    animation: ${floatAndRotate} 4s linear infinite;
-  }
-
-  @media ${devices.md} {
-    display: none;
-  }
-`;
+const BADGE = "absolute -translate-y-1/2 text-white";
 
 function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <FooterLayout>
-      <ScrollToTopButton onClick={scrollToTop}>
-        <IoMdArrowUp size={20} />
-        <div className="scroll-text">
-          <span className="top-text">Back To Top</span>
-          <span className="top-text-hover">맨 위로</span>
-        </div>
-      </ScrollToTopButton>
+    <footer className="relative w-full before:-ml-5 before:text-[17.5vw] before:leading-normal before:font-extrabold before:tracking-[-2px] before:text-(--legacy-text-faint) before:content-['LEESONGA'] max-sm:before:ml-0">
+      <style>{ORBIT}</style>
 
-      <BadgeWrapper>
-        <Badge text={MY_EMAIL} />
-        <Badge text={MY_GITHUB_URL.slice(8)} />
-        <Badge text={MY_BLOG_URL.slice(8)} />
-      </BadgeWrapper>
-    </FooterLayout>
+      <button
+        onClick={scrollToTop}
+        className="group absolute bottom-[85%] left-6 z-999 flex items-center text-base transition-all duration-300"
+      >
+        <IoMdArrowUp size={20} />
+        <div className="absolute bottom-0 left-7.5 h-[19px] w-25 overflow-hidden font-medium">
+          <span className="absolute left-0 transition-all duration-300 group-hover:-translate-y-full">
+            Back To Top
+          </span>
+          <span className="absolute left-0 translate-y-full transition-all duration-300 group-hover:translate-y-0">
+            맨 위로
+          </span>
+        </div>
+      </button>
+
+      <div className="max-md:hidden">
+        <span
+          className={`${BADGE} bottom-[40%] left-[5%]`}
+          style={{ animation: "footer-orbit 6s linear 2s infinite" }}
+        >
+          <Badge text={MY_EMAIL} />
+        </span>
+        <span
+          className={`${BADGE} bottom-[20%] left-[40%]`}
+          style={{ animation: "footer-orbit 5s linear infinite reverse" }}
+        >
+          <Badge text={MY_GITHUB_URL.slice(8)} />
+        </span>
+        <span
+          className={`${BADGE} right-[7%] bottom-[55%]`}
+          style={{ animation: "footer-orbit 4s linear infinite" }}
+        >
+          <Badge text={MY_BLOG_URL.slice(8)} />
+        </span>
+      </div>
+    </footer>
   );
 }
 

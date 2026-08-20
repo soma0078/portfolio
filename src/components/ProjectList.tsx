@@ -1,29 +1,11 @@
-import styled from "styled-components";
 import ProjectThumbnail from "./common/ProjectThumbnail";
-import devices from "@constants/devices";
 import { useNavigate } from "react-router-dom";
 import { Project } from "src/type/types";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const ProjectItem = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  padding: 0 164px;
-  padding-bottom: 15vh;
-
-  @media ${devices.lg} {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 64px;
-    padding-bottom: 15vh;
-  }
-  @media ${devices.md} {
-    grid-template-columns: repeat(1, 1fr);
-    padding: 0 24px;
-    padding-bottom: 12vh;
-  }
-`;
+const GRID =
+  "grid grid-cols-1 gap-5 px-6 pb-[12vh] md:grid-cols-2 md:px-16 md:pb-[15vh] lg:grid-cols-3 lg:px-[164px]";
 
 interface Props {
   data: Project[];
@@ -58,7 +40,9 @@ export default function ProjectList({
     // 1열이 되는 모바일에선 카드가 서로 다른 속도로 겹치므로 제외
     const mm = gsap.matchMedia();
     mm.add("(min-width: 769px)", () => {
-      const elements = gsap.utils.toArray(".project-thumbnail") as HTMLElement[];
+      const elements = gsap.utils.toArray(
+        ".project-thumbnail",
+      ) as HTMLElement[];
       elements.forEach((el) => {
         const speed = parseFloat(el.getAttribute("data-speed") || "1");
 
@@ -77,7 +61,7 @@ export default function ProjectList({
   });
 
   return (
-    <ProjectItem className="project-list">
+    <div className={`project-list ${GRID}`}>
       {displayData.map((item, index) => (
         <ProjectThumbnail
           key={item.id}
@@ -87,6 +71,6 @@ export default function ProjectList({
           onClick={() => handleProjectClick(item.id)}
         />
       ))}
-    </ProjectItem>
+    </div>
   );
 }

@@ -1,87 +1,22 @@
-import styled from "styled-components";
 import { Link } from "react-scroll";
 import MENU_ITEMS from "@constants/menuItems";
 import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
 
-const Overlay = styled.nav<{ isOpen: boolean }>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0 24px;
-  width: 100vw;
-  height: 100dvh;
-  z-index: -1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  pointer-events: ${({ isOpen }) => (isOpen ? "auto" : "none")};
+const CURTAIN = [
+  "before:absolute before:top-0 before:right-0 before:-z-20 before:bg-(--legacy-bg-soft) before:content-['']",
+  "after:absolute after:top-0 after:right-0 after:-z-20 after:bg-(--legacy-bg) after:content-['']",
+  "before:pointer-events-none after:pointer-events-none",
+  "before:transition-all before:duration-700 before:ease-[cubic-bezier(0.77,0,0.175,1)]",
+  "after:transition-all after:duration-700 after:ease-[cubic-bezier(0.77,0,0.175,1)]",
+].join(" ");
 
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: -2;
-    width: ${({ isOpen }) => (isOpen ? "100vw" : "0")};
-    height: ${({ isOpen }) => (isOpen ? "100dvh" : "0")};
-    pointer-events: none;
+const CURTAIN_OPEN =
+  "before:h-dvh before:w-screen before:rounded-bl-none before:delay-0 after:h-dvh after:w-screen after:rounded-bl-none after:delay-200";
+const CURTAIN_CLOSED =
+  "before:h-0 before:w-0 before:rounded-bl-[200%] before:delay-200 after:h-0 after:w-0 after:rounded-bl-[200%] after:delay-0";
 
-    border-bottom-left-radius: ${({ isOpen }) => (isOpen ? "0%" : "200%")};
-    transition:
-      all 700ms cubic-bezier(0.77, 0, 0.175, 1),
-      border-radius 900ms linear;
-  }
-
-  &::before {
-    background-color: ${({ theme }) => theme.bgColorOpacity};
-    transition-delay: ${({ isOpen }) => (isOpen ? "0s" : "200ms")};
-  }
-
-  &::after {
-    background-color: ${({ theme }) => theme.bgColor};
-    transition-delay: ${({ isOpen }) => (isOpen ? "200ms" : "0s")};
-  }
-
-  .nav-link:hover {
-    cursor: pointer;
-    transition: all 300ms;
-    transform: skewX(-15deg);
-
-    div {
-      background: var(--primary-gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  }
-`;
-
-const Menu = styled.div<{ delay: number; isOpen: boolean }>`
-  font-family: "Montserrat";
-  font-size: 2rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.textColor};
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(20px)")};
-  transition: all 500ms ease-out;
-  transition-delay: ${({ delay, isOpen }) => (isOpen ? delay + 0.5 : 0)}s;
-`;
-
-const ExtraArea = styled.div<{ delay: number; isOpen: boolean }>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-top: 24px;
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(20px)")};
-  transition: all 500ms ease-out;
-  transition-delay: ${({ delay, isOpen }) => (isOpen ? delay + 0.5 : 0)}s;
-`;
+const NAV_LINK =
+  "cursor-pointer transition-all duration-300 hover:-skew-x-12 [&:hover>div]:bg-[image:var(--primary-gradient)] [&:hover>div]:bg-clip-text [&:hover>div]:text-transparent";
 
 function MenuOverlay({
   isOpen,
@@ -90,8 +25,23 @@ function MenuOverlay({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const enter = (index: number) =>
+    isOpen
+      ? {
+          opacity: 1,
+          transform: "translateX(0)",
+          transitionDelay: `${index * 0.1 + 0.5}s`,
+        }
+      : { opacity: 0, transform: "translateX(20px)", transitionDelay: "0s" };
+
   return (
-    <Overlay isOpen={isOpen}>
+    <nav
+      className={`fixed top-0 left-0 -z-10 flex h-dvh w-screen flex-col items-center justify-center gap-3 overflow-hidden px-6 ${CURTAIN} ${
+        isOpen
+          ? `pointer-events-auto ${CURTAIN_OPEN}`
+          : `pointer-events-none ${CURTAIN_CLOSED}`
+      }`}
+    >
       {MENU_ITEMS.map(({ menu, id }, index) => (
         <Link
           key={id}
@@ -100,19 +50,25 @@ function MenuOverlay({
           smooth={true}
           duration={600}
           onClick={onClose}
-          className="nav-link"
+          className={NAV_LINK}
         >
-          <Menu delay={index * 0.1} isOpen={isOpen}>
+          <div
+            className="font-['Montserrat'] text-[2rem] font-bold text-(--legacy-text) transition-all duration-500 ease-out"
+            style={enter(index)}
+          >
             {menu}
-          </Menu>
+          </div>
         </Link>
       ))}
 
-      <ExtraArea delay={MENU_ITEMS.length * 0.1} isOpen={isOpen}>
+      <div
+        className="mt-6 flex flex-col items-center gap-5 transition-all duration-500 ease-out"
+        style={enter(MENU_ITEMS.length)}
+      >
         <ResumeButton onClick={onClose} />
         <SocialLinks />
-      </ExtraArea>
-    </Overlay>
+      </div>
+    </nav>
   );
 }
 
