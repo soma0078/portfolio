@@ -19,8 +19,9 @@
   --color-folder-projects: #f2efdc;
   --color-folder-personal: #3e92cc;
 
-  --font-sans: "Pretendard", "Inter", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Intel One Mono", "Pretendard", sans-serif;
+  --font-mono: "Intel One Mono", ui-monospace, monospace;
+  --font-twayfly: "TwayNalda", sans-serif;
 }
 
 @theme static {
