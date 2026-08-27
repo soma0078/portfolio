@@ -89,14 +89,14 @@ export const PROJECTS: ProjectSummary[] = [
   {
     id: 6,
     tag: "WORK",
-    year: "2022",
-    title: "용인서울병원 웹사이트 리뉴얼",
+    year: "2022 — 2024",
+    title: "브랜드 사이트 퍼블리싱 모음",
     summary:
-      "솔라디자인에서 디자인부터 퍼블리싱까지 맡아 진행한 병원 웹사이트입니다.",
+      "솔라디자인에서 기획·디자인·퍼블리싱을 맡아 만든 기업·병원·쇼핑몰 사이트들입니다. 클라이언트와 직접 소통하며 납품까지 이어서 진행했습니다.",
     highlights: [
-      "메인 비주얼 배너와 의료진 소개에 Swiper 슬라이드 적용",
-      "풀페이지 형태를 유지하면서 전 디바이스 반응형으로 설계",
-      "ZENITH-TECK · COREAONE · 하우드시스템 · KOCH 등 반응형 사이트 다수 제작",
+      "웹 표준·접근성을 지킨 반응형 사이트 다수 제작 (대표 5건 수록)",
+      "Swiper·AOS·무한 루프 등 동적 UI를 JavaScript·jQuery로 직접 구현",
+      "WordPress·Gnuboard·Cafe24 기반 구축과 크로스 브라우징 대응",
     ],
     stack: "HTML5 · CSS3 · JAVASCRIPT · JQUERY",
     thumb: "thumbnail-work-01",

@@ -12,9 +12,9 @@ export default function AppRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/projects" element={<ProjectPage />} />
+      <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
 
       <Route element={<Layout />}>
-        <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
