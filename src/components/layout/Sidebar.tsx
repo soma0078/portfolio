@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import { Link } from "react-scroll";
+import { useRef, type MouseEvent } from "react";
 import { useLocation } from "react-router-dom";
+import TransitionLink from "@components/common/TransitionLink";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { LuSun, LuMoon } from "react-icons/lu";
@@ -11,7 +11,7 @@ import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
 
 interface SidebarProps {
   isDarkMode: boolean;
-  toggleDarkMode: () => void;
+  toggleDarkMode: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
@@ -46,12 +46,9 @@ function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
       </div>
 
       {MENU_ITEMS.map(({ menu, id }, index) => (
-        <Link
+        <TransitionLink
           key={id}
           to={id}
-          spy={true}
-          smooth={true}
-          duration={600}
           className="js-side group flex cursor-pointer flex-col gap-4 rounded bg-surface p-2.5 text-base font-bold text-ink transition-colors duration-300 hover:bg-surface-hover dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
         >
           <span className="flex justify-between text-[13px]">
@@ -61,7 +58,7 @@ function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
             </span>
           </span>
           {menu}
-        </Link>
+        </TransitionLink>
       ))}
 
       <div className="js-side">

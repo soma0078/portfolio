@@ -21,10 +21,6 @@
     --legacy-filter-bar: var(--filterBar-gradient-dark);
   }
 
-  html {
-    font-family: "Montserrat", "Pretendard", sans-serif;
-  }
-
   body {
     background-color: var(--legacy-bg);
     color: var(--legacy-text);
@@ -60,10 +56,61 @@
   }
 }
 
+@layer components {
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .group:hover .link-underline::after,
+  .group:focus-visible .link-underline::after {
+    width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-underline::after {
+      transition: none;
+    }
+  }
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-theme-reveal])::view-transition-old(root) {
+    animation: page-out 0.22s ease-in forwards;
+  }
+
+  :root:not([data-theme-reveal])::view-transition-new(root) {
+    animation: page-in 0.34s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
 :root[data-theme-reveal]::view-transition-old(root) {

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import type { ProjectSummary } from "@constants/projects";
+import TransitionLink from "@components/common/TransitionLink";
 
 interface DetailNavProps {
   prev?: ProjectSummary;
@@ -16,12 +16,15 @@ export default function DetailNav({ prev, next }: DetailNavProps) {
         {prev && (
           <>
             <span className={LABEL}>PREV</span>
-            <Link to={`/projects/${prev.id}`} className={`group ${TITLE}`}>
+            <TransitionLink
+              to={`/projects/${prev.id}`}
+              className={`group ${TITLE}`}
+            >
               <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1">
                 ←
               </span>{" "}
               {prev.title}
-            </Link>
+            </TransitionLink>
           </>
         )}
       </div>
@@ -30,12 +33,15 @@ export default function DetailNav({ prev, next }: DetailNavProps) {
         {next && (
           <>
             <span className={LABEL}>NEXT</span>
-            <Link to={`/projects/${next.id}`} className={`group ${TITLE}`}>
+            <TransitionLink
+              to={`/projects/${next.id}`}
+              className={`group ${TITLE}`}
+            >
               {next.title}{" "}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
-            </Link>
+            </TransitionLink>
           </>
         )}
       </div>

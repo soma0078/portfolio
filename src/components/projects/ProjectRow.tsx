@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import type { ProjectSummary } from "@constants/projects";
+import TransitionLink from "@components/common/TransitionLink";
 
 const ACCENT_TEXT = "text-[#b57328] dark:text-[#d9a05b]";
 const ACCENT_DOT = "bg-[#b57328] dark:bg-[#d9a05b]";
@@ -20,7 +20,7 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
           flipped ? "lg:flex-row-reverse" : "lg:flex-row"
         }`}
       >
-        <Link
+        <TransitionLink
           to={detailPath}
           tabIndex={-1}
           aria-hidden
@@ -32,10 +32,10 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
             loading="lazy"
             className="aspect-[2/1] w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-        </Link>
+        </TransitionLink>
 
         <div className="flex flex-1 flex-col items-start gap-4.5">
-          <div className="flex items-center gap-3.5 font-mono text-xs">
+          <div className="flex items-center gap-3.5  text-xs">
             <span className="text-quiet">{String(order).padStart(2, "0")}</span>
             <span className="font-medium tracking-[1.4px] text-muted dark:text-[#9a9ab0]">
               {project.tag}
@@ -46,12 +46,9 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
           </div>
 
           <h3 className="text-2xl leading-8 font-bold tracking-[-0.5px] lg:text-[28px] lg:leading-9">
-            <Link
-              to={detailPath}
-              className="underline decoration-transparent underline-offset-[6px] transition-colors duration-300 hover:decoration-current"
-            >
-              {project.title}
-            </Link>
+            <TransitionLink to={detailPath} className="group">
+              <span className="link-underline">{project.title}</span>
+            </TransitionLink>
           </h3>
 
           <p className="max-w-[620px] text-base leading-7 text-[#6b6b78] dark:text-[#9a9aae]">
@@ -71,19 +68,16 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
             ))}
           </ul>
 
-          <p className="font-mono text-xs tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
+          <p className=" text-xs tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
             {project.stack}
           </p>
 
-          <Link
+          <TransitionLink
             to={detailPath}
             className={`group text-sm font-semibold ${ACCENT_TEXT}`}
           >
-            자세히 보기{" "}
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
+            <span className="link-underline">자세히 보기</span>
+          </TransitionLink>
         </div>
       </article>
     </li>

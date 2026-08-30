@@ -17,24 +17,18 @@ export default function ProjectsClosing() {
       <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
         <a
           href={`mailto:${MY_EMAIL}`}
-          className={`${BUTTON} group bg-ink text-white transition-colors duration-300 hover:bg-ink-soft dark:bg-white dark:text-ink dark:hover:bg-[#e2e2ea]`}
+          className={`${BUTTON} bg-ink text-white transition-colors duration-300 hover:bg-ink-soft dark:bg-white dark:text-ink dark:hover:bg-[#e2e2ea]`}
         >
-          이메일 보내기{" "}
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
+          이메일 보내기
         </a>
 
         <a
           href={MY_GITHUB_URL}
           target="_blank"
           rel="noreferrer noopener"
-          className={`${BUTTON} group ring-1 ring-black/12 transition-colors duration-300 hover:bg-surface dark:ring-white/20 dark:hover:bg-white/8`}
+          className={`${BUTTON} ring-1 ring-black/12 transition-colors duration-300 hover:bg-surface dark:ring-white/20 dark:hover:bg-white/8`}
         >
-          GitHub{" "}
-          <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-            ↗
-          </span>
+          GitHub ↗
         </a>
       </div>
     </section>

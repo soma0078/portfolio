@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import TransitionLink from "./TransitionLink";
 
 interface ButtonProps {
   type?: "button" | "link";
@@ -34,9 +34,9 @@ function Button({
 
   if (type === "link") {
     return (
-      <Link to={to} className={merged}>
+      <TransitionLink to={to} className={merged}>
         {children}
-      </Link>
+      </TransitionLink>
     );
   }
 

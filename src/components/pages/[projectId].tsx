@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ScrollSmoother } from "gsap/all";
 import SmoothScroll from "@components/layout/SmoothScroll";
 import DetailBlock from "@components/projects/DetailBlock";
@@ -9,6 +9,7 @@ import HeroSlider from "@components/projects/HeroSlider";
 import { PROJECTS } from "@constants/projects";
 import { PROJECT_DETAILS } from "@constants/projectDetails";
 import type { DetailBlock as Block } from "@constants/projectDetails";
+import TransitionLink from "@components/common/TransitionLink";
 
 const ACCENT = "text-[#b57328] dark:text-[#d9a05b]";
 
@@ -55,9 +56,12 @@ export default function ProjectDetailPage() {
           <p className="text-base leading-7 text-muted dark:text-[#9a9aae]">
             주소가 바뀌었거나 목록에서 내린 프로젝트일 수 있습니다.
           </p>
-          <Link to="/projects" className={`text-sm font-semibold ${ACCENT}`}>
+          <TransitionLink
+            to="/projects"
+            className={`text-sm font-semibold ${ACCENT}`}
+          >
             목록으로 돌아가기 →
-          </Link>
+          </TransitionLink>
         </main>
       </div>
     );
@@ -67,9 +71,9 @@ export default function ProjectDetailPage() {
     <SmoothScroll>
       <div className={PAGE}>
         <main className="flex flex-col gap-18 px-5 pt-24 lg:px-30 lg:pt-16">
-          <Link to="/projects" className={BACK}>
+          <TransitionLink to="/projects" className={BACK}>
             ← Projects
-          </Link>
+          </TransitionLink>
 
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
             <div className="flex w-full flex-col items-start gap-5 lg:w-[47%]">
@@ -101,16 +105,13 @@ export default function ProjectDetailPage() {
                       href={href}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className={`group rounded-full px-5 py-3 text-sm font-bold transition-colors duration-300 ${
+                      className={`rounded-full px-5 py-3 text-sm font-bold transition-colors duration-300 ${
                         order === 0
                           ? "bg-ink text-white hover:bg-ink-soft dark:bg-white dark:text-ink dark:hover:bg-[#e2e2ea]"
                           : "ring-1 ring-black/12 hover:bg-surface dark:ring-white/20 dark:hover:bg-white/8"
                       }`}
                     >
-                      {label}{" "}
-                      <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                        ↗
-                      </span>
+                      {label} ↗
                     </a>
                   ))}
                 </div>

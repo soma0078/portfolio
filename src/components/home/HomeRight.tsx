@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { useNavigate } from "react-router-dom";
+import useTransitionNavigate from "@hooks/useTransitionNavigate";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import FolderContent from "./FolderContents";
@@ -51,7 +51,7 @@ const SETTLE_EASE = "back.out(1.4)";
 const SETTLE_DURATION = 0.6;
 
 export default function HomeRight() {
-  const navigate = useNavigate();
+  const navigate = useTransitionNavigate();
   const rootRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const folderRefs = useRef<Partial<Record<FolderId, HTMLDivElement | null>>>(
@@ -255,7 +255,7 @@ export default function HomeRight() {
                     </svg>
 
                     <span
-                      className="absolute top-[12.6px] text-sm"
+                      className="absolute top-[12.6px] text-sm font-twayfly"
                       style={{
                         left: folder.tab.labelLeft,
                         color: folder.labelColor,
@@ -276,7 +276,7 @@ export default function HomeRight() {
                           header={
                             <div className="group flex w-full shrink-0 items-center justify-between">
                               <span
-                                className="text-base font-bold tracking-[0.2px]"
+                                className="text-base font-bold tracking-[0.2px] font-twayfly"
                                 style={{ color: folder.labelColor }}
                               >
                                 {FOLDER_HEADINGS[folder.id]}
@@ -317,7 +317,7 @@ export default function HomeRight() {
           aria-hidden={expanded || !introDone}
         >
           <span className="text-sm font-semibold text-quiet">↑</span>
-          <span className="font-mono text-xs font-medium tracking-[0.8px] text-quiet">
+          <span className=" text-xs font-medium tracking-[0.8px] text-quiet">
             {compact
               ? "탭을 누르면 폴더가 바뀌어요"
               : "탭을 누르면 폴더가 펼쳐져요"}
