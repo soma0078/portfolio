@@ -12,7 +12,7 @@
   --color-surface: #fafafa;
   --color-surface-hover: #f0f0f2;
 
-  --color-night: #0c092a;
+  --color-night: #1a1613;
 
   --color-folder-about: #1f271b;
   --color-folder-experience: #e07a5f;
@@ -32,8 +32,8 @@
   --filterBar-gradient-light: linear-gradient(0deg, #fff, #ffffff81, #ffffff11);
   --filterBar-gradient-dark: linear-gradient(
     0deg,
-    #0c092a,
-    rgba(12, 9, 42, 0.71),
-    #0c092a11
+    #1a1613,
+    rgba(26, 22, 19, 0.71),
+    #1a161311
   );
 }

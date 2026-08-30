@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { LuSun, LuMoon } from "react-icons/lu";
 import MenuOverlay from "@components/common/MenuOverlay";
 import MobileMenu from "../common/Menu";
@@ -6,7 +6,7 @@ import Logo from "@components/common/Logo";
 
 interface HeaderProps {
   isDarkMode: boolean;
-  toggleDarkMode: () => void;
+  toggleDarkMode: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {

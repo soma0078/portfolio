@@ -11,7 +11,7 @@
   }
 
   :root.dark {
-    --legacy-bg: #0c092a;
+    --legacy-bg: #1a1613;
     --legacy-bg-soft: #0907249b;
     --legacy-text: #ffffff;
     --legacy-text-faint: rgba(255, 255, 255, 0.05);
@@ -57,5 +57,31 @@
 
   ::-webkit-scrollbar {
     width: 0;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root[data-theme-reveal]::view-transition-old(root) {
+  z-index: 0;
+}
+
+:root[data-theme-reveal]::view-transition-new(root) {
+  z-index: 1;
+  animation: theme-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--reveal-x, 50%) var(--reveal-y, 50%));
+  }
+  to {
+    clip-path: circle(
+      var(--reveal-r, 150vmax) at var(--reveal-x, 50%) var(--reveal-y, 50%)
+    );
   }
 }
