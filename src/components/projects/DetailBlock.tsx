@@ -1,10 +1,11 @@
 import type { DetailBlock as Block } from "@constants/projectDetails";
+import DetailFlow from "./DetailFlow";
 import DetailGallery from "./DetailGallery";
 import DetailTrouble from "./DetailTrouble";
 
 const ACCENT_DOT = "bg-[#b57328] dark:bg-[#d9a05b]";
 
-const PROSE = "flex max-w-[820px] flex-col gap-4 text-base leading-7";
+const PROSE = "flex flex-col gap-4 text-base leading-7";
 
 function withCode(text: string) {
   return text.split(/`([^`]+)`/).map((part, index) =>
@@ -57,7 +58,7 @@ export default function DetailBlock({ block }: { block: Block }) {
           {block.steps.map((step) => (
             <li
               key={step.title}
-              className="flex flex-col gap-3 border-b border-black/8 py-6.5 dark:border-white/10"
+              className="flex flex-col gap-3 not-last:border-b border-black/8 py-6.5 dark:border-white/10"
             >
               <h3 className="text-lg font-bold tracking-[-0.2px]">
                 {step.title}
@@ -76,6 +77,10 @@ export default function DetailBlock({ block }: { block: Block }) {
 
       {block.kind === "trouble" && (
         <DetailTrouble cases={block.cases} format={withCode} />
+      )}
+
+      {block.kind === "flow" && (
+        <DetailFlow chart={block.chart} caption={block.caption} />
       )}
 
       {block.kind === "gallery" && <DetailGallery shots={block.shots} />}

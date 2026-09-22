@@ -112,7 +112,7 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
 
       {popover !== null && (
         <GalleryLightbox
-          shots={shots}
+          items={shots.map((shot) => ({ id: shot.src, src: shot.src, shot }))}
           index={popover}
           onMove={(step) =>
             setPopover((current) =>

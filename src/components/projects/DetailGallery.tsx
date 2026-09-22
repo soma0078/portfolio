@@ -1,68 +1,110 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { ShotItem } from "@constants/projectDetails";
+import { PUB_WORKS, PUB_YEARS, type GalleryEntry } from "@constants/publishing";
+import CircularGallery, { WorkCard } from "./CircularGallery";
 import GalleryLightbox from "./GalleryLightbox";
+
+type YearFilter = "all" | (typeof PUB_YEARS)[number];
+
+const CHIP = [
+  "rounded-full px-4 py-2 text-xs font-medium tracking-[1px]",
+  "transition-colors duration-300",
+].join(" ");
 
 export default function DetailGallery({ shots }: { shots: ShotItem[] }) {
   const [opened, setOpened] = useState<number | null>(null);
+  const [year, setYear] = useState<YearFilter>("all");
+  const [expanded, setExpanded] = useState(false);
+
+  const all = useMemo<GalleryEntry[]>(
+    () =>
+      PUB_WORKS.map((work) => ({
+        ...work,
+        shot: work.caseName
+          ? shots.find((item) => item.name === work.caseName)
+          : undefined,
+      })),
+    [shots],
+  );
+
+  const items = useMemo(
+    () => (year === "all" ? all : all.filter((item) => item.year === year)),
+    [all, year],
+  );
+
+  const pick = (next: YearFilter) => {
+    setYear(next);
+    setOpened(null);
+  };
 
   const move = (step: number) =>
     setOpened((current) => {
       if (current === null) return current;
-      return Math.min(Math.max(current + step, 0), shots.length - 1);
+      return Math.min(Math.max(current + step, 0), items.length - 1);
     });
 
   return (
     <>
-      <ul className="grid w-full gap-x-5 gap-y-6.5 pt-1.5 sm:grid-cols-2 lg:grid-cols-3">
-        {shots.map((shot, index) => (
-          <li key={shot.src} className="flex flex-col gap-3.5">
-            <div className="group relative overflow-hidden rounded-[10px] bg-surface dark:bg-white/5">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-wrap items-center gap-2">
+          {(["all", ...PUB_YEARS] as YearFilter[]).map((key) => {
+            const on = year === key;
+
+            return (
               <button
+                key={key}
                 type="button"
-                onClick={() => setOpened(index)}
-                aria-label={`${shot.name} 화면 크게 보기`}
-                className="block w-full cursor-pointer"
+                onClick={() => pick(key)}
+                aria-pressed={on}
+                className={`${CHIP} ${
+                  on
+                    ? "bg-ink text-white dark:bg-white dark:text-ink"
+                    : "text-muted ring-1 ring-black/12 hover:bg-surface dark:text-[#9a9ab0] dark:ring-white/20 dark:hover:bg-white/8"
+                }`}
               >
-                <img
-                  src={shot.src}
-                  alt={`${shot.name} 화면`}
-                  loading="lazy"
-                  className="aspect-[16/10] w-full object-cover object-top"
-                />
+                {key === "all" ? "ALL" : key}
               </button>
+            );
+          })}
 
-              {shot.summary && (
-                <div className="pointer-events-none absolute inset-0 flex flex-col justify-end gap-3 bg-ink/78 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100">
-                  <p className="line-clamp-3 text-sm leading-6 text-white/90">
-                    {shot.summary}
-                  </p>
-                  {shot.href && (
-                    <a
-                      href={shot.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="pointer-events-auto w-fit rounded-full bg-white px-4 py-2 text-sm font-bold text-ink transition-colors duration-300 hover:bg-[#e2e2ea]"
-                    >
-                      사이트 보기 ↗
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
+          <button
+            type="button"
+            onClick={() => setExpanded((open) => !open)}
+            aria-expanded={expanded}
+            className="ml-auto text-sm font-semibold text-[#b57328] dark:text-[#d9a05b]"
+          >
+            <span className="link-underline">
+              {expanded ? "접기" : "펼쳐서 보기"}
+            </span>
+          </button>
+        </div>
 
-            <div className="flex flex-col gap-1.5">
-              <span className="text-sm font-bold">{shot.name}</span>
-              <span className="text-xs tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
-                {shot.note}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
+        {expanded ? (
+          <ul className="grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-3 lg:grid-cols-4">
+            {items.map((item, index) => (
+              <li key={item.id}>
+                <button
+                  type="button"
+                  onClick={() => setOpened(index)}
+                  className="w-full cursor-pointer"
+                >
+                  <WorkCard item={item} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <CircularGallery
+            key={year}
+            items={items}
+            onPick={(index) => setOpened(index)}
+          />
+        )}
+      </div>
 
-      {opened !== null && (
+      {opened !== null && items[opened] && (
         <GalleryLightbox
-          shots={shots}
+          items={items}
           index={opened}
           onMove={move}
           onClose={() => setOpened(null)}

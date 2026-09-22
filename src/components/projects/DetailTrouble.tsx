@@ -35,7 +35,7 @@ export default function DetailTrouble({ cases, format }: DetailTroubleProps) {
                 {label}
               </span>
               <div className={`${QUOTE} ${accent ? QUOTE_ACCENT : QUOTE_LINE}`}>
-                <p className="max-w-[820px] text-base leading-7 text-[#6b6b78] dark:text-[#9a9aae]">
+                <p className="text-base leading-7 text-[#6b6b78] dark:text-[#9a9aae]">
                   {format(item[key])}
                 </p>
               </div>

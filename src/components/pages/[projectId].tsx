@@ -6,7 +6,8 @@ import DetailBlock from "@components/projects/DetailBlock";
 import DetailNav from "@components/projects/DetailNav";
 import DetailSpec from "@components/projects/DetailSpec";
 import HeroSlider from "@components/projects/HeroSlider";
-import { PROJECTS } from "@constants/projects";
+import { PAGE_GUTTER_X, PAGE_MAX_WIDTH } from "@constants/layout";
+import { PROJECTS, groupLabel } from "@constants/projects";
 import { PROJECT_DETAILS } from "@constants/projectDetails";
 import type { DetailBlock as Block } from "@constants/projectDetails";
 import TransitionLink from "@components/common/TransitionLink";
@@ -49,7 +50,9 @@ export default function ProjectDetailPage() {
   if (!project || !detail) {
     return (
       <div className={PAGE}>
-        <main className="flex flex-col items-start gap-5.5 px-5 pt-24 lg:px-30 lg:pt-19">
+        <main
+          className={`${PAGE_MAX_WIDTH} ${PAGE_GUTTER_X} flex flex-col items-start gap-5.5 pt-24 lg:pt-19`}
+        >
           <h1 className="text-2xl font-extrabold tracking-[-0.6px]">
             없는 프로젝트입니다
           </h1>
@@ -70,7 +73,9 @@ export default function ProjectDetailPage() {
   return (
     <SmoothScroll>
       <div className={PAGE}>
-        <main className="flex flex-col gap-18 px-5 pt-24 lg:px-30 lg:pt-16">
+        <main
+          className={`${PAGE_MAX_WIDTH} ${PAGE_GUTTER_X} flex flex-col gap-18 pt-24 lg:pt-16`}
+        >
           <TransitionLink to="/projects" className={BACK}>
             ← Projects
           </TransitionLink>
@@ -78,8 +83,10 @@ export default function ProjectDetailPage() {
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
             <div className="flex w-full flex-col items-start gap-5 lg:w-[47%]">
               <div className="flex flex-wrap items-center gap-3.5  text-xs">
-                <span className={`font-medium tracking-[1.4px] ${ACCENT}`}>
-                  {project.tag}
+                <span
+                  className={`font-medium tracking-[1.4px] uppercase ${ACCENT}`}
+                >
+                  {groupLabel(project.group)}
                 </span>
                 <span className="tracking-[1px] text-[#b0b0a8]">
                   {detail.period}

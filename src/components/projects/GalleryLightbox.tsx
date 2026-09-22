@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollSmoother } from "gsap/all";
-import type { ShotItem } from "@constants/projectDetails";
+import type { GalleryEntry } from "@constants/publishing";
+import CaseSheet from "./CaseSheet";
 
 const ARROW = [
   "pointer-events-auto absolute top-1/2 z-1 flex size-11 -translate-y-1/2 items-center justify-center",
@@ -10,31 +13,33 @@ const ARROW = [
   "disabled:pointer-events-none disabled:opacity-0",
 ].join(" ");
 
+
 const SWIPE_THRESHOLD = 60;
 
 interface GalleryLightboxProps {
-  shots: ShotItem[];
+  items: GalleryEntry[];
   index: number;
   onMove: (step: number) => void;
   onClose: () => void;
 }
 
 export default function GalleryLightbox({
-  shots,
+  items,
   index,
   onMove,
   onClose,
 }: GalleryLightboxProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const closing = useRef(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const dragFrom = useRef<number | null>(null);
   const frames = useRef<(HTMLDivElement | null)[]>([]);
-
   const [overflows, setOverflows] = useState(false);
   const [nudged, setNudged] = useState(false);
 
-  const shot = shots[index];
+  const item = items[index];
   const first = index === 0;
-  const last = index === shots.length - 1;
+  const last = index === items.length - 1;
 
   const measure = useCallback(() => {
     const frame = frames.current[index];
@@ -44,20 +49,58 @@ export default function GalleryLightbox({
   useEffect(() => {
     measure();
     setNudged(false);
+
+    const frame = frames.current[index];
+    if (!frame) return;
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(frame);
+    if (frame.firstElementChild) observer.observe(frame.firstElementChild);
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [measure]);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [measure, index]);
+
+  const requestClose = useCallback(() => {
+    if (closing.current) return;
+    closing.current = true;
+
+    const root = rootRef.current;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (!root || reduced.matches) {
+      onClose();
+      return;
+    }
+
+    gsap
+      .timeline({ onComplete: onClose })
+      .to(
+        root.querySelector(".js-lb-body"),
+        { opacity: 0, y: 14, scale: 0.99, duration: 0.24, ease: "power2.in" },
+        0,
+      )
+      .to(
+        root.querySelector(".js-lb-top"),
+        { opacity: 0, y: -8, duration: 0.2, ease: "power2.in" },
+        0,
+      )
+      .to(root, { opacity: 0, duration: 0.22, ease: "power2.in" }, 0.08);
+  }, [onClose]);
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") requestClose();
       if (event.key === "ArrowLeft") onMove(-1);
       if (event.key === "ArrowRight") onMove(1);
     };
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [onClose, onMove]);
+  }, [requestClose, onMove]);
 
   useEffect(() => {
     closeRef.current?.focus();
@@ -75,6 +118,46 @@ export default function GalleryLightbox({
     };
   }, []);
 
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const timeline = gsap.timeline();
+
+        timeline
+          .from(
+            rootRef.current,
+            { opacity: 0, duration: 0.22, ease: "power2.out" },
+            0,
+          )
+          .from(
+            ".js-lb-body",
+            {
+              opacity: 0,
+              y: 20,
+              scale: 0.985,
+              transformOrigin: "center center",
+              duration: 0.52,
+              ease: "power3.out",
+            },
+            0.05,
+          )
+          .from(
+            ".js-lb-top",
+            { opacity: 0, y: -10, duration: 0.34, ease: "power2.out" },
+            0.14,
+          );
+
+        return () => timeline.kill();
+      });
+
+      return () => mm.revert();
+    },
+    { scope: rootRef },
+  );
+
   const handleDragEnd = (clientX: number) => {
     if (dragFrom.current === null) return;
 
@@ -87,27 +170,27 @@ export default function GalleryLightbox({
 
   return createPortal(
     <div
+      ref={rootRef}
       role="dialog"
       aria-modal
-      aria-label={`${shot.name} 화면`}
+      aria-label={`${item.shot?.name ?? `${item.year}년 작업`} 화면`}
       className="fixed inset-0 z-999 flex flex-col bg-ink/95 backdrop-blur-sm"
     >
       <button
         type="button"
         aria-label="닫기"
-        onClick={onClose}
+        onClick={requestClose}
         className="absolute inset-0 cursor-pointer"
       />
-
-      <div className="pointer-events-none relative z-1 flex items-center justify-between px-5 py-4 text-white lg:px-8">
+      <div className="js-lb-top pointer-events-none relative z-1 flex items-center justify-between px-5 py-4 text-white lg:px-8">
         <span className="text-xs tracking-[1.4px] text-white/60">
           {String(index + 1).padStart(2, "0")} /{" "}
-          {String(shots.length).padStart(2, "0")}
+          {String(items.length).padStart(2, "0")}
         </span>
         <button
           ref={closeRef}
           type="button"
-          onClick={onClose}
+          onClick={requestClose}
           aria-label="닫기"
           className="pointer-events-auto flex size-9 items-center justify-center rounded-full bg-white/12 text-lg transition-colors duration-300 hover:bg-white/24"
         >
@@ -115,7 +198,7 @@ export default function GalleryLightbox({
         </button>
       </div>
 
-      <div className="pointer-events-none relative z-1 flex min-h-0 flex-1 items-stretch">
+      <div className="js-lb-body pointer-events-none relative z-1 flex min-h-0 flex-1 items-stretch">
         <button
           type="button"
           onClick={() => onMove(-1)}
@@ -140,9 +223,9 @@ export default function GalleryLightbox({
             className="flex h-full transition-transform duration-400 ease-out"
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
-            {shots.map((item, order) => (
+            {items.map((entry, order) => (
               <div
-                key={item.src}
+                key={entry.id}
                 className="flex h-full w-full shrink-0 items-center justify-center px-4 lg:px-20"
               >
                 <div
@@ -154,15 +237,9 @@ export default function GalleryLightbox({
                       setNudged(true);
                     }
                   }}
-                  className="pointer-events-auto max-h-full w-full max-w-[980px] overflow-y-auto rounded-xl bg-white/6"
+                  className="pointer-events-auto max-h-full w-full max-w-[980px] overflow-y-auto"
                 >
-                  <img
-                    src={item.src}
-                    alt={`${item.name} 화면`}
-                    className="block w-full"
-                    draggable={false}
-                    onLoad={measure}
-                  />
+                  <CaseSheet item={entry} />
 
                   {order === index && overflows && (
                     <div className="sticky bottom-0 z-1 h-0">
@@ -192,32 +269,6 @@ export default function GalleryLightbox({
         >
           →
         </button>
-      </div>
-
-      <div className="pointer-events-none relative z-1 flex flex-col items-start gap-2 px-5 py-5 text-white lg:px-20 lg:py-6">
-        <div className="pointer-events-auto flex flex-wrap items-baseline gap-3">
-          <span className="text-base font-bold">{shot.name}</span>
-          <span className="text-xs tracking-[0.8px] text-white/50">
-            {shot.note}
-          </span>
-        </div>
-
-        {shot.summary && (
-          <p className="pointer-events-auto max-w-[820px] text-sm leading-6 text-white/75">
-            {shot.summary}
-          </p>
-        )}
-
-        {shot.href && (
-          <a
-            href={shot.href}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="pointer-events-auto mt-1 rounded-full bg-white px-4 py-2 text-sm font-bold text-ink transition-colors duration-300 hover:bg-[#e2e2ea]"
-          >
-            사이트 보기 ↗
-          </a>
-        )}
       </div>
     </div>,
     document.body,
