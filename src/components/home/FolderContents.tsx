@@ -1,36 +1,48 @@
 import type { ReactNode } from "react";
 import { LuMail, LuMapPin } from "react-icons/lu";
-import { data } from "src/assets/data";
 import { MY_EMAIL } from "@constants/urls";
+import { CAREER_ROLES } from "@constants/about";
+import { PROJECTS, projectsIn } from "@constants/projects";
 import type { FolderId } from "./folders";
 
 interface ContentProps {
   header: ReactNode;
 }
 
-function techLine(project: (typeof data.projects)[number]) {
-  const skills = project.details.find((detail) => detail.title === "SKILLS");
-  const icons = Array.isArray(skills?.desc) ? skills.desc : [];
+function techLine(project: (typeof PROJECTS)[number]) {
+  return project.stack.split(" · ").slice(0, 2).join(" · ");
+}
 
-  return icons
-    .slice(0, 2)
-    .map((icon) => icon.replace("icon-", "").toUpperCase())
-    .join(" · ");
+function shortTitle(title: string) {
+  return title.split(/\s[—-]\s/)[0].trim();
 }
 
 const CARD_LAYOUT = [
-  { rotate: -20.9, left: 0, top: 46 },
-  { rotate: 17.2, left: 137, top: 0 },
-  { rotate: -22.6, left: 244, top: 50 },
+  { rotate: -20, left: -16, top: 50 },
+  { rotate: 18, left: 136, top: 0 },
+  { rotate: -24, left: 200, top: 50 },
 ];
 
+const FOLDER_PROJECT_IDS = [6, 7, 1];
+
+const FOLDER_PROJECTS = FOLDER_PROJECT_IDS.flatMap(
+  (id) => PROJECTS.find((project) => project.id === id) ?? [],
+);
+
+const PROJECT_SUMMARY = [
+  { label: "Work", count: projectsIn("work").length },
+  { label: "Side", count: projectsIn("side").length },
+]
+  .filter((entry) => entry.count > 0)
+  .map((entry) => `${entry.label} ${entry.count}`)
+  .join(" · ");
+
 function ProjectsContent({ header }: ContentProps) {
-  const projects = data.projects.slice(0, 3);
-  const works = data.projects.filter((project) => project.category === "work");
+  const projects = FOLDER_PROJECTS;
 
   return (
     <>
-      <div className="relative h-42 w-full shrink-0 overflow-hidden">
+      <div className="relative h-42 w-full shrink-0 overflow-hidden bg-white rounded-xl">
         {projects.map((project, index) => {
           const layout = CARD_LAYOUT[index];
 
@@ -45,14 +57,14 @@ function ProjectsContent({ header }: ContentProps) {
               }}
             >
               <img
-                src={`/images/sections/04/${project.imgSrc}.png`}
-                alt=""
+                src={project.thumb}
+                alt="프로젝트 썸네일"
                 className="h-21 w-full rounded-md object-cover"
               />
               <p className="mt-2.5 truncate text-[10px] font-bold text-ink">
-                {project.title}
+                {shortTitle(project.title)}
               </p>
-              <p className="truncate font-mono text-[8.5px] tracking-[0.8px] text-[#9a9488]">
+              <p className="truncate  text-[8.5px] tracking-[0.8px] text-[#9a9488]">
                 {techLine(project)}
               </p>
             </div>
@@ -62,15 +74,12 @@ function ProjectsContent({ header }: ContentProps) {
 
       {header}
 
-      <p className="text-[10px] text-[#8a8a94]">
-        {works.length} Works | {data.projects.length - works.length} Side
-        Projects
-      </p>
+      <p className="text-[10px] text-[#8a8a94]">{PROJECT_SUMMARY}</p>
     </>
   );
 }
 
-const ABOUT_TAGS = ["React", "Next.js", "TypeScript"];
+const ABOUT_TAGS = ["Focused", "Proactive", "Collaborative"];
 
 function AboutContent({ header }: ContentProps) {
   return (
@@ -85,8 +94,8 @@ function AboutContent({ header }: ContentProps) {
       </div>
 
       <p className="text-[11.5px] leading-4.25 text-[#c7c7c7]">
-        React와 Next.js로 서비스를 만듭니다. 화면 뒤의 데이터 구조를 함께
-        설계하고, 배포 후 실사용자 지표로 확인하며 다듬습니다.
+        QA 시나리오와 성능 지표 분석·실사용자 성능 데이터를 바탕으로, 구현을
+        넘어 실제 프로덕트의 품질과 병목을 개선합니다.
       </p>
 
       <span className="block h-px w-full shrink-0 bg-black/10" />
@@ -118,47 +127,50 @@ function AboutContent({ header }: ContentProps) {
 
 const shortenPeriod = (date: string) =>
   date
-    .split("-")
+    .split("—")
     .map((part) => part.trim().slice(2))
     .join("—");
-
-const endOf = (date: string) => date.split("-").pop()?.trim() ?? "";
-
-const CAREER = [...data.experience]
-  .sort((a, b) => endOf(b.date).localeCompare(endOf(a.date)))
-  .slice(0, 3);
 
 function ExperienceContent({ header }: ContentProps) {
   return (
     <>
       {header}
 
-      <div className="flex flex-col gap-2">
-        {CAREER.map((item, index) => (
-          <div
-            key={item.id}
-            className="flex items-start gap-3 rounded-xl bg-white p-4"
-          >
-            <span
-              className={`w-20 shrink-0 font-mono text-xs font-medium ${
-                index === 0 ? "text-[#c4573a]" : "text-ink"
-              }`}
+      <div className="relative min-h-0 flex-1">
+        <div className="flex h-full flex-col gap-2 overflow-y-auto pb-7 scrollbar-none [&::-webkit-scrollbar]:hidden">
+          {CAREER_ROLES.map((item, index) => (
+            <div
+              key={`${item.org}-${item.date}`}
+              className="flex shrink-0 items-start gap-3 rounded-xl bg-white p-5"
             >
-              {shortenPeriod(item.date)}
-            </span>
-            <span className="flex min-w-0 flex-1 flex-col gap-[3px]">
-              <span className="truncate text-[12.5px] font-bold text-ink">
-                {item.title}
+              <span
+                className={`w-20 shrink-0  text-[10px] font-medium ${
+                  index === 0 ? "text-[#c4573a]" : "text-ink"
+                }`}
+              >
+                {shortenPeriod(item.date)}
               </span>
-              <span className="truncate text-[10px] text-[#8a8a94]">
-                {item.name}
+              <span className="flex min-w-0 flex-1 flex-col gap-0.75">
+                <span className="truncate text-xs font-bold text-ink">
+                  {item.title}
+                </span>
+                <span className="truncate text-[10px] text-[#8a8a94]">
+                  {item.org}
+                </span>
               </span>
-            </span>
-            <span className="font-mono text-[8.5px] tracking-[1px] text-[#b8b8b0]">
-              {item.category === "education" ? "EDU" : "WORK"}
-            </span>
-          </div>
-        ))}
+              <span className=" text-[8.5px] tracking-[1px] text-[#b8b8b0]">
+                {item.tag}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-1 bottom-0 animate-bounce text-sm leading-none text-ink motion-reduce:animate-none"
+        >
+          ↓
+        </span>
       </div>
     </>
   );
@@ -167,17 +179,17 @@ function ExperienceContent({ header }: ContentProps) {
 const LOGS = [
   {
     year: "2026",
-    date: "07.16",
-    title: "Next.js 앱 성능 최적화기 (2편) — 실사용자는 어디서 느렸을까",
-    tag: "Core Web Vitals",
-    url: "https://allotherthings.tistory.com/34",
-  },
-  {
-    year: "2026",
     date: "07.07",
     title: "Next.js 앱 성능 최적화기 (1편) — 기준선 측정",
     tag: "성능",
     url: "https://allotherthings.tistory.com/33",
+  },
+  {
+    year: "2026",
+    date: "07.16",
+    title: "Next.js 앱 성능 최적화기 (2편) — 실사용자는 어디서 느렸을까",
+    tag: "Core Web Vitals",
+    url: "https://allotherthings.tistory.com/34",
   },
   {
     year: "2026",
@@ -193,7 +205,7 @@ function PersonalContent({ header }: ContentProps) {
     <>
       {header}
 
-      <div className="flex flex-col gap-[11px]">
+      <div className="flex flex-col gap-2.75">
         {LOGS.map((log) => (
           <a
             key={log.url}
@@ -203,13 +215,13 @@ function PersonalContent({ header }: ContentProps) {
             onClick={(event) => event.stopPropagation()}
             className="group flex items-center gap-3"
           >
-            <span className="flex h-[58px] w-[50px] shrink-0 flex-col items-center justify-center rounded-xl bg-white text-center font-mono text-[10px] leading-tight text-[#8a8a94]">
+            <span className="flex h-14.5 w-12.5 shrink-0 flex-col items-center justify-center rounded-xl bg-white text-center  text-[10px] leading-tight text-[#8a8a94]">
               {log.year}
               <br />
               {log.date}
             </span>
             <span className="flex min-w-0 flex-col gap-1">
-              <span className="line-clamp-2 text-sm font-medium text-white underline decoration-transparent underline-offset-4 transition-colors duration-300 group-hover:decoration-white/60">
+              <span className="line-clamp-2 text-xs font-medium text-white underline decoration-transparent underline-offset-4 transition-colors duration-300 group-hover:decoration-white/60">
                 {log.title}
               </span>
               <span className="w-fit rounded bg-[#c5e5fc] px-1.5 py-0.5 text-[8px] text-[#3d91cc]">

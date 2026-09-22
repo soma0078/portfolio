@@ -1,10 +1,18 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type RefObject,
+} from "react";
 import useTransitionNavigate from "@hooks/useTransitionNavigate";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import FolderContent from "./FolderContents";
 import FOLDERS, {
   FOLDER_HEADINGS,
+  MAX_SPREAD_X,
   FOLDER_HEIGHT,
   FOLDER_WIDTH,
   STACKED_POSITION,
@@ -17,26 +25,102 @@ import FOLDERS, {
 } from "./folders";
 import HOME_INTRO from "@constants/homeIntro";
 
-function useStageFit() {
-  const measure = () => {
+function useStageFit(rootRef: RefObject<HTMLDivElement | null>) {
+  const measure = useCallback(() => {
     const compact = window.matchMedia(COMPACT_QUERY).matches;
 
-    return {
-      compact,
-      scale: compact
-        ? Math.min(1, (window.innerWidth - PAGE_GUTTER) / FOLDER_WIDTH)
-        : null,
-    };
-  };
+    const target = FOLDER_TARGET_WIDTH / FOLDER_WIDTH;
+
+    if (compact) {
+      const scale = Math.min(
+        target,
+        (window.innerWidth - PAGE_GUTTER) / FOLDER_WIDTH,
+      );
+
+      return {
+        compact,
+        scale,
+        expandedScale: scale,
+        spreadFit: 1,
+        room: Infinity,
+      };
+    }
+
+    const root = rootRef.current;
+    const row = root?.parentElement;
+    const hero = root?.previousElementSibling;
+
+    if (!root || !row || !hero)
+      return {
+        compact,
+        scale: 1,
+        expandedScale: 1,
+        spreadFit: 1,
+        room: Infinity,
+      };
+
+    const style = getComputedStyle(row);
+
+    if (style.flexDirection !== "row") {
+      const room =
+        row.clientWidth -
+        parseFloat(style.paddingLeft) -
+        parseFloat(style.paddingRight) -
+        STAGE_EDGE;
+      const scale = Math.min(target, room / STAGE_WIDTH);
+
+      return { compact, scale, expandedScale: scale, spreadFit: 1, room };
+    }
+
+    const available =
+      row.clientWidth -
+      parseFloat(style.paddingLeft) -
+      parseFloat(style.paddingRight) -
+      hero.getBoundingClientRect().width -
+      (parseFloat(style.columnGap) || 0) -
+      STAGE_EDGE;
+
+    const byStage = available / STAGE_WIDTH;
+    const byCard = available / FOLDER_WIDTH;
+    const byHeight = (window.innerHeight - STAGE_VERTICAL_ROOM) / STAGE_HEIGHT;
+
+    const wanted = Math.max(target, byStage);
+
+    const scale = Math.min(wanted, byCard, byHeight, STAGE_MAX_SCALE);
+
+    const spreadRoom =
+      row.clientWidth -
+      parseFloat(style.paddingLeft) -
+      hero.getBoundingClientRect().width -
+      (parseFloat(style.columnGap) || 0) -
+      STAGE_EDGE;
+
+    const expandedScale = Math.max(
+      1,
+      Math.min(scale, spreadRoom / STAGE_WIDTH),
+    );
+
+    const spreadFit = Math.min(
+      1,
+      Math.max(
+        MIN_SPREAD_FIT,
+        (spreadRoom / expandedScale - FOLDER_WIDTH) / MAX_SPREAD_X,
+      ),
+    );
+
+    return { compact, scale, expandedScale, spreadFit, room: spreadRoom };
+  }, [rootRef]);
 
   const [fit, setFit] = useState(measure);
 
   useEffect(() => {
-    const handleResize = () => setFit(measure());
+    const remeasure = () => setFit(measure());
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    remeasure();
+
+    window.addEventListener("resize", remeasure);
+    return () => window.removeEventListener("resize", remeasure);
+  }, [measure]);
 
   return fit;
 }
@@ -45,10 +129,36 @@ const COMPACT_QUERY = "(max-width: 1023px)";
 
 const PAGE_GUTTER = 40;
 
+const STAGE_EDGE = 24;
+
+const MIN_SPREAD_FIT = 0.45;
+
+const STAGE_VERTICAL_ROOM = 160;
+
+const FOLDER_TARGET_WIDTH = 480;
+
+const STAGE_MAX_SCALE = 1.5;
 const ACTIVE_Z = 10;
 
 const SETTLE_EASE = "back.out(1.4)";
 const SETTLE_DURATION = 0.6;
+
+function spreadPosition(
+  spread: { x: number; y: number },
+  fit: number,
+  headroom: number,
+) {
+  const fanned = FOLDER_WIDTH + MAX_SPREAD_X * fit;
+
+  return {
+    x: alignInStage(fanned, headroom) + spread.x * fit,
+    y: spread.y,
+  };
+}
+
+function alignInStage(width: number, headroom: number) {
+  return Math.min((STAGE_WIDTH - width) / 2, Math.max(0, headroom - width));
+}
 
 export default function HomeRight() {
   const navigate = useTransitionNavigate();
@@ -57,12 +167,15 @@ export default function HomeRight() {
   const folderRefs = useRef<Partial<Record<FolderId, HTMLDivElement | null>>>(
     {},
   );
+
   const prevExpandedRef = useRef<boolean | null>(null);
   const prevActiveRef = useRef<FolderId | null>(null);
 
-  const { compact, scale } = useStageFit();
+  const { compact, scale, expandedScale, spreadFit, room } =
+    useStageFit(rootRef);
   const [activeId, setActiveId] = useState<FolderId>("about");
   const [expanded, setExpanded] = useState(false);
+
   const [introDone, setIntroDone] = useState(
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
@@ -79,6 +192,8 @@ export default function HomeRight() {
         !reduced;
       prevExpandedRef.current = expanded;
 
+      if (!compact && !introDone) return;
+
       FOLDERS.forEach((folder, index) => {
         const element = folderRefs.current[folder.id];
         if (!element) return;
@@ -86,8 +201,11 @@ export default function HomeRight() {
         const position = compact
           ? { x: 0, y: 0 }
           : expanded
-            ? folder.spread
-            : STACKED_POSITION;
+            ? spreadPosition(folder.spread, spreadFit, room / expandedScale)
+            : {
+                ...STACKED_POSITION,
+                x: alignInStage(FOLDER_WIDTH, room / scale),
+              };
 
         if (!moved) {
           gsap.set(element, position);
@@ -102,7 +220,10 @@ export default function HomeRight() {
         });
       });
     },
-    { scope: stageRef, dependencies: [expanded, compact] },
+    {
+      scope: stageRef,
+      dependencies: [expanded, compact, spreadFit, room, introDone],
+    },
   );
 
   useGSAP(
@@ -127,7 +248,10 @@ export default function HomeRight() {
         const element = folderRefs.current[folder.id];
         if (!element) return;
 
-        gsap.set(element, folder.spread);
+        gsap.set(
+          element,
+          spreadPosition(folder.spread, spreadFit, room / expandedScale),
+        );
         gsap.from(element, {
           opacity: 0,
           yPercent: 8,
@@ -195,11 +319,11 @@ export default function HomeRight() {
         >
           <div
             ref={stageRef}
-            className="absolute left-0 top-0 origin-top-left"
+            className="absolute left-0 top-0 origin-top-left transition-transform duration-600 ease-out"
             style={{
               width: stageWidth,
               height: stageHeight,
-              transform: "scale(var(--stage-scale))",
+              transform: `scale(${expanded && !compact ? expandedScale : scale})`,
             }}
           >
             {FOLDERS.map((folder) => {

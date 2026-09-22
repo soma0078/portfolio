@@ -1,6 +1,8 @@
 export const FOLDER_WIDTH = 397;
 export const FOLDER_HEIGHT = 332;
 
+export const MAX_SPREAD_X = 224;
+
 export const STAGE_WIDTH = 621;
 export const STAGE_HEIGHT = 553;
 
@@ -52,7 +54,7 @@ const FOLDERS: Folder[] = [
   {
     id: "personal",
     label: "Personal",
-    href: "/logs",
+    href: "/about#personal",
     color: "#3e92cc",
     labelColor: "#ffffff",
     tab: {
@@ -77,7 +79,7 @@ const FOLDERS: Folder[] = [
   {
     id: "experience",
     label: "Experience",
-    href: "/experience",
+    href: "/about#experience",
     color: "#e07a5f",
     labelColor: "#ffffff",
     tab: { shape: "inner", left: 85.94, labelLeft: 113.11, mirrored: false },
