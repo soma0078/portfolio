@@ -53,7 +53,7 @@ function MenuOverlay({
           className={NAV_LINK}
         >
           <div
-            className="font-['Montserrat'] text-[2rem] font-bold text-(--legacy-text) transition-all duration-500 ease-out"
+            className="text-[2rem] font-bold text-(--legacy-text) transition-all duration-500 ease-out"
             style={enter(index)}
           >
             {menu}

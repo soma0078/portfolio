@@ -8,7 +8,7 @@ const BAR_MOTION =
   "transition-transform duration-500 ease-[cubic-bezier(0.8,0.5,0.2,1.4)]";
 
 const TEXT =
-  "absolute left-0 pt-[3px] font-['Montserrat'] text-base font-semibold transition-all duration-300";
+  "absolute left-0 pt-[3px] text-base font-semibold transition-all duration-300";
 
 function Menu({ onClick, isOpen }: HamburgerProps) {
   return (

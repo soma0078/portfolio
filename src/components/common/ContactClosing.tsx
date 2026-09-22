@@ -1,17 +1,16 @@
-import { PROJECTS_CLOSING } from "@constants/projects";
 import { MY_EMAIL, MY_GITHUB_URL } from "@constants/urls";
 
 const BUTTON = "rounded-full px-5 py-3 text-sm font-bold";
 
-export default function ProjectsClosing() {
+export default function ContactClosing() {
   return (
     <section className="flex flex-col items-start gap-5.5 pt-12">
       <h2 className="text-xl font-bold tracking-[-0.4px] lg:text-2xl">
-        {PROJECTS_CLOSING.title}
+        더 궁금한 것이 있다면
       </h2>
 
       <p className="text-base leading-7 text-muted dark:text-[#9a9aae]">
-        {PROJECTS_CLOSING.body}
+        작업 과정이나 코드에 대해 편하게 물어봐 주세요.
       </p>
 
       <div className="flex flex-wrap items-center gap-2.5 pt-1.5">

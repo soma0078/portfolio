@@ -38,7 +38,6 @@ export default function useDarkMode() {
       flushSync(() => setIsDarkMode(next));
       root.classList.toggle("dark", next);
     };
-
     const target = event?.currentTarget?.getBoundingClientRect();
     const x =
       event && event.detail > 0

@@ -3,7 +3,7 @@ import Sidebar from "@components/layout/Sidebar";
 import Header from "@components/layout/Header";
 import useDarkMode from "@hooks/useDarkMode";
 import AppRoutes from "./routes";
-
+ 
 function App() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 

@@ -4,10 +4,6 @@
     --legacy-bg-soft: #c5c5c575;
     --legacy-text: #333333;
     --legacy-text-faint: rgba(0, 0, 0, 0.07);
-    --legacy-card: rgba(0, 0, 0, 0.07);
-    --legacy-word-active: #000000;
-    --legacy-solid: #17171c;
-    --legacy-filter-bar: var(--filterBar-gradient-light);
   }
 
   :root.dark {
@@ -15,10 +11,6 @@
     --legacy-bg-soft: #0907249b;
     --legacy-text: #ffffff;
     --legacy-text-faint: rgba(255, 255, 255, 0.05);
-    --legacy-card: rgba(255, 255, 255, 0.07);
-    --legacy-word-active: #ffffff;
-    --legacy-solid: #ffffff;
-    --legacy-filter-bar: var(--filterBar-gradient-dark);
   }
 
   body {
