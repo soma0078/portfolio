@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="AI 에이전트 목록 화면 구조도. 4대 3 비율의 화면 안에 헤더와 사이드바가 있고, 검색과 카테고리 칩 아래에 제목이 붙은 두 개의 카드 줄과 줄마다 좌우 슬라이드 화살표가 있다">
+  <!--
+    인턴 기간에 구현한 AI 에이전트 목록 화면을 그린 판이다.
+    화면은 4:3 가로 비율(680 x 510)로 두고, 세로 카드에서 잘리지 않도록 판 가운데에 놓았다.
+    구성은 헤더 · 사이드바 · 검색 · 카테고리 칩 · 제목을 단 카드 줄 두 개(각 4열)다.
+
+    화살표는 카드 위에 겹치지 않는다 — 본문 좌우에 28px씩 자리를 비워 두고 그 안에 놓았다.
+    색은 이 경력 카드의 색(#2c5a55)에서 가져왔다.
+  -->
+  <rect width="800" height="1000" fill="#eceee9"/>
+
+  <!-- 화면 · 4:3 -->
+  <rect x="60" y="245" width="680" height="510" rx="24" fill="#ffffff"/>
+
+  <!-- 헤더 -->
+  <rect x="88" y="269" width="100" height="12" rx="6" fill="#2c5a55"/>
+  <circle cx="706" cy="275" r="12" fill="#dfe4e0"/>
+
+  <!-- 사이드바 -->
+  <rect x="88" y="305" width="120" height="420" rx="14" fill="#f2f4f2"/>
+  <rect x="102" y="321" width="92" height="22" rx="11" fill="#2c5a55"/>
+  <rect x="102" y="357" width="92" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="102" y="381" width="76" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="102" y="405" width="86" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="102" y="429" width="68" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="102" y="453" width="80" height="8" rx="4" fill="#cfd6d2"/>
+  <circle cx="118" cy="700" r="11" fill="#dfe4e0"/>
+  <rect x="136" y="695" width="52" height="8" rx="4" fill="#e0e5e2"/>
+
+  <!-- 검색 -->
+  <rect x="224" y="305" width="488" height="34" rx="17" fill="#f2f4f2"/>
+  <circle cx="250" cy="320" r="8" fill="none" stroke="#b9c2bd" stroke-width="3"/>
+  <path d="M256 326 L263 333" stroke="#b9c2bd" stroke-width="3" stroke-linecap="round"/>
+  <rect x="278" y="318" width="130" height="8" rx="4" fill="#cfd6d2"/>
+
+  <!-- 카테고리 칩 -->
+  <rect x="224" y="351" width="64" height="22" rx="11" fill="#2c5a55"/>
+  <rect x="298" y="351" width="78" height="22" rx="11" fill="#eef1ef"/>
+  <rect x="386" y="351" width="68" height="22" rx="11" fill="#eef1ef"/>
+  <rect x="464" y="351" width="84" height="22" rx="11" fill="#eef1ef"/>
+
+  <!-- ─────────── 1행: 제목 + 카드 4장 ─────────── -->
+  <rect x="408" y="387" width="120" height="12" rx="6" fill="#b9c2bd"/>
+
+  <rect x="262" y="407" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="288" cy="437" r="15" fill="#2c5a55"/>
+  <rect x="276" y="465" width="54" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="276" y="479" width="66" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="276" y="491" width="44" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="276" y="509" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <rect x="367" y="407" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="393" cy="437" r="15" fill="#7fb3a8"/>
+  <rect x="381" y="465" width="46" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="381" y="479" width="60" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="381" y="491" width="50" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="381" y="509" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <rect x="472" y="407" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="498" cy="437" r="15" fill="#4e7d74"/>
+  <rect x="486" y="465" width="58" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="486" y="479" width="68" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="486" y="491" width="40" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="486" y="509" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <rect x="577" y="407" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="603" cy="437" r="15" fill="#a8c3bb"/>
+  <rect x="591" y="465" width="50" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="591" y="479" width="62" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="591" y="491" width="46" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="591" y="509" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <!-- 1행 슬라이드 화살표 · 카드 바깥 여백에 -->
+  <circle cx="238" cy="472" r="14" fill="#f2f4f2"/>
+  <path d="M241 467 L236 472 L241 477" fill="none" stroke="#6f8c86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="698" cy="472" r="14" fill="#f2f4f2"/>
+  <path d="M695 467 L700 472 L695 477" fill="none" stroke="#6f8c86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ─────────── 2행: 제목 + 카드 4장 ─────────── -->
+  <rect x="419" y="557" width="98" height="12" rx="6" fill="#b9c2bd"/>
+
+  <rect x="262" y="577" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="288" cy="607" r="15" fill="#7fb3a8"/>
+  <rect x="276" y="635" width="50" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="276" y="649" width="62" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="276" y="661" width="42" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="276" y="679" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <rect x="367" y="577" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="393" cy="607" r="15" fill="#2c5a55"/>
+  <rect x="381" y="635" width="58" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="381" y="649" width="66" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="381" y="661" width="46" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="381" y="679" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <rect x="472" y="577" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="498" cy="607" r="15" fill="#a8c3bb"/>
+  <rect x="486" y="635" width="46" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="486" y="649" width="58" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="486" y="661" width="50" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="486" y="679" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <rect x="577" y="577" width="95" height="130" rx="12" fill="#f7f8f7"/>
+  <circle cx="603" cy="607" r="15" fill="#4e7d74"/>
+  <rect x="591" y="635" width="60" height="8" rx="4" fill="#cfd6d2"/>
+  <rect x="591" y="649" width="68" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="591" y="661" width="44" height="6" rx="3" fill="#e0e5e2"/>
+  <rect x="591" y="679" width="67" height="16" rx="8" fill="#eef1ef"/>
+
+  <!-- 2행 슬라이드 화살표 · 카드 바깥 여백에 -->
+  <circle cx="238" cy="642" r="14" fill="#f2f4f2"/>
+  <path d="M241 637 L236 642 L241 647" fill="none" stroke="#6f8c86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="698" cy="642" r="14" fill="#f2f4f2"/>
+  <path d="M695 637 L700 642 L695 647" fill="none" stroke="#6f8c86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
