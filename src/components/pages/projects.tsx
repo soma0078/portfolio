@@ -1,24 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SmoothScroll from "@components/layout/SmoothScroll";
-import ProjectFilters from "@components/projects/ProjectFilters";
 import ProjectRow from "@components/projects/ProjectRow";
-import ProjectsClosing from "@components/projects/ProjectsClosing";
-import {
-  PROJECTS,
-  PROJECTS_INTRO,
-  type ProjectFilterKey,
-} from "@constants/projects";
+import ContactClosing from "@components/common/ContactClosing";
+import { PAGE_GUTTER_X, PAGE_MAX_WIDTH } from "@constants/layout";
+import { PROJECT_SECTIONS, projectsIn } from "@constants/projects";
 
 export default function ProjectPage() {
-  const [filter, setFilter] = useState<ProjectFilterKey>("all");
-  const listRef = useRef<HTMLUListElement>(null);
-
-  const visibleProjects =
-    filter === "all"
-      ? PROJECTS
-      : PROJECTS.filter((project) => project.tag === filter);
+  const mainRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
@@ -32,35 +22,44 @@ export default function ProjectPage() {
         stagger: 0.06,
       });
     },
-    { scope: listRef, dependencies: [filter], revertOnUpdate: true },
+    { scope: mainRef },
   );
 
   return (
     <SmoothScroll>
-      <div className="min-h-dvh w-full overflow-x-hidden bg-white pb-30 font-sans text-base text-ink lg:pl-(--sidebar-width) dark:bg-night dark:text-white">
-        <main className="flex flex-col gap-16 px-5 pt-24 lg:px-30 lg:pt-19">
-          <header className="flex flex-col gap-6">
-            <h1 className="text-[32px] font-extrabold tracking-[-1.2px] lg:text-[44px]">
-              Projects
-            </h1>
-            <p className="max-w-[720px] text-base leading-7 text-muted dark:text-[#9a9aae]">
-              {PROJECTS_INTRO}
-            </p>
-          </header>
+      <div className="min-h-dvh w-full overflow-x-hidden bg-white pb-30  text-base text-ink lg:pl-(--sidebar-width) dark:bg-night dark:text-white">
+        <main
+          ref={mainRef}
+          className={`${PAGE_MAX_WIDTH} ${PAGE_GUTTER_X} flex flex-col gap-16 pt-24 lg:pt-19`}
+        >
+          <h1 className="text-2xl font-extrabold tracking-[-0.6px] lg:text-[32px]">
+            Projects
+          </h1>
 
-          <ProjectFilters value={filter} onChange={setFilter} />
+          {PROJECT_SECTIONS.map(({ key, label }) => {
+            const projects = projectsIn(key);
+            if (!projects.length) return null;
 
-          <ul ref={listRef} className="flex flex-col">
-            {visibleProjects.map((project, index) => (
-              <ProjectRow
-                key={project.id}
-                project={project}
-                order={index + 1}
-              />
-            ))}
-          </ul>
+            return (
+              <section key={key} className="flex flex-col gap-7">
+                <h2 className="text-2xl font-extrabold tracking-[-0.6px]">
+                  {label}
+                </h2>
 
-          <ProjectsClosing />
+                <ul className="flex flex-col">
+                  {projects.map((project, index) => (
+                    <ProjectRow
+                      key={project.id}
+                      project={project}
+                      order={index + 1}
+                    />
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+
+          <ContactClosing />
         </main>
       </div>
     </SmoothScroll>

@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { LuEye } from "react-icons/lu";
 
 const SIZE = 40;
+
 const OFFSET = 26;
 
 const FOLLOW = 0.45;

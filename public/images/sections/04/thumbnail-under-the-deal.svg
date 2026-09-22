@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="세 개의 앱 화면 구조도. 왼쪽은 미션 체험 신청 모바일 화면, 오른쪽 위는 다중 검색 필터와 테이블로 구성된 어드민 화면, 오른쪽 아래는 통계 카드와 차트로 구성된 대시보드 화면이다">
+  <!--
+    사내 서비스라 실제 화면을 공개할 수 없어, 캡처 대신 구조만 그린 판이다.
+    말하려는 것은 하나다 — 성격이 다른 앱 세 개를 화면 단위로 맡았다.
+
+    왼쪽 모바일은 미션 체험 신청 화면을 따랐다(헤더 · 탭 · 유형 카드 2개 ·
+    수량과 기간 입력 · 키워드 칩과 입력 · 버튼 2개).
+    오른쪽 위는 다중 검색 필터 두 줄 + 테이블, 오른쪽 아래는 통계 카드 + 차트다.
+
+    화이트라벨 썸네일은 같은 화면이 세 번 반복되는 판이라 실루엣이 겹치면 안 된다.
+    그래서 세로 모바일 한 장 + 가로 두 장으로 구도를 다르게 잡았다.
+    목록에서 2:1로 잘리므로 내용을 y 215~685 안에 모았다.
+  -->
+  <rect width="1600" height="900" fill="#f2efdc"/>
+
+  <!-- ─────────────── 서비스 앱 · 모바일 미션 체험 신청 ─────────────── -->
+  <rect x="140" y="215" width="280" height="470" rx="30" fill="#ffffff"/>
+
+  <!-- 헤더: 로고 · 로그인 버튼 -->
+  <rect x="162" y="241" width="70" height="14" rx="7" fill="#1f271b"/>
+  <rect x="328" y="237" width="70" height="22" rx="11" fill="#f1efe6"/>
+
+  <!-- 히어로: 제목 두 줄 -->
+  <rect x="162" y="277" width="180" height="14" rx="7" fill="#cfc8b0"/>
+  <rect x="162" y="299" width="118" height="14" rx="7" fill="#cfc8b0"/>
+
+  <!-- 탭 -->
+  <rect x="162" y="325" width="82" height="22" rx="11" fill="#1f271b"/>
+  <rect x="252" y="325" width="82" height="22" rx="11" fill="#f1efe6"/>
+
+  <!-- 미션 유형 카드 2개 (왼쪽 선택) -->
+  <rect x="162" y="361" width="112" height="76" rx="14" fill="#f1efe6" stroke="#b57328" stroke-width="3"/>
+  <circle cx="182" cy="383" r="9" fill="#b57328"/>
+  <rect x="174" y="402" width="78" height="8" rx="4" fill="#cfc8b0"/>
+  <rect x="174" y="416" width="52" height="8" rx="4" fill="#cfc8b0"/>
+
+  <rect x="286" y="361" width="112" height="76" rx="14" fill="#f1efe6"/>
+  <circle cx="306" cy="383" r="9" fill="#cfc8b0"/>
+  <rect x="298" y="402" width="78" height="8" rx="4" fill="#cfc8b0"/>
+  <rect x="298" y="416" width="52" height="8" rx="4" fill="#cfc8b0"/>
+
+  <!-- 1일 수량 · 진행기간 입력 -->
+  <rect x="162" y="457" width="236" height="30" rx="8" fill="#f1efe6"/>
+  <rect x="178" y="467" width="96" height="10" rx="5" fill="#cfc8b0"/>
+  <rect x="162" y="497" width="236" height="30" rx="8" fill="#f1efe6"/>
+  <rect x="178" y="507" width="72" height="10" rx="5" fill="#cfc8b0"/>
+
+  <!-- 추천 키워드 칩 -->
+  <rect x="162" y="537" width="54" height="20" rx="10" fill="#e8e3cf"/>
+  <rect x="224" y="537" width="68" height="20" rx="10" fill="#e8e3cf"/>
+  <rect x="300" y="537" width="48" height="20" rx="10" fill="#e8e3cf"/>
+
+  <!-- 키워드 입력 -->
+  <rect x="162" y="567" width="236" height="30" rx="8" fill="#f1efe6"/>
+  <rect x="178" y="577" width="120" height="10" rx="5" fill="#cfc8b0"/>
+
+  <!-- 다시 체험하기 · 미션 생성하기 -->
+  <rect x="162" y="617" width="112" height="34" rx="17" fill="#e8e3cf"/>
+  <rect x="286" y="617" width="112" height="34" rx="17" fill="#b57328"/>
+
+  <!-- ─────────────── 어드민 앱 · 다중 검색 필터 + 테이블 ─────────────── -->
+  <rect x="470" y="215" width="990" height="225" rx="22" fill="#ffffff"/>
+
+  <rect x="494" y="239" width="140" height="16" rx="8" fill="#1f271b"/>
+
+  <!-- 필터 1줄: 셀렉트 4개 + 검색 버튼 -->
+  <rect x="494" y="267" width="180" height="30" rx="8" fill="#f1efe6"/>
+  <rect x="690" y="267" width="180" height="30" rx="8" fill="#f1efe6"/>
+  <rect x="886" y="267" width="180" height="30" rx="8" fill="#f1efe6"/>
+  <rect x="1082" y="267" width="180" height="30" rx="8" fill="#f1efe6"/>
+  <rect x="1290" y="267" width="146" height="30" rx="15" fill="#b57328"/>
+
+  <!-- 필터 2줄: 기간 + 적용된 조건 칩 -->
+  <rect x="494" y="305" width="280" height="22" rx="11" fill="#f1efe6"/>
+  <rect x="790" y="305" width="96" height="22" rx="11" fill="#e8e3cf"/>
+  <rect x="898" y="305" width="118" height="22" rx="11" fill="#e8e3cf"/>
+  <rect x="1028" y="305" width="80" height="22" rx="11" fill="#e8e3cf"/>
+
+  <!-- 테이블 -->
+  <rect x="494" y="341" width="942" height="22" rx="6" fill="#e8e3cf"/>
+
+  <rect x="510" y="379" width="150" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="720" y="379" width="110" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="890" y="379" width="130" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="1080" y="379" width="90" height="12" rx="6" fill="#b57328"/>
+  <rect x="1250" y="379" width="120" height="12" rx="6" fill="#cfc8b0"/>
+
+  <rect x="510" y="401" width="150" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="720" y="401" width="110" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="890" y="401" width="130" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="1080" y="401" width="90" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="1250" y="401" width="120" height="12" rx="6" fill="#cfc8b0"/>
+
+  <rect x="510" y="423" width="150" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="720" y="423" width="110" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="890" y="423" width="130" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="1080" y="423" width="90" height="12" rx="6" fill="#cfc8b0"/>
+  <rect x="1250" y="423" width="120" height="12" rx="6" fill="#cfc8b0"/>
+
+  <!-- ─────────────── 비즈 앱 · 차트 대시보드 ─────────────── -->
+  <rect x="470" y="460" width="990" height="225" rx="22" fill="#ffffff"/>
+
+  <rect x="494" y="484" width="140" height="16" rx="8" fill="#1f271b"/>
+
+  <!-- 통계 카드 3개 -->
+  <rect x="494" y="512" width="303" height="52" rx="12" fill="#f1efe6"/>
+  <rect x="512" y="526" width="70" height="8" rx="4" fill="#cfc8b0"/>
+  <rect x="512" y="542" width="110" height="14" rx="7" fill="#b57328"/>
+
+  <rect x="813" y="512" width="303" height="52" rx="12" fill="#f1efe6"/>
+  <rect x="831" y="526" width="70" height="8" rx="4" fill="#cfc8b0"/>
+  <rect x="831" y="542" width="96" height="14" rx="7" fill="#1f271b"/>
+
+  <rect x="1132" y="512" width="304" height="52" rx="12" fill="#f1efe6"/>
+  <rect x="1150" y="526" width="70" height="8" rx="4" fill="#cfc8b0"/>
+  <rect x="1150" y="542" width="84" height="14" rx="7" fill="#1f271b"/>
+
+  <!-- 영역 차트 -->
+  <path d="M494 640 L562 624 L630 634 L698 610 L766 620 L834 600 L902 608 L970 596 L1038 604 L1106 592 L1106 658 L494 658 Z" fill="#eadcc6"/>
+  <path d="M494 640 L562 624 L630 634 L698 610 L766 620 L834 600 L902 608 L970 596 L1038 604 L1106 592" fill="none" stroke="#b57328" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="494" y="656" width="612" height="3" rx="1.5" fill="#e8e3cf"/>
+
+  <!-- 도넛 차트 -->
+  <circle cx="1290" cy="618" r="40" fill="none" stroke="#e8e3cf" stroke-width="18"/>
+  <circle cx="1290" cy="618" r="40" fill="none" stroke="#b57328" stroke-width="18" stroke-dasharray="113 139" transform="rotate(-90 1290 618)"/>
+</svg>

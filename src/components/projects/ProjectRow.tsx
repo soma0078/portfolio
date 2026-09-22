@@ -1,6 +1,6 @@
 import type { ProjectSummary } from "@constants/projects";
 import TransitionLink from "@components/common/TransitionLink";
-
+ 
 const ACCENT_TEXT = "text-[#b57328] dark:text-[#d9a05b]";
 const ACCENT_DOT = "bg-[#b57328] dark:bg-[#d9a05b]";
 
@@ -16,21 +16,21 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
   return (
     <li className="js-project-row border-b border-black/8 dark:border-white/10">
       <article
-        className={`flex flex-col gap-7 py-9 lg:items-start lg:gap-14 lg:py-11 ${
-          flipped ? "lg:flex-row-reverse" : "lg:flex-row"
+        className={`flex flex-col gap-7 py-9 xl:items-center xl:gap-14 xl:py-12 ${
+          flipped ? "xl:flex-row-reverse" : "xl:flex-row"
         }`}
       >
         <TransitionLink
           to={detailPath}
           tabIndex={-1}
           aria-hidden
-          className="group block w-full shrink-0 overflow-hidden rounded-[10px] bg-surface lg:w-[420px] dark:bg-white/5"
+          className="group block w-full shrink-0 overflow-hidden rounded-[10px] bg-surface xl:w-[420px] dark:bg-white/5"
         >
           <img
-            src={`/images/sections/04/${project.thumb}.png`}
+            src={project.thumb}
             alt=""
             loading="lazy"
-            className="aspect-[2/1] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="aspect-2/1  w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </TransitionLink>
 
@@ -38,7 +38,7 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
           <div className="flex items-center gap-3.5  text-xs">
             <span className="text-quiet">{String(order).padStart(2, "0")}</span>
             <span className="font-medium tracking-[1.4px] text-muted dark:text-[#9a9ab0]">
-              {project.tag}
+              {project.meta}
             </span>
             <span className="tracking-[1px] text-[#b0b0a8]">
               {project.year}
@@ -72,12 +72,21 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
             {project.stack}
           </p>
 
-          <TransitionLink
-            to={detailPath}
-            className={`group text-sm font-semibold ${ACCENT_TEXT}`}
-          >
-            <span className="link-underline">자세히 보기</span>
-          </TransitionLink>
+          {project.showcase ? (
+            <TransitionLink
+              to={detailPath}
+              className="mt-1 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-ink-soft dark:bg-white dark:text-ink dark:hover:bg-[#e2e2ea]"
+            >
+              작업 보기 →
+            </TransitionLink>
+          ) : (
+            <TransitionLink
+              to={detailPath}
+              className={`group text-sm font-semibold ${ACCENT_TEXT}`}
+            >
+              <span className="link-underline">자세히 보기</span>
+            </TransitionLink>
+          )}
         </div>
       </article>
     </li>
