@@ -1,0 +1,30 @@
+# 티스토리에 새 글을 써도 배포 전에는 Personal 섹션이 바뀌지 않는다.
+# 글 목록은 빌드할 때 받아 오므로(scripts/fetch-posts.mjs), 하루 한 번 Netlify
+# 빌드를 깨워 주기만 하면 된다. 저장소에 커밋되는 것은 없다.
+#
+# 켜려면 두 가지가 필요하다.
+#   1. Netlify → Site configuration → Build & deploy → Build hooks 에서 훅 생성
+#   2. GitHub → Settings → Secrets and variables → Actions 에
+#      NETLIFY_BUILD_HOOK 이름으로 그 주소 등록
+# 시크릿이 없으면 아무 일도 하지 않고 조용히 끝난다.
+name: refresh-posts
+
+on:
+  schedule:
+    # 매일 09:00 KST (UTC 00:00)
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Netlify 빌드 깨우기
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "NETLIFY_BUILD_HOOK 미설정 — 건너뜀"
+            exit 0
+          fi
+          curl -fsS -X POST -d '{}' "$HOOK"
