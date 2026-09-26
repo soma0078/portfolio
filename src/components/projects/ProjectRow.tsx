@@ -1,6 +1,9 @@
 import type { ProjectSummary } from "@constants/projects";
 import TransitionLink from "@components/common/TransitionLink";
- 
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
+
 const ACCENT_TEXT = "text-[#b57328] dark:text-[#d9a05b]";
 const ACCENT_DOT = "bg-[#b57328] dark:bg-[#d9a05b]";
 
@@ -13,6 +16,14 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
   const detailPath = `/projects/${project.id}`;
   const flipped = order % 2 === 0;
 
+  const trackCardClick = (clickTarget: "thumbnail" | "title" | "cta") =>
+    trackEvent(ANALYTICS_EVENTS.projectCardClick, {
+      project_id: project.id,
+      project_title: project.title,
+      click_target: clickTarget,
+      click_location: CLICK_LOCATIONS.projectList,
+    });
+
   return (
     <li className="js-project-row border-b border-black/8 dark:border-white/10">
       <article
@@ -24,6 +35,7 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
           to={detailPath}
           tabIndex={-1}
           aria-hidden
+          onClick={() => trackCardClick("thumbnail")}
           className="group block w-full shrink-0 overflow-hidden rounded-[10px] bg-surface xl:w-[420px] dark:bg-white/5"
         >
           <img
@@ -46,7 +58,11 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
           </div>
 
           <h3 className="text-2xl leading-8 font-bold tracking-[-0.5px] lg:text-[28px] lg:leading-9">
-            <TransitionLink to={detailPath} className="group">
+            <TransitionLink
+              to={detailPath}
+              onClick={() => trackCardClick("title")}
+              className="group"
+            >
               <span className="link-underline">{project.title}</span>
             </TransitionLink>
           </h3>
@@ -75,6 +91,7 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
           {project.showcase ? (
             <TransitionLink
               to={detailPath}
+              onClick={() => trackCardClick("cta")}
               className="mt-1 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-ink-soft dark:bg-white dark:text-ink dark:hover:bg-[#e2e2ea]"
             >
               작업 보기 →
@@ -82,6 +99,7 @@ export default function ProjectRow({ project, order }: ProjectRowProps) {
           ) : (
             <TransitionLink
               to={detailPath}
+              onClick={() => trackCardClick("cta")}
               className={`group text-sm font-semibold ${ACCENT_TEXT}`}
             >
               <span className="link-underline">자세히 보기</span>

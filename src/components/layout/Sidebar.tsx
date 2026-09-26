@@ -8,6 +8,9 @@ import Logo from "@components/common/Logo";
 import MENU_ITEMS from "@constants/menuItems";
 import HOME_INTRO from "@constants/homeIntro";
 import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 interface SidebarProps {
   isDarkMode: boolean;
@@ -49,6 +52,13 @@ function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
         <TransitionLink
           key={id}
           to={id}
+          onClick={() =>
+            trackEvent(ANALYTICS_EVENTS.navClick, {
+              label: menu,
+              target: id,
+              click_location: CLICK_LOCATIONS.sidebar,
+            })
+          }
           className="js-side group flex cursor-pointer flex-col gap-4 rounded bg-surface p-2.5 text-base font-bold text-ink transition-colors duration-300 hover:bg-surface-hover dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
         >
           <span className="flex justify-between text-[13px]">
@@ -62,14 +72,19 @@ function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
       ))}
 
       <div className="js-side">
-        <ResumeButton />
+        <ResumeButton location={CLICK_LOCATIONS.sidebar} />
       </div>
 
       <div className="js-side flex items-center justify-between py-1">
-        <SocialLinks />
+        <SocialLinks location={CLICK_LOCATIONS.sidebar} />
         <button
           type="button"
-          onClick={toggleDarkMode}
+          onClick={(event) => {
+            toggleDarkMode(event);
+            trackEvent(ANALYTICS_EVENTS.darkModeToggle, {
+              click_location: CLICK_LOCATIONS.sidebar,
+            });
+          }}
           aria-label="다크모드 전환"
           className="flex cursor-pointer border-none bg-transparent text-lg text-muted hover:text-ink dark:text-[#9a9ab0] dark:hover:text-white"
         >

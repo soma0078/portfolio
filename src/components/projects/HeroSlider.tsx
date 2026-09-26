@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import type { ShotItem } from "@constants/projectDetails";
 import GalleryLightbox from "./GalleryLightbox";
 import HoverEye from "./HoverEye";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 const ARROW = [
   "absolute top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full",
@@ -56,7 +59,14 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
             <button
               key={shot.src}
               type="button"
-              onClick={() => setPopover(order)}
+              onClick={() => {
+                trackEvent(ANALYTICS_EVENTS.galleryCardClick, {
+                  item_id: shot.src,
+                  item_name: shot.name,
+                  click_location: CLICK_LOCATIONS.projectHeroSlider,
+                });
+                setPopover(order);
+              }}
               tabIndex={order === index ? 0 : -1}
               aria-label={`${shot.name} 화면 크게 보기`}
               className="w-full shrink-0 cursor-pointer"
@@ -78,7 +88,13 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
           <>
             <button
               type="button"
-              onClick={() => move(-1)}
+              onClick={() => {
+                trackEvent(ANALYTICS_EVENTS.galleryNavClick, {
+                  direction: "prev",
+                  click_location: CLICK_LOCATIONS.projectHeroSlider,
+                });
+                move(-1);
+              }}
               disabled={index === 0}
               aria-label="이전 화면"
               className={`${ARROW} left-3`}
@@ -87,7 +103,13 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
             </button>
             <button
               type="button"
-              onClick={() => move(1)}
+              onClick={() => {
+                trackEvent(ANALYTICS_EVENTS.galleryNavClick, {
+                  direction: "next",
+                  click_location: CLICK_LOCATIONS.projectHeroSlider,
+                });
+                move(1);
+              }}
               disabled={index === shots.length - 1}
               aria-label="다음 화면"
               className={`${ARROW} right-3`}

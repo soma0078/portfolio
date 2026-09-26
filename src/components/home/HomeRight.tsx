@@ -24,6 +24,9 @@ import FOLDERS, {
   type FolderId,
 } from "./folders";
 import HOME_INTRO from "@constants/homeIntro";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 function useStageFit(rootRef: RefObject<HTMLDivElement | null>) {
   const measure = useCallback(() => {
@@ -292,6 +295,10 @@ export default function HomeRight() {
   );
 
   const handleFolderClick = (id: FolderId) => {
+    trackEvent(ANALYTICS_EVENTS.folderClick, {
+      folder_id: id,
+      click_location: CLICK_LOCATIONS.home,
+    });
     setActiveId(id);
     if (!compact) setExpanded((prev) => !prev);
   };
@@ -409,6 +416,11 @@ export default function HomeRight() {
                                 type="button"
                                 onClick={(event) => {
                                   event.stopPropagation();
+                                  trackEvent(ANALYTICS_EVENTS.folderNavClick, {
+                                    folder_id: folder.id,
+                                    target: folder.href,
+                                    click_location: CLICK_LOCATIONS.home,
+                                  });
                                   navigate(folder.href);
                                 }}
                                 aria-label={`${FOLDER_HEADINGS[folder.id]} 페이지로 이동`}

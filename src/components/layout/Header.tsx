@@ -3,6 +3,9 @@ import { LuSun, LuMoon } from "react-icons/lu";
 import MenuOverlay from "@components/common/MenuOverlay";
 import MobileMenu from "../common/Menu";
 import Logo from "@components/common/Logo";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 interface HeaderProps {
   isDarkMode: boolean;
@@ -13,6 +16,9 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const toggleNav = () => {
+    trackEvent(ANALYTICS_EVENTS.mobileMenuToggle, {
+      state: isNavOpen ? "close" : "open",
+    });
     setIsNavOpen(!isNavOpen);
   };
 
@@ -28,7 +34,12 @@ function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
         <MenuOverlay isOpen={isNavOpen} onClose={handleClose} />
         <button
           type="button"
-          onClick={toggleDarkMode}
+          onClick={(event) => {
+            toggleDarkMode(event);
+            trackEvent(ANALYTICS_EVENTS.darkModeToggle, {
+              click_location: CLICK_LOCATIONS.header,
+            });
+          }}
           aria-label="다크모드 전환"
           className="cursor-pointer rounded-full border-none bg-transparent pt-1 text-xl text-ink hover:bg-[#efefef] hover:text-[#333] dark:text-white dark:hover:bg-white/10 dark:hover:text-white"
         >

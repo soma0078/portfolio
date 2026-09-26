@@ -3,6 +3,9 @@ import { LuMail, LuMapPin } from "react-icons/lu";
 import { MY_EMAIL } from "@constants/urls";
 import { CAREER_ROLES } from "@constants/about";
 import { PROJECTS, projectsIn } from "@constants/projects";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 import type { FolderId } from "./folders";
 
 interface ContentProps {
@@ -212,7 +215,14 @@ function PersonalContent({ header }: ContentProps) {
             href={log.url}
             target="_blank"
             rel="noreferrer noopener"
-            onClick={(event) => event.stopPropagation()}
+            onClick={(event) => {
+              event.stopPropagation();
+              trackEvent(ANALYTICS_EVENTS.blogLinkClick, {
+                title: log.title,
+                url: log.url,
+                click_location: CLICK_LOCATIONS.homeFolder,
+              });
+            }}
             className="group flex items-center gap-3"
           >
             <span className="flex h-14.5 w-12.5 shrink-0 flex-col items-center justify-center rounded-xl bg-white text-center  text-[10px] leading-tight text-[#8a8a94]">

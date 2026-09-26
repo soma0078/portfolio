@@ -1,6 +1,9 @@
 import { Link } from "react-scroll";
 import MENU_ITEMS from "@constants/menuItems";
 import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 const CURTAIN = [
   "before:absolute before:top-0 before:right-0 before:-z-20 before:bg-(--legacy-bg-soft) before:content-['']",
@@ -49,7 +52,14 @@ function MenuOverlay({
           spy={true}
           smooth={true}
           duration={600}
-          onClick={onClose}
+          onClick={() => {
+            trackEvent(ANALYTICS_EVENTS.navClick, {
+              label: menu,
+              target: id,
+              click_location: CLICK_LOCATIONS.mobileMenu,
+            });
+            onClose();
+          }}
           className={NAV_LINK}
         >
           <div
@@ -65,8 +75,8 @@ function MenuOverlay({
         className="mt-6 flex flex-col items-center gap-5 transition-all duration-500 ease-out"
         style={enter(MENU_ITEMS.length)}
       >
-        <ResumeButton onClick={onClose} />
-        <SocialLinks />
+        <ResumeButton onClick={onClose} location={CLICK_LOCATIONS.mobileMenu} />
+        <SocialLinks location={CLICK_LOCATIONS.mobileMenu} />
       </div>
     </nav>
   );

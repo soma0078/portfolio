@@ -3,6 +3,9 @@ import type { ShotItem } from "@constants/projectDetails";
 import { PUB_WORKS, PUB_YEARS, type GalleryEntry } from "@constants/publishing";
 import CircularGallery, { WorkCard } from "./CircularGallery";
 import GalleryLightbox from "./GalleryLightbox";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 type YearFilter = "all" | (typeof PUB_YEARS)[number];
 
@@ -33,6 +36,10 @@ export default function DetailGallery({ shots }: { shots: ShotItem[] }) {
   );
 
   const pick = (next: YearFilter) => {
+    trackEvent(ANALYTICS_EVENTS.galleryFilterClick, {
+      filter: next,
+      click_location: CLICK_LOCATIONS.projectGallery,
+    });
     setYear(next);
     setOpened(null);
   };
@@ -69,7 +76,13 @@ export default function DetailGallery({ shots }: { shots: ShotItem[] }) {
 
           <button
             type="button"
-            onClick={() => setExpanded((open) => !open)}
+            onClick={() => {
+              trackEvent(ANALYTICS_EVENTS.galleryViewToggle, {
+                state: expanded ? "collapse" : "expand",
+                click_location: CLICK_LOCATIONS.projectGallery,
+              });
+              setExpanded((open) => !open);
+            }}
             aria-expanded={expanded}
             className="ml-auto text-sm font-semibold text-[#b57328] dark:text-[#d9a05b]"
           >
@@ -85,7 +98,14 @@ export default function DetailGallery({ shots }: { shots: ShotItem[] }) {
               <li key={item.id}>
                 <button
                   type="button"
-                  onClick={() => setOpened(index)}
+                  onClick={() => {
+                    trackEvent(ANALYTICS_EVENTS.galleryCardClick, {
+                      item_id: item.id,
+                      item_name: item.shot?.name ?? String(item.year ?? ""),
+                      click_location: CLICK_LOCATIONS.projectGalleryGrid,
+                    });
+                    setOpened(index);
+                  }}
                   className="w-full cursor-pointer"
                 >
                   <WorkCard item={item} />

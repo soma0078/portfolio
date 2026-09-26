@@ -5,6 +5,9 @@ import { useGSAP } from "@gsap/react";
 import { ScrollSmoother } from "gsap/all";
 import type { GalleryEntry } from "@constants/publishing";
 import CaseSheet from "./CaseSheet";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 const ARROW = [
   "pointer-events-auto absolute top-1/2 z-1 flex size-11 -translate-y-1/2 items-center justify-center",
@@ -12,7 +15,6 @@ const ARROW = [
   "transition-colors duration-300 hover:bg-white/24",
   "disabled:pointer-events-none disabled:opacity-0",
 ].join(" ");
-
 
 const SWIPE_THRESHOLD = 60;
 
@@ -118,7 +120,6 @@ export default function GalleryLightbox({
     };
   }, []);
 
-
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
@@ -201,7 +202,13 @@ export default function GalleryLightbox({
       <div className="js-lb-body pointer-events-none relative z-1 flex min-h-0 flex-1 items-stretch">
         <button
           type="button"
-          onClick={() => onMove(-1)}
+          onClick={() => {
+            trackEvent(ANALYTICS_EVENTS.galleryNavClick, {
+              direction: "prev",
+              click_location: CLICK_LOCATIONS.lightbox,
+            });
+            onMove(-1);
+          }}
           disabled={first}
           aria-label="이전 화면"
           className={`${ARROW} left-3 lg:left-6`}
@@ -262,7 +269,13 @@ export default function GalleryLightbox({
 
         <button
           type="button"
-          onClick={() => onMove(1)}
+          onClick={() => {
+            trackEvent(ANALYTICS_EVENTS.galleryNavClick, {
+              direction: "next",
+              click_location: CLICK_LOCATIONS.lightbox,
+            });
+            onMove(1);
+          }}
           disabled={last}
           aria-label="다음 화면"
           className={`${ARROW} right-3 lg:right-6`}

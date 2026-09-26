@@ -2,6 +2,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import type { GalleryEntry } from "@constants/publishing";
 import useMediaQuery from "@hooks/useMediaQuery";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 const WIDE = "(min-width: 768px)";
 const VISIBLE_WIDE = 5;
@@ -45,7 +48,7 @@ export default function CircularGallery({
   const [step, setStep] = useState(0);
   const [rowHeight, setRowHeight] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
- 
+
   const canLoop = items.length > visible;
   const copies = canLoop
     ? Math.max(2, Math.ceil((visible + 3) / items.length))
@@ -62,7 +65,7 @@ export default function CircularGallery({
 
     cardsRef.current.slice(0, count).forEach((card, i) => {
       if (!card) return;
-        const x = canLoop
+      const x = canLoop
         ? mod(i * step + offset.current + step, span) - step
         : i * step + hold;
 
@@ -204,6 +207,12 @@ export default function CircularGallery({
                   tabIndex={i >= items.length ? -1 : undefined}
                   onClick={() => {
                     if (moved.current > DRAG_SLOP) return;
+                    const picked = items[slide % items.length];
+                    trackEvent(ANALYTICS_EVENTS.galleryCardClick, {
+                      item_id: picked.id,
+                      item_name: picked.shot?.name ?? String(picked.year ?? ""),
+                      click_location: CLICK_LOCATIONS.projectCircularGallery,
+                    });
                     onPick(slide % items.length);
                   }}
                   className="w-full"
@@ -221,7 +230,13 @@ export default function CircularGallery({
           <button
             key={side}
             type="button"
-            onClick={() => nudge(side === "prev" ? -1 : 1)}
+            onClick={() => {
+              trackEvent(ANALYTICS_EVENTS.galleryNavClick, {
+                direction: side,
+                click_location: CLICK_LOCATIONS.projectCircularGallery,
+              });
+              nudge(side === "prev" ? -1 : 1);
+            }}
             disabled={!canLoop}
             aria-label={side === "prev" ? "이전 사이트" : "다음 사이트"}
             className="flex size-9 items-center justify-center rounded-full ring-1 ring-black/12 transition-colors duration-300 hover:bg-surface disabled:pointer-events-none disabled:opacity-35 dark:ring-white/20 dark:hover:bg-white/8"
