@@ -13,7 +13,7 @@ const TEXT =
 function Menu({ onClick, isOpen }: HamburgerProps) {
   return (
     <div className="group flex cursor-pointer gap-2" onClick={onClick}>
-      <div className="relative h-5 w-[45px] overflow-hidden">
+      <div className="relative h-6 w-12 overflow-hidden">
         <span
           className={`${TEXT} ${isOpen ? "opacity-0" : "group-hover:-translate-y-full"}`}
         >

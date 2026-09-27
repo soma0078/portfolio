@@ -1,9 +1,10 @@
+import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import MENU_ITEMS from "@constants/menuItems";
 import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
 import ANALYTICS_EVENTS from "@constants/analyticsEvents";
 import CLICK_LOCATIONS from "@constants/clickLocations";
 import { trackEvent } from "src/utils/analytics";
-import { Link } from "react-router-dom";
 
 const CURTAIN = [
   "before:absolute before:top-0 before:right-0 before:-z-20 before:bg-(--legacy-bg-soft) before:content-['']",
@@ -19,7 +20,15 @@ const CURTAIN_CLOSED =
   "before:h-0 before:w-0 before:rounded-bl-[200%] before:delay-200 after:h-0 after:w-0 after:rounded-bl-[200%] after:delay-0";
 
 const NAV_LINK =
-  "cursor-pointer transition-all duration-300 hover:-skew-x-12 [&:hover>div]:bg-[image:var(--primary-gradient)] [&:hover>div]:bg-clip-text [&:hover>div]:text-transparent";
+  "cursor-pointer transition-all duration-300 hover:-skew-x-12 [&:hover>div]:bg-[image:var(--logo-gradient)] [&:hover>div]:bg-clip-text [&:hover>div]:text-transparent";
+
+const NAV_LINK_TEXT = [
+  "text-[2rem] font-bold text-(--legacy-text)",
+  "[transition-property:opacity,transform,color,background-image]",
+  "[transition-duration:500ms,500ms,300ms,300ms]",
+  "[transition-timing-function:ease-out,ease-out,ease-out,ease-out]",
+  "[transition-delay:var(--intro-delay),var(--intro-delay),0s,0s]",
+].join(" ");
 
 function MenuOverlay({
   isOpen,
@@ -30,12 +39,16 @@ function MenuOverlay({
 }) {
   const enter = (index: number) =>
     isOpen
-      ? {
+      ? ({
           opacity: 1,
           transform: "translateX(0)",
-          transitionDelay: `${index * 0.1 + 0.5}s`,
-        }
-      : { opacity: 0, transform: "translateX(20px)", transitionDelay: "0s" };
+          "--intro-delay": `${index * 0.1 + 0.5}s`,
+        } as CSSProperties)
+      : ({
+          opacity: 0,
+          transform: "translateX(20px)",
+          "--intro-delay": "0s",
+        } as CSSProperties);
 
   return (
     <nav
@@ -59,17 +72,14 @@ function MenuOverlay({
           }}
           className={NAV_LINK}
         >
-          <div
-            className="text-[2rem] font-bold text-(--legacy-text) transition-all duration-500 ease-out"
-            style={enter(index)}
-          >
+          <div className={NAV_LINK_TEXT} style={enter(index)}>
             {menu}
           </div>
         </Link>
       ))}
 
       <div
-        className="mt-6 flex flex-col items-center gap-5 transition-all duration-500 ease-out"
+        className="mt-6 flex flex-col items-center gap-5 transition-all duration-500 ease-out [transition-delay:var(--intro-delay)]"
         style={enter(MENU_ITEMS.length)}
       >
         <ResumeButton onClick={onClose} location={CLICK_LOCATIONS.mobileMenu} />
