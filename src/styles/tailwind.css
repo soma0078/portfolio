@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "./base.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ink: #17171c;
+  --color-ink-soft: #4a4a55;
+  --color-muted: #75758a;
+  --color-quiet: #a3a39a;
+  --color-line: #e5e7eb;
+  --color-surface: #fafafa;
+  --color-surface-hover: #f0f0f2;
+
+  --color-night: #1a1613;
+
+  --color-folder-experience: #e07a5f;
+
+  --font-sans: "Intel One Mono", "Pretendard", sans-serif;
+  --font-mono: "Intel One Mono", ui-monospace, monospace;
+  --font-twayfly: "TwayNalda", sans-serif;
+}
+
+@theme static {
+  --sidebar-width: 220px;
+  --page-max-width: 1556px;
+  --primary-gradient: linear-gradient(135deg, #bd4be5, #5856de);
+  --logo-gradient: linear-gradient(135deg, #ef8a63, #e07a5f, #3e92cc);
+}

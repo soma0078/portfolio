@@ -1,0 +1,47 @@
+{
+  "source": "https://allotherthings.tistory.com/rss",
+  "featured": {
+    "date": "2026.08",
+    "title": "영·한 혼용 폰트 조합 시 띄어쓰기 공백 간격 문제 해결하기",
+    "href": "https://allotherthings.tistory.com/38",
+    "tag": "HTML, CSS",
+    "excerpt": "영문과 한글에 각각 다른 폰트를 적용하기 위해 CSS에서 다음과 같이 폰트 패밀리를 선언했다. font-family: \"Intel One Mono\", \"Pretendard\", system-ui, sans-serif;…"
+  },
+  "list": [
+    {
+      "date": "2026.07",
+      "title": "cqi와 clamp — 컨테이너 기반 유동 사이징",
+      "href": "https://allotherthings.tistory.com/37",
+      "tag": "CSS BASICS",
+      "excerpt": "cqi - Container Query Inline Size 컨테이너 인라인 크기(가로 너비)의 1% . `vw`가 뷰포트 기준인 것처럼, `cqi`는 부모 컨테이너 기준이다. 단위 기준 vw 뷰포트 너비의 1% c…"
+    },
+    {
+      "date": "2026.07",
+      "title": "사내 React Native 스터디 후기",
+      "href": "https://allotherthings.tistory.com/36",
+      "tag": "ETC",
+      "excerpt": "회사 동료(FE 개발자, 디자이너)와 React Native 스터디를 했다. 매주 목요일에 모여 각자 공부한 내용을 공유하는 방식으로 진행했다. 기간: 2026.02 ~ 2026.05 (약 10주) 스터디 저장소:…"
+    },
+    {
+      "date": "2026.07",
+      "title": "Next.js 앱 성능 최적화기 (2편) — 실사용자는 어디서 느렸을까",
+      "href": "https://allotherthings.tistory.com/34",
+      "tag": "ETC",
+      "excerpt": "1편에서는 Lighthouse로 전 페이지 공통 문제를 찾아 개선했고, 마지막에 Web Vitals 계측 코드를 심었다. 이번 편은 그 데이터가 1주 쌓인 뒤부터 시작한다. 데이터 꺼내기 GA4 탐색 분석에서 Web…"
+    },
+    {
+      "date": "2026.07",
+      "title": "테스트를 어떻게 쓰느냐보다 무엇을 테스트하느냐가 먼저였다",
+      "href": "https://allotherthings.tistory.com/35",
+      "tag": "SOFTWARE TESTING",
+      "excerpt": "개발하면서 테스트를 어떻게 써야 하는지 오래 감이 없었다. 어떤 케이스를 테스트해야 하는지, 얼마나 써야 충분한지, 공통 컴포넌트에는 어떤 테스트가 의미 있는지. 그냥 \"중요한 것\"을 테스트하라는 말은 막연했다. I…"
+    },
+    {
+      "date": "2026.07",
+      "title": "Next.js 앱 성능 최적화기 (1편) — 기준선 측정과 \"공통부터\" 라는 판단",
+      "href": "https://allotherthings.tistory.com/33",
+      "tag": "NEXT.JS",
+      "excerpt": "Lighthouse로 기준선을 만들고 원인을 분석해 \"페이지별이 아니라 공통 최적화부터\" 라는 우선순위를 데이터로 결정하기까지의 기록이다. 1. 어디서부터 손대야 할까 빠른 개발 속도로 기능은 계속 쌓였지만, 성능을…"
+    }
+  ]
+}

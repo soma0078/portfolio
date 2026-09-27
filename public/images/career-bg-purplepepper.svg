@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="셀프 마케팅 플랫폼 화면 구조도. 왼쪽은 미션 유형 선택과 수량·기간·키워드를 입력하는 미션 등록 영역이고, 화살표 오른쪽은 순위가 올라가는 그래프와 키워드별 순위 상승 목록이다">
+  <!--
+    퍼플페퍼에서 만든 셀프 마케팅 플랫폼을 한 장으로 그린 판이다.
+    왼쪽에서 미션을 등록하면 오른쪽에서 키워드 순위가 올라간다 — 이 흐름이 서비스의 요점이라
+    두 영역을 화살표로 이어 놓았다.
+
+    About의 경력 카드는 세로로 잘리므로(약 350 x 427), 화면은 4:3(680 x 510)으로 두고
+    800 x 1000 세로 판 가운데에 놓았다. 나두모두 판과 같은 규칙이다.
+    색은 이 경력 카드의 색(#8a5418)에서 가져왔고, 상승 표시에만 초록(#4e8c5a)을 썼다.
+  -->
+  <rect width="800" height="1000" fill="#f1e9df"/>
+
+  <!-- 화면 · 4:3 -->
+  <rect x="60" y="245" width="680" height="510" rx="24" fill="#ffffff"/>
+
+  <!-- 상단 내비 -->
+  <rect x="96" y="272" width="96" height="14" rx="7" fill="#8a5418"/>
+  <rect x="520" y="275" width="48" height="8" rx="4" fill="#d8cec2"/>
+  <rect x="584" y="275" width="44" height="8" rx="4" fill="#d8cec2"/>
+  <rect x="648" y="266" width="56" height="26" rx="13" fill="#8a5418"/>
+  <rect x="60" y="310" width="680" height="2" fill="#f2ece3"/>
+
+  <!-- ─────────── 왼쪽 · 미션 등록 ─────────── -->
+  <rect x="96" y="338" width="110" height="12" rx="6" fill="#c9bcaa"/>
+
+  <!-- 미션 유형 카드 2장 (왼쪽 선택) -->
+  <rect x="96" y="368" width="146" height="96" rx="14" fill="#f7f2ea" stroke="#8a5418" stroke-width="2.5"/>
+  <circle cx="122" cy="396" r="14" fill="#8a5418"/>
+  <rect x="110" y="422" width="80" height="8" rx="4" fill="#c9bcaa"/>
+  <rect x="110" y="438" width="50" height="10" rx="5" fill="#8a5418"/>
+
+  <rect x="254" y="368" width="146" height="96" rx="14" fill="#f7f2ea"/>
+  <circle cx="280" cy="396" r="14" fill="#c08a4a"/>
+  <rect x="268" y="422" width="70" height="8" rx="4" fill="#c9bcaa"/>
+  <rect x="268" y="438" width="50" height="10" rx="5" fill="#c9bcaa"/>
+
+  <!-- 수량 · 기간 -->
+  <rect x="96" y="482" width="304" height="34" rx="8" fill="#f7f2ea"/>
+  <rect x="114" y="495" width="96" height="8" rx="4" fill="#ded3c4"/>
+
+  <rect x="96" y="528" width="304" height="34" rx="8" fill="#f7f2ea"/>
+  <rect x="114" y="541" width="72" height="8" rx="4" fill="#ded3c4"/>
+
+  <!-- 추천 키워드 -->
+  <rect x="96" y="574" width="60" height="22" rx="11" fill="#efe0c8"/>
+  <rect x="164" y="574" width="72" height="22" rx="11" fill="#efe0c8"/>
+  <rect x="244" y="574" width="54" height="22" rx="11" fill="#efe0c8"/>
+
+  <!-- 미션 생성 -->
+  <rect x="96" y="650" width="304" height="44" rx="22" fill="#8a5418"/>
+
+  <!-- ─────────── 오른쪽 · 순위 상승 ─────────── -->
+  <rect x="444" y="338" width="96" height="12" rx="6" fill="#c9bcaa"/>
+
+  <rect x="444" y="368" width="260" height="326" rx="14" fill="#f7f2ea"/>
+
+  <!-- 순위 추이 그래프 -->
+  <path d="M460 505 L498 492 L536 496 L574 470 L612 452 L650 436 L688 410 L688 522 L460 522 Z" fill="#ecdcc6"/>
+  <path d="M460 505 L498 492 L536 496 L574 470 L612 452 L650 436 L688 410" fill="none" stroke="#8a5418" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="688" cy="410" r="6" fill="#8a5418"/>
+  <rect x="460" y="522" width="228" height="2" rx="1" fill="#ded3c4"/>
+
+  <rect x="460" y="544" width="228" height="2" rx="1" fill="#ece3d7"/>
+
+  <!-- 키워드별 순위 -->
+  <rect x="476" y="568" width="88" height="8" rx="4" fill="#c9bcaa"/>
+  <rect x="584" y="562" width="40" height="20" rx="10" fill="#ffffff"/>
+  <path d="M640 578 L646 566 L652 578 Z" fill="#4e8c5a"/>
+  <rect x="658" y="568" width="22" height="8" rx="4" fill="#cfe0d3"/>
+
+  <rect x="476" y="610" width="72" height="8" rx="4" fill="#c9bcaa"/>
+  <rect x="584" y="604" width="40" height="20" rx="10" fill="#ffffff"/>
+  <path d="M640 620 L646 608 L652 620 Z" fill="#4e8c5a"/>
+  <rect x="658" y="610" width="22" height="8" rx="4" fill="#cfe0d3"/>
+
+  <rect x="476" y="652" width="96" height="8" rx="4" fill="#c9bcaa"/>
+  <rect x="584" y="646" width="40" height="20" rx="10" fill="#ffffff"/>
+  <path d="M640 662 L646 650 L652 662 Z" fill="#4e8c5a"/>
+  <rect x="658" y="652" width="22" height="8" rx="4" fill="#cfe0d3"/>
+</svg>

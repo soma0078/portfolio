@@ -1,0 +1,126 @@
+@layer base {
+  :root {
+    --legacy-bg: #ffffff;
+    --legacy-bg-soft: #c5c5c575;
+    --legacy-text: #333333;
+    --legacy-text-faint: rgba(0, 0, 0, 0.07);
+  }
+
+  :root.dark {
+    --legacy-bg: #1a1613;
+    --legacy-bg-soft: #0907249b;
+    --legacy-text: #ffffff;
+    --legacy-text-faint: rgba(255, 255, 255, 0.05);
+  }
+
+  body {
+    background-color: var(--legacy-bg);
+    color: var(--legacy-text);
+    line-height: 1.2;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 640px) {
+    p,
+    li {
+      font-size: 0.875rem;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+@layer components {
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .group:hover .link-underline::after,
+  .group:focus-visible .link-underline::after {
+    width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-underline::after {
+      transition: none;
+    }
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-theme-reveal])::view-transition-old(root) {
+    animation: page-out 0.22s ease-in forwards;
+  }
+
+  :root:not([data-theme-reveal])::view-transition-new(root) {
+    animation: page-in 0.34s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+:root[data-theme-reveal]::view-transition-old(root) {
+  z-index: 0;
+}
+
+:root[data-theme-reveal]::view-transition-new(root) {
+  z-index: 1;
+  animation: theme-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--reveal-x, 50%) var(--reveal-y, 50%));
+  }
+  to {
+    clip-path: circle(
+      var(--reveal-r, 150vmax) at var(--reveal-x, 50%) var(--reveal-y, 50%)
+    );
+  }
+}

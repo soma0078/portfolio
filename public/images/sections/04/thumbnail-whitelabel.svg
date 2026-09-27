@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="멀티테넌트 어드민 대시보드의 구조도. 같은 화면이 브랜드마다 색과 배치만 바뀐 세 벌로 그려져 있다">
+  <!--
+    화이트라벨의 요점을 한 장으로 그린 판이다 — 값은 토큰으로 갈리고, 배치는 분기로 갈린다.
+    왼쪽 큰 판이 기준 화면(종료 예정 미션 도넛 + 나의 미션 현황)이고,
+    오른쪽 두 판은 같은 대시보드가 다른 브랜드에서 어떻게 다시 조립되는지를 보여준다.
+    도형은 halls 어드민의 실제 레이아웃을 따랐고, 색만 브랜드 토큰 값으로 바꿨다.
+
+    좌표는 그린 그대로 두고, 세 판을 위로 올리는 이동만 바깥 g에서 한 번에 준다 —
+    목록 썸네일이 2:1로 잘리기 때문에 그 안에서 가운데에 놓여야 한다.
+  -->
+  <rect width="1600" height="900" fill="#f2efdc"/>
+
+  <defs>
+    <clipPath id="frameA"><rect x="120" y="236" width="880" height="564" rx="24"/></clipPath>
+    <clipPath id="frameB"><rect x="1040" y="236" width="440" height="262" rx="18"/></clipPath>
+    <clipPath id="frameC"><rect x="1040" y="538" width="440" height="262" rx="18"/></clipPath>
+  </defs>
+
+  <g transform="translate(0 -68)">
+    <!-- ─────────── 기준 화면 (사이드바 밝은 톤 · 헤더 있음 · 패널 위아래) ─────────── -->
+    <g clip-path="url(#frameA)">
+      <rect x="120" y="236" width="880" height="564" fill="#ffffff"/>
+
+      <!-- 사이드바: 로고 → 관리자 카드 → 메뉴 -->
+      <rect x="120" y="236" width="176" height="564" fill="#eee9d4"/>
+      <rect x="144" y="272" width="88" height="18" rx="9" fill="#33d3c4"/>
+      <rect x="144" y="312" width="128" height="60" rx="10" fill="#ffffff"/>
+      <circle cx="170" cy="336" r="13" fill="#ded8c3"/>
+      <rect x="192" y="328" width="56" height="8" rx="4" fill="#c9c2ac"/>
+      <rect x="192" y="344" width="40" height="7" rx="3.5" fill="#ded8c3"/>
+      <rect x="144" y="396" width="128" height="30" rx="8" fill="#edfaf9"/>
+      <rect x="160" y="407" width="72" height="8" rx="4" fill="#07bead"/>
+      <g fill="#c9c2ac">
+        <rect x="160" y="443" width="84" height="8" rx="4"/>
+        <rect x="160" y="483" width="76" height="8" rx="4"/>
+        <rect x="160" y="523" width="88" height="8" rx="4"/>
+        <rect x="160" y="563" width="70" height="8" rx="4"/>
+        <rect x="160" y="603" width="80" height="8" rx="4"/>
+        <rect x="160" y="643" width="66" height="8" rx="4"/>
+        <rect x="160" y="683" width="78" height="8" rx="4"/>
+      </g>
+
+      <!-- 헤더 -->
+      <rect x="296" y="290" width="704" height="2" fill="#e8e3cf"/>
+      <rect x="320" y="257" width="18" height="14" rx="3" fill="#ded8c3"/>
+      <rect x="828" y="259" width="52" height="10" rx="5" fill="#ded8c3"/>
+      <circle cx="904" cy="264" r="11" fill="#ded8c3"/>
+      <circle cx="944" cy="264" r="15" fill="#e8e3cf"/>
+
+      <!-- 페이지 제목 -->
+      <rect x="328" y="316" width="190" height="18" rx="9" fill="#1f271b"/>
+
+      <!-- 종료 예정 미션 관리: 도넛 + 오른쪽 범례 -->
+      <rect x="328" y="354" width="150" height="12" rx="6" fill="#3a4034"/>
+      <rect x="900" y="356" width="68" height="10" rx="5" fill="#c9c2ac"/>
+      <rect x="328" y="376" width="640" height="180" rx="16" fill="#ffffff" stroke="#e4dfca" stroke-width="2"/>
+      <path d="M471.6 404.0A62.0 62.0 0 0 1 513.6 510.1L491.1 487.3A30.0 30.0 0 0 0 470.8 436.0Z" fill="#ade8e7"/>
+      <path d="M511.2 512.3A62.0 62.0 0 0 1 420.8 503.7L446.2 484.3A30.0 30.0 0 0 0 490.0 488.4Z" fill="#97e0ef"/>
+      <path d="M418.9 501.1A62.0 62.0 0 0 1 421.2 427.7L446.4 447.5A30.0 30.0 0 0 0 445.3 483.0Z" fill="#84cad0"/>
+      <path d="M423.3 425.2A62.0 62.0 0 0 1 468.4 404.0L469.2 436.0A30.0 30.0 0 0 0 447.4 446.3Z" fill="#77dead"/>
+      <g>
+        <circle cx="634" cy="406" r="9" fill="#ade8e7"/>
+        <rect x="656" y="400.5" width="130" height="11" rx="5.5" fill="#c9c2ac"/>
+        <rect x="896" y="392" width="44" height="15" rx="4" fill="#3a4034"/>
+        <rect x="906" y="411" width="34" height="7" rx="3.5" fill="#ded8c3"/>
+
+        <circle cx="634" cy="446" r="9" fill="#97e0ef"/>
+        <rect x="656" y="440.5" width="112" height="11" rx="5.5" fill="#c9c2ac"/>
+        <rect x="896" y="432" width="44" height="15" rx="4" fill="#3a4034"/>
+        <rect x="906" y="451" width="34" height="7" rx="3.5" fill="#ded8c3"/>
+
+        <circle cx="634" cy="486" r="9" fill="#84cad0"/>
+        <rect x="656" y="480.5" width="124" height="11" rx="5.5" fill="#c9c2ac"/>
+        <rect x="896" y="472" width="44" height="15" rx="4" fill="#3a4034"/>
+        <rect x="906" y="491" width="34" height="7" rx="3.5" fill="#ded8c3"/>
+
+        <circle cx="634" cy="526" r="9" fill="#77dead"/>
+        <rect x="656" y="520.5" width="104" height="11" rx="5.5" fill="#c9c2ac"/>
+        <rect x="896" y="512" width="44" height="15" rx="4" fill="#3a4034"/>
+        <rect x="906" y="531" width="34" height="7" rx="3.5" fill="#ded8c3"/>
+      </g>
+
+      <!-- 나의 미션 현황: 오늘 블록 + 상태 5종 -->
+      <rect x="328" y="584" width="128" height="12" rx="6" fill="#3a4034"/>
+      <rect x="328" y="606" width="640" height="170" rx="16" fill="#ffffff" stroke="#e4dfca" stroke-width="2"/>
+      <rect x="379" y="681" width="64" height="20" rx="10" fill="#1f271b"/>
+      <rect x="470" y="626" width="2" height="130" fill="#e8e3cf"/>
+      <g>
+        <circle cx="530" cy="686" r="26" fill="#edfaf9" stroke="#ade8e7" stroke-width="2"/>
+        <rect x="521" y="681" width="18" height="9" rx="4.5" fill="#3a4034"/>
+        <rect x="510" y="726" width="40" height="8" rx="4" fill="#a8a292"/>
+
+        <circle cx="620" cy="686" r="26" fill="#33d3c4"/>
+        <rect x="611" y="681" width="18" height="9" rx="4.5" fill="#ffffff"/>
+        <rect x="600" y="726" width="40" height="8" rx="4" fill="#a8a292"/>
+
+        <circle cx="710" cy="686" r="26" fill="#3a4034"/>
+        <rect x="701" y="681" width="18" height="9" rx="4.5" fill="#ffffff"/>
+        <rect x="690" y="726" width="40" height="8" rx="4" fill="#a8a292"/>
+
+        <circle cx="800" cy="686" r="26" fill="#8a8674"/>
+        <rect x="791" y="681" width="18" height="9" rx="4.5" fill="#ffffff"/>
+        <rect x="780" y="726" width="40" height="8" rx="4" fill="#a8a292"/>
+
+        <circle cx="890" cy="686" r="26" fill="#ded8c3"/>
+        <rect x="881" y="681" width="18" height="9" rx="4.5" fill="#3a4034"/>
+        <rect x="870" y="726" width="40" height="8" rx="4" fill="#a8a292"/>
+      </g>
+    </g>
+
+    <!-- ─────────── 다른 브랜드 1: 사이드바가 어둡고, 일괄등록 바로가기가 위에 붙고
+                     미션 현황이 타일 그리드로 바뀌고 도넛이 오른쪽으로 내려간다 ─────────── -->
+    <g clip-path="url(#frameB)">
+      <rect x="1040" y="236" width="440" height="262" fill="#ffffff"/>
+      <rect x="1040" y="236" width="88" height="262" fill="#2c2c2c"/>
+      <rect x="1056" y="258" width="44" height="10" rx="5" fill="#efca52"/>
+      <rect x="1052" y="286" width="64" height="16" rx="5" fill="#efca52"/>
+      <g fill="#575757">
+        <rect x="1056" y="314" width="56" height="6" rx="3"/>
+        <rect x="1056" y="334" width="48" height="6" rx="3"/>
+        <rect x="1056" y="354" width="58" height="6" rx="3"/>
+        <rect x="1056" y="374" width="44" height="6" rx="3"/>
+        <rect x="1056" y="394" width="52" height="6" rx="3"/>
+      </g>
+      <rect x="1128" y="236" width="352" height="32" fill="#fdfaee"/>
+      <circle cx="1462" cy="252" r="8" fill="#e8e3cf"/>
+
+      <rect x="1144" y="284" width="54" height="6" rx="3" fill="#3a4034"/>
+      <rect x="1144" y="296" width="128" height="44" rx="4" fill="#ffffff" stroke="#e4dfca" stroke-width="2"/>
+      <rect x="1152" y="305" width="26" height="26" rx="3" fill="#f5df97"/>
+      <rect x="1182" y="305" width="26" height="26" rx="3" fill="#f1efe6"/>
+      <rect x="1212" y="305" width="26" height="26" rx="3" fill="#f1efe6"/>
+      <rect x="1242" y="305" width="26" height="26" rx="3" fill="#f1efe6"/>
+
+      <rect x="1144" y="360" width="50" height="6" rx="3" fill="#3a4034"/>
+      <rect x="1352" y="360" width="50" height="6" rx="3" fill="#3a4034"/>
+      <rect x="1144" y="372" width="200" height="100" rx="4" fill="#ffffff" stroke="#e4dfca" stroke-width="2"/>
+      <g>
+        <rect x="1152" y="380" width="58" height="39" rx="3" fill="#fdfaee"/>
+        <rect x="1160" y="394" width="26" height="7" rx="3.5" fill="#998032"/>
+        <rect x="1215" y="380" width="58" height="39" rx="3" fill="#f1efe6"/>
+        <rect x="1223" y="388" width="12" height="8" rx="2" fill="#3a4034"/>
+        <rect x="1223" y="403" width="30" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1278" y="380" width="58" height="39" rx="3" fill="#f1efe6"/>
+        <rect x="1286" y="388" width="12" height="8" rx="2" fill="#3a4034"/>
+        <rect x="1286" y="403" width="30" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1152" y="425" width="58" height="39" rx="3" fill="#f1efe6"/>
+        <rect x="1160" y="433" width="12" height="8" rx="2" fill="#3a4034"/>
+        <rect x="1160" y="448" width="30" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1215" y="425" width="58" height="39" rx="3" fill="#f1efe6"/>
+        <rect x="1223" y="433" width="12" height="8" rx="2" fill="#3a4034"/>
+        <rect x="1223" y="448" width="30" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1278" y="425" width="58" height="39" rx="3" fill="#f1efe6"/>
+        <rect x="1286" y="433" width="12" height="8" rx="2" fill="#3a4034"/>
+        <rect x="1286" y="448" width="30" height="5" rx="2.5" fill="#c9c2ac"/>
+      </g>
+      <rect x="1352" y="372" width="112" height="100" rx="4" fill="#ffffff" stroke="#e4dfca" stroke-width="2"/>
+      <path d="M1389.1 396.0A26.0 26.0 0 0 1 1406.6 440.2L1395.9 429.7A11.0 11.0 0 0 0 1388.5 411.0Z" fill="#f9eaba"/>
+      <path d="M1405.0 441.7A26.0 26.0 0 0 1 1367.7 438.2L1379.4 428.8A11.0 11.0 0 0 0 1395.2 430.3Z" fill="#efca52"/>
+      <path d="M1366.3 436.4A26.0 26.0 0 0 1 1367.3 406.3L1379.2 415.4A11.0 11.0 0 0 0 1378.8 428.1Z" fill="#998032"/>
+      <path d="M1368.7 404.6A26.0 26.0 0 0 1 1386.9 396.0L1387.5 411.0A11.0 11.0 0 0 0 1379.8 414.6Z" fill="#6d5c22"/>
+      <g>
+        <rect x="1420" y="398.5" width="5" height="5" fill="#f9eaba"/>
+        <rect x="1429" y="398.5" width="16" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1420" y="412.5" width="5" height="5" fill="#efca52"/>
+        <rect x="1429" y="412.5" width="16" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1420" y="426.5" width="5" height="5" fill="#998032"/>
+        <rect x="1429" y="426.5" width="16" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1420" y="440.5" width="5" height="5" fill="#6d5c22"/>
+        <rect x="1429" y="440.5" width="16" height="5" rx="2.5" fill="#c9c2ac"/>
+      </g>
+    </g>
+
+    <!-- ─────────── 다른 브랜드 2: 헤더가 없고 사이드바가 좁아지고,
+                     두 패널이 나란히 서고 제목에 설명 줄이 붙고 현황이 3열 지표로 바뀐다 ─────────── -->
+    <g clip-path="url(#frameC)">
+      <rect x="1040" y="538" width="440" height="262" fill="#ffffff"/>
+      <rect x="1116" y="538" width="2" height="262" fill="#e8e3cf"/>
+      <rect x="1052" y="560" width="40" height="10" rx="5" fill="#0024d8"/>
+      <rect x="1048" y="588" width="56" height="16" rx="4" fill="#e5ebff"/>
+      <rect x="1054" y="593" width="32" height="6" rx="3" fill="#0024d8"/>
+      <g fill="#c9c2ac">
+        <rect x="1054" y="616" width="44" height="6" rx="3"/>
+        <rect x="1054" y="636" width="36" height="6" rx="3"/>
+        <rect x="1054" y="656" width="46" height="6" rx="3"/>
+        <rect x="1054" y="676" width="34" height="6" rx="3"/>
+        <rect x="1054" y="696" width="40" height="6" rx="3"/>
+      </g>
+
+      <rect x="1138" y="566" width="64" height="8" rx="4" fill="#3a4034"/>
+      <rect x="1138" y="580" width="88" height="6" rx="3" fill="#ded8c3"/>
+      <rect x="1138" y="598" width="130" height="182" rx="3" fill="#ffffff" stroke="#e4dfca" stroke-width="2"/>
+      <path d="M1175.3 659.0A30.0 30.0 0 0 1 1195.5 710.0L1183.3 698.1A13.0 13.0 0 0 0 1174.6 676.0Z" fill="#ff837f"/>
+      <path d="M1193.6 711.7A30.0 30.0 0 0 1 1150.5 707.7L1163.8 697.1A13.0 13.0 0 0 0 1182.5 698.9Z" fill="#abebe3"/>
+      <path d="M1149.0 705.6A30.0 30.0 0 0 1 1150.1 670.9L1163.6 681.2A13.0 13.0 0 0 0 1163.2 696.2Z" fill="#8a9696"/>
+      <path d="M1151.7 668.9A30.0 30.0 0 0 1 1172.7 659.0L1173.4 676.0A13.0 13.0 0 0 0 1164.4 680.3Z" fill="#88a0e8"/>
+      <g>
+        <circle cx="1213" cy="665" r="4" fill="#ff837f"/>
+        <rect x="1222" y="662.5" width="28" height="5" rx="2.5" fill="#c9c2ac"/>
+        <circle cx="1213" cy="681" r="4" fill="#abebe3"/>
+        <rect x="1222" y="678.5" width="24" height="5" rx="2.5" fill="#c9c2ac"/>
+        <circle cx="1213" cy="697" r="4" fill="#8a9696"/>
+        <rect x="1222" y="694.5" width="28" height="5" rx="2.5" fill="#c9c2ac"/>
+        <circle cx="1213" cy="713" r="4" fill="#88a0e8"/>
+        <rect x="1222" y="710.5" width="22" height="5" rx="2.5" fill="#c9c2ac"/>
+      </g>
+
+      <rect x="1276" y="566" width="70" height="8" rx="4" fill="#3a4034"/>
+      <rect x="1276" y="580" width="96" height="6" rx="3" fill="#ded8c3"/>
+      <rect x="1276" y="598" width="184" height="182" rx="3" fill="#ffffff" stroke="#e4dfca" stroke-width="2"/>
+      <rect x="1337" y="620" width="2" height="138" fill="#e8e3cf"/>
+      <rect x="1398" y="620" width="2" height="138" fill="#e8e3cf"/>
+      <g>
+        <rect x="1288" y="648" width="16" height="16" rx="3" fill="#d9ddff"/>
+        <rect x="1288" y="682" width="14" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1288" y="693" width="10" height="9" rx="2" fill="#3a4034"/>
+        <rect x="1288" y="708" width="18" height="4" rx="2" fill="#ded8c3"/>
+        <rect x="1312" y="682" width="14" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1312" y="693" width="10" height="9" rx="2" fill="#3a4034"/>
+        <rect x="1312" y="708" width="18" height="4" rx="2" fill="#ded8c3"/>
+
+        <rect x="1349" y="648" width="16" height="16" rx="3" fill="#c9ffd9"/>
+        <rect x="1349" y="682" width="14" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1349" y="693" width="10" height="9" rx="2" fill="#3a4034"/>
+        <rect x="1349" y="708" width="18" height="4" rx="2" fill="#ded8c3"/>
+        <rect x="1373" y="682" width="14" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1373" y="693" width="10" height="9" rx="2" fill="#3a4034"/>
+        <rect x="1373" y="708" width="18" height="4" rx="2" fill="#ded8c3"/>
+
+        <rect x="1410" y="648" width="16" height="16" rx="3" fill="#ffd5df"/>
+        <rect x="1410" y="682" width="14" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1410" y="693" width="10" height="9" rx="2" fill="#3a4034"/>
+        <rect x="1410" y="708" width="18" height="4" rx="2" fill="#ded8c3"/>
+        <rect x="1434" y="682" width="14" height="5" rx="2.5" fill="#c9c2ac"/>
+        <rect x="1434" y="693" width="10" height="9" rx="2" fill="#3a4034"/>
+        <rect x="1434" y="708" width="18" height="4" rx="2" fill="#ded8c3"/>
+      </g>
+    </g>
+  </g>
+</svg>

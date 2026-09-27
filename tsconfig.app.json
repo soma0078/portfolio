@@ -10,6 +10,8 @@
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
+    /* 티스토리 글 목록(posts.generated.json)을 그대로 import한다 */
+    "resolveJsonModule": true,
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
@@ -24,18 +26,11 @@
     /* Path alias */
     "baseUrl": ".",
     "paths": {
-      "@public/*": ["public/*"],
-      "@fonts/*": ["public/assets/fonts/*"],
-      "@images/*": ["public/assets/images/*"],
-      "@data/*": ["public/data/*"],
-      "@icons/*": ["src/assets/icons/*"],
       "@components/*": ["src/components/*"],
-      "@sections/*": ["src/components/sections/*"],
-      "@common/*": ["src/components/common/*"],
-      "@ui/*": ["src/components/ui/*"],
       "@constants/*": ["src/constants/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@styles/*": ["src/styles/*"],
-      "@types/*": ["src/types/*"]
+      "@lottie/*": ["src/assets/lottie/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"]

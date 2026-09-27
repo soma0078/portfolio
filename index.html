@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -15,9 +15,22 @@
       }
       gtag("js", new Date());
 
-      gtag("config", "G-SHPB7SXZ0T");
+      gtag("config", "G-SHPB7SXZ0T", { send_page_view: false });
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      다크모드를 첫 페인트 전에 확정한다. React가 마운트된 뒤에 클래스를 붙이면
+      다크 사용자가 흰 화면을 한 번 보고 지나간다. 규칙은 Tailwind 공식 문서의
+      "With system theme support"와 동일하다.
+    -->
+    <script>
+      document.documentElement.classList.toggle(
+        "dark",
+        localStorage.theme === "dark" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches),
+      );
+    </script>
     <meta
       name="description"
       content="프론트엔드 개발자 이송아 포트폴리오입니다."
@@ -25,9 +38,9 @@
 
     <!-- Open Graph 태그 -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://portfolio-leesonga.netlify.app" />
+    <meta property="og:url" content="https://leesonga-portfolio.netlify.app" />
     <meta property="og:title" content="Leesonga portfolio" />
-    <meta property="og:image" content="/images/meta_image.png" />
+    <meta property="og:image" content="/meta_image.png" />
     <meta
       property="og:description"
       content="프론트엔드 개발자 이송아 포트폴리오입니다."

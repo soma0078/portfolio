@@ -1,0 +1,112 @@
+import type { ProjectSummary } from "@constants/projects";
+import TransitionLink from "@components/common/TransitionLink";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
+
+const ACCENT_TEXT = "text-[#b57328] dark:text-[#d9a05b]";
+const ACCENT_DOT = "bg-[#b57328] dark:bg-[#d9a05b]";
+
+interface ProjectRowProps {
+  project: ProjectSummary;
+  order: number;
+}
+
+export default function ProjectRow({ project, order }: ProjectRowProps) {
+  const detailPath = `/projects/${project.id}`;
+  const flipped = order % 2 === 0;
+
+  const trackCardClick = (clickTarget: "thumbnail" | "title" | "cta") =>
+    trackEvent(ANALYTICS_EVENTS.projectCardClick, {
+      project_id: project.id,
+      project_title: project.title,
+      click_target: clickTarget,
+      click_location: CLICK_LOCATIONS.projectList,
+    });
+
+  return (
+    <li className="js-project-row border-b border-black/8 dark:border-white/10">
+      <article
+        className={`flex flex-col gap-7 py-9 xl:items-center xl:gap-14 xl:py-12 ${
+          flipped ? "xl:flex-row-reverse" : "xl:flex-row"
+        }`}
+      >
+        <TransitionLink
+          to={detailPath}
+          tabIndex={-1}
+          aria-hidden
+          onClick={() => trackCardClick("thumbnail")}
+          className="group block w-full shrink-0 overflow-hidden rounded-[10px] bg-surface xl:w-[420px] dark:bg-white/5"
+        >
+          <img
+            src={project.thumb}
+            alt=""
+            loading="lazy"
+            className="aspect-2/1  w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </TransitionLink>
+
+        <div className="flex flex-1 flex-col items-start gap-4.5">
+          <div className="flex items-center gap-3.5  text-xs">
+            <span className="text-quiet">{String(order).padStart(2, "0")}</span>
+            <span className="font-medium tracking-[1.4px] text-muted dark:text-[#9a9ab0]">
+              {project.meta}
+            </span>
+            <span className="tracking-[1px] text-[#b0b0a8]">
+              {project.year}
+            </span>
+          </div>
+
+          <h3 className="text-2xl leading-8 font-bold tracking-[-0.5px] lg:text-[28px] lg:leading-9">
+            <TransitionLink
+              to={detailPath}
+              onClick={() => trackCardClick("title")}
+              className="group"
+            >
+              <span className="link-underline">{project.title}</span>
+            </TransitionLink>
+          </h3>
+
+          <p className="max-w-[620px] text-base leading-7 text-[#6b6b78] dark:text-[#9a9aae]">
+            {project.summary}
+          </p>
+
+          <ul className="flex flex-col gap-2">
+            {project.highlights.map((highlight) => (
+              <li key={highlight} className="flex items-start gap-2.5">
+                <span
+                  className={`mt-2.5 size-1 shrink-0 rounded-full ${ACCENT_DOT}`}
+                />
+                <span className="text-sm leading-6 font-semibold text-[#3a3a44] dark:text-[#d2d2dc]">
+                  {highlight}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <p className=" text-xs tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
+            {project.stack}
+          </p>
+
+          {project.showcase ? (
+            <TransitionLink
+              to={detailPath}
+              onClick={() => trackCardClick("cta")}
+              className="mt-1 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-ink-soft dark:bg-white dark:text-ink dark:hover:bg-[#e2e2ea]"
+            >
+              작업 보기 →
+            </TransitionLink>
+          ) : (
+            <TransitionLink
+              to={detailPath}
+              onClick={() => trackCardClick("cta")}
+              className={`group text-sm font-semibold ${ACCENT_TEXT}`}
+            >
+              <span className="link-underline">자세히 보기</span>
+            </TransitionLink>
+          )}
+        </div>
+      </article>
+    </li>
+  );
+}

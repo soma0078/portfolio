@@ -1,0 +1,92 @@
+import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
+import MENU_ITEMS from "@constants/menuItems";
+import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
+
+const CURTAIN = [
+  "before:absolute before:top-0 before:right-0 before:-z-20 before:bg-(--legacy-bg-soft) before:content-['']",
+  "after:absolute after:top-0 after:right-0 after:-z-20 after:bg-(--legacy-bg) after:content-['']",
+  "before:pointer-events-none after:pointer-events-none",
+  "before:transition-all before:duration-700 before:ease-[cubic-bezier(0.77,0,0.175,1)]",
+  "after:transition-all after:duration-700 after:ease-[cubic-bezier(0.77,0,0.175,1)]",
+].join(" ");
+
+const CURTAIN_OPEN =
+  "before:h-dvh before:w-screen before:rounded-bl-none before:delay-0 after:h-dvh after:w-screen after:rounded-bl-none after:delay-200";
+const CURTAIN_CLOSED =
+  "before:h-0 before:w-0 before:rounded-bl-[200%] before:delay-200 after:h-0 after:w-0 after:rounded-bl-[200%] after:delay-0";
+
+const NAV_LINK =
+  "cursor-pointer transition-all duration-300 hover:-skew-x-12 [&:hover>div]:bg-[image:var(--logo-gradient)] [&:hover>div]:bg-clip-text [&:hover>div]:text-transparent";
+
+const NAV_LINK_TEXT = [
+  "text-[2rem] font-bold text-(--legacy-text)",
+  "[transition-property:opacity,transform,color,background-image]",
+  "[transition-duration:500ms,500ms,300ms,300ms]",
+  "[transition-timing-function:ease-out,ease-out,ease-out,ease-out]",
+  "[transition-delay:var(--intro-delay),var(--intro-delay),0s,0s]",
+].join(" ");
+
+function MenuOverlay({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  const enter = (index: number) =>
+    isOpen
+      ? ({
+          opacity: 1,
+          transform: "translateX(0)",
+          "--intro-delay": `${index * 0.1 + 0.5}s`,
+        } as CSSProperties)
+      : ({
+          opacity: 0,
+          transform: "translateX(20px)",
+          "--intro-delay": "0s",
+        } as CSSProperties);
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 -z-10 flex h-dvh w-screen flex-col items-center justify-center gap-3 overflow-hidden px-6 ${CURTAIN} ${
+        isOpen
+          ? `pointer-events-auto ${CURTAIN_OPEN}`
+          : `pointer-events-none ${CURTAIN_CLOSED}`
+      }`}
+    >
+      {MENU_ITEMS.map(({ menu, id }, index) => (
+        <Link
+          key={id}
+          to={id}
+          onClick={() => {
+            trackEvent(ANALYTICS_EVENTS.navClick, {
+              label: menu,
+              target: id,
+              click_location: CLICK_LOCATIONS.mobileMenu,
+            });
+            onClose();
+          }}
+          className={NAV_LINK}
+        >
+          <div className={NAV_LINK_TEXT} style={enter(index)}>
+            {menu}
+          </div>
+        </Link>
+      ))}
+
+      <div
+        className="mt-6 flex flex-col items-center gap-5 transition-all duration-500 ease-out [transition-delay:var(--intro-delay)]"
+        style={enter(MENU_ITEMS.length)}
+      >
+        <ResumeButton onClick={onClose} location={CLICK_LOCATIONS.mobileMenu} />
+        <SocialLinks location={CLICK_LOCATIONS.mobileMenu} />
+      </div>
+    </nav>
+  );
+}
+
+export default MenuOverlay;
