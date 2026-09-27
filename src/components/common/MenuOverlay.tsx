@@ -1,9 +1,9 @@
-import { Link } from "react-scroll";
 import MENU_ITEMS from "@constants/menuItems";
 import { ResumeButton, SocialLinks } from "@components/common/ProfileLinks";
 import ANALYTICS_EVENTS from "@constants/analyticsEvents";
 import CLICK_LOCATIONS from "@constants/clickLocations";
 import { trackEvent } from "src/utils/analytics";
+import { Link } from "react-router-dom";
 
 const CURTAIN = [
   "before:absolute before:top-0 before:right-0 before:-z-20 before:bg-(--legacy-bg-soft) before:content-['']",
@@ -49,9 +49,6 @@ function MenuOverlay({
         <Link
           key={id}
           to={id}
-          spy={true}
-          smooth={true}
-          duration={600}
           onClick={() => {
             trackEvent(ANALYTICS_EVENTS.navClick, {
               label: menu,
