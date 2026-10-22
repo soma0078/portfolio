@@ -108,7 +108,7 @@ export const PROJECT_DETAILS: Record<number, ProjectDetail> = {
           {
             title: "Lighthouse 성능 개선",
             body: [
-              "Lighthouse 통해 성능 저하 원인을 분석하고 LCP, 번들 사이즈, 폰트 로딩 등 주요 성능 요소를 개선해 Lighthouse Performance 점수를 50점 → 70점으로 높였습니다.",
+              "Lighthouse를 통해 성능 저하 원인을 분석하고 LCP, 번들 사이즈, 폰트 로딩 등 주요 성능 요소를 개선해 Lighthouse Performance 점수를 50점 → 70점으로 높였습니다.",
             ],
           },
           {
@@ -319,9 +319,9 @@ export const PROJECT_DETAILS: Record<number, ProjectDetail> = {
           {
             title: "서버와 클라이언트의 상태 불일치로 인한 하이드레이션 오류",
             problem:
-              "`useState<number>(new Date().getDate())`로 상태를 초기화했더니 상태를 초기화했더니 서버와 클라이언트의 초기 렌더링 결과가 달라 하이드레이션 오류가 발생했습니다.",
+              "`useState<number>(new Date().getDate())`로 상태를 초기화했더니 서버와 클라이언트의 초기 렌더링 결과가 달라 하이드레이션 오류가 발생했습니다.",
             cause:
-              "`new Date().getDate()`가서버 렌더링 시점과 클라이언트 렌더링 시점에 각각 실행되면서 날짜 값이 달라질 수 있었습니다.",
+              "`new Date().getDate()`가 서버 렌더링 시점과 클라이언트 렌더링 시점에 각각 실행되면서 날짜 값이 달라질 수 있었습니다.",
             fix: "초기 상태를 `useState<Date | null>(null)`로 두고 날짜 계산을 클라이언트에서 실행하도록 변경해 서버와 클라이언트의 초기 렌더링 결과를 일치시켰습니다.",
           },
         ],
@@ -716,7 +716,7 @@ export const PROJECT_DETAILS: Record<number, ProjectDetail> = {
               "스크롤이 목록 하단에 도달할 때마다 동일한 데이터에 대한 요청이 중복으로 발생했습니다.",
             cause:
               "로딩 상태를 요청 조건에 포함하지 않아, 이전 요청이 완료되기 전에 다음 요청이 실행될 수 있었습니다.",
-            fix: "`!loading`을요청 조건에 추가해 이전 요청이 진행 중일 때는 새로운 요청이 실행되지 않도록 수정했습니다.",
+            fix: "`!loading`을 요청 조건에 추가해 이전 요청이 진행 중일 때는 새로운 요청이 실행되지 않도록 수정했습니다.",
           },
         ],
       },
@@ -971,7 +971,7 @@ export const PROJECT_DETAILS: Record<number, ProjectDetail> = {
             name: "명상 체험 업체",
             note: "반응형 · 갤러리 · FAQ",
             summary:
-              "체험 프로그램과 후기 사진을 메인 구성하고, 프로그램별 상세 정보와 이용 안내로 이어지는 구조를 구성했습니다.",
+              "체험 프로그램과 후기 사진을 메인에 구성하고, 프로그램별 상세 정보와 이용 안내로 이어지는 구조를 구성했습니다.",
           },
           {
             src: "/images/sections/04/works/works-20.png",
@@ -993,7 +993,7 @@ export const PROJECT_DETAILS: Record<number, ProjectDetail> = {
             name: "홈 리프트 브랜드",
             note: "반응형 · 제품 상세",
             summary:
-              "제품균과 설치 사례를 메인에 구성하고, 제품별 상세 정보와 브랜드 분위기를 함께 전달할 수 있도록 디자인했습니다.",
+              "제품군과 설치 사례를 메인에 구성하고, 제품별 상세 정보와 브랜드 분위기를 함께 전달할 수 있도록 디자인했습니다.",
             href: "https://hanwoollift.com",
           },
           {
