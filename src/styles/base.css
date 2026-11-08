@@ -30,6 +30,19 @@
     transition: 0.3s ease;
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    body,
+    a,
+    button,
+    [role="button"],
+    input,
+    select,
+    textarea,
+    summary {
+      cursor: none;
+    }
+  }
+
   p,
   li {
     font-size: 1rem;
@@ -62,6 +75,112 @@
     height: 1px;
     background-color: currentColor;
     transition: width 0.3s ease;
+  }
+
+  .gradient-hover {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition:
+      color 0.3s ease;
+  }
+
+  .gradient-hover::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--logo-gradient);
+    content: "";
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .gradient-hover:hover::before,
+  .gradient-hover:focus-visible::before {
+    opacity: 1;
+  }
+
+  .gradient-hover:hover,
+  .gradient-hover:focus-visible {
+    color: white;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 9px;
+    height: 9px;
+    margin: -4.5px 0 0 -4.5px;
+    border-radius: 999px;
+    color: var(--color-ink, #17171c);
+    background: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(-100px, -100px, 0);
+    transition: opacity 0.2s ease;
+    will-change: transform;
+  }
+
+  .custom-cursor.is-visible {
+    opacity: 1;
+  }
+
+  .custom-cursor.is-hovering {
+    background: currentColor;
+  }
+
+  .custom-cursor.is-on-dark,
+  .mouse-follower.is-on-dark {
+    color: white;
+  }
+
+  .mouse-follower {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    color: var(--color-ink, #17171c);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(var(--follower-x, -100px), var(--follower-y, -100px), 0)
+      scale(1);
+    transition:
+      opacity 0.2s ease,
+      transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+  }
+
+  .mouse-follower.is-visible {
+    opacity: 0.55;
+  }
+
+  .mouse-follower.is-hovering {
+    transform: translate3d(var(--follower-x, -100px), var(--follower-y, -100px), 0)
+      scale(1.8);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .custom-cursor,
+    .mouse-follower {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-hover,
+    .gradient-hover::before,
+    .custom-cursor,
+    .mouse-follower {
+      transition: none;
+    }
   }
 
   .group:hover .link-underline::after,

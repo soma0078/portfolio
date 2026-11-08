@@ -62,10 +62,7 @@ function Sidebar({ isDarkMode, toggleDarkMode }: SidebarProps) {
           className="js-side group flex cursor-pointer flex-col gap-4 rounded bg-surface p-2.5 text-base font-bold text-ink transition-colors duration-300 hover:bg-surface-hover dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
         >
           <span className="flex justify-between text-[13px]">
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <span className="font-normal text-muted transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 dark:text-[#9a9ab0]">
-              ↗
-            </span>
+            <span>{String(index + 1).padStart(2, "0")}</span>            
           </span>
           {menu}
         </TransitionLink>
