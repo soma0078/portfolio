@@ -1,6 +1,4 @@
 import type { ReactNode } from "react";
-import { LuMail, LuMapPin } from "react-icons/lu";
-import { MY_EMAIL } from "@constants/urls";
 import { CAREER_ROLES } from "@constants/about";
 import { PROJECTS, projectsIn } from "@constants/projects";
 import ANALYTICS_EVENTS from "@constants/analyticsEvents";
@@ -82,7 +80,7 @@ function ProjectsContent({ header }: ContentProps) {
   );
 }
 
-const ABOUT_TAGS = ["Focused", "Proactive", "Collaborative"];
+const ABOUT_TAGS = ["Detail-oriented", "Proactive", "Collaborative"];
 
 function AboutContent({ header }: ContentProps) {
   return (
@@ -91,38 +89,31 @@ function AboutContent({ header }: ContentProps) {
 
       <div className="flex flex-col gap-0.5">
         <p className="text-base font-bold text-white">이송아</p>
-        <p className="text-[11px] font-medium tracking-[0.3px] text-[#c7c7c7]">
-          프론트엔드 개발자
+        <p className="text-sm font-medium tracking-[0.3px] text-[#c7c7c7]">
+          Front-end Developer
         </p>
       </div>
 
-      <p className="text-[11.5px] leading-4.25 text-[#c7c7c7]">
-        QA 시나리오와 성능 지표 분석·실사용자 성능 데이터를 바탕으로, 구현을
-        넘어 실제 프로덕트의 품질과 병목을 개선합니다.
-      </p>
+      <div className="grid gap-1.5">   
+        <p className="text-xs leading-4 text-[#c7c7c7] ">
+          UI/UX 기획 · 디자인 경력을 바탕으로 프론트엔드 개발을 하고 있습니다.
+        </p>
+        <p className="text-xs leading-4 text-[#c7c7c7] ">
+          마케팅 플랫폼의 사용자 웹 서비스와 운영 · 영업 관리 어드민을 개발하며 다양한 목적의 화면과 사용자 경험을 다뤘습니다.
+        </p>
+      </div>
 
-      <span className="block h-px w-full shrink-0 bg-black/10" />
+      <span className="block h-px w-full shrink-0" />
 
       <div className="flex gap-1.5">
         {ABOUT_TAGS.map((tag) => (
           <span
             key={tag}
-            className="rounded-[20px] bg-[#9ca894] px-2.5 py-1 text-[10px] font-semibold text-[#1f261c]"
+            className="rounded-[20px] bg-[#9ca894] px-2.5 py-1 text-[11px] font-semibold text-[#1f261c]"
           >
             {tag}
           </span>
         ))}
-      </div>
-
-      <div className="flex items-center gap-3.5 text-[10.5px] text-[#c7c7c7]">
-        <span className="flex items-center gap-1">
-          <LuMapPin className="size-2.75" aria-hidden />
-          Seoul, KR
-        </span>
-        <span className="flex items-center gap-1">
-          <LuMail className="size-2.75" aria-hidden />
-          {MY_EMAIL}
-        </span>
       </div>
     </>
   );
@@ -203,7 +194,7 @@ const LOGS = [
   },
 ];
 
-function PersonalContent({ header }: ContentProps) {
+function DevlogContent({ header }: ContentProps) {
   return (
     <>
       {header}
@@ -223,18 +214,18 @@ function PersonalContent({ header }: ContentProps) {
                 click_location: CLICK_LOCATIONS.homeFolder,
               });
             }}
-            className="group flex items-center gap-3"
+            className="group flex items-center gap-4"
           >
-            <span className="flex h-14.5 w-12.5 shrink-0 flex-col items-center justify-center rounded-xl bg-white text-center  text-[10px] leading-tight text-[#8a8a94]">
+            <span className="flex h-12.5 w-12.5 shrink-0 flex-col items-center justify-center rounded-xl bg-white text-center text-[10px] leading-tight text-[#8a8a94] aspect-square">
               {log.year}
               <br />
               {log.date}
             </span>
             <span className="flex min-w-0 flex-col gap-1">
-              <span className="line-clamp-2 text-xs font-medium text-white underline decoration-transparent underline-offset-4 transition-colors duration-300 group-hover:decoration-white/60">
+              <span className="line-clamp-1 text-xs font-medium text-white underline decoration-transparent underline-offset-4 transition-colors duration-300 group-hover:decoration-white/60">
                 {log.title}
               </span>
-              <span className="w-fit rounded bg-[#c5e5fc] px-1.5 py-0.5 text-[8px] text-[#3d91cc]">
+              <span className="w-fit rounded bg-[#c5e5fc] px-1.5 py-0.5 text-[10px] text-[#3d91cc]">
                 {log.tag}
               </span>
             </span>
@@ -249,7 +240,7 @@ const BY_ID: Record<FolderId, (props: ContentProps) => ReactNode> = {
   about: AboutContent,
   experience: ExperienceContent,
   projects: ProjectsContent,
-  personal: PersonalContent,
+  devlog: DevlogContent,
 };
 
 export default function FolderContent({
