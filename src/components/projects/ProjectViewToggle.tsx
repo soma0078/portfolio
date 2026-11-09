@@ -1,4 +1,7 @@
 import { LuLayoutGrid, LuList } from "react-icons/lu";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 
 export type ProjectView = "list" | "card";
 
@@ -27,7 +30,16 @@ export default function ProjectViewToggle({
             aria-label={label}
             aria-pressed={active}
             title={label}
-            onClick={() => onChange(option)}
+            onClick={() => {
+              // 이미 선택된 보기를 다시 누른 건 전환이 아니라서 보내지 않는다
+              if (!active) {
+                trackEvent(ANALYTICS_EVENTS.projectViewToggle, {
+                  view: option,
+                  click_location: CLICK_LOCATIONS.projectList,
+                });
+              }
+              onChange(option);
+            }}
             className={`flex size-9 items-center justify-center rounded-lg border transition-colors ${
               active
                 ? "border-ink bg-ink text-white dark:border-white dark:bg-white dark:text-night"
