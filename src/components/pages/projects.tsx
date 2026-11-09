@@ -1,4 +1,5 @@
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useQueryStates } from "nuqs";
 import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
@@ -14,12 +15,17 @@ import type { PaperState } from "@components/projects/FolderPaper";
 import ContactClosing from "@components/common/ContactClosing";
 import { PAGE_GUTTER_X, PAGE_MAX_WIDTH } from "@constants/layout";
 import {
-  EMPTY_PROJECT_FILTERS,
   LIST_ITEMS,
   matchesProjectFilters,
   toggleProjectFilter,
   type ProjectFilters,
 } from "@constants/projects";
+import {
+  projectListParsers,
+  projectListUrlKeys,
+  saveProjectListSearch,
+  serializeProjectListQuery,
+} from "src/utils/projectListParams";
 
 const PROJECT_VIEW_STORAGE_KEY = "projects-view";
 
@@ -49,10 +55,24 @@ export default function ProjectPage() {
       // 저장소를 쓸 수 없는 환경(사생활 보호 모드 등)에서는 보기 값만 유지한다.
     }
   };
-  const [filters, setFilters] = useState<ProjectFilters>(EMPTY_PROJECT_FILTERS);
-  const [stackQuery, setStackQuery] = useState("");
+  // nuqs는 set 시점에 내부 React 상태를 동기 갱신하므로 flushSync와 Flip이 그대로 동작한다.
+  // startTransition을 넘기면 이 동기성이 깨진다
+  const [query, setQuery] = useQueryStates(projectListParsers, {
+    urlKeys: projectListUrlKeys,
+    history: "replace",
+    scroll: false,
+  });
+  const { platform, workType, involvement, stackQuery, includeSide } = query;
 
-  const [includeSide, setIncludeSide] = useState(false);
+  // 상세 페이지에서 돌아올 때 같은 필터로 열 수 있도록 마지막 필터를 기억한다
+  useEffect(() => {
+    saveProjectListSearch(serializeProjectListQuery(query));
+  }, [query]);
+  const filters = useMemo<ProjectFilters>(
+    () => ({ platform, workType, involvement }),
+    [platform, workType, involvement],
+  );
+
   // 열린 폴더는 한 번에 하나만. 다른 카드를 열면 이전 문서는 자동으로 들어간다
   const [folder, setFolder] = useState<{ id: number; state: PaperState } | null>(null);
 
@@ -96,7 +116,15 @@ export default function ProjectPage() {
   }, [filtered]);
 
   const handleFilterChange = (key: keyof ProjectFilters, value: string | null) =>
-    runWithFlip(() => setFilters((prev) => toggleProjectFilter(prev, key, value)));
+    runWithFlip(() => {
+      setQuery((prev) =>
+        toggleProjectFilter(
+          { platform: prev.platform, workType: prev.workType, involvement: prev.involvement },
+          key,
+          value,
+        ),
+      );
+    });
 
   useGSAP(
     () => {
@@ -128,17 +156,21 @@ export default function ProjectPage() {
             items={scoped}
             filters={filters}
             stackQuery={stackQuery}
-            onStackQueryChange={(value) => runWithFlip(() => setStackQuery(value))}
+            onStackQueryChange={(value) =>
+              runWithFlip(() => {
+                setQuery({ stackQuery: value });
+              })
+            }
             onChange={handleFilterChange}
             includeSide={includeSide}
             onIncludeSideChange={(value) =>
-              runWithFlip(() => setIncludeSide(value))
+              runWithFlip(() => {
+                setQuery({ includeSide: value });
+              })
             }
             onReset={() =>
               runWithFlip(() => {
-                setFilters(EMPTY_PROJECT_FILTERS);
-                setStackQuery("");
-                setIncludeSide(false);
+                setQuery(null);
               })
             }
             total={scoped.length}

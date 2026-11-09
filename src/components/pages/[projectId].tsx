@@ -12,6 +12,7 @@ import { PROJECTS, groupLabel } from "@constants/projects";
 import { PROJECT_DETAILS } from "@constants/projectDetails";
 import type { DetailBlock as Block } from "@constants/projectDetails";
 import TransitionLink from "@components/common/TransitionLink";
+import { projectListPath } from "src/utils/projectListParams";
 
 const ACCENT = "text-[#b57328] dark:text-[#d9a05b]";
 
@@ -61,7 +62,7 @@ export default function ProjectDetailPage() {
             주소가 바뀌었거나 목록에서 내린 프로젝트일 수 있습니다.
           </p>
           <TransitionLink
-            to="/projects"
+            to={projectListPath()}
             className={`text-sm lg:text-base font-semibold ${ACCENT}`}
           >
             목록으로 돌아가기 →
@@ -77,7 +78,7 @@ export default function ProjectDetailPage() {
         <main
           className={`${PAGE_MAX_WIDTH} ${PAGE_GUTTER_X} flex flex-col gap-18 pt-24 lg:pt-16`}
         >
-          <TransitionLink to="/projects" className={BACK}>
+          <TransitionLink to={projectListPath()} className={BACK}>
             ← Projects
           </TransitionLink>
 
