@@ -2,9 +2,9 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import HOME_INTRO from "@constants/homeIntro";
-import { MY_BLOG_URL } from "@constants/urls";
+import { MY_BLOG_URL, MY_EMAIL } from "@constants/urls";
 
-const HEADLINE = ["눈에 보이는 화면부터", "손에 닿는 경험까지", "생각합니다"];
+const HEADLINE = ["눈에 보이는 화면부터", "손에 닿는 경험까지", "책임집니다"];
 
 export default function HomeLeft() {
   const rootRef = useRef<HTMLElement>(null);
@@ -62,7 +62,7 @@ export default function HomeLeft() {
       className="flex w-120 max-w-full shrink-0 flex-col justify-between gap-10 xl:h-dvh xl:gap-0 xl:px-11 xl:pt-16 xl:pb-14"
     >
       <div className="flex flex-col gap-5 lg:gap-7">
-        <p className="js-kicker text-xs tracking-[2px] text-quiet">
+        <p className="js-kicker text-sm tracking-[2px] text-quiet">
           PORTFOLIO · 2026
         </p>
 
@@ -78,16 +78,16 @@ export default function HomeLeft() {
 
         <span className="js-rule block h-0.5 w-18 bg-ink dark:bg-white" />
 
-        <div className="flex flex-col items-start gap-3">
-          <p className="js-intro text-base leading-7 text-ink-soft dark:text-[#c7c7c7]">
+        <div className="flex flex-col items-start gap-5">
+          <p className="js-intro text-lg leading-7 text-ink-soft dark:text-[#c7c7c7]">
            화면에 보이는 결과만 만드는 것이 아니라 <br/>사용자가 실제로 마주할 경험을 생각합니다.
           </p>
 
           <a
-            href={MY_BLOG_URL}
+            href={`${MY_BLOG_URL}/34`}
             target="_blank"
             rel="noreferrer noopener"
-            className="js-link group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-quiet transition-colors duration-300"
+            className="js-link group inline-flex w-fit items-center gap-1.5 text-md font-medium text-quiet transition-colors duration-300"
           >
             Core Web Vitals 개선 기록 보기{" "}
             <span className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all">
@@ -103,11 +103,11 @@ export default function HomeLeft() {
             <span className="js-now-ping absolute inset-0 rounded-full bg-folder-experience" />
             <span className="relative size-1.5 rounded-full bg-folder-experience" />
           </span>
-          <span className="text-xs tracking-[1.4px] text-quiet">
+          <span className="text-sm tracking-[1.4px] text-quiet">
             OPEN TO WORK
           </span>
         </span>
-        <span className="text-sm font-medium">Frontend Developer</span>
+        <a href={`mailto:${MY_EMAIL}`} className="text-sm font-medium">{MY_EMAIL}</a>
       </div>
     </section>
   );

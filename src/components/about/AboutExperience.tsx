@@ -97,7 +97,7 @@ function Role({ item, mobile }: { item: RoleItem; mobile?: boolean }) {
       )}
 
       {item.stack && (
-        <p className="mt-auto text-xs leading-[18px] tracking-[0.6px] text-white/60">
+        <p className="mt-auto text-sm leading-[18px] tracking-[0.6px] text-white/60">
           {item.stack}
         </p>
       )}
@@ -111,7 +111,6 @@ function Item({ item, mobile }: { item: ExperienceItem; mobile?: boolean }) {
   return <Role item={item} mobile={mobile} />;
 }
 
-const VISIBLE_COLUMNS = 4;
 const EDGE_SLACK = 1;
 
 function wheelPixels(event: WheelEvent, viewport: number) {
@@ -130,10 +129,6 @@ function pinTrack(
   viewport.scrollLeft = 0;
   viewport.style.overflowX = "hidden";
 
-  const extras = gsap.utils
-    .toArray<HTMLElement>(".js-exp-col", track)
-    .slice(VISIBLE_COLUMNS);
-
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: block,
@@ -150,21 +145,16 @@ function pinTrack(
   });
 
   timeline.to(track, { x: () => -distance(), ease: "none" }, 0);
-  timeline.fromTo(extras, { opacity: 0.35 }, { opacity: 1, ease: "none" }, 0);
 
   return () => {
     timeline.scrollTrigger?.kill();
     timeline.kill();
     viewport.style.overflowX = "";
-    gsap.set([track, ...extras], { clearProps: "opacity,transform" });
+    gsap.set(track, { clearProps: "transform" });
   };
 }
 
 function bindWheel(viewport: HTMLElement, smooth: boolean) {
-  const extras = gsap.utils
-    .toArray<HTMLElement>(".js-exp-col", viewport)
-    .slice(VISIBLE_COLUMNS);
-
   const state = { x: viewport.scrollLeft };
 
   const glide = gsap.quickTo(state, "x", {
@@ -203,32 +193,11 @@ function bindWheel(viewport: HTMLElement, smooth: boolean) {
     glide(next);
   };
 
-  const setters = extras.map((column) => gsap.quickSetter(column, "opacity"));
-  let frame = 0;
-
-  const paint = () => {
-    frame = 0;
-    const max = viewport.scrollWidth - viewport.clientWidth;
-    const progress = max > 0 ? Math.min(1, viewport.scrollLeft / max) : 1;
-    setters.forEach((set) => set(0.35 + 0.65 * progress));
-  };
-
-  const onScroll = () => {
-    if (!frame) frame = requestAnimationFrame(paint);
-  };
-
-  paint();
   viewport.addEventListener("wheel", onWheel, { passive: false });
-  viewport.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
 
   return () => {
-    if (frame) cancelAnimationFrame(frame);
     viewport.removeEventListener("wheel", onWheel);
-    viewport.removeEventListener("scroll", onScroll);
-    window.removeEventListener("resize", onScroll);
     glide.tween?.kill();
-    gsap.set(extras, { clearProps: "opacity" });
   };
 }
 
@@ -280,7 +249,7 @@ function DesktopTrack() {
           className="flex w-full items-stretch gap-3.5 py-7 pl-5 lg:pl-[max(2.5rem,calc((100%-var(--page-max-width))/2+2.5rem))]"
         >
           <li
-            className={`js-exp-col flex shrink-0 flex-col items-start gap-2 ${COLUMN_WIDTH}`}
+            className={`flex shrink-0 flex-col items-start gap-2 ${COLUMN_WIDTH}`}
           >
             <Item item={EXPERIENCE_NOTE} />
           </li>
@@ -288,7 +257,7 @@ function DesktopTrack() {
           {EXPERIENCE_COLUMNS.map((column, index) => (
             <li
               key={index}
-              className={`js-exp-col flex shrink-0 flex-col items-start gap-2 ${COLUMN_WIDTH}`}
+              className={`flex shrink-0 flex-col items-start gap-2 ${COLUMN_WIDTH}`}
             >
               {column.map((item) => (
                 <Item

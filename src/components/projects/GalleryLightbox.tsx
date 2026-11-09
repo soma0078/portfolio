@@ -184,7 +184,7 @@ export default function GalleryLightbox({
         className="absolute inset-0 cursor-pointer"
       />
       <div className="js-lb-top pointer-events-none relative z-1 flex items-center justify-between px-5 py-4 text-white lg:px-8">
-        <span className="text-xs tracking-[1.4px] text-white/60">
+        <span className="text-sm lg:text-base tracking-[1.4px] text-white/60">
           {String(index + 1).padStart(2, "0")} /{" "}
           {String(items.length).padStart(2, "0")}
         </span>

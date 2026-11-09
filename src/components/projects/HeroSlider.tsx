@@ -39,10 +39,10 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full0">
       <div
         ref={frameRef}
-        className="group relative overflow-hidden rounded-xl bg-surface dark:bg-white/5"
+        className="group relative overflow-hidden rounded-2xl border-12 border-surface dark:border-white/5"
         onPointerDown={(event) => {
           dragFrom.current = event.clientX;
         }}
@@ -117,7 +117,7 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
               →
             </button>
 
-            <span className="absolute right-3 bottom-3 rounded-full bg-ink/55 px-2.5 py-1 text-xs tracking-[1px] text-white backdrop-blur-sm">
+            <span className="absolute right-3 bottom-3 rounded-full bg-ink/55 px-2.5 py-1 text-sm lg:text-base tracking-[1px] text-white backdrop-blur-sm">
               {String(index + 1).padStart(2, "0")} /{" "}
               {String(shots.length).padStart(2, "0")}
             </span>
@@ -126,8 +126,8 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
       </div>
 
       <div className="flex flex-wrap items-baseline gap-2.5 px-1 pt-3">
-        <span className="text-sm font-bold">{shots[index].name}</span>
-        <span className="text-xs tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
+        <span className="text-sm lg:text-base font-bold">{shots[index].name}</span>
+        <span className="text-sm lg:text-base tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
           {shots[index].note}
         </span>
       </div>

@@ -10,25 +10,25 @@ const ACCENT = "bg-[#b57328] dark:bg-[#d9a05b]";
 export default function AboutLogs() {
   return (
     <section
-      id="personal"
+      id="devlog"
       className={`${PAGE_MAX_WIDTH} ${PAGE_GUTTER_X} flex flex-col gap-11`}
     >
-      <SectionHeader title="Personal" />
+      <SectionHeader title="Dev Log" />
       <a
         href={FEATURED_POST.href}
         target="_blank"
         rel="noreferrer noopener"
         className="group flex flex-col items-start gap-4"
       >
-        <span className="text-sm text-muted dark:text-[#9a9aae]">
+        <span className="text-sm text-muted dark:text-[#c7c7c7]">
           {FEATURED_POST.date} · {FEATURED_POST.tag}
         </span>
 
-        <h3 className="text-2xl leading-9 font-bold tracking-[-0.5px] lg:text-[32px] lg:leading-11">
+        <h3 className="text-xl leading-7 font-medium tracking-[-0.3px] lg:text-2xl lg:leading-9">
           <span className="link-underline">{FEATURED_POST.title}</span>
         </h3>
 
-        <p className="max-w-[760px] text-base leading-7 text-[#6b6b78] dark:text-[#9a9aae]">
+        <p className="text-base leading-7 text-[#6b6b78] dark:text-[#c7c7c7] line-clamp-1">
           {FEATURED_POST.excerpt}
         </p>
       </a>
@@ -57,7 +57,7 @@ export default function AboutLogs() {
 
               <div className="flex flex-1 flex-col">
                 <div className="flex items-baseline justify-between gap-4">
-                  <span className="text-base font-medium">
+                  <span className="text-base">
                     <span className="link-underline">{post.title}</span>
                   </span>
                   <span className="shrink-0 text-sm text-quiet">
@@ -67,7 +67,7 @@ export default function AboutLogs() {
 
                 <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-400 ease-out group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr]">
                   <div className="overflow-hidden">
-                    <p className="pt-2 text-sm leading-6 text-muted dark:text-[#9a9aae]">
+                    <p className="pt-2 text-sm leading-6 text-muted dark:text-[#c7c7c7]">
                       <span className="text-quiet">{post.tag}</span>{" "}
                       {post.excerpt}
                     </p>

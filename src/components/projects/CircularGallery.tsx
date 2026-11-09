@@ -262,7 +262,7 @@ export function WorkCard({ item }: { item: GalleryEntry }) {
         />
       </span>
       <span className="flex flex-col gap-1">
-        <span className="truncate text-sm font-bold">
+        <span className="truncate text-sm lg:text-base font-bold">
           {item.shot ? (
             <span className="link-underline">{item.shot.name}</span>
           ) : (
@@ -272,7 +272,7 @@ export function WorkCard({ item }: { item: GalleryEntry }) {
           )}
         </span>
         {item.shot && (
-          <span className="truncate text-xs tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
+          <span className="truncate text-sm lg:text-base tracking-[0.8px] text-[#9a9488] dark:text-[#8a8a9a]">
             {item.shot.note}
           </span>
         )}

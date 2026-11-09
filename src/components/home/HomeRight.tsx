@@ -10,6 +10,7 @@ import useTransitionNavigate from "@hooks/useTransitionNavigate";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import FolderContent from "./FolderContents";
+import FolderShape from "./FolderShape";
 import FOLDERS, {
   FOLDER_HEADINGS,
   MAX_SPREAD_X,
@@ -18,9 +19,6 @@ import FOLDERS, {
   STACKED_POSITION,
   STAGE_HEIGHT,
   STAGE_WIDTH,
-  TAB_HEIGHT,
-  TAB_SHAPE,
-  TAB_WIDTH,
   type FolderId,
 } from "./folders";
 import HOME_INTRO from "@constants/homeIntro";
@@ -335,7 +333,6 @@ export default function HomeRight() {
           >
             {FOLDERS.map((folder) => {
               const active = folder.id === activeId;
-              const shape = TAB_SHAPE[folder.tab.shape];
               const showContent =
                 active || (!compact && (expanded || !introDone));
 
@@ -357,6 +354,9 @@ export default function HomeRight() {
                     tabIndex={0}
                     aria-expanded={active && expanded}
                     aria-label={`${folder.label} 폴더`}
+                    data-cursor-zone={
+                      folder.labelColor === "#ffffff" ? "light" : "dark"
+                    }
                     onClick={() => handleFolderClick(folder.id)}
                     onKeyDown={(event) => {
                       if (event.key === "Enter" || event.key === " ") {
@@ -368,50 +368,31 @@ export default function HomeRight() {
                       expanded ? "hover:-translate-y-1.5" : ""
                     } pointer-events-none`}
                   >
-                    <svg
-                      viewBox={shape.viewBox}
-                      preserveAspectRatio="none"
-                      aria-hidden
-                      className="absolute top-0 overflow-visible"
-                      style={{
-                        left: folder.tab.left,
-                        width: TAB_WIDTH,
-                        height: TAB_HEIGHT,
-                        transform: folder.tab.mirrored
-                          ? "scaleX(-1)"
-                          : undefined,
-                      }}
-                    >
-                      <path d={shape.d} fill={folder.color} />
-                    </svg>
+                    <FolderShape folder={folder} />
 
                     <span
-                      className="absolute top-[12.6px] text-sm font-twayfly"
+                      className="absolute isolate top-[12.6px] text-sm font-twayfly"
                       style={{
                         left: folder.tab.labelLeft,
                         color: folder.labelColor,
                       }}
                     >
+                      {folder.shadeLabel && (
+                        <span
+                          aria-hidden
+                          className="absolute -inset-x-2 -inset-y-1 -z-10 rounded-full blur-[5px]"
+                          style={{ backgroundColor: folder.color }}
+                        />
+                      )}
                       {folder.label}
                     </span>
-
-                    <div
-                      className="absolute left-0 top-[36.9px] h-[295.3px] w-[396.83px] rounded-3xl"
-                      style={{ backgroundColor: folder.color }}
-                    />
 
                     {showContent && (
                       <div className="absolute left-6 top-[61px] flex h-[247px] w-[349px] flex-col gap-3.5 overflow-hidden">
                         <FolderContent
                           id={folder.id}
                           header={
-                            <div className="group flex w-full shrink-0 items-center justify-between">
-                              <span
-                                className="text-base font-bold tracking-[0.2px] font-twayfly"
-                                style={{ color: folder.labelColor }}
-                              >
-                                {FOLDER_HEADINGS[folder.id]}
-                              </span>
+                            <div className="group flex w-full shrink-0 gap-x-1 items-center justify-end">
                               <button
                                 type="button"
                                 onClick={(event) => {
@@ -424,7 +405,7 @@ export default function HomeRight() {
                                   navigate(folder.href);
                                 }}
                                 aria-label={`${FOLDER_HEADINGS[folder.id]} 페이지로 이동`}
-                                className="text-xl leading-none transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                className="text-md leading-none transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                                 style={{ color: folder.labelColor }}
                               >
                                 ↗
@@ -452,8 +433,8 @@ export default function HomeRight() {
           }}
           aria-hidden={expanded || !introDone}
         >
-          <span className="text-sm font-semibold text-quiet">↑</span>
-          <span className=" text-xs font-medium tracking-[0.8px] text-quiet">
+          <span className="font-semibold text-quiet">↑</span>
+          <span className="font-medium tracking-[0.8px] text-quiet">
             {compact
               ? "탭을 누르면 폴더가 바뀌어요"
               : "탭을 누르면 폴더가 펼쳐져요"}

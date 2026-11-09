@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* 프로젝트 카드의 소프트 볼륨 바탕색. softVolumeStyle이 이 값을 color-mix로 밝기만 나눈다 */
+:root {
+  --card-volume: #fffdf9;
+}
+
+.dark {
+  --card-volume: #2a2420;
+}
+
 @theme {
   --color-ink: #17171c;
   --color-ink-soft: #4a4a55;
@@ -23,7 +32,7 @@
 
 @theme static {
   --sidebar-width: 220px;
-  --page-max-width: 1556px;
+  --page-max-width: 1200px;
   --primary-gradient: linear-gradient(135deg, #bd4be5, #5856de);
-  --logo-gradient: linear-gradient(135deg, #ef8a63, #e07a5f, #3e92cc);
+  --logo-gradient: linear-gradient(135deg, #f2efdc 0%, #e4b5a9 10%, #e07a5f 40%, #e07a5f 70%, #3e92cc 100%);
 }

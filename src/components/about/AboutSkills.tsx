@@ -1,8 +1,11 @@
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap, { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
-import { STACK_HEIGHT, STACK_OFFSET, TECH_STACKS } from "@constants/about";
+import { STACK_HEIGHT, TECH_STACKS } from "@constants/about";
 import { PAGE_GUTTER_X, PAGE_MAX_WIDTH } from "@constants/layout";
+import TabbedSurface from "@components/common/TabbedSurface";
+import type { TabGeometry } from "src/utils/tabPath";
+import { SOFT_VOLUME_CARD } from "src/utils/softVolume";
 
 const LAST_INDEX = TECH_STACKS.length - 1;
 
@@ -32,6 +35,56 @@ const RING_LENGTH = 2 * Math.PI * RING_RADIUS;
 
 const ringOffset = (p: number) => RING_LENGTH * (1 - p);
 
+// 본체 위로 보이는 탭 높이와 탭 안 제목 위치
+const TAB_HEIGHT = 40;
+const TAB_LABEL_TOP = 8;
+const TAB_PADDING = 16;
+// 이웃한 탭의 비스듬한 옆선이 겹치는 폭
+const TAB_OVERLAP = 32;
+const CARD_RADIUS = 28;
+
+// 탭 윤곽: 비스듬한 옆선의 가로 길이, 위쪽 모서리 둥글기, 옆선과 본체가 만나는 오목한 곡선 크기
+const TAB_SLOPE = 22;
+const TAB_CORNER = 12;
+const TAB_FILLET = 10;
+
+// 제목 폭에 맞춰 탭 너비를 정하고 제목 위치를 함께 돌려준다
+function placeTab(left: number, labelWidth: number, flushLeft: boolean) {
+  // 왼쪽에 붙는 탭은 오른쪽에만 옆선이 있다
+  const tab: TabGeometry = {
+    left,
+    width: labelWidth + TAB_PADDING * 2 + TAB_SLOPE * (flushLeft ? 1 : 2),
+    slope: TAB_SLOPE,
+    corner: TAB_CORNER,
+    fillet: TAB_FILLET,
+    flushLeft,
+  };
+
+  return {
+    tab,
+    labelLeft: left + (flushLeft ? 0 : TAB_SLOPE) + TAB_PADDING,
+  };
+}
+
+// 카드는 완전히 겹치고 탭만 홈 폴더처럼 한 줄로 나란히 둔다.
+// 한 줄에 다 들어가지 않으면 탭도 같은 자리에 겹쳐 맨 앞 카드의 탭만 보이게 한다
+function layoutTabs(labelWidths: number[], deckWidth: number) {
+  let left = 0;
+  const inRow = labelWidths.map((labelWidth, index) => {
+    const placed = placeTab(left, labelWidth, index === 0);
+    left += placed.tab.width - TAB_OVERLAP;
+    return placed;
+  });
+
+  const last = inRow[inRow.length - 1];
+  const fits = !!last && last.tab.left + last.tab.width <= deckWidth;
+  if (fits) return inRow;
+
+  // 겹칠 때는 너비를 가장 긴 제목에 맞춰야 뒤 탭의 모서리가 삐져나오지 않는다
+  const longest = Math.max(...labelWidths);
+  return labelWidths.map(() => placeTab(0, longest, true));
+}
+
 function StepRing({ total }: { total: number }) {
   const center = RING_SIZE / 2;
 
@@ -39,8 +92,9 @@ function StepRing({ total }: { total: number }) {
     <div
       aria-hidden
       className="js-stack-ring-root absolute z-10 text-black"
+      // 카드가 완전히 겹치므로 맨 앞 카드 본체의 오른쪽 위에 둔다
       style={{
-        top: LAST_INDEX * STACK_OFFSET + 24,
+        top: TAB_HEIGHT + 24,
         right: 24,
         width: RING_SIZE,
         height: RING_SIZE,
@@ -70,7 +124,7 @@ function StepRing({ total }: { total: number }) {
         />
       </svg>
 
-      <span className="absolute inset-0 flex items-center justify-center  text-xs font-medium">
+      <span className="absolute inset-0 flex items-center justify-center  text-sm font-medium">
         {total < 10 && "0"}
         <span className="js-stack-ring-number">1</span>
       </span>
@@ -88,6 +142,32 @@ export default function AboutSkills() {
   const rootRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const deckRef = useRef<HTMLUListElement>(null);
+  const labelRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+  const [labelWidths, setLabelWidths] = useState<number[]>(() =>
+    TECH_STACKS.map(() => 0),
+  );
+  const [deckWidth, setDeckWidth] = useState(0);
+
+  // 탭 너비는 글자 폭을, 탭 간격은 덱 폭을 따른다. 웹폰트가 늦게 들어와도 다시 잰다
+  useLayoutEffect(() => {
+    const deck = deckRef.current;
+    if (!deck) return;
+
+    const measure = () => {
+      setDeckWidth(deck.clientWidth);
+      setLabelWidths(labelRefs.current.map((label) => label?.offsetWidth ?? 0));
+    };
+
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(deck);
+    labelRefs.current.forEach((label) => label && observer.observe(label));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const tabs = layoutTabs(labelWidths, deckWidth);
 
   useGSAP(
     () => {
@@ -263,7 +343,7 @@ export default function AboutSkills() {
 
         <ul
           ref={deckRef}
-          className="relative w-full overflow-hidden rounded-[28px]"
+          className="relative w-full overflow-hidden rounded-b-[28px]"
           style={{ height: STACK_HEIGHT }}
         >
           {TECH_STACKS.map((stack, index) => {
@@ -272,19 +352,32 @@ export default function AboutSkills() {
             return (
               <li
                 key={stack.title}
-                className="js-stack-card absolute inset-x-0 flex flex-col justify-between overflow-hidden rounded-[28px] p-6"
+                // 카드의 빈 자리가 뒤 카드 탭을 덮으므로 클릭은 탭 글자만 받는다
+                className="js-stack-card pointer-events-none absolute inset-x-0 flex flex-col justify-end p-6"
                 style={{
-                  top: index * STACK_OFFSET,
+                  top: 0,
                   height: "100%",
-                  paddingBottom: CARD_PADDING + index * STACK_OFFSET,
-                  backgroundColor: stack.color,
+                  paddingBottom: CARD_PADDING,
                   zIndex: active ? TECH_STACKS.length : index,
                 }}
               >
+                <TabbedSurface
+                  id={`tech-stack-${index}`}
+                  color={stack.color}
+                  tab={tabs[index].tab}
+                  tabHeight={TAB_HEIGHT}
+                  radius={CARD_RADIUS}
+                  volume={SOFT_VOLUME_CARD}
+                />
+
                 <h3
-                  className={`w-full text-xl font-semibold ${
+                  ref={(label) => {
+                    labelRefs.current[index] = label;
+                  }}
+                  className={`pointer-events-auto absolute whitespace-nowrap text-base font-semibold md:text-xl ${
                     stack.onDark ? "text-white" : "text-black"
                   }`}
+                  style={{ left: tabs[index].labelLeft, top: TAB_LABEL_TOP }}
                 >
                   <button
                     type="button"
@@ -297,11 +390,11 @@ export default function AboutSkills() {
                   </button>
                 </h3>
 
-                <div className="flex w-full flex-col gap-1">
+                <div className="relative flex w-full flex-col gap-1">
                   {stack.items.map((item) => (
                     <span
                       key={item}
-                      className={`border-b pb-px text-sm ${
+                      className={`border-b pb-px ${
                         stack.onDark
                           ? "border-white/10 text-white"
                           : "border-black/10 text-black"

@@ -5,9 +5,9 @@ import posts from "./posts.generated.json";
 export const ABOUT_HERO = ["무엇을 만들지보다", "왜 필요한지를 고민합니다."];
 
 export const ABOUT_BIO = [
-  "화면뿐 아니라 그 안의 데이터와 흐름까지 함께 살핍니다. 기획과 디자인에서 정의되지 않은 엣지 케이스나 API 스펙에서 논의가 필요한 부분을 먼저 정리해 기획·디자인·백엔드에 제안하고, 구현할 내용을 함께 결정합니다.",
-  "구현한 기능은 실제 서비스 환경에서 다시 검증합니다. QA 시나리오를 기록하고, 사용자가 마주할 화면과 흐름을 거듭 점검하며, 발견한 문제를 수정하고 재검증합니다.",
-  "실제 사용 환경의 지표도 함께 확인합니다. GA4로 사용자 성능 지표를 확인하고 Lighthouse로 병목 원인을 분석해, 실제 렌더링 성능에 직결되는 요소를 우선순위에 두고 개선합니다.",
+"화면뿐 아니라 데이터와 흐름까지 고려합니다. 기획·디자인 단계부터 백엔드 개발자, 디자이너와 적극적으로 소통하며 예외 케이스와 API 스펙을 제안하고, 구현 방향을 주도적으로 조율합니다.",
+"구현한 기능은 운영 환경에서 거듭 검증합니다. 시각적·기술적 완성도가 비즈니스 가치로 직결된다는 책임감을 느끼며, QA를 통한 세부적인 UI 일관성 및 사용성 개선으로 제품의 신뢰도를 높입니다.",
+"실제 사용자 환경의 성능까지 책임집니다. GA4(CWV)로 유저가 겪는 성능 '현상'을 발견하고, Lighthouse로 구체적인 '원인'을 도출해 렌더링 속도와 사용자 경험에 직결되는 요소를 우선순위에 두고 개선합니다."
 ];
 
 /* ───────────────────── 03 Experience ───────────────────── */
@@ -59,7 +59,7 @@ export const EXPERIENCE_COLUMNS: ExperienceItem[][] = [
   [
     {
       kind: "shot",
-      label: "퍼플페퍼 썸네일",
+      label: "(주)퍼플페퍼 썸네일",
       tone: "#f1e9df",
       src: "/images/career-bg-purplepepper.svg",
     },
@@ -69,8 +69,8 @@ export const EXPERIENCE_COLUMNS: ExperienceItem[][] = [
       tag: "WORK",
       title: "프론트엔드 개발자",
       org: "(주)퍼플페퍼",
-      role: "신규 서비스 프론트엔드 개발, 운영 및 품질 개선",
-      stack: "MONOREPO · SHADCN/UI · WEB VITALS",
+      role: "마케팅 플랫폼 웹 프론트엔드 개발",
+      stack: "Next.js · shadcn UI · Stroybook · CWV",
       color: "#8a5418",
     },
   ],
@@ -81,9 +81,9 @@ export const EXPERIENCE_COLUMNS: ExperienceItem[][] = [
       tag: "WORK",
       title: "프론트엔드 개발자 - 인턴",
       org: "(주)나두모두",
-      role: "신규 서비스 화면 구현, UI 렌더링 테스트 코드 작성",
-      stack: "NEXT.JS · ANT DESIGN · PLAYWRIGHT",
-      color: "#2c5a55",
+      role: "신규 AI Agent Web UI 구현 및 리디자인 UI 퍼블리싱",
+      stack: "Next.js · Ant Design",
+      color: "#2a5f86",
     },
     {
       kind: "shot",
@@ -101,13 +101,13 @@ export const EXPERIENCE_COLUMNS: ExperienceItem[][] = [
     },
     {
       kind: "role",
-      date: "2024.03 — 2025.03",
+      date: "2024.03 — 2024.09",
       tag: "EDU",
-      title: "프론트엔드 6기 · 단기심화 7기",
-      org: "코드잇",
-      role: "MVP부터 런칭까지, 팀으로 함께 개발하는 과정을 경험",
-      stack: "REACT · TYPESCRIPT · TAILWIND CSS",
-      color: "#33402f",
+      title: "프론트엔드 엔지니어 부트캠프",
+      org: "코드잇 평생교육원",
+      role: "MVP부터 런칭까지 팀으로 함께 협업하는 과정 경험",
+      stack: "React · TypeScript · Tailwind CSS · Figma",
+      color: "#2c5a55",
     },
   ],
   [
@@ -115,10 +115,10 @@ export const EXPERIENCE_COLUMNS: ExperienceItem[][] = [
       kind: "role",
       date: "2022.09 — 2024.02",
       tag: "WORK",
-      title: "Web Publisher · Designer",
+      title: "웹 퍼블리셔 · 웹 디자이너",
       org: "솔라디자인",
-      role: "클라이언트 웹사이트 기획, 디자인, 퍼블리싱과 반응형 UI 구현",
-      stack: "UI/UX DESIGN · RESPONSIVE WEB",
+      role: "UI/UX 웹 디자인 · 웹 콘텐츠 기획, 반응형 웹 퍼블리싱",
+      stack: "Semantic Markup · Cross Browsing  · Responsive UI",
       color: "#a8482c",
     },
     {
@@ -139,9 +139,9 @@ export const EXPERIENCE_COLUMNS: ExperienceItem[][] = [
       tag: "EDU",
       title: "UI/UX 웹&앱 디자인 & 프론트엔드",
       org: "강남 이젠 컴퓨터 학원",
-      role: "웹사이트 리뉴얼 프로젝트 6건을 진행하며 UI/UX 기획부터 디자인, 구현까지 경험",
-      stack: "HTML5 · CSS3 · JAVASCRIPT · JQUERY · ADOBE PHOTOSHOP",
-      color: "#2a5f86",
+      role: "웹 사이트 리뉴얼 기획안 작성, UX 기획 · UI 디자인 · 퍼블리싱",
+      stack: "HTML5 · CSS3 · JavaScript · Photoshop",
+      color: "#5a3a52",
     },
   ],
   [
@@ -149,11 +149,11 @@ export const EXPERIENCE_COLUMNS: ExperienceItem[][] = [
       kind: "role",
       date: "2021.05 — 2021.12",
       tag: "WORK",
-      title: "청년 프로그램 매니저",
+      title: "청년 지원 매니저",
       org: "순천시청년센터",
-      role: "청년 프로그램 기획·운영, 정책 관련 행정 업무 보조",
-      stack: "PLANNING · OPERATION · CONTENT · MANGO BOARD",
-      color: "#5a3a52",
+      role: "프로그램 · 행사 기획 및 운영, SNS 홍보 콘텐츠 제작",
+      stack: "Planning · Managing · Marketing",
+      color: "#33402f",
     },
     {
       kind: "shot",
@@ -180,46 +180,33 @@ export interface TechStack {
 
 export const TECH_STACKS: TechStack[] = [
   {
-    title: "개발 기술",
+    title: "Frontend",
     color: "#f2efdc",
-    items: ["React", "Next.js", "JavaScript", "TypeScript"],
-  },
-  {
-    title: "상태 및 폼",
-    color: "#e6d9be",
     items: [
-      "TanStack Query",
-      "TanStack Table",
-      "Zustand",
-      "React Hook Form",
-      "Zod",
+      "React · Next.js",
+      "TypeScript · JavaScript",
+      "Tailwind CSS · SCSS",
+      "HTML5",
     ],
   },
   {
-    title: "스타일링 및 마크업",
-    color: "#cfe0ee",
-    items: ["HTML5", "CSS3", "TailwindCSS", "Shadcn/ui", "Radix UI", "CVA"],
-  },
-  {
-    title: "디자인",
+    title: "Development",
     color: "#e07a5f",
-    items: ["Figma", "Adobe Photoshop", "Adobe Illustrator"],
+    items: [
+      "Git",
+      "GitHub Actions",
+      "Google Analytics",
+      "Lighthouse",
+    ],
   },
   {
-    title: "형상 관리 및 배포",
-    color: "#b57328",
-    onDark: true,
-    items: ["Git", "Storybook", "Vercel", "Netlify", "Supabase"],
-  },
-  {
-    title: "품질 및 개발 환경",
+    title: "Collaboration",
     color: "#1f271b",
     onDark: true,
-    items: ["Lighthouse", "web-vitals", "Turborepo", "pnpm"],
+    items: ["Figma", "GitHub", "Swagger", "Storybook", "Claude Code"],
   },
 ];
 
-export const STACK_OFFSET = 29;
 export const STACK_HEIGHT = "clamp(320px, 56vh, 560px)";
 
 /* ─────────────────────────── 04 Personal ─────────────────────────── */

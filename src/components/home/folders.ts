@@ -1,3 +1,5 @@
+import type { TabGeometry } from "src/utils/tabPath";
+
 export const FOLDER_WIDTH = 397;
 export const FOLDER_HEIGHT = 332;
 
@@ -11,21 +13,16 @@ export const STACKED_POSITION = {
   y: (STAGE_HEIGHT - FOLDER_HEIGHT) / 2,
 };
 
-export const TAB_WIDTH = 129.2;
-export const TAB_HEIGHT = 73.83;
+export const BODY_TOP = 36.9;
+export const BODY_WIDTH = 396.83;
+export const BODY_HEIGHT = 295.3;
+export const BODY_RADIUS = 24;
 
-export const TAB_SHAPE = {
-  outer: {
-    viewBox: "0 0 148.5 64",
-    d: "M0 16c0-8.837 7.163-16 16-16l82 0c11.5 0 23.5 4.5 27.5 16l23 48-148.5 0 0-48z",
-  },
-  inner: {
-    viewBox: "-13 0 112 64",
-    d: "M0 14c0-7.732 6.268-14 14-14l58 0c7.732 0 14 6.268 14 14l13 50-112 0 13-50z",
-  },
-} as const;
+// 탭 모양. 카드 끝에 붙는 탭(About, Dev log)은 옆선이 길고, 가운데 탭은 거의 곧게 선다
+const TAB_EDGE = { width: 116, slope: 22, corner: 16, fillet: 8 };
+const TAB_INNER = { width: 110, slope: 8, corner: 14, fillet: 8 };
 
-export type FolderId = "about" | "experience" | "projects" | "personal";
+export type FolderId = "about" | "experience" | "projects" | "devlog";
 
 export interface Folder {
   id: FolderId;
@@ -33,12 +30,9 @@ export interface Folder {
   href: string;
   color: string;
   labelColor: string;
-  tab: {
-    shape: keyof typeof TAB_SHAPE;
-    left: number;
-    labelLeft: number;
-    mirrored: boolean;
-  };
+  // 흰 글자가 중간 톤 탭 위에 있어 하이라이트를 받으면 읽기 어려워지는 탭. 글자 뒤만 원래 색으로 덮는다
+  shadeLabel: boolean;
+  tab: TabGeometry & { labelLeft: number };
   spread: { x: number; y: number };
   baseZ: number;
 }
@@ -47,21 +41,22 @@ export const FOLDER_HEADINGS: Record<FolderId, string> = {
   about: "About me",
   experience: "Experience",
   projects: "Projects",
-  personal: "Dev logs",
+  devlog: "Dev log",
 };
 
 const FOLDERS: Folder[] = [
   {
-    id: "personal",
-    label: "Personal",
-    href: "/about#personal",
+    id: "devlog",
+    label: "Dev log",
+    href: "/about#devlog",
     color: "#3e92cc",
     labelColor: "#ffffff",
+    shadeLabel: true,
     tab: {
-      shape: "outer",
-      left: FOLDER_WIDTH - TAB_WIDTH,
+      ...TAB_EDGE,
+      left: FOLDER_WIDTH - TAB_EDGE.width,
+      flushRight: true,
       labelLeft: 312.9,
-      mirrored: true,
     },
     spread: { x: 224, y: 92 },
     baseZ: 1,
@@ -72,7 +67,8 @@ const FOLDERS: Folder[] = [
     href: "/projects",
     color: "#f2efdc",
     labelColor: "#222222",
-    tab: { shape: "inner", left: 183.43, labelLeft: 219.68, mirrored: false },
+    shadeLabel: false,
+    tab: { ...TAB_INNER, left: 193.03, labelLeft: 219.68 },
     spread: { x: 94, y: 0 },
     baseZ: 2,
   },
@@ -82,17 +78,19 @@ const FOLDERS: Folder[] = [
     href: "/about#experience",
     color: "#e07a5f",
     labelColor: "#ffffff",
-    tab: { shape: "inner", left: 85.94, labelLeft: 113.11, mirrored: false },
+    shadeLabel: true,
+    tab: { ...TAB_INNER, left: 95.54, labelLeft: 113.11 },
     spread: { x: 0, y: 130 },
     baseZ: 3,
   },
   {
     id: "about",
-    label: "About",
+    label: "About me",
     href: "/about",
     color: "#1f271b",
     labelColor: "#ffffff",
-    tab: { shape: "outer", left: 0, labelLeft: 15.7, mirrored: false },
+    shadeLabel: false,
+    tab: { ...TAB_EDGE, left: 0, flushLeft: true, labelLeft: 15.7 },
     spread: { x: 134, y: 221 },
     baseZ: 4,
   },
