@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { CAREER_ROLES } from "@constants/about";
-import { PROJECTS, projectsIn } from "@constants/projects";
+import { PROJECTS } from "@constants/projects";
 import ANALYTICS_EVENTS from "@constants/analyticsEvents";
 import CLICK_LOCATIONS from "@constants/clickLocations";
 import { trackEvent } from "src/utils/analytics";
@@ -11,7 +11,7 @@ interface ContentProps {
 }
 
 function techLine(project: (typeof PROJECTS)[number]) {
-  return project.stack.split(" · ").slice(0, 2).join(" · ");
+  return project.stack.slice(0, 2).join(" · ");
 }
 
 function shortTitle(title: string) {
@@ -24,19 +24,11 @@ const CARD_LAYOUT = [
   { rotate: -24, left: 200, top: 50 },
 ];
 
-const FOLDER_PROJECT_IDS = [6, 7, 1];
+const FOLDER_PROJECT_IDS = [6, 8, 7];
 
 const FOLDER_PROJECTS = FOLDER_PROJECT_IDS.flatMap(
   (id) => PROJECTS.find((project) => project.id === id) ?? [],
 );
-
-const PROJECT_SUMMARY = [
-  { label: "Work", count: projectsIn("work").length },
-  { label: "Side", count: projectsIn("side").length },
-]
-  .filter((entry) => entry.count > 0)
-  .map((entry) => `${entry.label} ${entry.count}`)
-  .join(" · ");
 
 function ProjectsContent({ header }: ContentProps) {
   const projects = FOLDER_PROJECTS;
@@ -75,7 +67,9 @@ function ProjectsContent({ header }: ContentProps) {
 
       {header}
 
-      <p className="text-[10px] text-[#8a8a94]">{PROJECT_SUMMARY}</p>
+      <p className="text-xs leading-4 text-[#8a8a94]">
+        요구사항을 서비스로 구현하며 <br/>마주한 기술적 도전과 이를 해결해 온 과정입니다.
+      </p>
     </>
   );
 }

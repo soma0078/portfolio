@@ -8,7 +8,7 @@ function Spec({ shot }: { shot: ShotItem }) {
     <div className="grid gap-6 sm:grid-cols-2">
       {shot.fonts && (
         <div className="flex flex-col gap-3">
-          <span className="text-xs tracking-[1.4px] text-white/45">
+          <span className="text-sm lg:text-base tracking-[1.4px] text-white/45">
             TYPEFACE
           </span>
           <div className="flex flex-col gap-2.5">
@@ -18,7 +18,7 @@ function Spec({ shot }: { shot: ShotItem }) {
                   {font.name}
                 </b>
                 {font.role && (
-                  <span className="text-xs tracking-[1px] text-white/45">
+                  <span className="text-sm lg:text-base tracking-[1px] text-white/45">
                     {font.role}
                   </span>
                 )}
@@ -30,7 +30,7 @@ function Spec({ shot }: { shot: ShotItem }) {
 
       {shot.colors && (
         <div className="flex flex-col gap-3">
-          <span className="text-xs tracking-[1.4px] text-white/45">COLOR</span>
+          <span className="text-sm lg:text-base tracking-[1.4px] text-white/45">COLOR</span>
           <div className="flex flex-wrap gap-3">
             {shot.colors.map((color) => (
               <span key={color.hex} className="flex flex-col gap-1.5">
@@ -38,10 +38,10 @@ function Spec({ shot }: { shot: ShotItem }) {
                   className="h-11 w-16 rounded-lg ring-1 ring-white/20"
                   style={{ backgroundColor: color.hex }}
                 />
-                <code className="text-xs tracking-[0.4px] text-white uppercase">
+                <code className="text-sm lg:text-base tracking-[0.4px] text-white uppercase">
                   {color.hex}
                 </code>
-                <span className="text-xs tracking-[0.8px] text-white/45">
+                <span className="text-sm lg:text-base tracking-[0.8px] text-white/45">
                   {color.role}
                 </span>
               </span>
@@ -60,7 +60,7 @@ function Reserved({ item }: { item: GalleryEntry }) {
         <h3 className="text-2xl font-bold tracking-[-0.4px] text-white">
           {item.year ? `${item.year}년 작업` : "작업"}
         </h3>
-        <span className="text-xs tracking-[1.2px] text-white/45">
+        <span className="text-sm lg:text-base tracking-[1.2px] text-white/45">
           솔라디자인 · 퍼블리싱
         </span>
       </div>
@@ -73,12 +73,12 @@ function Reserved({ item }: { item: GalleryEntry }) {
       />
 
       <div className="flex flex-col gap-3">
-        <span className="text-xs tracking-[1.4px] text-white/45">준비 중</span>
+        <span className="text-sm lg:text-base tracking-[1.4px] text-white/45">준비 중</span>
         <div className="flex flex-col gap-2.5 rounded-xl border border-dashed border-white/20 px-5 py-6">
           {["TYPEFACE", "COLOR", "FULL PAGE"].map((label) => (
             <span
               key={label}
-              className="text-sm tracking-[0.6px] text-white/35"
+              className="text-sm lg:text-base tracking-[0.6px] text-white/35"
             >
               {label}
             </span>
@@ -100,7 +100,7 @@ export default function CaseSheet({ item }: { item: GalleryEntry }) {
           <h3 className="text-2xl font-bold tracking-[-0.4px] text-white">
             {shot.name}
           </h3>
-          <span className="text-xs tracking-[1.2px] text-white/45">
+          <span className="text-sm lg:text-base tracking-[1.2px] text-white/45">
             {shot.note}
           </span>
 
@@ -109,9 +109,10 @@ export default function CaseSheet({ item }: { item: GalleryEntry }) {
               href={shot.href}
               target="_blank"
               rel="noreferrer noopener"
-              className="ml-auto rounded-full bg-white px-4 py-2 text-sm font-bold text-ink transition-colors duration-300 hover:bg-[#e2e2ea]"
+              data-cursor-contrast="light"
+              className="ml-auto rounded-full bg-white px-4 py-2 text-sm lg:text-base font-bold text-ink transition-colors duration-300 hover:bg-[#e2e2ea]"
             >
-              사이트 보기 ↗
+              사이트 보기
             </a>
           )}
         </div>
@@ -126,7 +127,7 @@ export default function CaseSheet({ item }: { item: GalleryEntry }) {
       <Spec shot={shot} />
 
       <div className="flex flex-col gap-2.5">
-        <span className="text-xs tracking-[1.4px] text-white/45">
+        <span className="text-sm lg:text-base tracking-[1.4px] text-white/45">
           FULL PAGE
         </span>
         <img
