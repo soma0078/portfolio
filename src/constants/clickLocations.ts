@@ -10,6 +10,8 @@ const CLICK_LOCATIONS = {
   projectGallery: "project_gallery",
   projectGalleryGrid: "project_gallery_grid",
   lightbox: "lightbox",
+  aboutLogs: "about_logs",
+  footer: "footer",
 } as const;
 
 export type ClickLocation =

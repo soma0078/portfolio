@@ -1,11 +1,21 @@
 import { FEATURED_POST, POSTS } from "@constants/about";
 import { MY_BLOG_URL } from "@constants/urls";
 import { PAGE_GUTTER_X, PAGE_MAX_WIDTH } from "@constants/layout";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
 import SectionHeader from "./SectionHeader";
 
 const BLOG_HOST = MY_BLOG_URL.replace(/^https?:\/\//, "");
 
 const ACCENT = "bg-[#b57328] dark:bg-[#d9a05b]";
+
+const trackPostClick = (post: { title: string; href: string }) =>
+  trackEvent(ANALYTICS_EVENTS.blogLinkClick, {
+    title: post.title,
+    url: post.href,
+    click_location: CLICK_LOCATIONS.aboutLogs,
+  });
 
 export default function AboutLogs() {
   return (
@@ -18,6 +28,7 @@ export default function AboutLogs() {
         href={FEATURED_POST.href}
         target="_blank"
         rel="noreferrer noopener"
+        onClick={() => trackPostClick(FEATURED_POST)}
         className="group flex flex-col items-start gap-4"
       >
         <span className="text-sm text-muted dark:text-[#c7c7c7]">
@@ -49,6 +60,7 @@ export default function AboutLogs() {
               href={post.href}
               target="_blank"
               rel="noreferrer noopener"
+              onClick={() => trackPostClick(post)}
               className="group flex items-stretch gap-4 py-5 lg:gap-6"
             >
               <span

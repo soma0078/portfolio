@@ -3,6 +3,11 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import HOME_INTRO from "@constants/homeIntro";
 import { MY_BLOG_URL, MY_EMAIL } from "@constants/urls";
+import ANALYTICS_EVENTS from "@constants/analyticsEvents";
+import CLICK_LOCATIONS from "@constants/clickLocations";
+import { trackEvent } from "src/utils/analytics";
+
+const CWV_POST_URL = `${MY_BLOG_URL}/34`;
 
 const HEADLINE = ["눈에 보이는 화면부터", "손에 닿는 경험까지", "책임집니다"];
 
@@ -84,9 +89,16 @@ export default function HomeLeft() {
           </p>
 
           <a
-            href={`${MY_BLOG_URL}/34`}
+            href={CWV_POST_URL}
             target="_blank"
             rel="noreferrer noopener"
+            onClick={() =>
+              trackEvent(ANALYTICS_EVENTS.blogLinkClick, {
+                title: "Core Web Vitals 개선 기록 보기",
+                url: CWV_POST_URL,
+                click_location: CLICK_LOCATIONS.home,
+              })
+            }
             className="js-link group inline-flex w-fit items-center gap-1.5 text-md font-medium text-quiet transition-colors duration-300"
           >
             Core Web Vitals 개선 기록 보기{" "}
