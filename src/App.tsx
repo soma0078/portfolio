@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
+import { NuqsAdapter } from "nuqs/adapters/react-router/v7";
 import Sidebar from "@components/layout/Sidebar";
 import Header from "@components/layout/Header";
 import AnalyticsPageView from "@components/common/AnalyticsPageView";
@@ -11,11 +12,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AnalyticsPageView />
-      <CustomCursor />
-      <Sidebar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <AppRoutes />
+      <NuqsAdapter>
+        <AnalyticsPageView />
+        <CustomCursor />
+        <Sidebar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+        <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+        <AppRoutes />
+      </NuqsAdapter>
     </BrowserRouter>
   );
 }
