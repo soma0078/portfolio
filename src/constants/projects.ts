@@ -254,7 +254,12 @@ const CLIENT_SITE_ITEMS: ProjectSummary[] = CLIENT_SITE_SHOTS.map((shot, index) 
 });
 
 // 목록 화면에 보여 줄 전체 아이템(상세 라우팅·이전/다음 이동에는 PROJECTS를 그대로 쓴다)
-export const LIST_ITEMS: ProjectSummary[] = [...PROJECTS, ...CLIENT_SITE_ITEMS];
+// 클라이언트 사이트 제작(id 6)은 목록에서 뺀다. 개별 사이트 아이템의 상세 링크와 홈 폴더가 이 데이터를 쓰므로 PROJECTS에는 남긴다
+// export const LIST_ITEMS: ProjectSummary[] = [...PROJECTS, ...CLIENT_SITE_ITEMS];
+export const LIST_ITEMS: ProjectSummary[] = [
+  ...PROJECTS.filter((project) => project.id !== CLIENT_PARENT_ID),
+  ...CLIENT_SITE_ITEMS,
+];
 
 export const PROJECT_SECTIONS = [
   { key: "work" as const, label: "실무" },

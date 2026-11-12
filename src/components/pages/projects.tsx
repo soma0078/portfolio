@@ -32,9 +32,9 @@ const PROJECT_VIEW_STORAGE_KEY = "projects-view";
 function readStoredView(): ProjectView {
   try {
     const stored = window.sessionStorage.getItem(PROJECT_VIEW_STORAGE_KEY);
-    return stored === "list" ? "list" : "card";
+    return stored === "card" ? "card" : "list";
   } catch {
-    return "card";
+    return "list";
   }
 }
 
