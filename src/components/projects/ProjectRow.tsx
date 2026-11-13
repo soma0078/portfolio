@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import type { ProjectSummary } from "@constants/projects";
 import TransitionLink from "@components/common/TransitionLink";
 import ANALYTICS_EVENTS from "@constants/analyticsEvents";
@@ -24,7 +23,6 @@ export default function ProjectRow({
 }: ProjectRowProps) {
   const detailPath = `/projects/${project.detailId ?? project.id}`;
   const isFolder = Boolean(project.workSrc);
-  const thumbRef = useRef<HTMLDivElement>(null);
 
   const trackItemClick = () =>
     trackEvent(ANALYTICS_EVENTS.projectCardClick, {
@@ -58,7 +56,6 @@ export default function ProjectRow({
         className="flex flex-col gap-7 py-9 pr-14 xl:flex-row xl:items-center xl:gap-14 xl:py-12"
       >
         <div
-          ref={thumbRef}
           className="relative block w-full shrink-0 overflow-hidden rounded-[10px] bg-surface xl:w-[420px] dark:bg-white/5"
         >
           <img
@@ -67,7 +64,7 @@ export default function ProjectRow({
             loading="lazy"
             className="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          {isFolder && <HoverEye areaRef={thumbRef} />}
+          {isFolder && <HoverEye />}
         </div>
 
         <div className="flex flex-1 flex-col items-start gap-4.5">
