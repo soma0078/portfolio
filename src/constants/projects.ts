@@ -6,10 +6,34 @@ export type ProjectGroup = "work" | "side" | "toy";
 export const PLATFORM_OPTIONS = ["웹", "모바일"] as const;
 export const WORK_TYPE_OPTIONS = ["프론트엔드 개발", "퍼블리싱", "웹 디자인"] as const;
 export const INVOLVEMENT_OPTIONS = ["신규 구축", "레거시 현대화"] as const;
+// 산업군 값은 데이터·URL에 쓰는 영문 키이고, 화면 이름은 INDUSTRY_LABELS에서 가져온다
+export const INDUSTRY_OPTIONS = [
+  "medical",
+  "global",
+  "facility",
+  "event",
+  "manufacturing",
+  "brand",
+  "ai-data",
+  "commerce",
+] as const;
 
 export type Platform = (typeof PLATFORM_OPTIONS)[number];
 export type WorkType = (typeof WORK_TYPE_OPTIONS)[number];
 export type Involvement = (typeof INVOLVEMENT_OPTIONS)[number];
+export type Industry = (typeof INDUSTRY_OPTIONS)[number];
+
+// 옵션을 추가하면 화면 이름도 함께 추가하도록 Record로 강제한다
+export const INDUSTRY_LABELS: Record<Industry, string> = {
+  medical: "의료/전문직",
+  global: "글로벌/다국어",
+  facility: "시설/피트니스",
+  event: "행사/갤러리",
+  manufacturing: "제조/산업",
+  brand: "기업/브랜드",
+  "ai-data": "AI/데이터",
+  commerce: "커머스/O2O",
+};
 
 export interface ProjectSummary {
   id: number;
@@ -30,6 +54,8 @@ export interface ProjectSummary {
   platforms: Platform[];
   workTypes: WorkType[];
   involvement: Involvement;
+  // 퍼블리싱 사이트의 산업군. 개발 프로젝트에는 없다
+  industry?: Industry;
 }
 
 // 그룹 안에서는 여러 개를 고를 수 있고(OR), 그룹끼리는 모두 만족해야 한다(AND). 빈 배열은 전체
@@ -37,20 +63,34 @@ export interface ProjectFilters {
   platform: Platform[];
   workType: WorkType[];
   involvement: Involvement[];
+  industry: Industry[];
 }
 
 export const EMPTY_PROJECT_FILTERS: ProjectFilters = {
   platform: [],
   workType: [],
   involvement: [],
+  industry: [],
 };
 
-// 산업 그룹은 숨겼다. 데이터(industry)와 조건 함수는 남겨 두어 다시 켤 수 있다
 export const PROJECT_FILTER_GROUPS = [
   { key: "platform", label: "플랫폼", options: PLATFORM_OPTIONS },
-  { key: "workType", label: "작업 구분", options: WORK_TYPE_OPTIONS },
   { key: "involvement", label: "관여 유형", options: INVOLVEMENT_OPTIONS },
+  { key: "workType", label: "작업 구분", options: WORK_TYPE_OPTIONS },
+  { key: "industry", label: "산업군", options: INDUSTRY_OPTIONS },
 ] as const;
+
+// 산업군은 퍼블리싱 사이트에만 있어서, 작업 구분에서 퍼블리싱이나 웹 디자인을 골랐을 때만 쓴다
+const INDUSTRY_WORK_TYPES: readonly WorkType[] = ["퍼블리싱", "웹 디자인"];
+
+export function isIndustryFilterVisible(filters: Pick<ProjectFilters, "workType">) {
+  return filters.workType.some((type) => INDUSTRY_WORK_TYPES.includes(type));
+}
+
+// 필터 칩에 보여 줄 이름. 산업군만 영문 키라 한글 이름으로 바꾸고, 나머지는 값이 곧 이름이다
+export function projectFilterLabel(key: keyof ProjectFilters, value: string) {
+  return key === "industry" ? INDUSTRY_LABELS[value as Industry] : value;
+}
 
 // 목록 요약의 스택과 상세 스펙의 스택을 합쳐, 검색어가 어느 쪽에 있어도 찾도록 한다
 export function projectStackNames(project: ProjectSummary) {
@@ -70,13 +110,17 @@ export function matchesProjectFilters(
   const platformMatched = inGroup(filters.platform, project.platforms);
   const workTypeMatched = inGroup(filters.workType, project.workTypes);
   const involvementMatched = inGroup(filters.involvement, [project.involvement]);
+  // 산업군은 퍼블리싱 사이트에만 있어서, 산업군을 고르면 개발 프로젝트는 빠진다
+  const industryMatched = inGroup(filters.industry, project.industry ? [project.industry] : []);
 
   // 검색어는 공백으로 나눈 단어가 모두 어떤 스택 이름에 들어 있어야 한다(대소문자 무시)
   const terms = stackQuery.toLowerCase().split(/\s+/).filter(Boolean);
   const names = projectStackNames(project).map((name) => name.toLowerCase());
   const stackMatched = terms.every((term) => names.some((name) => name.includes(term)));
 
-  return platformMatched && workTypeMatched && involvementMatched && stackMatched;
+  return (
+    platformMatched && workTypeMatched && involvementMatched && industryMatched && stackMatched
+  );
 }
 
 // 한 그룹에서 값을 넣거나 뺀다. value가 null이면 그 그룹을 전체로 비운다
@@ -85,12 +129,17 @@ export function toggleProjectFilter(
   key: keyof ProjectFilters,
   value: string | null,
 ): ProjectFilters {
-  if (value === null) return { ...filters, [key]: [] };
+  if (value === null) {
+    const cleared = { ...filters, [key]: [] };
+    return isIndustryFilterVisible(cleared) ? cleared : { ...cleared, industry: [] };
+  }
   const current = filters[key] as string[];
   const next = current.includes(value)
     ? current.filter((item) => item !== value)
     : [...current, value];
-  return { ...filters, [key]: next };
+  const updated = { ...filters, [key]: next };
+  // 산업군 필터가 숨겨지면 고른 산업군도 비워, 보이지 않는 조건이 목록에 남지 않게 한다
+  return isIndustryFilterVisible(updated) ? updated : { ...updated, industry: [] };
 }
 export const PROJECTS: ProjectSummary[] = [
   {
@@ -223,6 +272,37 @@ const LEGACY_SITES = new Set(["종합병원"]);
 // 디자인 없이 퍼블리싱만 맡은 사이트(pub-24-93). 나머지는 디자인까지 맡았다
 const PUBLISH_ONLY_SITES = new Set(["공간 디자인 스튜디오"]);
 
+// 퍼블리싱 사이트의 산업군. 다국어 사이트는 업종보다 글로벌/다국어를 우선한다
+const SITE_INDUSTRY: Record<string, Industry> = {
+  종합병원: "medical",
+  "아동 심리 의원": "medical",
+  "안전장비 제조사": "global",
+  "농기계 제조사": "global",
+  "필라테스 스튜디오": "facility",
+  "명상 체험 업체": "facility",
+  "문화 페스티벌": "event",
+  "공간 디자인 스튜디오": "brand",
+  "콘텐츠 제작사": "brand",
+  "음향 업체": "event",
+  "반도체 설비 기업": "manufacturing",
+  "자동차 부품 제조사": "manufacturing",
+  "전기레인지 제조사": "manufacturing",
+  "산업 자동화 기업": "manufacturing",
+  "수목 관리 제품 기업": "manufacturing",
+  "작물보호제 기업": "manufacturing",
+  "이차전지 소재 기업": "manufacturing",
+  "홈 리프트 브랜드": "manufacturing",
+  "예선 선사": "global",
+  "선박 관리 기업": "global",
+  "엔지니어링 기업": "brand",
+  건설사: "brand",
+  "사회복지 재단": "brand",
+  "족보 사이트": "brand",
+  "위치 기반 서비스 기업": "ai-data",
+  "가구 맞춤 제작 회사": "commerce",
+  "세탁 서비스 업체": "commerce",
+};
+
 // 클라이언트 사이트 제작(id 6)의 작업 갤러리를 목록 아이템으로 펼친다. 상세는 상위 프로젝트 페이지로 간다
 const CLIENT_PARENT_ID = 6;
 const CLIENT_SITE_ITEMS: ProjectSummary[] = CLIENT_SITE_SHOTS.map((shot, index) => {
@@ -247,6 +327,7 @@ const CLIENT_SITE_ITEMS: ProjectSummary[] = CLIENT_SITE_SHOTS.map((shot, index) 
     platforms: ["웹"],
     workTypes: PUBLISH_ONLY_SITES.has(shot.name) ? ["퍼블리싱"] : ["퍼블리싱", "웹 디자인"],
     involvement: LEGACY_SITES.has(shot.name) ? "레거시 현대화" : "신규 구축",
+    industry: SITE_INDUSTRY[shot.name],
   };
 });
 

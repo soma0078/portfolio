@@ -2,7 +2,9 @@ import { useState } from "react";
 import { LuCheck, LuChevronDown, LuSearch, LuX } from "react-icons/lu";
 import {
   PROJECT_FILTER_GROUPS,
+  isIndustryFilterVisible,
   matchesProjectFilters,
+  projectFilterLabel,
   type ProjectFilters,
   type ProjectSummary,
 } from "@constants/projects";
@@ -51,11 +53,16 @@ export default function ProjectFilter({
       ),
     ).length;
 
+  // 산업군 줄은 작업 구분에서 퍼블리싱이나 웹 디자인을 골랐을 때만 보인다
+  const groups = PROJECT_FILTER_GROUPS.filter(
+    ({ key }) => key !== "industry" || isIndustryFilterVisible(filters),
+  );
+
   const activeChips = [
-    ...PROJECT_FILTER_GROUPS.flatMap(({ key }) =>
+    ...groups.flatMap(({ key }) =>
       (filters[key] as string[]).map((value) => ({
         id: `${key}-${value}`,
-        label: value,
+        label: projectFilterLabel(key, value),
         remove: () => onChange(key, value),
       })),
     ),
@@ -122,7 +129,7 @@ export default function ProjectFilter({
           open ? "flex" : "hidden"
         } flex-col gap-4 rounded-[14px] border border-black/8 bg-white p-6 md:flex dark:border-white/10 dark:bg-white/5`}
       >
-        {PROJECT_FILTER_GROUPS.map(({ key, label, options }) => {
+        {groups.map(({ key, label, options }) => {
           const selected = filters[key] as string[];
           const chips: (string | null)[] = [null, ...options];
 
@@ -152,7 +159,7 @@ export default function ProjectFilter({
                           : "text-muted ring-1 ring-black/12 hover:bg-surface dark:text-[#9a9ab0] dark:ring-white/20 dark:hover:bg-white/8"
                       }`}
                     >
-                      {option ?? ALL_LABEL}
+                      {option === null ? ALL_LABEL : projectFilterLabel(key, option)}
                       {count !== null && (
                         <span className="text-xs tabular-nums opacity-60">{count}</span>
                       )}

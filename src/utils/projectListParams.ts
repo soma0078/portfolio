@@ -1,8 +1,10 @@
 import { createParser, createSerializer, parseAsString } from "nuqs";
 import {
+  INDUSTRY_OPTIONS,
   INVOLVEMENT_OPTIONS,
   PLATFORM_OPTIONS,
   WORK_TYPE_OPTIONS,
+  type Industry,
   type Involvement,
   type Platform,
   type WorkType,
@@ -24,6 +26,11 @@ const INVOLVEMENT_SLUGS: Record<Involvement, string> = {
   "신규 구축": "new",
   "레거시 현대화": "legacy",
 };
+
+// 산업군 값은 이미 URL에 쓸 수 있는 영문 키라 그대로 슬러그로 쓴다
+const INDUSTRY_SLUGS = Object.fromEntries(
+  INDUSTRY_OPTIONS.map((option) => [option, option]),
+) as Record<Industry, string>;
 
 function parseAsFilterGroup<T extends string>(
   options: readonly T[],
@@ -49,6 +56,7 @@ function parseAsFilterGroup<T extends string>(
 const platform = parseAsFilterGroup(PLATFORM_OPTIONS, PLATFORM_SLUGS);
 const workType = parseAsFilterGroup(WORK_TYPE_OPTIONS, WORK_TYPE_SLUGS);
 const involvement = parseAsFilterGroup(INVOLVEMENT_OPTIONS, INVOLVEMENT_SLUGS);
+const industry = parseAsFilterGroup(INDUSTRY_OPTIONS, INDUSTRY_SLUGS);
 const stackQuery = parseAsString.withDefault("");
 // 켜졌을 때만 side=1이 URL에 남는다
 const includeSide = createParser<boolean>({
@@ -60,6 +68,7 @@ export const projectListParsers = {
   platform,
   workType,
   involvement,
+  industry,
   stackQuery,
   includeSide,
 };
