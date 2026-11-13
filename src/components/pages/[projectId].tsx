@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ScrollSmoother } from "gsap/all";
 import SmoothScroll from "@components/layout/SmoothScroll";
 import DetailBlock from "@components/projects/DetailBlock";
 import DetailNav from "@components/projects/DetailNav";
@@ -28,11 +26,6 @@ export default function ProjectDetailPage() {
   const index = PROJECTS.findIndex((item) => String(item.id) === projectId);
   const project = index >= 0 ? PROJECTS[index] : undefined;
   const detail = project ? PROJECT_DETAILS[project.id] : undefined;
-
-  useEffect(() => {
-    ScrollSmoother.get()?.scrollTo(0);
-    window.scrollTo(0, 0);
-  }, [projectId]);
 
   const gallery = detail?.galleryInHero
     ? detail.blocks.find(
