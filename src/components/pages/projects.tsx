@@ -16,6 +16,7 @@ import ContactClosing from "@components/common/ContactClosing";
 import { PAGE_GUTTER_X, PAGE_MAX_WIDTH } from "@constants/layout";
 import {
   LIST_ITEMS,
+  isIndustryFilterVisible,
   matchesProjectFilters,
   toggleProjectFilter,
   type ProjectFilters,
@@ -62,15 +63,21 @@ export default function ProjectPage() {
     history: "replace",
     scroll: false,
   });
-  const { platform, workType, involvement, stackQuery, includeSide } = query;
+  const { platform, workType, involvement, industry, stackQuery, includeSide } = query;
 
   // 상세 페이지에서 돌아올 때 같은 필터로 열 수 있도록 마지막 필터를 기억한다
   useEffect(() => {
     saveProjectListSearch(serializeProjectListQuery(query));
   }, [query]);
+  // 주소로 산업군만 들어와도 퍼블리싱·웹 디자인을 고르지 않았으면 산업군 조건은 쓰지 않는다
   const filters = useMemo<ProjectFilters>(
-    () => ({ platform, workType, involvement }),
-    [platform, workType, involvement],
+    () => ({
+      platform,
+      workType,
+      involvement,
+      industry: isIndustryFilterVisible({ workType }) ? industry : [],
+    }),
+    [platform, workType, involvement, industry],
   );
 
   // 열린 폴더는 한 번에 하나만. 다른 카드를 열면 이전 문서는 자동으로 들어간다
@@ -119,7 +126,12 @@ export default function ProjectPage() {
     runWithFlip(() => {
       setQuery((prev) =>
         toggleProjectFilter(
-          { platform: prev.platform, workType: prev.workType, involvement: prev.involvement },
+          {
+            platform: prev.platform,
+            workType: prev.workType,
+            involvement: prev.involvement,
+            industry: prev.industry,
+          },
           key,
           value,
         ),

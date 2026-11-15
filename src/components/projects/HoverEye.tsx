@@ -1,4 +1,4 @@
-import { useRef, type RefObject } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { LuEye } from "react-icons/lu";
@@ -9,18 +9,15 @@ const OFFSET = 26;
 
 const FOLLOW = 0.45;
 
-interface HoverEyeProps {
-  areaRef: RefObject<HTMLElement | null>;
-}
-
-export default function HoverEye({ areaRef }: HoverEyeProps) {
+// 감지 영역은 부모 요소다. 부모의 ref는 자식 effect보다 늦게 붙어 첫 마운트에 null이므로 받지 않는다
+export default function HoverEye() {
   const eyeRef = useRef<HTMLSpanElement>(null);
 
   useGSAP(
     () => {
-      const area = areaRef.current;
       const eye = eyeRef.current;
-      if (!area || !eye) return;
+      const area = eye?.parentElement;
+      if (!eye || !area) return;
       if (window.matchMedia("(hover: none)").matches) return;
 
       const reduced = window.matchMedia(
@@ -75,14 +72,15 @@ export default function HoverEye({ areaRef }: HoverEyeProps) {
         area.removeEventListener("pointerleave", leave);
       };
     },
-    { dependencies: [areaRef] },
+    { scope: eyeRef },
   );
 
   return (
     <span
       ref={eyeRef}
       aria-hidden
-      style={{ width: SIZE, height: SIZE }}
+      // effect가 돌기 전이나 호버가 없는 기기에서도 보이지 않도록 처음부터 접어 둔다
+      style={{ width: SIZE, height: SIZE, transform: "scale(0)" }}
       className="pointer-events-none absolute top-0 left-0 z-1 flex items-center justify-center rounded-full bg-ink/85 text-white ring-1 ring-white/20 backdrop-blur-sm"
     >
       <LuEye size={18} />

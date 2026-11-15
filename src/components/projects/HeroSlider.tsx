@@ -23,7 +23,6 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
   const [index, setIndex] = useState(0);
   const [popover, setPopover] = useState<number | null>(null);
   const dragFrom = useRef<number | null>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
 
   const clamp = (next: number) => Math.min(Math.max(next, 0), shots.length - 1);
   const move = (step: number) => setIndex((current) => clamp(current + step));
@@ -41,7 +40,6 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
   return (
     <div className="w-full0">
       <div
-        ref={frameRef}
         className="group relative overflow-hidden rounded-2xl border-12 border-surface dark:border-white/5"
         onPointerDown={(event) => {
           dragFrom.current = event.clientX;
@@ -82,7 +80,7 @@ export default function HeroSlider({ shots }: HeroSliderProps) {
           ))}
         </div>
 
-        <HoverEye areaRef={frameRef} />
+        <HoverEye />
 
         {shots.length > 1 && (
           <>
